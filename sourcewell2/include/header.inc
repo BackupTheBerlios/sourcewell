@@ -12,7 +12,7 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: header.inc,v 1.2 2002/05/09 16:40:00 grex Exp $
+// $Id: header.inc,v 1.3 2002/05/09 16:41:07 grex Exp $
 
 /* PHPLib authentication object */
 /* @see PHPLib */
@@ -155,7 +155,7 @@ if (isset($auth) && !empty($auth->auth["perm"])  && !($logout)) {
     <td>
 <?php
 
-while (list(, $value) = each($nav_bar_array)) {
+while (list(, $value) = each($config_nav_bar_array)) {
     // Polimorfism
     print $value->render();
 }
