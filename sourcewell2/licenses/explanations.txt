@@ -1,0 +1,20 @@
+http://www.gnu.org/philosophy/license-list.html
+Various Licenses and Comments about Them
+
+http://www.stromian.com/Public_Licenses.html
+Evaluation of Public Software Licenses
+
+http://zooko.com/license_quick_ref.html
+Quick Reference For Choosing a Free Software License
+
+http://www.dwheeler.com/oss_fs_refs.html
+Open Source Software / Free Software (OSS/FS) References by David A. Wheeler
+
+http://www.debian.org/intro/free
+What Does Free Mean? or What do you mean by Free Software?
+
+http://www.gnu.org/philosophy/categories.html
+Categories of Free and Non-Free Software
+
+http://slashdot.org/interviews/99/07/30/2220240.shtml
+Interview: Bruce Perens Answers Open Source License Questions

@@ -1,0 +1,66 @@
+OSI aproved:
+The GNU General Public License (GPL) -----> gpl.html
+The GNU Library or "Lesser" Public License (LGPL) ----> lgpl.html
+The BSD license ---> bsd.html
+The MIT license  ---> mit.html
+The Artistic license --->  artistic.html
+The Mozilla Public License v. 1.0 (MPL)  ---> mpl10.html
+The Qt Public License (QPL)  --->  qpl.html
+The IBM Public License  ---> ibmpl.html
+The MITRE Collaborative Virtual Workspace License (CVW License)  --->  cvwl.html ????
+The Ricoh Source Code Public License  --->  rscpl.html
+The Python license (CNRI Python License)  --->  cnripl.html
+The Python Software Foundation License  ---> psfl.html
+The zlib/libpng license        <------------ Zlib License ---> zlib.html
+The Apache Software License  ---> apache.html
+The Vovida Software License v. 1.0 --->  vsl.html
+The Sun Industry Standards Source License (SISSL)  ---> sissl.html
+The Intel Open Source License  ---> iosl.html
+The Mozilla Public License 1.1 (MPL 1.1)  ---> mpl11.html
+The Jabber Open Source License  ---> josl.html
+The Nokia Open Source License  ---> nosl.html
+The Sleepycat License  <-------- Berkeley Database License ---> sl.html
+The Nethack General Public License  ---> ngpl.html
+The Common Public License  ---> cpl.html
+The Apple Public Source License  ---> apsl.html
+The X.Net License  ---> xnl.html
+The Sun Public License  ---> spl.html
+The Eiffel Forum License  <-- -- Eiffel Forum Freeware License  ---> efl.html
+The W3C License  ---> ml.html
+The Open Group Test Suite License  ---> ogtsl.html
+
+Other Licenses:
+Freely Distributable ---> 
+Freeware ---> 
+Free for non-commercial use ---> 
+OSI Approved (Open Source) ---> 
+Free To Use But Restricted ---> 
+Public Domain ---> pd.html
+Other/Proprietary License ---> 
+Shareware ---> 
+GNU Free Documentation License (FDL) ---> 
+The PHP License ---> phpl.html
+Free For Educational Use ---> 
+GNAT Modified GPL (GMGPL) ---> 
+SUN Community Source License ---> scl.html
+Zope Public License (ZPL) ---> 
+The Clarified Artistic License ---> 
+Voxel Public License (VPL) ---> 
+Netscape Public License (NPL) ---> http://www.mozilla.org/MPL/NPL-1.0.html
+SUN Binary Code License ---> 
+The Latex Project Public License (LPPL) ---> 
+The Open Content License ---> 
+Aladdin Free Public License (AFPL) <------ Artifex FPL!!! ---> 
+
+and more:
+Arphic Public License ---> apl.html
+Cryptix General License ---> cgl.html
+Free Trail ---> 
+FreeType License ---> 
+Interbase Public License ---> 
+Open Compatibility License ---> 
+The Phorum License ---> pl.html
+Plan 9 Open Source License ---> p9osl.html
+source-available commercial  ---> 
+UCL/LBL ---> 
+X11 License <--------- ????  ---> 
