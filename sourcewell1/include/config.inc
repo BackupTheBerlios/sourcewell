@@ -2,10 +2,10 @@
 
 ######################################################################
 # SourceWell: Software Announcement & Retrieval System
-# ================================================
+# ====================================================
 #
-# Copyright (c) 2001 by
-#                Lutz Henckel (lutz.henckel@fokus.gmd.de) and
+# Copyright (c) 2001-2003 by
+#                Lutz Henckel (lutz.henckel@fokus.fraunhofer.de) and
 #                Gregorio Robles (grex@scouts-es.org)
 #
 # BerliOS SourceWell: http://sourcewell.berlios.de
@@ -38,12 +38,13 @@
 $sys_name = "SourceWell";
 $sys_title = "Open Source Software Announcement &amp; Retrieval";
 $sys_url_title = "http://www.berlios.de/";
-$sys_url = "http://localhost/sourcewell/";
+$sys_url = "http://sourcewell.berlios.de/";
 $sys_logo_image = $sys_url."images/berliOS_logo.png";
 $sys_logo_alt = "BerliOS";
 $sys_logo_width = "238";
 $sys_logo_heigth = "61";
-$sys_logo_small_image = $sys_url."images/berliOS_small_logo.png";
+#$sys_logo_small_image = $sys_url."images/berliOS_small_logo.png";
+$sys_logo_small_image = "http://developer.berlios.de/bslogo.php?group_id=23&type=1";
 $sys_logo_small_alt = $sys_logo_alt;
 $sys_logo_small_width = "124";
 $sys_logo_small_heigth = "32";
@@ -190,6 +191,7 @@ $la_array[] = "German";
 $la_array[] = "Spanish";
 $la_array[] = "French";
 
+
 ######################################################################
 # Statistic configuration
 #
@@ -282,6 +284,6 @@ $hash_secret = "Jabberwocky...";
 #
 ######################################################################
 
-$SourceWell_Version = "1.1.0";
+$SourceWell_Version = "1.1.1";
 
 ?>
