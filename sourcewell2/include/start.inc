@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: start.inc,v 1.22 2002/05/07 21:18:51 grex Exp $
+// $Id: start.inc,v 1.23 2002/05/07 21:21:20 grex Exp $
 
 if (!isset($login)) {
     page_open(array('sess' => 'SourceWell_Session'));
@@ -77,14 +77,14 @@ $i = 0;
 while (list($title, $url) = each($ts_array)) {
 	if ($i > 0)
 		echo "\n | ";
-	echo "<b><a href=\"$url\" class=\"maintitlebar\">".$t->translate("$title")."</a></b>";
+	echo "<b><a href=\"$url\" class=\"maintitlebar\">"._("$title")."</a></b>";
 	$i++;
 };
 echo "\n</span></td><td width=\"55%\" align=\"right\">\n";
 if (isset($auth) && !empty($auth->auth["perm"])  && !($logout)) {
-	echo "<FONT COLOR=\"".$th_nav_bgcolor."\">".$t->translate("Logged in")." <b>".$auth->auth["uname"]."</b> (<b>".$auth->auth["perm"]."</b>) / ".$t->translate("Expires")." <b>".timestr_short($auth->auth["exp"])."</b></FONT>";
+	echo "<FONT COLOR=\"".$th_nav_bgcolor."\">"._("Logged in")." <b>".$auth->auth["uname"]."</b> (<b>".$auth->auth["perm"]."</b>) / "._("Expires")." <b>".timestr_short($auth->auth["exp"])."</b></FONT>";
 } else {
-	echo "<FONT COLOR=\"".$th_nav_bgcolor."\"><B>".$t->translate("Not Logged in")."</B></FONT>";
+	echo "<FONT COLOR=\"".$th_nav_bgcolor."\"><B>"._("Not Logged in")."</B></FONT>";
 }
 ?>
 
@@ -114,17 +114,17 @@ vspace="5" hspace="5" alt="<?php echo $sys_logo_alt;?>"></a>
 <p align="left">
 <font color="<?php echo $th_nav_font_color;?>">
 <b><font size="+1"><?php echo $sys_name;?></font></b>
-<br><?php echo $t->translate($sys_title);?></font></p>
+<br><?php echo _($sys_title);?></font></p>
 </td>
 
 <!-- beta string -->
 <td align="center" valign="middle">
 <center>
 <font size="+2" color="red">BETA BETA BETA</font><br>
-<?php echo $t->translate("This site is being beta tested"); ?>, 
-<?php echo $t->translate("please send any and all"); ?>
- <a href="mailto:sourceagency-support@lists.berlios.de?subject=SourceAgency Beta Feedback&cc=grex@scouts-es.org&cc=lutz.henckel@fokus.fhg.de&cc=riessen@berlios.de"
-><?php echo $t->translate("feedback"); ?></a>!
+<?php echo _("This site is being beta tested"); ?>, 
+<?php echo _("please send any and all"); ?>
+ <a href="mailto:sourcewell-support@lists.berlios.de?subject=SourceWell Beta Feedback&cc=grex@scouts-es.org"
+><?php echo _("feedback"); ?></a>!
 </center>
 </td>
 
