@@ -12,7 +12,7 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: footer.inc,v 1.1 2002/05/09 15:31:32 grex Exp $
+// $Id: footer.inc,v 1.2 2002/05/09 17:18:12 grex Exp $
 
 /* Configuration parameters are set as global */
 /* their values can be found at config.inc */
@@ -24,7 +24,12 @@ global $config_sys_url;
 global $config_nav_bgcolor;
 
 ?>
-<br><p>
+<br>
+  <p>
+    <a href="http://validator.w3.org/check/referer"><img border="0"
+        src="http://www.w3.org/Icons/valid-html40"
+        alt="Valid HTML 4.0!" height="31" width="88"></a>
+  </p>
 </td>
 </tr>
 </table>
