@@ -13,12 +13,12 @@
 // |          Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
 // +----------------------------------------------------------------------+
 //
-// $Id: login.php,v 1.4 2002/05/09 22:40:54 grex Exp $
+// $Id: login.php,v 1.5 2002/05/09 22:41:58 grex Exp $
 
 include('include/start.inc');
 
 if (isset($perm) && $perm->have_perm('user_pending')) {
-    $be->box_full(_('Error'), _('Access denied'));
+    $table_error->table_full(_('Error'), _('Access denied'));
     $auth->logout();
 } else {
     $msg = _('You are logged in as').' <b>'.$auth->auth['uname']
