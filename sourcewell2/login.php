@@ -13,13 +13,14 @@
 // |          Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
 // +----------------------------------------------------------------------+
 //
-// $Id: login.php,v 1.8 2002/05/09 23:01:26 grex Exp $
+// $Id: login.php,v 1.9 2002/05/09 23:18:58 grex Exp $
 
 $login = 1;
 include('start.inc');
 
 if (isset($perm) && $perm->have_perm('user_pending')) {
-    $table_error->table_full(_('Error'), _('Access denied'));
+    $table_error->table_full(_('Error'), _('Access denied')
+                            ._('You are a pending user. You need to confirm your registration'));
     $auth->logout();
 } else {
     $msg = _('You are logged in as').' <b>'.$auth->auth['uname']
