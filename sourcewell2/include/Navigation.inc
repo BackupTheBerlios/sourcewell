@@ -12,7 +12,7 @@
 // | Authors: Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
 // +----------------------------------------------------------------------+
 //
-// $Id: Navigation.inc,v 1.2 2002/05/09 14:04:37 grex Exp $
+// $Id: Navigation.inc,v 1.3 2002/05/09 14:05:35 grex Exp $
 
 /**
  * Class Navigation: a class for links in the navigation bar
@@ -74,7 +74,7 @@ class Navigation {
      * @param   string  $link            Page that is linked
      * @access  public
      */
-    function Table($string, $link)
+    function Navigation($string, $link)
     {
         $this->string = $string;
 	$this->link = $link;
