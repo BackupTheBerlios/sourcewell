@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: config.inc,v 1.42 2002/05/09 17:45:18 grex Exp $
+// $Id: config.inc,v 1.43 2002/05/09 17:55:03 grex Exp $
 
 /**
  * Directory configuration
@@ -142,7 +142,7 @@ function config_inc($include)
  * config_sys_url   string 	URL of your SourceWell system
  */
 
-$config_sys_name = 'SourceWell2';
+$config_sys_name = 'SourceWell';
 $config_sys_title = 'Open Source Software Announcement &amp; Retrieval';
 $config_sys_url = 'http://sourcewell.berlios.de/sourcewell2/';
 

@@ -12,7 +12,7 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: header.inc,v 1.11 2002/05/09 17:13:16 grex Exp $
+// $Id: header.inc,v 1.12 2002/05/09 17:55:03 grex Exp $
 
 /**
  * TODO: global explanation of this file
@@ -224,7 +224,6 @@ while (list(, $value) = each($config_adm_bar_array)) {
   <tr bgcolor="<?php echo $config_navstrip_bgcolor;?>">
     <td align="center">
       <img src="http://www.berlios.de/images/blank.gif" height="1" width="135" border=0 alt="">
-      <br>
       <span class="titlebar"><font color="<?php echo $config_navstrip_font_color;?>"><?php echo _("Search"); ?></font></span>
     </td>
   </tr>
