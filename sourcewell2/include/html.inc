@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: html.inc,v 1.7 2002/05/09 15:19:23 grex Exp $
+// $Id: html.inc,v 1.8 2002/05/09 15:21:58 grex Exp $
 
 /**
  * HTML library for PHP (and PHPLib)
@@ -139,12 +139,13 @@ function htmlp_image($file, $description = '', $width = '', $height = '', $borde
  * @see PHPLib
  */
 
-function html_form_action($target = 'PHP_SELF', $query = '')
+function html_form_action($target = 'PHP_SELF', $query = '', $method = 'post')
 {
     global $sess;
 
-     $output = "\n".'<form action="test.php3" method="post">';
+     $output = "\n".'<form action="test.php3" method="'.$method.'">';
 
+     /* TODO */
     /* 4 different cases
      * a) Target PHP_SELF and a given query
      * b) Target PHP_SELF, query not given
