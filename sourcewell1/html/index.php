@@ -33,14 +33,14 @@ require("./include/header.inc");
 
 <p><b>Demo site</b>: <a href="http://sourcewell.berlios.de">BerliOS SourceWell</a> with <b>more than 2000 applications</b>!
 
-<P>SourceWell is a highly configurable, well documented software announcement and retrieval system entirely writen in PHP3 and database independent. It includes user authentication and autherization system (anonymous/user/editor/admin), sessions with and without cookies, high configurability, multilangual support, ease of administration, RDF-type document backend, advanced statistics, announcing mailing lists, application indexing by sections, installation support  and many other useful features.
+<P>SourceWell is a highly configurable software announcement and retrieval system entirely written in <a href="http://www.php.net/">PHP</a> and is based upon a <a href="http://www.mysql.com/">MySQL</a> database. It includes user authentication and authorization system (anonymous/user/editor/admin), sessions with and without cookies, high configurability, multilangual support, ease of administration, RDF-type document backend, advanced statistics, announcing mailing lists, application indexing by sections, installation support  and many other useful features.
 
-<P>SourceWell depends on the PHPLib library (version 7.2d). Only if you want to have diary and weekly mailing lists with the announcements, you should also have Mailman installed in your box.
+<P>SourceWell depends on the <a href="http://phplib.sourceforge.net/">PHPLib</a> library (version 7.2d). Only if you want to have diary and weekly mailing lists with the announcements, you should also have Mailman installed in your box.
 
 <P>You can see a fully working example of the SourceWell system at BerliOS
 SourceWell by visiting <A HREF="http://sourcewell.berlios.de">http://sourcewell.berlios.de</A>. A close look at it will show you what
 you can do with SourceWell. BerliOS SourceWell has at this moment more
-than 850 applications inserted and has been the main reason why we have
+than 2000 applications inserted and has been the main reason why we have
 made this software.
 
 <P>SourceWell can be easily translated into different
@@ -59,7 +59,7 @@ a look at <A HREF="http://www.berlios.de">http://www.berlios.de</A> for further 
 <UL>
 <LI>Different type of users (nonauthorized users, anonymous user, users, editors and administrators) with different functions
 <LI>Session management with and without cookies (beta)
-<LI>Database independent
+<LI>based upon MySQL database
 <LI>Advanced configurability from a single file
 <LI>Simple, intuitive use of the system
 <LI>Documentation for further development and/or adjustment
