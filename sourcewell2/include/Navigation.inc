@@ -12,7 +12,7 @@
 // | Authors: Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
 // +----------------------------------------------------------------------+
 //
-// $Id: Navigation.inc,v 1.10 2002/05/09 14:56:55 grex Exp $
+// $Id: Navigation.inc,v 1.11 2002/05/09 17:35:14 grex Exp $
 
 /**
  * Class Navigation: a class for links in the navigation bar
@@ -71,6 +71,11 @@ class Navigation {
      * @var  string
      */
     var $additionalBR;
+   /**
+     * 
+     * @var  boolean
+     */
+    var $requiredAuth;
 
     /**
      * Constructor
@@ -88,6 +93,7 @@ class Navigation {
 	$this->statistics = 0;
 	$this->where = '';
 	$this->additionalBR = 0;
+	$this->requiredAuth = 0;
     }
 
     function setHttpGetArray($array) {
@@ -112,6 +118,29 @@ class Navigation {
 	}
     }
 
+    function showIfAuth($value) {
+        $this->requiredAuth = $value;
+    }
+
+    function checkPermision() {
+        global $auth;
+
+        if (isset($auth) && !$this->requiredAuth) {
+	    return 0;
+	} elseif (!isset($auth) && $this->requiredAuth) {
+  	    return 0;
+	} elseif ($this->permisions) {
+            /* Should not be ==... instead regexp */
+            if ($this->permisions == $auth->auth["perm"]) {
+  	        return 1;
+            } else {
+	      return 0;
+	    }
+        } else {
+   	    return 1;
+	}
+    }
+
     function countStatistics() {
         global $db;
 
@@ -123,8 +152,7 @@ class Navigation {
     function render() {
         global $auth;
 
-        /* Should not be ==... instead regexp */
-        if ($this->permisions == $auth->auth["perm"]) {
+        if ($this->checkPermision()) {
   	    $return = '      ';
 	    $return .= html_link($this->string, $this->link, $this->httpGetArray, 'menus');
             if ($this->statistics) {
