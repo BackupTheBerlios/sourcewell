@@ -61,7 +61,8 @@ $db->query("SELECT * FROM software,counter,auth_user WHERE software.appid=counte
 $i=0;
 $bx->box_body_begin();
 while($db->next_record()) {
-  echo "<li><font size=\"1\"><a href=\"".$sys_url."appbyid.php?id=".$db->f("appid")."\" target=\"_content\">".$db->f("name")."</a> ".$db->f("version")."</font></li>\n";
+  echo "<div class=newsind>&#149;&nbsp;";
+  echo "<a href=\"".$sys_url."appbyid.php?id=".$db->f("appid")."\" target=\"_content\">".$db->f("name")."</a> ".$db->f("version")."</div>\n";
   $i++;
 }
 echo "<p><b><font size=\"1\"><a href=\"".$sys_url."\" target=\"_content\">more...</a></font></b>\n";
