@@ -13,8 +13,9 @@
 // |          Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
 // +----------------------------------------------------------------------+
 //
-// $Id: login.php,v 1.6 2002/05/09 22:43:29 grex Exp $
+// $Id: login.php,v 1.7 2002/05/09 22:44:49 grex Exp $
 
+$login = 1;
 include('include/start.inc');
 
 if (isset($perm) && $perm->have_perm('user_pending')) {
