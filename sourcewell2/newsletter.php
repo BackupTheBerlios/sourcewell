@@ -13,11 +13,11 @@
 // |          Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
 // +----------------------------------------------------------------------+
 //
-// $Id: newsletter.php,v 1.2 2002/05/10 18:18:28 grex Exp $
+// $Id: newsletter.php,v 1.3 2002/05/10 18:20:32 grex Exp $
 
 require('start.inc');
 
-if (!$configure_ml_list) {
+if (!$config_ml_list) {
     $table_error->table_full(_("Error"),
                              _("The Mailing Lists are not enabled").".");
 } else {
