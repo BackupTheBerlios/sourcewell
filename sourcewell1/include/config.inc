@@ -38,7 +38,7 @@
 $sys_name = "SourceWell";
 $sys_title = "Open Source Software Announcement &amp; Retrieval";
 $sys_url_title = "http://www.berlios.de/";
-$sys_url = "http://127.0.0.1/sourcewell/";
+$sys_url = "http://localhost/sourcewell/";
 $sys_logo_image = $sys_url."images/berliOS_logo.png";
 $sys_logo_alt = "BerliOS";
 $sys_logo_width = "238";
