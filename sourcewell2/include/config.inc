@@ -15,7 +15,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: config.inc,v 1.20 2002/04/21 22:18:30 grex Exp $
+// $Id: config.inc,v 1.21 2002/04/21 22:21:53 grex Exp $
 
 /**
  * General System Configuration
@@ -257,7 +257,7 @@ function config_inc($include)
         include($_INC_PATH.$include.$include_extension);
         break;
     default:
-        die('Error. Non existing file included at config_include in config.inc');
+        print("Error. Non existing file $include included at config_inc in config.inc");
     }
 }
 
