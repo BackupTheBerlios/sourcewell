@@ -12,7 +12,7 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: header.inc,v 1.15 2002/05/09 20:32:32 grex Exp $
+// $Id: header.inc,v 1.16 2002/05/09 22:37:42 grex Exp $
 
 /**
  * TODO: global explanation of this file
@@ -37,7 +37,7 @@ global $config_sys_title;
 global $config_sys_logo_image;
 global $config_sys_logo_height;
 global $config_sys_logo_width;
-global $config_sys_logo_alt
+global $config_sys_logo_alt;
 global $config_navstrip_bgcolor;
 global $config_navstrip_font_color;
 global $config_nav_font_color;
