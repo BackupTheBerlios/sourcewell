@@ -1,21 +1,20 @@
 <?php
-
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 // +----------------------------------------------------------------------+
-// |        SourceWell 2 - The GPL Software Announcement System           |
+// |        SourceWell 2 - The GPL Software Announcement System           |
 // +----------------------------------------------------------------------+
-// |      Copyright (c) 2001-2002 BerliOS, FOKUS Fraunhofer Institut      |
+// |      Copyright (c) 2001-2002 BerliOS, FOKUS Fraunhofer Institut      |
 // +----------------------------------------------------------------------+
-// | This program is free software. You can redistribute it and/or modify |
-// | it under the terms of the GNU General Public License as published by |
-// | the Free Software Foundation; either version 2 or later of the GPL.  |
+// | This program is free software. You can redistribute it and/or modify |
+// | it under the terms of the GNU General Public License as published by |
+// | the Free Software Foundation; either version 2 or later of the GPL.  |
 // +----------------------------------------------------------------------+
-// | Authors: Gregorio Robles <grex@scouts-es.org>                        |
-// |          Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
-// |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
+// | Authors: Gregorio Robles <grex@scouts-es.org>                        |
+// |          Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
+// |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: Insertion.inc,v 1.1 2002/03/08 17:11:02 grex Exp $
+// $Id: Insertion.inc,v 1.2 2002/03/18 11:53:22 grex Exp $
 
 /**
  * method insertQuery() uses PHPLib classes!
@@ -90,7 +89,7 @@ class Insertion {
     {
         $this->getFields(&$objects);
         $query = $this->begin.$this->table.' '.$this->generateValues().$this->generateWhere();
-	$id = $this->insertQuery($query);
+	//	$id = $this->insertQuery($query);
         return $id;
     }
 
@@ -104,10 +103,10 @@ class Insertion {
 
     function insertQuery($query)
     {
-        global $BBDD;
+        global $db;
 
-	$BBDD->query($query);
-        if ($BBDD->affected_rows() == 0) {
+	$db->query($query);
+        if ($db->affected_rows() == 0) {
             print "<br><b>Database insertion caused error (class Insertion)</b><br>";
         } else {
             print "\n\n<!-- Succesful database insertion:\n".$query."\n-->\n\n";
@@ -115,9 +114,9 @@ class Insertion {
 
 	/* We get the id of the just inserted content */
         /* this should be a transaction but it isn't */
-        $BBDD->query("SELECT id,creacion FROM ".$this->table." ORDER BY creacion DESC");
-        $BBDD->next_record();
-        return $BBDD->f("id");
+        $db->query("SELECT id,creacion FROM ".$this->table." ORDER BY creacion DESC");
+        $db->next_record();
+        return $db->f("id");
     }
 }
 

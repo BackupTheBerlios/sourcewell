@@ -20,10 +20,23 @@ $fields[] = new SelectField('Type', 'type', '', array('1', '2', '3', '4'));
 
 $form = new Form('Testing classes');
 
-if ($HTTP_POST_VARS[$form->getPreviewButton()]) {
-    $preview = new Preview();
-    $preview->ShowFields(&$fields);
-}
-$form->FormFields(&$fields);
 
+if ($HTTP_POST_VARS['Inser']) {
+
+    $insertion = new Insertion('table');
+    $id = $insertion->generateQuery(&$fields);
+
+    /*  
+    $show = new FormShow('table');
+    $show->addCondition('id',$id);
+    $show->printShow(&$fields);
+    */
+
+} else {
+    if ($HTTP_POST_VARS[$form->getPreviewButton()]) {
+        $preview = new Preview();
+        $preview->ShowFields(&$fields);
+    }
+    $form->FormFields(&$fields);
+}
 ?>
