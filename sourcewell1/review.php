@@ -70,6 +70,18 @@ if ($perm->have_perm("user_pending") || ($action == "review" && !$perm->have_per
 		} else {
 		  $operation = "UPDATE";
           $where = "WHERE appid='$id'";
+
+		  $db->query("SELECT version FROM software WHERE appid='$id'");
+    	  if ($db->num_rows() > 0) {
+			$db->next_record();
+	    	$oldversion = $db->f("version");
+		  }
+
+		  if ($oldversion != $version) {
+			  // Insert new history
+			  $db->query("INSERT history SET appid='$id',user_his='$user',creation_his='$modification',version_his='$version'");
+			  // echo "<p>INSERT history SET appid='$id',user_his='$user',creation_his='$modification',version_his='$version'\n";
+		  }
 		}
         $db->query("$operation software SET $set $where");
 	    // echo "<p>$operation software SET $set $where\n";
@@ -81,10 +93,6 @@ if ($perm->have_perm("user_pending") || ($action == "review" && !$perm->have_per
 		  $db->next_record();
 		  $id = $db->f("appid");
 		  // echo "<p>ID: $id\n";
-
-		  // Insert new history
-		  $db->query("INSERT history SET appid='$id',user_his='".$auth->auth["uname"]."',creation_his=NOW(),version_his='".$db->f("version")."'");
-		  // echo "<p>INSERT history SET appid='$id',user_his='".$auth->auth["uname"]."',creation_his=NOW(),version_his='".$db->f("version")."'\n";
 
 		  // Insert new counters
 		  $db->query("INSERT counter SET appid='$id'");
@@ -104,7 +112,7 @@ if ($perm->have_perm("user_pending") || ($action == "review" && !$perm->have_per
 		// Delete pending apps
 		$where = "idx='$idx'";
 		$db->query("DELETE FROM pending WHERE $where");
-		echo "<p>DELETE FROM pending WHERE $where\n";
+		// echo "<p>DELETE FROM pending WHERE $where\n";
 	    break;
       case "delete":
 		$where = "idx='$idx'";
