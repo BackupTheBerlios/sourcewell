@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: start.inc,v 1.16 2002/04/21 22:17:12 grex Exp $
+// $Id: start.inc,v 1.17 2002/04/21 22:20:00 grex Exp $
 
 if (!isset($login)) {
     page_open(array('sess' => 'SourceWell_Session'));
@@ -35,8 +35,8 @@ header("Pragma: no-cache"); 				// HTTP/1.0
 $_INC_PATH = '/home/groups/sourcewell/htdocs/sourcewell2/include/';
 
 require($_INC_PATH.'config.inc');
-config_inc('lib.inc');
-config_inc('html.inc');
+config_inc('lib');
+config_inc('html');
 
 //setlocale('LC_TIME','es_ES');
 //config_inc('Lang');
