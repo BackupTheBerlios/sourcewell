@@ -116,7 +116,7 @@ if (
 ?>
 <table BORDER=0 CELLSPACING=0 CELLPADDING=3 WIDTH="100%">
 <tr BGCOLOR="<?php echo $th_navstrip_bgcolor;?>">
-<td ALIGN=CENTER><img SRC="http://www.berlios.de/images/blank.gif" height="1" width="135" border=0><br>
+<td ALIGN=CENTER><img SRC="images/blank.gif" height="1" width="135" border=0><br>
 <span class="titlebar"><font color="<?php echo $th_navstrip_font_color;?>"><?php echo $t->translate("Administration"); ?></font></span></td>
 </tr>
 
@@ -195,7 +195,7 @@ if (
 <!-- Search menu -->
 <table BORDER=0 CELLSPACING=0 CELLPADDING=3 WIDTH="100%">
 <tr BGCOLOR="<?php echo $th_navstrip_bgcolor;?>">
-<td ALIGN=CENTER><img SRC="http://www.berlios.de/images/blank.gif" height="1" width="135" border=0><br>
+<td ALIGN=CENTER><img SRC="images/blank.gif" height="1" width="135" border=0><br>
 <span class="titlebar"><font color="<?php echo $th_navstrip_font_color;?>"><?php echo $t->translate("Search"); ?></font></span></td>
 </tr>
 
@@ -215,7 +215,7 @@ echo "<p><input TYPE=\"submit\" NAME=\"Search\" VALUE=\"".$t->translate("Search"
 <!-- Language menu -->
 <table BORDER=0 CELLSPACING=0 CELLPADDING=3 WIDTH="100%">
 <tr BGCOLOR="<?php echo $th_navstrip_bgcolor;?>">
-<td ALIGN=CENTER><img SRC="http://www.berlios.de/images/blank.gif" height="1" width="135" border=0><br>
+<td ALIGN=CENTER><img SRC="images/blank.gif" height="1" width="135" border=0><br>
 <span class="titlebar"><font color="<?php echo $th_navstrip_font_color;?>"><?php echo $t->translate("Language");?></font></span></td>
 </tr>
 
@@ -255,6 +255,6 @@ if (ereg("Gecko", "$HTTP_USER_AGENT")) {
 	echo "<p align=center><a href=\"javascript:addNetscapePanel();\"><img SRC=\"images/add-button.gif\" BORDER=0 height=45 width=100></a>\n";
 }
 echo "<p align=\"center\"><a href=\"http://developer.berlios.de\" title=\"BerliOS Developer\">
-<img src=\"http://developer.berlios.de/bslogo.php?group_id=23&type=1\" width=\"124px\" height=\"32px\" border=\"0\" hspace=\"3\" vspace=\"3\" alt=\"BerliOS Logo\"><br>Developer</a>\n";
+<img src=\"//developer.berlios.de/bslogo.php?group_id=23&type=1\" width=\"124px\" height=\"32px\" border=\"0\" hspace=\"3\" vspace=\"3\" alt=\"BerliOS Logo\"><br>Developer</a>\n";
 ?>
 <!-- end Language menu -->
