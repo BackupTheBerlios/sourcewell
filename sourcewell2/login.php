@@ -13,11 +13,11 @@
 // |          Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
 // +----------------------------------------------------------------------+
 //
-// $Id: login.php,v 1.2 2002/05/09 22:27:27 grex Exp $
+// $Id: login.php,v 1.3 2002/05/09 22:40:11 grex Exp $
 
 require('include/start.inc');
 
-if ($perm->have_perm('user_pending')) {
+if (isset($perm) && $perm->have_perm('user_pending')) {
     $be->box_full(_('Error'), _('Access denied'));
     $auth->logout();
 } else {
