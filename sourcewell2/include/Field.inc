@@ -12,7 +12,7 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: Field.inc,v 1.2 2002/03/09 01:43:59 grex Exp $
+// $Id: Field.inc,v 1.3 2002/03/10 01:30:20 grex Exp $
 
 /**
  * Requires Table.inc and html.inc
@@ -83,6 +83,8 @@ class Field {
     /**
      * Abstract function that
      * should be rewritten by its children
+     *
+     *  @access private
      */
 
     function fieldForm()

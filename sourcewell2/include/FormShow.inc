@@ -1,5 +1,4 @@
 <?php
-
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 // +----------------------------------------------------------------------+
 // |        SourceWell 2 - The GPL Software Announcement System           |
@@ -13,18 +12,55 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: FormShow.inc,v 1.1 2002/03/08 17:10:58 grex Exp $
+// $Id: FormShow.inc,v 1.2 2002/03/10 01:30:20 grex Exp $
 
 /**
  * Requires table.inc and lib.inc
  * uses PHPLib database abstraction!
  */
 
+/*
+ * FormShow class
+ * Displays contents from database like the form
+ *
+ * +------------------------------------------------+
+ * | Title (usually also a content)                 |
+ * +------------------------------------------------+
+ * | +--------------------++----------------------+ |
+ * | | Description        ||  Content             | |
+ * | +--------------------++----------------------+ |
+ * | | Description        ||  Content             | |
+ * | +--------------------++----------------------+ |
+ * | | Description        ||  Content             | |
+ * | +--------------------++----------------------+ |
+ * +------------------------------------------------+
+ *
+ *
+ * @author Gregorio Robles <grex@scouts-es.org>
+ * @package Show
+ * @access public
+ */
+
 class FormShow extends Show {
 
-    var $title;     // String with the title
-                    // if it is left blank, it will see if a field has been specified as title
-    var $several;  // allows to reflect 1:N relationship
+    /**
+     * Label with the title
+     * if it is left blank, it will see if a field has been specified as title
+     * @var  string
+     */
+    var $title;
+    /**
+     * Allows to reflect 1:N relationships
+     * @var  string
+     */
+    var $several;
+
+    /**
+     * Constructor
+     *
+     * @param   array   $tables    array with the database tables that contain the content
+     * @access  public
+     */
 
     function FormShow ($tables = '')
     {
@@ -35,22 +71,39 @@ class FormShow extends Show {
         $this->several= '';
     }
 
+    /**
+     * Set the title
+     * this will disable setting a database content as title
+     * 
+     * @param    string      $title       Title of the Table
+     * @access public
+     */
+
     function setTitle($title)
     {
         $this->title = $title;
     }
 
+    /**
+     * Prints the content
+     *
+     * @param    array      $FieldObjectArray    array of Field (and children) objects
+     * @access public
+     * @see Show
+     * @see PHPLib
+     */
+
     function printShow($FieldObjectArray)
     {
-        global $BBDD, $table;
+        global $db, $table;
 
         $query = $this->_generateQuery(&$FieldObjectArray);
 
         print "\n\n<!-- Database query: ".$query." -->\n";
-        $BBDD->query($query);
-        $BBDD->next_record();
-        if ($BBDD->num_rows() == 0) {
-            print "Error in Class Show. method printShow().";
+        $db->query($query);
+        $db->next_record();
+        if ($db->num_rows() == 0) {
+            print "Error in Class FormShow. method printShow().";
         }
 
         if (!$this->title) {
@@ -63,7 +116,7 @@ class FormShow extends Show {
 
         $table->table_body_begin("top");
 
-        print "\tpor <b>".$BBDD->f("user")."</b> - <b>".lib_date_long($BBDD->f("creation"))."<b><br>&nbsp;\n";
+        print "\tpor <b>".$db->f("user")."</b> - <b>".lib_date_long($db->f("creation"))."<b><br>&nbsp;\n";
 
         reset($FieldObjectArray);
 
@@ -82,5 +135,4 @@ class FormShow extends Show {
 
     }
 }
-
 ?>

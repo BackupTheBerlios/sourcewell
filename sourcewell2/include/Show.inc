@@ -12,7 +12,7 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: Show.inc,v 1.2 2002/03/09 15:10:29 grex Exp $
+// $Id: Show.inc,v 1.3 2002/03/10 01:30:20 grex Exp $
 
 /*
  * Show class
@@ -24,7 +24,7 @@
  * and its children will be the ones who show it
  *
  * @author Gregorio Robles <grex@scouts-es.org>
- * @package Field
+ * @package Show
  * @access public
  */
 

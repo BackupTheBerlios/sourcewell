@@ -1,5 +1,4 @@
 <?php
-
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 // +----------------------------------------------------------------------+
 // |        SourceWell 2 - The GPL Software Announcement System           |
@@ -13,14 +12,45 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: TabularShow.inc,v 1.1 2002/03/08 17:11:02 grex Exp $
+// $Id: TabularShow.inc,v 1.2 2002/03/10 01:30:20 grex Exp $
 
 /**
  * Requires table.inc
  * Depends on PHPLib's database abstraction classes!
  */
 
+/*
+ * FormShow class
+ * Displays contents from database in "tabular" form
+ *
+ * +------------------------------------------------+ 
+ * | +-------------++-----------++----------------+ | 
+ * | |   Field1    ||   Field2  ||    Field3      | |  Title
+ * | +-------------++-----------++----------------+ |             
+ * +------------------------------------------------+
+ * | +-------------++-----------++----------------+ |
+ * | |   Value11   ||  Value12  ||    Value13     | |
+ * | |-------------++-----------++----------------| |
+ * | |   Value21   ||  Value22  ||    Value23     | |  Values
+ * | |-------------++-----------++----------------| |
+ * | |   Value31   ||  Value32  ||    Value33     | |
+ * | +-------------++-----------++----------------+ |
+ * +------------------------------------------------+
+ *
+ *
+ * @author Gregorio Robles <grex@scouts-es.org>
+ * @package Show
+ * @access public
+ */
+
 class TabularShow extends Show {
+
+    /**
+     * Constructor
+     *
+     * @param   array   $tables    array with the database tables that contain the content
+     * @access  public
+     */
 
     function TabularShow ($tables = '')
     {
@@ -30,16 +60,25 @@ class TabularShow extends Show {
         $this->setLimit('10');       
     }
 
+    /**
+     * Prints the content
+     *
+     * @param    array      $FieldObjectArray    array of Field (and children) objects
+     * @access public
+     * @see Show
+     * @see PHPLib
+     */
+
     function printShow ($FieldObjectArray)
     {
-        global $BBDD, $table;
+        global $db, $table;
 
-        $table->table_begin("This table contains FIXME");
+        $table->table_begin('This table contains FIXME');
 
         /* column width (by now, they're all equal) */ 
         /* FIXME: should change in the future */
 
-        $width = 100/(sizeof($this->fields))."%";
+        $width = 100/(sizeof($this->fields)).'%';
 
         /* Header of the information table */
 
@@ -64,17 +103,17 @@ class TabularShow extends Show {
         $query = $this->_generateQuery(&$FieldObjectArray);
 
         print "\n\n<!-- Database query: ".$query." -->\n";
-        $BBDD->query($query);
+        $db->query($query);
         $i = 0;
-        while ($BBDD->next_record()) {
+        while ($db->next_record()) {
             reset($FieldObjectArray);
             if ($i%2) {
-	        $bgcolor = "white";
+	        $bgcolor = 'white';
             } else {
-                $bgcolor = "";
+                $bgcolor = '';
             }
             while (list(, $key) = each($FieldObjectArray)) {
-                $table->table_column($BBDD->f($key->getAttribute()), $width, $bgcolor);
+                $table->table_column($db->f($key->getAttribute()), $width, $bgcolor);
             }
             $table->table_nextRowWithColumns();
             $i++;
@@ -87,5 +126,4 @@ class TabularShow extends Show {
         $table->table_end();
     }
 }
-
 ?>

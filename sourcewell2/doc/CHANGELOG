@@ -1,5 +1,12 @@
 SourceWell 2 - The GPL Software Announcement System from BerliOS
 
+2002-03-10  Gregorio Robles <grex@scouts-es.org>
+
+	* include/Form.inc:
+	* include/TabularShow.inc:
+	* include/FormShow.inc: documented these classes following the PHPDoc
+ 	  (http://www.phpdoc.de) conventions
+
 2002-03-09  Gregorio Robles <grex@scouts-es.org>
 
 	* include/html.inc: changes in the html(p)_image function so that

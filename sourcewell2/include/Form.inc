@@ -1,5 +1,4 @@
 <?php
-
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 // +----------------------------------------------------------------------+
 // |        SourceWell 2 - The GPL Software Announcement System           |
@@ -13,22 +12,72 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: Form.inc,v 1.1 2002/03/08 17:11:01 grex Exp $
+// $Id: Form.inc,v 1.2 2002/03/10 01:30:20 grex Exp $
 
 /**
  * Requires table.inc
  */
 
+/*
+ * Form class
+ * Displays a form as this
+ *
+ * +------------------------------------------------+
+ * | Title                                          |
+ * +------------------------------------------------+
+ * | +----------------++--------------------------+ |
+ * | | Description1   ||                          | |
+ * | +----------------++--------------------------+ |
+ * | | Description2   ||                          | |
+ * | +----------------++--------------------------+ |
+ * | | Description3   ||                          | |
+ * | +----------------++--------------------------+ |
+ * +------------------------------------------------+
+ *
+ *
+ * @author Gregorio Robles <grex@scouts-es.org>
+ * @access public
+ * @see Field
+ */
+
 class Form {
 
-    var $title; 	// Header of the table with the form
-    var $target;	// target file where the form input will be processed
-    var $insertButton;  // Label for the insertion button
-                        // Should not be modified until you exactly know what you're doing!
-    var $previewButton; // Label for the preview button
-    var $preview;	// Status: 0 the first time (by default)
-                        //           or when a required (NotNull) field has to be filled out
-                        //         1 the second time (already previewed)
+    /**
+     * Header of the table with the form 
+     * @var  string
+     */
+    var $title;
+    /**
+     * Target file where the form input will be processed
+     * @var  string
+     */
+    var $target;
+    /**
+     * Label for the insertion button
+     * Should not be modified until you exactly know what you're doing!
+     * @var  string
+     */
+    var $insertButton; 
+    /**
+     * Label for the preview button
+     * @var  string
+     */
+    var $previewButton;
+    /**
+     * Status: 0 the first time (by default)
+     *           or when a required (NotNull) field has to be filled out
+     *         1 the second time (already previewed and required fields filled out)
+     * @var  boolean
+     */ 
+    var $preview;
+
+    /**
+     * Constructor
+     *
+     * @param   string     $title      Header of the table with the form
+     * @param   string     $target     Target file where the form input will be processed 
+     * @access  public
+     */
 
     function Form ($title = 'Form', $target = 'PHP_SELF')
     {
@@ -39,29 +88,59 @@ class Form {
         $this->preview = 0;
     }
 
+    /**
+     * Get Preview Status
+     * 
+     * @returns    boolean     1 if the form can be submitted
+     * @access public
+     */
     function getPreview()
     {
         return $this->preview;
     }
+
+    /**
+     * Set preview status
+     * 
+     * @params    boolean     1 if the form can be submitted
+     * @access public
+     */
 
     function setPreview($preview = '1')
     {
         $this->preview = $preview;
     }
 
+    /**
+     * Get Preview Button Label
+     * 
+     * @returns    string      Preview Button Label
+     * @access public
+     */
+
     function getPreviewButton()
     {
         return $this->previewButton;
     }
+
+    /**
+     * Sets Preview Button Label
+     * 
+     * @param    string      Preview Button Label
+     * @access public
+     */
 
     function setPreviewButton($label = 'Preview')
     {
         $this->previewButton = $label;
     }
 
-    /* 
-     * This function gets as parameter an array of objects
-     * Its task is to call the form function for every object
+    /** 
+     * Calls the form function for every object and returns them in a table
+     *
+     * @param   array   $objects    Array with all the Field objects in the form
+     * @see Field
+     * @access public
      */
 
     function FormFields ($objects)
@@ -88,6 +167,14 @@ class Form {
         }
     }
 
+    /** 
+     * Ends the form with one or more buttons
+     *
+     * @param   string     $button        Label of the button
+     * @param   boolean    $multiple      If there are several buttons
+     * @access public
+     */
+
     function end($button, $multiple = '0')
     {
         if (!$multiple) {
@@ -99,14 +186,27 @@ class Form {
         }
     }
 
+    /** 
+     * Ends the form with several buttons
+     *
+     * @param   array     $button_array       Array of buttons
+     * @access public
+     */
+
     function end_array($array_button)
     {
         $this->_end_columns();
         while (list(, $button) = each($array_button)) {
-            $this->end ( $button, 1 );
+            $this->end($button, 1);
         }
 	$this->_finishing();
     }
+
+    /** 
+     * Finishes Columns
+     *
+     * @access private
+     */
 
     function _end_columns()
     {
@@ -115,6 +215,12 @@ class Form {
         $table->table_column();
         $table->table_column_start('', '', 'left');
     }
+
+    /** 
+     * Handles the table finishing after putting the buttons
+     *
+     * @access private
+     */
 
     function _finishing ()
     {
@@ -126,6 +232,16 @@ class Form {
         $table->table_body_end();
         $table->table_end();
     }
+
+    /** 
+     * When previewing, it is interesting to pass all fields as hidden
+     * and put an insertion button in the Preview box
+     *
+     * @param   array   $objects    Array with all the Field objects in the form
+     * @param   boolean $allFieldsFilledOut    If true all required fields have been filled out
+     * @see Field, Preview
+     * @access public
+     */
 
     function PassAllFieldsAsHidden($objects, $allFieldsFilledOut) {
 
@@ -144,5 +260,4 @@ class Form {
         }
     }
 }
-
 ?>
