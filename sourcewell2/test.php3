@@ -4,7 +4,7 @@ lib_include('Field');
 lib_include('TextField');
 include('Table.inc');
 
-$table = new Table();
+//$table = new Table();
 
 $name = new TextField('Name', 'name','',1);
 $nombre->setIsTitle();

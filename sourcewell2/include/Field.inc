@@ -1,18 +1,18 @@
 <?php
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 // +----------------------------------------------------------------------+
-// |        SourceWell 2 - The GPL Software Announcement System           |
+// |        SourceWell 2 - The GPL Software Announcement System           |
 // +----------------------------------------------------------------------+
-// |      Copyright (c) 2001-2002 BerliOS, FOKUS Fraunhofer Institut      |
+// |      Copyright (c) 2001-2002 BerliOS, FOKUS Fraunhofer Institut      |
 // +----------------------------------------------------------------------+
-// | This program is free software. You can redistribute it and/or modify |
-// | it under the terms of the GNU General Public License as published by |
-// | the Free Software Foundation; either version 2 or later of the GPL.  |
+// | This program is free software. You can redistribute it and/or modify |
+// | it under the terms of the GNU General Public License as published by |
+// | the Free Software Foundation; either version 2 or later of the GPL.  |
 // +----------------------------------------------------------------------+
-// | Authors: Gregorio Robles <grex@scouts-es.org>                        |
+// | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: Field.inc,v 1.4 2002/03/15 15:14:24 grex Exp $
+// $Id: Field.inc,v 1.5 2002/03/18 11:09:44 grex Exp $
 
 /**
  * Requires Table.inc, html.inc and config.inc
@@ -34,39 +34,39 @@
 
 class Field {
 
-    /**
-     * Contains the description of the field
-     * @var  string
-     */
+    /**
+     * Contains the description of the field
+     * @var  string
+     */
     var $description;
-    /**
-     * Contains the name of the field
+    /**
+     * Contains the name of the field
      * (should be the same as the database field) 
-     * @var  string
-     */
+     * @var  string
+     */
     var $name;
-    /**
-     * Default value for the field
-     * @var  mixed    string or int depending on the database field
-     */
+    /**
+     * Default value for the field
+     * @var  mixed    string or int depending on the database field
+     */
     var $default;
-    /**
-     * NotNull Field
+    /**
+     * NotNull Field
      * O if the field can be empty (= NULL)
      * 1 if the field has to be filled out (= NOT NULL)
-     * @var boolean
-     */
+     * @var boolean
+     */
     var $notNull;
 
-    /**
-     * Constructor
-     *
-     * @param   string  $description     description of the field
-     * @param   string  $name            name of the field
-     * @param   string  $default         default value
-     * @param   string  $notNull         if the field has to be filled out or not
-     * @access  public
-     */
+    /**
+     * Constructor
+     *
+     * @param   string  $description     description of the field
+     * @param   string  $name            name of the field
+     * @param   string  $default         default value
+     * @param   string  $notNull         if the field has to be filled out or not
+     * @access  public
+     */
 
     function Field($description, $name, $default = '', $notNull = 0) 
     {
@@ -99,8 +99,8 @@ class Field {
      * Shows the content of the field (in a table)
      * may have to be rewritten by its children
      *
-     * @return bolean       checks if fields labeled as NotNull are non-empty
-     * @access public
+     * @return bolean       checks if fields labeled as NotNull are non-empty
+     * @access public
      */
 
     function fieldShow()
@@ -121,12 +121,12 @@ class Field {
         return 1;
     }
 
-    /**
-     * Gets the Value of the variable $name passed through a HTTP POST method
-     *
-     * @return string/int  value of the field passed as POST in the form
-     * @access private
-     */
+    /**
+     * Gets the Value of the variable $name passed through a HTTP POST method
+     *
+     * @return string/int  value of the field passed as POST in the form
+     * @access private
+     */
 
     function _getPostValue() {
         return $GLOBALS['HTTP_POST_VARS'][$this->name];
@@ -136,8 +136,8 @@ class Field {
      * Extracts the field values from database
      * FIXME: should be reimplemented in class MultipleOption
      *
-     * @return string/int  value of the field in database
-     * @access public
+     * @return string/int  value of the field in database
+     * @access public
      * @see PHPLib (it can be independent)
      */
 
@@ -155,8 +155,8 @@ class Field {
      * Assigns the value in database as the default one
      * (interesting for the Show class)
      *
-     * @return string/int    value of the field in database
-     * @access public
+     * @return string/int    value of the field in database
+     * @access public
      * @see Show class
      */
 
@@ -168,8 +168,8 @@ class Field {
     /**
      * Functions that help with the database insertion
      *
-     * @return string/int    value of the name of the field
-     * @access public
+     * @return string/int    value of the name of the field
+     * @access public
      */
 
     function getAttribute()
@@ -184,8 +184,8 @@ class Field {
      *    in Preview: it can be put from the value in HTTP_POST_VARS
      *    in Show: it is the value stored in the database
      *
-     * @return string/int    value of the default value of the field
-     * @access public
+     * @return string/int    value of the default value of the field
+     * @access public
      */
 
     function getValue()
@@ -198,7 +198,7 @@ class Field {
      * (this is interesting for Preview)
      *
      * @see Preview
-     * @access public
+     * @access public
      */
 
     function fieldHidden()
@@ -210,7 +210,7 @@ class Field {
      * Specifies in the form visually if the field has to be filled out
      *
      * @return string       label notifying that the field has to be filled out
-     * @access private
+     * @access private
      */
 
     function _specifyNotNull()
@@ -225,7 +225,7 @@ class Field {
      * (has to be rewritten by the classes that can be Title)
      *
      * @return boolean       this class will always return 0; children have to rewrite it
-     * @access public
+     * @access public
      */
 
     function getIsTitle()
