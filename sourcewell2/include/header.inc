@@ -12,7 +12,7 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: header.inc,v 1.18 2002/05/10 18:41:58 grex Exp $
+// $Id: header.inc,v 1.19 2002/05/10 22:35:53 grex Exp $
 
 /**
  * TODO: global explanation of this file
@@ -29,6 +29,8 @@ function _o($string) {
 /* @see PHPLib */
 
 global $auth;
+
+global $logout;
 
 /* Visual configuration parameters
    Have a look at config.inc for further details */
@@ -139,14 +141,15 @@ if (isset($auth) && !empty($auth->auth["perm"])  && !($logout)) {
       <br><?php echo _o($config_sys_title);?></font></p>
     </td>
 
-    <!-- beta string -->
+    <!-- beta string starts -->
     <td align="center" valign="middle">
       <center>
         <font size="+2" color="red">ALPHA ALPHA</font><br>
-          This site is being beta tested, please send any and all
+          This site is in construction, please send any and all
         <a href="mailto:sourcewell-support@lists.berlios.de">feedback</a>!
       </center>
     </td>
+    <!-- beta string finishes -->
 
     <!-- logo at right -->
     <td valign="middle">
