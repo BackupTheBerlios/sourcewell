@@ -13,7 +13,7 @@
 // |          Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
 // +----------------------------------------------------------------------+
 //
-// $Id: login.php,v 1.10 2002/05/09 23:26:57 grex Exp $
+// $Id: login.php,v 1.11 2002/05/09 23:29:22 grex Exp $
 
 $login = 1;
 page_open(array('sess' => 'SourceWell_Session',
@@ -21,17 +21,21 @@ page_open(array('sess' => 'SourceWell_Session',
                 'perm' => 'SourceWell_Perm'));
 require('start.inc');
 
+function _i($string) {
+    return $string;
+}
+
 if (isset($perm) && $perm->have_perm('user_pending')) {
-    $table_error->table_full(_('Error'), _('Access denied')
-                            ._('You are a pending user. You need to confirm your registration'));
+    $table_error->table_full(_i('Error'), _i('Access denied')
+                            ._i('You are a pending user. You need to confirm your registration'));
     $auth->logout();
 } else {
-    $msg = _('You are logged in as').' <b>'.$auth->auth['uname']
-           .'</b> '._('with').' '
-           .'<b>'.$auth->auth['perm'].'</b> '._('permission').'.'
-           .'<br>'._('Your authentication is valid until')
+    $msg = _i('You are logged in as').' <b>'.$auth->auth['uname']
+           .'</b> '._i('with').' '
+           .'<b>'.$auth->auth['perm'].'</b> '._i('permission').'.'
+           .'<br>'._i('Your authentication is valid until')
            .' <b>'.lib_date_long($auth->auth['exp']).'</b>';
-    $table->table_full(_('Welcome to').' '.$config_sys_name, $msg);
+    $table->table_full(_i('Welcome to').' '.$config_sys_name, $msg);
 }
 
 config_inc('end');
