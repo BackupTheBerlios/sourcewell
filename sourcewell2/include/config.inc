@@ -15,7 +15,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: config.inc,v 1.12 2002/03/18 10:50:09 grex Exp $
+// $Id: config.inc,v 1.13 2002/03/18 10:52:02 grex Exp $
 
 /**
  * General System Configuration
@@ -227,26 +227,26 @@ function lib_include($class)
        include($config_path_Classes.$class.$config_path_extension);
        break;
     case 'Table':
-      include($config_path_TableClass.$config_path_extension);
+      include($config_path_TableClass.$class.$config_path_extension);
     case 'lib':
-        include($config_path_lib.$config_path_extension);
+        include($config_path_lib.$class.$config_path_extension);
         break;
     case 'html':
-        include($config_path_html.$config_path_extension);
+        include($config_path_html.$class.$config_path_extension);
         break;
     case 'security':
-        include($config_path_security.$config_path_extension);
+        include($config_path_security.$class.$config_path_extension);
         break;
     case 'header':
     case 'footer':
     case 'menubar':
     case 'top_strip':
     case 'top_title':
-        include($config_path_design.$config_path_extension);
+        include($config_path_design.$class.$config_path_extension);
         break;
     case 'translation':
     case 'lang':
-        include($config_path_translations.$config_path_extension);
+        include($config_path_translations.$class.$config_path_extension);
         break;
     default:
       die('error. See configuration file');
