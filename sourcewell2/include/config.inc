@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: config.inc,v 1.31 2002/05/09 14:03:43 grex Exp $
+// $Id: config.inc,v 1.32 2002/05/09 14:30:53 grex Exp $
 
 /**
  * Directory configuration
@@ -285,9 +285,16 @@ $nav_bar_array[] = new Navigation('Users', 'users.php3');
 $nav_bar_array[] = new Navigation('Apps Index', 'categories.php3');
 $nav_bar_array[] = new Navigation('New App', 'app_edi.php3');
 $nav_bar_array[] = new Navigation('Update Apps', 'appbyuser.php3');
-$nav_bar_array[] = new Navigation('Pending Apps', 'admapp.php3');
-$nav_bar_array[] = new Navigation('Deleted Apps', 'admapp.php3');
-$nav_bar_array[] = new Navigation('Modified Apps', 'admapp.php3');
+$temp = new Navigation('Pending Apps', 'admapp.php3');
+$temp->setStatistics('projects', $where = "status='P'");
+$nav_bar_array[] = $temp;
+$temp = new Navigation('Deleted Apps', 'admapp.php3');
+$temp->setPermisions('editor');
+$nav_bar_array[] = $temp;
+$temp = new Navigation('Modified Apps', 'admapp.php3');
+$temp->setPermisions('editor');
+$temp->setStatistics('projects', $where = "status='M'");
+$nav_bar_array[] = $temp;
 $nav_bar_array[] = new Navigation('Developers', 'developers.php3');
 $nav_bar_array[] = new Navigation('Licenses', 'licenses.php3');
 $nav_bar_array[] = new Navigation('Newsletter', 'newsletter.php3');
