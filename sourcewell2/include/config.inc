@@ -14,114 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: config.inc,v 1.27 2002/05/07 21:41:04 grex Exp $
-
-/**
- * Directory configuration
- *
- * Following variables give the actual location of
- * the different classes and libraries
- *
- * $config_path_extension:  file extensions 
- * if there is one with a different extension, you should change
- * it in the lib_config() function in lib.inc
- * TODO: find a way to make this easier
- * 
- * $config_lib_lib:
- * $config_html_lib:
- * $config_TableClass:      path to Table.inc
- * $config_FieldClasses:    path to the *Field, Show (and children), Preview etc. classes
- * $config_OtherClasses:    path to the rest of classes
- * $config_translations:    path to the translation included files
- * $config_design_lib:      path to header, footer, etc. etc.
- *
- */
-
-$config_path_lib = 'include/';
-$config_path_html = 'include/';
-$config_path_TableClass = 'include/';
-$config_path_FieldClasses = 'include/';
-$config_path_Classes = 'include/';
-$config_path_translations = 'include/';
-$config_path_design = 'include/';
-$config_path_images = 'images/';
-
-/**
- * This function enables to add included files with some intelligence
- * given a file to include, it includes the correct file
- *
- * TODO: make the use of this function easier
- * TODO: for example using the above constants
- * TODO: so that the user does not need to edit this function
- *
- * @param  string    $include      Library/class to be included
- *                                 (without extension)
- *
- * @global boolean   $_FIELD_CLASS_INCLUDED    If the parent class has already been included
- * @global string    $_INC_PATH                Path to the include directory
- * @access public
- */
-function config_inc($include)
-{
-    global $_FIELD_CLASS_INCLUDED, $_INC_PATH;
-
-    /* default extensions */
-    $class_extension = '.inc';
-    $library_extension = '.inc';
-    $include_extension = '.inc';
-
-    /* let's work a little less */
-    /* we group the different classes together */
-    $include_switch = $include;
-
-    /* if it contains Field, then this class belongs to the Field class */
-    if (ereg('Field', $include)) {
-        if (!$_FIELD_CLASS_INCLUDED) {
-            /* we only add the parent class once */
-            include($_INC_PATH.'/Field'.$class_extension);
-            $_FIELD_CLASS_INCLUDED = 1;
-        }
-        $include_switch = 'Field';
-    }
-    switch($include_switch) {
-    case 'Field':
-        include($_INC_PATH.$include.$class_extension);
-        break;
-    case 'Session':
-        include($_INC_PATH.$include.$class_extension);
-        break;
-    case 'Table':
-        include($_INC_PATH.$include.$class_extension);
-        break;
-    case 'html':
-        include($_INC_PATH.$include.$library_extension);
-        break;
-    case 'FormShow':
-    case 'TabularShow':
-    case 'Summary':
-        /* Show parent class included */
-        include($_INC_PATH.'/Show'.$class_extension);
-        /* there's no break! ;-) */
-    case 'Comment':
-    case 'Form':
-    case 'Insertion':
-    case 'Update':
-    case 'Preview':
-        include($_INC_PATH.$include.$class_extension);
-        break;
-    case 'lib':
-    case 'security':
-        include($_INC_PATH.$include.$library_extension);
-        break;
-    case 'end':
-    case 'navigation':
-    case 'images':
-        include($_INC_PATH.$include.$include_extension);
-        break;
-    default:
-        print("Error. Non existing file $include included at config_inc in config.inc");
-    }
-}
+// $Id: config.inc,v 1.26 2002/05/07 21:39:33 grex Exp $
 
 /**
  * General System Configuration
@@ -262,6 +155,113 @@ $config_database_name      = 'sourcewell2';
 $config_database_user      = 'operator';
 $config_database_password  = 'password';
 $config_database_variable  = '_DB_';
+
+/**
+ * Directory configuration
+ *
+ * Following variables give the actual location of
+ * the different classes and libraries
+ *
+ * $config_path_extension:  file extensions 
+ * if there is one with a different extension, you should change
+ * it in the lib_config() function in lib.inc
+ * TODO: find a way to make this easier
+ * 
+ * $config_lib_lib:
+ * $config_html_lib:
+ * $config_TableClass:      path to Table.inc
+ * $config_FieldClasses:    path to the *Field, Show (and children), Preview etc. classes
+ * $config_OtherClasses:    path to the rest of classes
+ * $config_translations:    path to the translation included files
+ * $config_design_lib:      path to header, footer, etc. etc.
+ *
+ */
+
+$config_path_lib = 'include/';
+$config_path_html = 'include/';
+$config_path_TableClass = 'include/';
+$config_path_FieldClasses = 'include/';
+$config_path_Classes = 'include/';
+$config_path_translations = 'include/';
+$config_path_design = 'include/';
+$config_path_images = 'images/';
+
+/**
+ * This function enables to add included files with some intelligence
+ * given a file to include, it includes the correct file
+ *
+ * TODO: make the use of this function easier
+ * TODO: for example using the above constants
+ * TODO: so that the user does not need to edit this function
+ *
+ * @param  string    $include      Library/class to be included
+ *                                 (without extension)
+ *
+ * @global boolean   $_FIELD_CLASS_INCLUDED    If the parent class has already been included
+ * @global string    $_INC_PATH                Path to the include directory
+ * @access public
+ */
+function config_inc($include)
+{
+    global $_FIELD_CLASS_INCLUDED, $_INC_PATH;
+
+    /* default extensions */
+    $class_extension = '.inc';
+    $library_extension = '.inc';
+    $include_extension = '.inc';
+
+    /* let's work a little less */
+    /* we group the different classes together */
+    $include_switch = $include;
+
+    /* if it contains Field, then this class belongs to the Field class */
+    if (ereg('Field', $include)) {
+        if (!$_FIELD_CLASS_INCLUDED) {
+            /* we only add the parent class once */
+            include($_INC_PATH.'/Field'.$class_extension);
+            $_FIELD_CLASS_INCLUDED = 1;
+        }
+        $include_switch = 'Field';
+    }
+    switch($include_switch) {
+    case 'Field':
+        include($_INC_PATH.$include.$class_extension);
+        break;
+    case 'Session':
+        include($_INC_PATH.$include.$class_extension);
+        break;
+    case 'Table':
+        include($_INC_PATH.$include.$class_extension);
+        break;
+    case 'html':
+        include($_INC_PATH.$include.$library_extension);
+        break;
+    case 'FormShow':
+    case 'TabularShow':
+    case 'Summary':
+        /* Show parent class included */
+        include($_INC_PATH.'/Show'.$class_extension);
+        /* there's no break! ;-) */
+    case 'Comment':
+    case 'Form':
+    case 'Insertion':
+    case 'Update':
+    case 'Preview':
+        include($_INC_PATH.$include.$class_extension);
+        break;
+    case 'lib':
+    case 'security':
+        include($_INC_PATH.$include.$library_extension);
+        break;
+    case 'end':
+    case 'navigation':
+    case 'images':
+        include($_INC_PATH.$include.$include_extension);
+        break;
+    default:
+        print("Error. Non existing file $include included at config_inc in config.inc");
+    }
+}
 
 /**
  * PHPLIB
