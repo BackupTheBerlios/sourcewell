@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: Table.inc,v 1.13 2002/05/10 23:08:13 grex Exp $
+// $Id: Table.inc,v 1.14 2002/05/10 23:10:28 grex Exp $
 
 /**
  * Class Table: a class for HTML Tables
@@ -445,6 +445,7 @@ class Table {
      *
      * The strip takes the $this->table_title_* parameters as the
      * ones to be used (the body parameters are discarded)
+     * (in the example, for instance, this->table_title_align is 'left')
      *
      * @param    string      $text                 Text in the column
      * @access public
