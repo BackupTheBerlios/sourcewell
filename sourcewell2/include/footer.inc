@@ -12,7 +12,7 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: footer.inc,v 1.3 2002/05/09 17:18:58 grex Exp $
+// $Id: footer.inc,v 1.4 2002/05/09 17:20:29 grex Exp $
 
 /* Configuration parameters are set as global */
 /* their values can be found at config.inc */
@@ -22,6 +22,11 @@ global $config_org_url;
 global $config_org_name;
 global $config_sys_url;
 global $config_nav_bgcolor;
+
+/**
+ * WISH: here we could have some functions that
+ * do some advertising of BerliOS
+ */
 
 ?>
 <br>
