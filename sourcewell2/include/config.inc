@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: config.inc,v 1.41 2002/05/09 17:42:28 grex Exp $
+// $Id: config.inc,v 1.42 2002/05/09 17:45:18 grex Exp $
 
 /**
  * Directory configuration
@@ -293,6 +293,7 @@ $temp->showIfAuth(0);
 $config_nav_bar_array[] = $temp;
 $temp = new Navigation('Forgot Password?', 'remind.php3');
 $temp->showIfAuth(0);
+$temp->additionalBR();
 $config_nav_bar_array[] = $temp;
 $temp = new Navigation('Change User', 'chguser.php3');
 $temp->showIfAuth(1);
@@ -303,7 +304,9 @@ $temp->setPermisions('editor');
 $config_nav_bar_array[] = $temp;
 $config_nav_bar_array[] = new Navigation('Apps Index', 'categories.php3');
 $config_nav_bar_array[] = new Navigation('New App', 'app_edi.php3');
-$config_nav_bar_array[] = new Navigation('Update Apps', 'appbyuser.php3');
+$temp = new Navigation('Update Apps', 'appbyuser.php3');
+$temp->showIfAuth(1);
+$config_nav_bar_array[] = $temp;
 $temp = new Navigation('Pending Apps', 'admapp.php3');
 $temp->setPermisions('editor');
 $temp->setStatistics('projects', $where = "status='P'");
@@ -322,9 +325,10 @@ $config_nav_bar_array[] = $temp;
 $temp = new Navigation('Licenses', 'licenses.php3');
 $temp->additionalBR();
 $config_nav_bar_array[] = $temp;
-$config_nav_bar_array[] = new Navigation('Newsletter', 'newsletter.php3');
-$config_nav_bar_array[] = new Navigation('Backend', 'backend.php3');
 $config_nav_bar_array[] = new Navigation('Statistics', 'stats.php3');
+$config_nav_bar_array[] = new Navigation('Newsletter', 'newsletter.php3');
+$config_nav_bar_array[] = new Navigation('RDF Backend', 'backend.php3');
+
 
 /* Administration options */
 $temp = new Navigation('Users', 'admuser.php3');
