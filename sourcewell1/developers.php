@@ -89,7 +89,7 @@ if (($config_perm_developer != "all") && (!isset($perm) || !$perm->have_perm($co
         echo "<td>".$db->f("developer")."</td>\n";
       }
       if (!empty($email)) {
-        echo "<td>&lt;<a href=\"mailto:".$email."\">".ereg_replace("@"," at ",htmlentities($email))."</a>&gt;</td>\n";
+        echo "<td>&lt;<a href=\"mailto:".mailtoencode($email)."\">".ereg_replace("@"," at ",htmlentities($email))."</a>&gt;</td>\n";
       } else {
         echo "<td>&nbsp;</td>\n";
       }

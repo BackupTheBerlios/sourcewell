@@ -75,7 +75,7 @@ function appfull($query) {
   $bx->box_title($db->f("name")." ".$db->f("version")." (".typestr($db->f("type")).")");
   $bx->box_body_begin();
   $timestamp = mktimestamp($db->f("modification"));
-  echo "<b class=\"small\">".$t->translate("by")." <a href=\"mailto:".$db->f("email_usr")."\">".$db->f("user")."</a> - ".timestr($timestamp)."</b>\n";
+  echo "<b class=\"small\">".$t->translate("by")." <a href=\"mailto:".mailtoencode($db->f("email_usr"))."\">".$db->f("user")."</a> - ".timestr($timestamp)."</b>\n";
   echo "<p>".$db->f("description")."\n";
   echo "<table border=0 cellspacing=1 cellpadding=3 width=100% bgcolor=".$GLOBALS["th_box_body_bgcolor"].">\n";
 
@@ -132,7 +132,7 @@ function appfull($query) {
   echo $db->f("developer");
 
   $db_email = $db->f("email");
-  if (!empty($db_email)) echo " &lt;<a href=\"mailto:".$db->f("email")."\">".ereg_replace("@"," at ",htmlentities($db->f("email")))."</a>&gt;";
+  if (!empty($db_email)) echo " &lt;<a href=\"mailto:".mailtoencode($db->f("email"))."\">".ereg_replace("@"," at ",htmlentities($db->f("email")))."</a>&gt;";
   echo "</td></tr>\n";
 
   $db2 = new DB_SourceWell;
@@ -212,7 +212,7 @@ function apppend($query) {
   $bx->box_title($db->f("name")." ".$db->f("version")." (".typestr($db->f("type")).")");
   $bx->box_body_begin();
   $timestamp = mktimestamp($db->f("modification"));
-  echo "<b class=\"small\">".$t->translate("by")." <a href=\"mailto:".$db->f("email_usr")."\">".$db->f("user")."</a> - ".timestr($timestamp)."</b>\n";
+  echo "<b class=\"small\">".$t->translate("by")." <a href=\"mailto:".mailtoencode($db->f("email_usr"))."\">".$db->f("user")."</a> - ".timestr($timestamp)."</b>\n";
   echo "<p>".$db->f("description")."\n";
   echo "<table border=0 cellspacing=1 cellpadding=3 width=100% bgcolor=".$GLOBALS["th_box_body_bgcolor"].">\n";
 
@@ -269,7 +269,7 @@ function apppend($query) {
   echo $db->f("developer");
 
   $db_email = $db->f("email");
-  if (!empty($db_email)) echo " &lt;<a href=\"mailto:".$db->f("email")."\">".ereg_replace("@"," at ",htmlentities($db->f("email")))."</a>&gt;";
+  if (!empty($db_email)) echo " &lt;<a href=\"mailto:".mailtoencode($db->f("email"))."\">".ereg_replace("@"," at ",htmlentities($db->f("email")))."</a>&gt;";
   echo "</td></tr>\n";
 
   $db2 = new DB_SourceWell;
@@ -458,7 +458,7 @@ function appd() {
   $bx->box_title_end();
   $bx->box_body_begin();
   $timestamp = mktimestamp($db->f("modification"));
-  echo "<b class=\"small\">".$t->translate("by")." <a href=\"mailto:".$db->f("email_usr")."\">".$db->f("user")."</a> - ".timestr($timestamp)."</b>\n";
+  echo "<b class=\"small\">".$t->translate("by")." <a href=\"mailto:".mailtoencode($db->f("email_usr"))."\">".$db->f("user")."</a> - ".timestr($timestamp)."</b>\n";
   echo "<p>".$db->f("description")."\n";
   $bx->box_body_end();
 }
@@ -533,7 +533,7 @@ function updform($query,$url) {
   echo "<tr><td align=right width=30%>".$t->translate("Mailing List Archive")." (255):</td><td width=70%><input type=\"TEXT\" name=\"mailarch\" size=40 maxlength=255 value=\"".$db->f("mailarch")."\">&nbsp;[<a href=\"".$db->f("mailarch")."\" target=\"_blank\">".$t->translate("Check")."</a>]</td></tr>\n";
   echo "<tr><td align=right width=30%>".$t->translate("Description")." (*):</td><td width=70%><textarea cols=40 rows=7 name=\"description\" wrap=\"virtual\" maxlength=255>".$db->f("description")."</textarea></td></tr>\n";
   echo "<tr><td align=right width=30%>".$t->translate("Author")." (64):</td><td width=70%><input type=\"TEXT\" name=\"developer\" size=40 maxlength=64 value=\"".htmlentities($db->f("developer"),ENT_COMPAT)."\"></td></tr>\n";
-  echo "<tr><td align=right width=30%>".$t->translate("E-Mail")." (128):</td><td width=70%><input type=\"TEXT\" name=\"email\" size=40 maxlength=128 value=\"".$db->f("email")."\">&nbsp;[<a href=\"mailto:".$db->f("email")."\" target=\"_blank\">".$t->translate("Check")."</a>]</td></tr>\n";
+  echo "<tr><td align=right width=30%>".$t->translate("E-Mail")." (128):</td><td width=70%><input type=\"TEXT\" name=\"email\" size=40 maxlength=128 value=\"".$db->f("email")."\">&nbsp;[<a href=\"mailto:".mailtoencode($db->f("email"))."\" target=\"_blank\">".$t->translate("Check")."</a>]</td></tr>\n";
   echo "<tr><td align=right width=30%>".$t->translate("Depends on")." (128):</td><td width=70%><input type=\"TEXT\" name=\"depend\" size=40 maxlength=128 value=\"".$db->f("depend")."\"></td></tr>\n";
   echo "<tr><td align=right width=30%>".$t->translate("Urgency").":</td><td width=70%>\n";
   echo "<select name=\"urgency\">\n";
@@ -1055,5 +1055,13 @@ function mailuser($perms, $subj, $message) {
   while($db->next_record()) {
     mail($db->f("email_usr"),"[".$GLOBALS["sys_name"]."] ".$subj,$message,"From: ".$GLOBALS["ml_fromaddr"]."\nReply-To: ".$GLOBALS["ml_replyaddr"]."\nX-Mailer: PHP");
   }
+}
+
+function mailtoencode($str) {
+  $ret = "";
+  $arr = unpack("C*", $str);
+  foreach ($arr as $char)
+    $ret .= sprintf("%%%X", $char);
+  return $ret;
 }
 ?>
