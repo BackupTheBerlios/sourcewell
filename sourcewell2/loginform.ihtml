@@ -13,7 +13,7 @@
 // |          Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
 // +----------------------------------------------------------------------+
 //
-// $Id: loginform.ihtml,v 1.3 2002/05/09 22:29:15 grex Exp $
+// $Id: loginform.ihtml,v 1.4 2002/05/09 22:52:09 grex Exp $
 
 global $la;
 global $username;
@@ -27,7 +27,6 @@ if (isset($username)) {
 		.'<br>'._('Please try again').'!'
 		.'<br><br>'._('If you are not yet a registered User, please select')
                 .' '.html_link(_('New User'), 'register.php3'));
-	);
 }
 
 $table->table_begin();
