@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: Table.inc,v 1.6 2002/04/21 15:20:31 grex Exp $
+// $Id: Table.inc,v 1.7 2002/04/21 22:47:08 grex Exp $
 
 /**
  * Class Table: a class for HTML Tables
@@ -125,9 +125,6 @@ class Table {
         switch ($table_type) {
 
         case 'general':
-            /* FIXME: in php4 this include should be removed */
-            /* it should be include_once'd in the header file */
-            include('config.inc');
             $this->table_filling = $config_table_general_filling;
             $this->table_title_bgcolor = $config_table_general_title_bgcolor;
             $this->table_title_font_color = $config_table_general_title_font_color;
@@ -138,9 +135,6 @@ class Table {
             break;
 
         case 'error':
-            /* FIXME: in php4 this include should be removed */
-            /* it should be include_once'd in the header file */
-            include('config.inc');
             $this->table_filling = $config_table_error_filling;
             $this->table_title_bgcolor = $config_table_error_title_bgcolor;
             $this->table_title_font_color = $config_table_error_title_font_color;
