@@ -15,7 +15,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: config.inc,v 1.22 2002/04/21 22:23:20 grex Exp $
+// $Id: config.inc,v 1.23 2002/04/21 22:43:47 grex Exp $
 
 /**
  * General System Configuration
@@ -191,6 +191,10 @@ $config_path_images = 'images/';
  * This function enables to add included files with some intelligence
  * given a file to include, it includes the correct file
  *
+ * TODO: make the use of this function easier
+ * TODO: for example using the above constants
+ * TODO: so that the user does not need to edit this function
+ *
  * @param  string    $include      Library/class to be included
  *                                 (without extension)
  *
@@ -201,6 +205,8 @@ $config_path_images = 'images/';
 function config_inc($include)
 {
     global $_FIELD_CLASS_INCLUDED, $_INC_PATH;
+
+    print "Including: $include<br>";
 
     /* default extensions */
     $class_extension = '.inc';
@@ -250,7 +256,6 @@ function config_inc($include)
     case 'security':
         include($_INC_PATH.$include.$library_extension);
         break;
-    case 'start':
     case 'end':
     case 'navigation':
     case 'images':
