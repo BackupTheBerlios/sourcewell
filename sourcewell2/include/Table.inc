@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: Table.inc,v 1.11 2002/05/09 17:07:03 grex Exp $
+// $Id: Table.inc,v 1.12 2002/05/09 22:22:40 grex Exp $
 
 /**
  * Class Table: a class for HTML Tables
@@ -423,7 +423,7 @@ class Table {
      * @access public
      */
 
-    function table_colspan ($text = '&nbsp;', $numberOfColumns ='2', $bgcolor = '', $align = 'center')
+    function table_colspan($text = '&nbsp;', $numberOfColumns ='2', $bgcolor = '', $align = 'center')
     {
         echo "      <!-- Column that extends itself over $numberOfColumns columns columns begins -->\n";
         echo "      <td colspan=\"$numberOfColumns\" align=\"$align\" bgcolor=\"$bgcolor\">\n";
