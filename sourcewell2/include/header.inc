@@ -12,7 +12,7 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: header.inc,v 1.12 2002/05/09 17:55:03 grex Exp $
+// $Id: header.inc,v 1.13 2002/05/09 20:22:00 grex Exp $
 
 /**
  * TODO: global explanation of this file
@@ -82,7 +82,7 @@ global $config_addNetscapePanel;
 ?>
 
 <!-- top strip -->
-<table border="0" cellspacing="0" cellpadding="2" width="100%" bgcolor="<?php echo $config_navstrip_bgcolor;?>">
+<table border="0" cellspacing="0" cellpadding="0" width="100%" bgcolor="<?php echo $config_navstrip_bgcolor;?>">
   <tr>
     <td width="45%"><span class=maintitlebar>
 
