@@ -4,10 +4,10 @@
    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
    <meta http-equiv="expires" content="0">
    <META NAME="Author" CONTENT="Gregorio Robles & Lutz Henckel">
-   <META NAME="Description" CONTENT="Documentation for SourceWell 1.0.9">
+   <META NAME="Description" CONTENT="Documentation for SourceWell 1.0.10">
    <META NAME="KeyWords" CONTENT="BerliOS, SourceWEll, software, announcement,
    linux, retrieval, GPL, GNU">
-   <title>SourceWell 1.0.9 Documentation</title>
+   <title>SourceWell 1.0.10 Documentation</title>
 
    <STYLE type="text/css">
       P { font-size: 12pt;
@@ -88,10 +88,10 @@
 <body bgcolor="#FFCC33" topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" marginheight="0" marginwidth="0">
 
 <BR>&nbsp;
-<P CLASS="title">SourceWell 1.0.9
+<P CLASS="title">SourceWell 1.0.10
 </P>
 
-<P Class="authors">Berlin - Madrid, June 29 2001<BR>
+<P Class="authors">Berlin - Madrid, November 29 2001<BR>
 Gregorio Robles &lt;<A
 HREF="mailto:grex@scouts-es.org">grex@scouts-es.org</a>&gt;<BR>
 Lutz Henckel  &lt;<A
@@ -214,6 +214,8 @@ and use the SourceWell system, you may not have to read it
 as a whole as advanced features for developers are
 also explained.
 
+<p>SourceWell 1.0.10 is a development version. It is the first step towards the new architecture that will arise with SourceWell 2. There are no feature enhancements towards SourceWell's 1.0.9 version, but some bugs (one big security bug and another memory bug) were fixed. Backwards compatibility with SourceWell 1.0.9 has been mantained. We expect that SourceWell's development will acquire lots of new features with the new architecture.
+
 <P>&nbsp;
 <A NAME="copyleft">
 <P CLASS="subtitle">1. Copyright
@@ -240,12 +242,12 @@ along with this program; if not, write to the
 
 <P>SourceWell is a highly configurable, well documented software announcement and retrieval system entirely writen in <a href="http://www.php.net/" target="_blank">PHP3</a> and database independent. It includes user authentication and autherization system (anonymous/user/editor/admin), sessions with and without cookies, high configurability, multilangual support, ease of administration, RDF-type document backend, several graphical statistics, announcing mailing lists, application indexing by sections, installation support and many other useful features.
 
-<P>SourceWell depends on the <a href="http://phplib.netuse.de/" target="_blank">PHPLib library</a> (version 7.2 or later). Only if you want to have diary and weekly mailing lists with the announcements, you should also have Mailman installed in your box.
+<P>SourceWell depends on the <a href="http://phplib.netuse.de/" target="_blank">PHPLib library</a> (version 7.2d). Only if you want to have diary and weekly mailing lists with the announcements, you should also have Mailman installed in your box.
 
 <P>You can see a fully working example of the SourceWell system at BerliOS
 SourceWell by visiting <a href="http://sourcewell.berlios.de" target="_blank">http://sourcewell.berlios.de</a>. A close look at it will show you what
 you can do with SourceWell. BerliOS SourceWell has at this moment more
-than 1000 applications inserted and has been the main reason for making this software.
+than 1500 applications inserted and has been the main reason for making this software.
 
 <P>BerliOS SourceWell is part of the BerliOS project at GMD FOKUS. Please, have
 a look at <a href="http://www.berlios.de" target="_blank">http://www.berlios.de</a> for further information. At this moment, BerliOS also has other services: <a href="http://developer.berlios.de/" target="_blank">BerliOS Developer</a> (a SourceForge clone), <a href="http://news.berlios.de" target="_blank">BerliOS News</a> (news about Open Source - in German) and <a href="http://sourcebiz.berlios.de" target="_blank">SourceBiz</a> (a directory with Open Source companies, services, products and solutions - in German).
@@ -316,7 +318,7 @@ PASSWORD('<I>operator_password</I>'), 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'N', 'N
 <LI>mysql> FLUSH PRIVILEGES;
 <LI>mysql> CREATE DATABASE sourcewell;
 <LI>mysql> exit;
-<LI>user$ tar -zxvf sourcewell-1.0.9.tar.gz
+<LI>user$ tar -zxvf sourcewell-1.0.10.tar.gz
 <LI>user$ mysql -h <I>host</I> -u <I>operator</I> -p < sourcewell/sql/mysql.sql
 <BR>(insert the <I>operator_password</I>)
 <LI>user$ vi sourcewell/include/local.inc
@@ -348,15 +350,6 @@ clicking on the <I>User Admin</I> link. You'll notice this is quite easy to do ;
 <P>If things do not work, maybe you'll have to read the whole
 installation chapter :-(.
 
-<P>Note: Actual translation support needs a lot of memory. We're looking for a better memory management for the translation function. If this is an important feature for you, think changing the php3.ini allowed memory input. You should change the default line:
-<PRE>
-       memory_limit = 8388608; Maximum amount of memory a script may consume (8MB)  
-</PRE>
-<P>with this one:
-<PRE>
-       memory_limit = 33554432; Maximum amount of memory a script may consume (32MB)
-</PRE>
-
 <p>Future versions of SourceWell will work with GNU gettext and we are looking forward to avoiding this large amount of memory.
 
 <A NAME="before_starting">
@@ -380,16 +373,21 @@ authentication and in future versions database independence. PHPLib is
 published under the terms of the GNU Lesser General Public License
 (LGPL). For more information about PHPLib follow this link: <a href="http://phplib.netuse.de/" target="_blank">http://phplib.netuse.de/</a>.
 
-<P>SourceWell has been developed with the 7.2c version of PHPLib, which
+<P>SourceWell has been developed with the 7.2d version of PHPLib, which
 can be downlodaded from
-<a href="http://phplib.netuse.de/download/phplib-7.2c.tar.gz">http://phplib.netuse.de/download/phplib-7.2c.tar.gz</a>. As SourceWell strictly
+<a href="http://prdownloads.sourceforge.net/phplib/phplib-7.2d.tar.gz">http://prdownloads.sourceforge.net/phplib/phplib-7.2d.tar.gz</a>. As SourceWell strictly
 uses the API given by PHPLib, future versions of PHPLib should also
-work without problem.
+work without problem. It is important to note that version 7.2c of the PHPLib library had a security bug that was fixed in the recommended version. So, if you have got this version installed in your box, please update as soon as possible.
 
 <P>Please read carefully the documentation provided for PHPLib for a
 successfull installation. The installation of PHPLib is sufficient;
 you don't need to know more about PHPLib and its functioning for
 using the SourceWell system.
+
+
+<P>BerliOS SourceWell entry for the PHPLib library: <a href="http://sourcewell.berlios.de/appbyid.php3?id=350" target="_blank">http://sourcewell.berlios.de/appbyid.php3?id=350</a>.
+
+<p>New versions of SourceWell provide a test script (test.php3) which you can run in order to see if your installation is ok. If not, please follow the described instructions carefully.
 
 <A NAME="database_installation">
 <P CLASS="subsubsubtitle">3.2.2. About the Database
@@ -435,6 +433,9 @@ PASSWORD('<I>operator_password</I>'), 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'N', 'N
 of the
 default configuration parameters in the local.inc file, which is not recommended.
 
+
+<P>BerliOS SourceWell entry for the MySQL database: <a href="http://sourcewell.berlios.de/appbyid.php3?id=76" target="_blank">http://sourcewell.berlios.de/appbyid.php3?id=76</a>.
+
 <A NAME="mailman">
 <P CLASS="subsubsubtitle">3.2.3. About Mailman
 
@@ -465,7 +466,7 @@ as root. It's not even necessary.
 <LI>verify that the user public_html exists and is accesible from the
 web
 <LI>uncompress SourceWell in the parent directory
-<BR>user$ tar -zvxf sourcewell-1.0.9.tar.gz
+<BR>user$ tar -zvxf sourcewell-1.0.10.tar.gz
 <LI>List the content of the directories. You should have a directory
 sourcewell with five subdirectories. Read chapter 7 of this documentation for further information
 about the files.
@@ -514,16 +515,6 @@ At the prompt use the following ID to login (case sensitive):
 <P>Vert important: Be sure of inmediately changing the login and password by
 clicking on the link <I>User Admin</I>. You'll notice this is quite easy to do ;-)
 
-<P>Note: Translation support needs a lot of memory. We're looking for a better memory management for the translation function. If this is an important feature for you, think changing the php3.ini allowed memory input. You should change the default line:
-<PRE>
-        memory_limit = 8388608; Maximum amount of memory a script may consume (8MB)  
-</PRE>
-<P>with this one:
-<PRE>
-        memory_limit = 33554432; Maximum amount of memory a script may consume (32MB)
-</PRE>
-
-<p>Future versions of SourceWell will work with GNU gettext and we are looking forward to avoiding this large amount of memory.
 
 <P>&nbsp;
 <A NAME="functionality">
@@ -633,7 +624,7 @@ translation. Keep on reading and you'll find out how easy it is.
 <P CLASS="subsubtitle">5.1. Main outputs
 
 <P>Download the lang-translate.inc file (it also comes in SourceWell's
-1.0.9 tarball) . If you edit it, you'll find lines
+1.0.10 tarball) . If you edit it, you'll find lines
 like this:
 
 <PRE>
@@ -697,7 +688,7 @@ examples of this idea. Maybe more statistics of this type are added in the futur
 
 <P>Any feedback you might have on this topic is always welcome.
 
-<P>Here is a list of the statistics you'll find in SourceWell 1.0.9:
+<P>Here is a list of the statistics you'll find in SourceWell 1.0.10:
 
 <UL>
 <LI>General SourceWell Statistics:
@@ -748,7 +739,7 @@ examples of this idea. Maybe more statistics of this type are added in the futur
 <P CLASS="subtitle">7. Files and functionality
 
 <P>The following list gives all the files that come with SourceWell Version
-1.0.9. It is
+1.0.10. It is
 interesting to have a look at it for any adaption and/or modification
 you would like to do to the system.
 
@@ -766,6 +757,9 @@ legend is at the bottom of the table.
 <TR><TD>C</TD><TD>admlicens.php3</TD><TD>This is the license administration file</TD></TR>
 <TR><TD>C</TD><TD>admsec.php3</TD><TD>This is the section administration file</TD></TR>
 <TR><TD>C</TD><TD>admuser.php3</TD><TD>This file is useful for administrating (registered) users</TD></TR>
+<tr><td>&nbsp;</td><td>app.php3</td><td>New file for the SourceWell 2 architecture that replaces appbyid.php3</td></tr>
+<tr><td>&nbsp;</td><td>app_edi.php3</td><td>New file for the SourceWell 2 architecture that replaces insert.php3</td></tr>
+<tr><td>&nbsp;</td><td>app_mod.php3</td><td>New file for the SourceWell 2 architecture that replaces updapp.php3</td></tr>
 <TR><TD>&nbsp;</TD><TD>appbycat.php3</TD><TD>This file shows the apps in a category given as parameter</TD></TR>
 <TR><TD>&nbsp;</TD><TD>appbydev.php3</TD><TD>This file gives the apps created or mantained by a given developer</TD></TR>
 <TR><TD>&nbsp;</TD><TD>appbyid.php3</TD><TD>This file shows an app (given by the id parameter)</TD></TR>
@@ -787,6 +781,7 @@ inserted comment</TD></TR>
 <TR><TD>&nbsp;</TD><TD>developers.php3</TD><TD>This file lists developers in alphabetical order</TD></TR>
 <TR><TD>&nbsp;</TD><TD>faq.php3</TD><TD>This is the file with the Frequently Asked Questions</TD></TR>
 <TR><TD>&nbsp;</TD><TD>index.php3</TD><TD>This is the index file which shows the recent apps</TD></TR>
+<TR><TD>&nbsp;</TD><TD>index_stat*.php3</TD><TD>Dynamic generation of a static main page (in several languages)</TD></TR>
 <TR><TD>U</TD><TD>insapp.php3</TD><TD>This file is used to insert an
 application. It contains the second form that has to be filled when inserting applications</TD></TR>
 <TR><TD>C</TD><TD>inscat.php3</TD><TD>This file inserts a category</TD></TR>
@@ -837,19 +832,30 @@ directory not public)
 <TR><TD>English-lang.inc</TD><TD>Main English translation</TD></TR>
 <TR><TD>German-lang.inc</TD><TD>Main German translation</TD></TR>
 <TR><TD>Spanish-lang.inc</TD><TD>Main Spanish translation</TD></TR>
+<TR><TD>admapp2.inc</TD><TD>Library for the application administration in SourceWell 2</TD></TR>
+<TR><TD>app2.inc</TD><TD>Library for SourceWell 2 with the functions on applications</TD></TR>
 <TR><TD>box.inc</TD><TD>Library with the boxes (tables)</TD></TR>
+<TR><TD>box2.inc</TD><TD>Library with the boxes (tables) for the SourceWell 2 architecture</TD></TR>
 <TR><TD>cmtlib.inc</TD><TD>Library for comments</TD></TR>
 <TR><TD>config.inc</TD><TD>Configuration file</TD></TR>
+<TR><TD>config2.inc</TD><TD>Configuration file for the SourceWell 2 architecture</TD></TR>
+<TR><TD>faqlib2.inc</TD><TD>Library for the FAQ used in the SourceWell 2 architecture</TD></TR>
 <TR><TD>footer.inc</TD><TD>Common footer for almost all pages</TD></TR>
+<TR><TD>footer2.inc</TD><TD>Footer for the SourceWell 2 architecture</TD></TR>
 <TR><TD>header.inc</TD><TD>Common header for almost all pages</TD></TR>
+<TR><TD>header2.inc</TD><TD>Header for the SourceWell 2 architecture</TD></TR>
+<TR><TD>html2.inc</TD><TD>HTML abstraction library for PHP and PHPLib used in the SourceWell 2 architecture</TD></TR>
 <TR><TD>lang.inc</TD><TD>Library for translations</TD></TR>
 <TR><TD>lang-translate.inc</TD><TD>File used for translation contributors</TD></TR>
 <TR><TD>lib.inc</TD><TD>Base Library for SourceWell</TD></TR>
+<TR><TD>lib2.inc</TD><TD>Base Library for SourceWell 2</TD></TR>
 <TR><TD>local.inc</TD><TD>PHPLib local configuration file</TD></TR>
 <TR><TD>menubar.inc</TD><TD>Left bar in the browser window. Provides ease of
 navigation. The links shown depend on the permissions of the visitor</TD></TR>
+<TR><TD>page_permission2.inc</TD><TD>Security library with the permissions for the SourceWell 2 architecture</TD></TR>
 <TR><TD>session.inc</TD><TD>PHPLib session file. We have made some fixes for the SourceWell system</TD></TR>
 <TR><TD>statslib.inc</TD><TD>Library for statistics</TD></TR>
+<TR><TD>sql2.inc</TD><TD>SQL strings that will be used in the SourceWell 2 architecture</TD></TR>
 <TR><TD>top_strip.inc</TD><TD>Top strip on every page</TD></TR>
 <TR><TD>top_title.inc</TD><TD>Top title strip on every page</TD></TR>
 <TR><TD>translation.inc</TD><TD>Library for translations</TD></TR>
@@ -870,10 +876,10 @@ navigation. The links shown depend on the permissions of the visitor</TD></TR>
 <TR><TD>rightbar.gif</TD><TD>Right end of statistics bar (taken from PHP-Nuke)</TD></TR>
 <TR><TD>txt.png</TD><TD>Coments</TD></TR>
 <TR><TD>berlios.jpg</TD><TD>Default image of the Site</TD></TR>
-<TR><TD>logo_fokus.gif</TD><TD>Default image of the Organisation</TD></TR>
+<TR><TD>logo_fokus.png</TD><TD>Default image of the Organisation</TD></TR>
 </TABLE></CENTER>
 
-<P CLASS="function">Subdirectory cron:
+<P CLASS="function">Subdirectory crontab:
 
 <P><CENTER><table width=90% border=1>
 <TR><TD>newsletter.cron</TD><TD>Contains the cron commands for the daily and
@@ -1169,6 +1175,8 @@ or last modification</TD><TD>varchar</TD><TD>16</TD><TD>X</TD><TD>&nbsp;</TD></T
 
 <P Class=authors>L: Length
 <BR>N: Not Null
+
+<p>Table temp has been added in SourceWell 1.0.10 in order to avoid that false insertions delete previous insertions. Hence, all applications that are already in the database and are going to be updated by visitors with permissions different from editor and administrator permission. The pending state of these applications is stored in the temp table. Once these contents are validated, they are moved from this table into the software table.
 
 <P>&nbsp;
 <A NAME="developers">
@@ -1894,11 +1902,10 @@ searchengines and successfull debut in the world of OpenSource Software.
 <li>License texts
 <li>User deletion should be consistent
 <li>i18n support through gettext and l12n through po files
-<li>Improving box.inc library
 <LI>Configuration file edition through a web-browser (almost done; will come with soon)
 <LI>Personalization of credits possible (will come soon)
 <LI>HTML 4.0 compliance
-<LI>Advanced Search (yet it's only by app name)
+<LI>Advanced Search (has to be enhanced)
 <LI>News boxes (and their administration)
 <LI>Improve language support (please, we need your translations)
 <LI>Implement linkchecker for automatic checking of database URLs
@@ -1930,7 +1937,7 @@ searchengines and successfull debut in the world of OpenSource Software.
 HREF="http://developer.berlios.de/docman/?group_id=23" target="_blank">http://developer.berlios.de/docman/?group_id=23</a>
 (or with the SourceWell tarballs)
 <LI>CVS tree (in web): <a href="http://cvs.berlios.de/cgi-bin/cvsweb.cgi/?cvsroot=sourcewell" target="_blank">http://cvs.berlios.de/cgi-bin/cvsweb.cgi/?cvsroot=sourcewell</a>
-<LI>Mailing List Archive: <a href="http://lists.berlios.de/pipermail/sourcewell-support/"> target="_blank"http://lists.berlios.de/pipermail/sourcewell-support/</a>
+<LI>Mailing List Archive: <a href="http://lists.berlios.de/pipermail/sourcewell-support/" target="_blank">http://lists.berlios.de/pipermail/sourcewell-support/</a>
 </UL>
 
 <P>Programs and library dependences for SourceWell:
