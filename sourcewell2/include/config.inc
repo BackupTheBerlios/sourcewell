@@ -14,147 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: config.inc,v 1.26 2002/05/07 21:39:33 grex Exp $
-
-/**
- * General System Configuration
- *
- * This file contains all the constants with the general system
- * parameters, basically tied to visualization (colors, fonts, etc.)
- */
-
-/**
- * System
- *
- * config_sys_name  string      Name of your SourceWell system
- * config_sys_title string      
- * config_sys_url   string 	URL of your SourceWell system
- */
-
-$config_sys_name = 'SourceWell2';
-$config_sys_title = 'Open Source Software Announcement &amp; Retrieval';
-$config_sys_url = 'http://sourcewell.berlios.de/sourcewell2/';
-
-/**
- * Header image
- *
- * config_sys_logo_image   string  Image of your System (should be in the images directory)
- * config_sys_url_image    string  URL the image of your system points to
- * config_sys_logo_alt	   string  Alternative text for your site's image
- * config_sys_logo_width   int     Width of the image of your site
- * config_sys_logo_heigth  int     Height of the image of your site
- */
-
-$config_sys_logo_image = $config_path_images.'berliOS_logo.png';
-$config_sys_url_image = 'http://www.berlios.de/index.php.en';
-$config_sys_logo_alt = 'BerliOS';
-$config_sys_logo_width = 238;
-$config_sys_logo_heigth = 104;
-
-/**
- * Organisation Config
- * (this can be sometimes the same as the one of the system)
- *
- * org_name	    string    Name of your Organisation
- * org_url	    string    URL of your Organisation
- * org_logo_image   string    Image of your Organisation
- * org_logo_alt	    string    Alternative text for the image of your Organisation
- * org_logo_width   int       Width of the image of your Organisation
- * org_logo_heigth  int       Height of the image of your Organisation
- */
-
-$config_org_name = 'FOKUS';
-$config_org_url = 'http://www.fokus.fhg.de/';
-$config_org_logo_image = $config_path_images.'logo_fokus.png';
-$config_org_logo_alt = $org_name;
-$config_org_logo_width = 60;
-$config_org_logo_heigth = 60;
-
-/**
- * Page Layout
- *
- * config_show_appsperpage    int   maximum number of applications shown each time
- * config_show_numberofdays   int   maximum number of days show at the right side
- */
-
-$config_show_appsperpage = 15;
-$config_show_numberofdays = 4; 
-
-
-/**
- * General configurations
- *
- * config_topStrip:             boolean      if a Top Strip is wanted or not
- * config_Footer:               boolean      if a Footer is wanted or not
- * config_addNetscapePanel:     boolean      if Netscape6 panels is available
- */
-
-$config_topStrip = 1;
-$config_Footer = 1;
-$config_addNetscapePanel = 1;
-
-/**
- * Top Strip
- * 
- * You can change (add, delete, modify) the top strip
- * as you wish as long as you mantain this syntax:
- * (don't forget that the last one hasn't got a comma!)
- */
-
-$config_TopStripArray = array (
-	'Home'	        => $config_sys_url_image.'index.php',
-	'About us'	=> $config_sys_url_image.'about/index.php',
-	'Partners'	=> $config_sys_url_image.'partners/index.php',
-	'Contact'	=> $config_sys_url_image.'contact/index.php'
-);
-
-/**
- * HTML Metainformation
- * 
- *
- *
- */
-
-$config_meta_author = 'BerliOS';
-$config_meta_description = 'SourceWell is a Free Software/Open Source Software announcement system';
-$config_meta_keywords = 'Free Software, Open Source, Freshmeat, GPL, Applications, BerliOS';
-
-/**
- * Themes
- *
- * Background color configuration, font, etc.
- */
-
-$config_body_bgcolor = '#FFFFFF';
-$config_font_family = 'verdana,arial,helvetica,sans-serif';
-$config_tt_font_family = 'courier,sans-serif';
-$config_font_color = '#333333';
-$config_hover_font_color = '#FF0000';
-
-$config_nav_bgcolor = '#FFCC33';
-$config_navstrip_bgcolor = '#000000';
-$config_nav_font_color = '#333333';
-$config_navstrip_font_color = '#FFFFFF';
-
-
-/**
- * Database configuration
- * config_host               string    database server host
- * config_database_name      string    name of the database
- * config_database_user      string    database user name
- * config_database_password  string    password to access database
- * config_database_variable  string    variable that will be used in the 
- *                                     classes. It will have a global scope
- *                                     so its name should be chosen so that
- *                                     there are no collisions.
- *                                     Any name starting with _DB_ will be ok.
- */
-
-$config_host               = 'localhost';
-$config_database_name      = 'sourcewell2';
-$config_database_user      = 'operator';
-$config_database_password  = 'password';
-$config_database_variable  = '_DB_';
+// $Id: config.inc,v 1.28 2002/05/07 22:00:10 grex Exp $
 
 /**
  * Directory configuration
@@ -264,6 +124,146 @@ function config_inc($include)
 }
 
 /**
+ * General System Configuration
+ *
+ * This file contains all the constants with the general system
+ * parameters, basically tied to visualization (colors, fonts, etc.)
+ */
+
+/**
+ * System
+ *
+ * config_sys_name  string      Name of your SourceWell system
+ * config_sys_title string      
+ * config_sys_url   string 	URL of your SourceWell system
+ */
+
+$config_sys_name = 'SourceWell2';
+$config_sys_title = 'Open Source Software Announcement &amp; Retrieval';
+$config_sys_url = 'http://sourcewell.berlios.de/sourcewell2/';
+
+/**
+ * Header image
+ *
+ * config_sys_logo_image   string  Image of your System (should be in the images directory)
+ * config_sys_url_image    string  URL the image of your system points to
+ * config_sys_logo_alt	   string  Alternative text for your site's image
+ * config_sys_logo_width   int     Width of the image of your site
+ * config_sys_logo_heigth  int     Height of the image of your site
+ */
+
+$config_sys_logo_image = $config_path_images.'berliOS_logo.png';
+$config_sys_url_image = 'http://www.berlios.de/index.php.en';
+$config_sys_logo_alt = 'BerliOS';
+$config_sys_logo_width = 238;
+$config_sys_logo_heigth = 61;
+
+/**
+ * Organisation Config
+ * (this can be sometimes the same as the one of the system)
+ *
+ * org_name	    string    Name of your Organisation
+ * org_url	    string    URL of your Organisation
+ * org_logo_image   string    Image of your Organisation
+ * org_logo_alt	    string    Alternative text for the image of your Organisation
+ * org_logo_width   int       Width of the image of your Organisation
+ * org_logo_heigth  int       Height of the image of your Organisation
+ */
+
+$config_org_name = 'FOKUS';
+$config_org_url = 'http://www.fokus.fhg.de/';
+$config_org_logo_image = $config_path_images.'logo_fokus.png';
+$config_org_logo_alt = $org_name;
+$config_org_logo_width = 60;
+$config_org_logo_heigth = 60;
+
+/**
+ * Page Layout
+ *
+ * config_show_appsperpage    int   maximum number of applications shown each time
+ * config_show_numberofdays   int   maximum number of days show at the right side
+ */
+
+$config_show_appsperpage = 15;
+$config_show_numberofdays = 4; 
+
+
+/**
+ * General configurations
+ *
+ * config_topStrip:             boolean      if a Top Strip is wanted or not
+ * config_Footer:               boolean      if a Footer is wanted or not
+ * config_addNetscapePanel:     boolean      if Netscape6 panels is available
+ */
+
+$config_topStrip = 1;
+$config_Footer = 1;
+$config_addNetscapePanel = 1;
+
+/**
+ * Top Strip
+ * 
+ * You can change (add, delete, modify) the top strip
+ * as you wish as long as you mantain this syntax:
+ * (don't forget that the last one hasn't got a comma!)
+ */
+
+$config_TopStripArray = array (
+	'Home'	        => $config_sys_url_image.'index.php.en',
+	'About us'	=> $config_sys_url_image.'about/index.php.en',
+	'Partners'	=> $config_sys_url_image.'partners/index.php.en',
+	'Contact'	=> $config_sys_url_image.'contact/index.php.en'
+);
+
+/**
+ * HTML Metainformation
+ * 
+ *
+ *
+ */
+
+$config_meta_author = 'BerliOS';
+$config_meta_description = 'SourceWell is a Free Software/Open Source Software announcement system';
+$config_meta_keywords = 'Free Software, Open Source, Freshmeat, GPL, Applications, BerliOS';
+
+/**
+ * Themes
+ *
+ * Background color configuration, font, etc.
+ */
+
+$config_body_bgcolor = '#FFFFFF';
+$config_font_family = 'verdana,arial,helvetica,sans-serif';
+$config_tt_font_family = 'courier,sans-serif';
+$config_font_color = '#333333';
+$config_hover_font_color = '#FF0000';
+
+$config_nav_bgcolor = '#FFCC33';
+$config_navstrip_bgcolor = '#7B7B7B';
+$config_nav_font_color = '#333333';
+$config_navstrip_font_color = '#FFFFFF';
+
+
+/**
+ * Database configuration
+ * config_host               string    database server host
+ * config_database_name      string    name of the database
+ * config_database_user      string    database user name
+ * config_database_password  string    password to access database
+ * config_database_variable  string    variable that will be used in the 
+ *                                     classes. It will have a global scope
+ *                                     so its name should be chosen so that
+ *                                     there are no collisions.
+ *                                     Any name starting with _DB_ will be ok.
+ */
+
+$config_host               = 'localhost';
+$config_database_name      = 'sourcewell2';
+$config_database_user      = 'operator';
+$config_database_password  = 'password';
+$config_database_variable  = '_DB_';
+
+/**
  * PHPLIB
  *
  * config_PHPLib_installed:  boolean         1 if yes, 0 if not
@@ -274,6 +274,24 @@ function config_inc($include)
 
 $config_PHPLib_installed = 1;
 $config_hash_secret = 'KaiserinAugusta';
+
+######################################################################
+# Languages
+#
+# List of languages supported by your website
+# You can add/delete/modify as long as you mantain the syntax
+# New languages are always wellcome. Contact with the authors!
+#
+######################################################################
+
+// WISH: this should obtain the list of languages from the *-lang.inc
+// WISH: files in the include directory. But this might be too expensive
+// WISH: since this file is read in for each page .... further: it might
+// WISH: be possible to do this and store the results in an environmental
+// WISH: variable, ofcourse updating the variable once set would be a problem
+$config_la_array[] = 'English';
+$config_la_array[] = 'German';
+$config_la_array[] = 'Spanish';
 
 /**
  * Configurable properties for general and error table
