@@ -13,10 +13,12 @@
 // |          Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
 // +----------------------------------------------------------------------+
 //
-// $Id: login.php,v 1.13 2002/05/10 18:47:56 grex Exp $
+// $Id: login.php,v 1.14 2002/05/10 18:52:01 grex Exp $
 
 $login = 1;
-
+page_open(array('sess' => 'SourceWell_Session',
+                'auth' => 'SourceWell_Auth',
+                'perm' => 'SourceWell_Perm'));
 require('start.inc');
 
 if (isset($perm) && $perm->have_perm('user_pending')) {
