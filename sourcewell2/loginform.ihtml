@@ -13,13 +13,18 @@
 // |          Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
 // +----------------------------------------------------------------------+
 //
-// $Id: loginform.ihtml,v 1.13 2002/05/10 18:47:56 grex Exp $
+// $Id: loginform.ihtml,v 1.15 2002/05/10 18:49:42 grex Exp $
 
 $login = 1;
+$_INC_PATH = '/home/groups/sourcewell/htdocs/sourcewell2/include/';
+
+require($_INC_PATH.'config.inc');
+config_inc('lib');
+config_inc('html');
+config_inc('Table');
+
 global $la;
 global $username;
-
-//require('start.inc');
 
 print "<!-- failed login code -->\n";
 
