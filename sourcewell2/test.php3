@@ -1,22 +1,12 @@
 <?php
 
-page_open(array('sess' => 'SourceWell_Session'));
-if (isset($auth) && !empty($auth->auth['perm'])) {
-  page_close();
-  page_open(array('sess' => 'SourceWell_Session',
-                  'auth' => 'SourceWell_Auth',
-                  'perm' => 'SourceWell_Perm'));
-}
-
 include('start.inc');
-include('Field.inc');
-include('TextField.inc');
-include('TextAreaField.inc');
-include('SelectField.inc');
-include('Form.inc');
-include('Preview.inc');
-include('Table.inc');
-include('Insertion.inc');
+config_inc('TextField');
+config_inc('TextAreaField');
+config_inc('SelectField');
+config_inc('Form');
+config_inc('Preview');
+config_inc('Insertion');
 
 $table = new Table();
 
@@ -50,5 +40,5 @@ if ($HTTP_POST_VARS['Insert']) {
     $form->FormFields(&$fields);
 }
 
-@page_close();
+config_inc('end');
 ?>

@@ -15,7 +15,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: config.inc,v 1.21 2002/04/21 22:21:53 grex Exp $
+// $Id: config.inc,v 1.22 2002/04/21 22:23:20 grex Exp $
 
 /**
  * General System Configuration
@@ -215,7 +215,7 @@ function config_inc($include)
     if (ereg('Field', $include)) {
         if (!$_FIELD_CLASS_INCLUDED) {
             /* we only add the parent class once */
-            include($_INC_PATH.'Field/Field'.$class_extension);
+            include($_INC_PATH.'/Field'.$class_extension);
             $_FIELD_CLASS_INCLUDED = 1;
         }
         $include_switch = 'Field';
