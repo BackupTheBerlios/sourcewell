@@ -12,7 +12,7 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: header.inc,v 1.4 2002/05/09 16:45:12 grex Exp $
+// $Id: header.inc,v 1.5 2002/05/09 16:47:52 grex Exp $
 
 /**
  * TODO: global explanation of this file
@@ -233,6 +233,7 @@ while (list(, $value) = each($config_adm_bar_array)) {
 <?php
 htmlp_form_action('appsearch.php3', '', 'get');
 htmlp_form_textField('search', '', $size = 10);
+print '<br>';
 htmlp_form_submit(_('Search'));
 htmlp_form_end();
 ?>
