@@ -12,7 +12,7 @@
 // | Authors: Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
 // +----------------------------------------------------------------------+
 //
-// $Id: Navigation.inc,v 1.19 2002/05/10 22:27:32 grex Exp $
+// $Id: Navigation.inc,v 1.20 2002/05/10 22:29:58 grex Exp $
 
 /**
  * Class Navigation: a class for links in the navigation bar
@@ -130,9 +130,9 @@ class Navigation {
     function checkPermision() {
         global $auth, $logout;
 
-        if (isset($auth) && !$this->requiredAuth && $logout) {
+        if (isset($auth) && !$this->requiredAuth && !$logout) {
 	    return 0;
-	} elseif (!isset($auth) && $this->requiredAuth == 1 && !$logout) {
+	} elseif (!isset($auth) && $this->requiredAuth == 1 && $logout) {
   	    return 0;
 	} elseif ($this->permisions) {
             /* Should not be ==... instead regexp */
