@@ -574,4 +574,15 @@ function _($phrase) {
     $tmp = translate_real($phrase);
     return($tmp);
 }
+
+function is_not_set_or_empty( $val ) {
+    return ( !isset( $val ) || empty( $val ) );
+}
+
+function is_set_and_not_empty( $val ) {
+    // this is not the same as !is_not_set_or_empty($val) because
+    // a value can be set and empty, and is_not_set_or_empty would
+    // return false
+    return ( isset( $val ) && !empty( $val ) );
+}
 ?>

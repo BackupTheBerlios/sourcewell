@@ -454,7 +454,7 @@ function app_insert() {
 
 	  // Get appid
 
-       $db->query($GLOBALS[select_appid_by_name_and_type]);
+       $db->query(select_appid_by_name_and_type($name, $type));
        $db->next_record();
        $appid = $db->f("appid");
 

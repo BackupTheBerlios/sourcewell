@@ -45,7 +45,10 @@ function insert_app_in_software($section,$category,$status) {
 	return "INSERT software SET name='$name', type='$type', version='$version', license='$license', section='$section', category='$category', homepage='$homepage', download='$download', changelog='$changelog', rpm='$rpm', deb='$deb', tgz='$tgz', cvs='$cvs', screenshots='$screenshots', mailarch='$mailarch', developer='$developer', description='$description', email='$email', depend='$depend', urgency='$urgency', user='".$auth->auth["uname"]."', status='$status', creation=NOW()";
 }
 
-$select_appid_by_name_and_type = "SELECT appid FROM software WHERE name='$name' AND type='$type'";
+function select_appid_by_name_and_type($name, $type) {
+
+    return "SELECT appid FROM software WHERE name='$name' AND type='$type'";
+}
 
 function update_app_in_software($section,$category,$user,$status) {
 	global $auth;

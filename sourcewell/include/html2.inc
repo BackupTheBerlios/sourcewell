@@ -17,16 +17,24 @@
 # the Free Software Foundation; either version 2 or later of the GPL.
 ######################################################################
 
-// falta mirar si es local o global !!!
-// funciona si no tiene addquery?
 
 function html_link($address, $query, $text) {
 	global $sess;
 
-	if (!isset($query) || empty($query)) $output = "<a href=\"".$sess->url($address)."\">".$text."</a>\n";
-	else $output = "<a href=\"".$sess->url($address).$sess->add_query($query)."\">".$text."</a>\n";
-
-	return($output);
+    if ($address == "PHP_SELF") {
+        if (is_not_set_or_empty($query)) {
+            $output = "<a href=\"".$sess->self_url()."\">".$text."</a>\n";            
+        } else {
+            $output = "<a href=\"".$sess->self_url().$sess->add_query($query)."\">".$text."</a>\n";
+        }
+    } else {
+        if (is_not_set_or_empty($query)) {
+            $output = "<a href=\"".$sess->url($address)."\">".$text."</a>\n";
+        } else { 
+            $output = "<a href=\"".$sess->url($address).$sess->add_query($query)."\">".$text."</a>\n";
+        }
+    }
+    return($output);
 }
 
 function html_redirect($appid,$type,$url,$text) {
