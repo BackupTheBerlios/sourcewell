@@ -7,6 +7,7 @@ include('SelectField.inc');
 include('Form.inc');
 include('Preview.inc');
 include('Table.inc');
+include('Insertion.inc');
 
 $table = new Table();
 
