@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: config.inc,v 1.35 2002/05/09 14:56:55 grex Exp $
+// $Id: config.inc,v 1.36 2002/05/09 15:31:53 grex Exp $
 
 /**
  * Directory configuration
@@ -116,6 +116,10 @@ function config_inc($include)
     case 'end':
     case 'navigation':
     case 'images':
+        include($_INC_PATH.$include.$include_extension);
+        break;
+    case 'footer':
+    case 'header';
         include($_INC_PATH.$include.$include_extension);
         break;
     default:
