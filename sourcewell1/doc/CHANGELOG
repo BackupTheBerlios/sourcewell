@@ -1,6 +1,11 @@
 CHANGELOG for SourceWell
 http://sourcewell.berlios.de/html
 
+22-04-2003 Lutz Henckel <lutz.henckel@fokus.fraunhofer.de> -- SourceWell 1.1.1
+
+* include/translation.inc: add missing path to language files
+* html/index.php: correct description
+
 16-04-2003 Lutz Henckel <lutz.henckel@fokus.fraunhofer.de> -- SourceWell 1.1.0
 
 * include/session.inc: correct redeclare of gc function
