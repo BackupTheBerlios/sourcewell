@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: Table.inc,v 1.7 2002/04/21 22:47:08 grex Exp $
+// $Id: Table.inc,v 1.8 2002/05/07 14:43:31 grex Exp $
 
 /**
  * Class Table: a class for HTML Tables
@@ -113,9 +113,16 @@ class Table {
      * @param   string  $table_width     can be xx% or in pixels
      * @access  public
      */
-
     function Table($table_type ='general', $table_width='98%')
     {
+        global $config_table_general_filling;
+        global $config_table_general_title_bgcolor;
+        global $config_table_general_title_font_color;
+        global $config_table_general_title_align;
+        global $config_table_general_body_bgcolor;
+        global $config_table_general_body_font_color;
+        global $config_table_general_body_align;
+
         $this->table_width = $table_width;
 
         /* depending on the table, we have different parameters */
