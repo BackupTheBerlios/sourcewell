@@ -33,7 +33,6 @@ while (list($title, $url) = each($ts_array)) {
 	$i++;
 };
 echo "\n</span></td><td width=55% align=right>\n";
-
 if (isset($auth) && !empty($auth->auth["perm"])  && !($logout)) {
 	echo "<FONT COLOR=\"".$th_nav_bgcolor."\">".$t->translate("Logged in")." <b>".$auth->auth["uname"]."</b> (<b>".$auth->auth["perm"]."</b>) / ".$t->translate("Expires")." <b>".timestr_short($auth->auth["exp"])."</b></FONT>";
 } else {
