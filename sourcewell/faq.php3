@@ -1,58 +1,49 @@
 <?php
 
 ######################################################################
-# SourceWell: Software Announcement & Retrieval System
+# SourceWell 2
 # ================================================
 #
+#
+#
 # Copyright (c) 2001 by
-#                Lutz Henckel (lutz.henckel@fokus.gmd.de) and
-#                Gregorio Robles (grex@scouts-es.org)
+#                Gregorio Robles (grex@scouts-es.org) and
+#                Lutz Henckel (lutz.henckel@fokus.gmd.de)
 #
 # BerliOS SourceWell: http://sourcewell.berlios.de
 # BerliOS - The OpenSource Mediator: http://www.berlios.de
 #
-# This is the file with the Frequently Asked Questions
-#
 # This program is free software. You can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 or later of the GPL.
-######################################################################  
+######################################################################
 
+require("header2.inc");
+require("app2.inc");
 
-page_open(array("sess" => "SourceWell_Session"));
-if (isset($auth) && !empty($auth->auth["perm"])) {
-  page_close();
-  page_open(array("sess" => "SourceWell_Session",
-                  "auth" => "SourceWell_Auth",
-                  "perm" => "SourceWell_Perm"));
-}
+security_page_access("faq");
 
-require("header.inc");
+$bx = new box("general","85%");
+$be = new box("error","");
 
-$bx = new box("80%",$th_box_frame_color,$th_box_frame_width,$th_box_title_bgcolor,$th_box_title_font_color,$th_box_title_align,$th_box_body_bgcolor,$th_box_body_font_color,$th_box_body_align);
-$be = new box("",$th_box_frame_color,$th_box_frame_width,$th_box_title_bgcolor,$th_box_title_font_color,$th_box_title_align,$th_box_body_bgcolor,$th_box_error_font_color,$th_box_body_align);
-?>
-
-<!-- content -->
-<?php
 $db->query("SELECT * FROM faq WHERE language='$la'");
 if ($db->num_rows() > 0) {
-while($db->next_record()) {
-  $msg .= "<li><a href=#".$db->f("faqid").">".$db->f("question")."</a>";
-}
-$bx->box_full($t->translate("Frequently Asked Questions"), $msg);
-$db->seek(0);
-while($db->next_record()) {
-  echo "<a name=".$db->f("faqid").">\n";
-  $bx->box_full($t->translate("Question").": ".$db->f("question"), "<b>".$t->translate("Answer").":</b> ".$db->f("answer"));
-}
-} else {
-  $be->box_full($t->translate("Error"), $t->translate("No Frequently Asked Questions exist"));
-}
-?>
-<!-- end content -->
+	$msg = "<ol>";
+	while($db->next_record()) {
+		$msg .= "<li>".html_link("#".$db->f("faqid"),array(),$db->f("question"));
+	}
+	$msg .= "</ol><br>";
 
-<?php
-require("footer.inc");
-page_close();
+	$bx->box_full($t->translate("Frequently Asked Questions"), $msg);
+	$db->seek(0);
+
+	while($db->next_record()) {
+		htmlp_anchor($db->f("faqid"));
+	  	$bx->box_full($t->translate("Question").": ".$db->f("question"), "<b>".$t->translate("Answer").":</b> ".$db->f("answer"));
+	}
+} else {
+  	$be->box_full($t->translate("Error"), $t->translate("No Frequently Asked Questions exist"));
+}
+
+require("footer2.inc");
 ?>

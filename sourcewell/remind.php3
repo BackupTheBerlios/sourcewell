@@ -1,56 +1,52 @@
 <?php
 
 ######################################################################
-# SourceWell: Software Announcement & Retrieval System
+# SourceWell 2
 # ================================================
 #
+#
+#
 # Copyright (c) 2001 by
-#                Lutz Henckel (lutz.henckel@fokus.gmd.de) and
-#                Gregorio Robles (grex@scouts-es.org)
+#                Gregorio Robles (grex@scouts-es.org) and
+#                Lutz Henckel (lutz.henckel@fokus.gmd.de)
 #
 # BerliOS SourceWell: http://sourcewell.berlios.de
 # BerliOS - The OpenSource Mediator: http://www.berlios.de
 #
-# This file permits that users can get their forgotten password via e-mail
-#
 # This program is free software. You can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 or later of the GPL.
-######################################################################  
+######################################################################
 
+require("header2.inc");
 
-page_open(array("sess" => "SourceWell_Session"));
-if (isset($auth) && !empty($auth->auth["perm"])) {
-  page_close();
-  page_open(array("sess" => "SourceWell_Session",
-                  "auth" => "SourceWell_Auth",
-                  "perm" => "SourceWell_Perm"));
-}
+security_page_access("remind");
 
-require("header.inc");
+$bx = new box("general","");
 
-$bx = new box("",$th_box_frame_color,$th_box_frame_width,$th_box_title_bgcolor,$th_box_title_font_color,$th_box_title_align,$th_box_body_bgcolor,$th_box_body_font_color,$th_box_body_align);
-?>
-
-<!-- content -->
-<?php
 $bx->box_begin();
 $bx->box_title($t->translate("Forgot Password"));
 $bx->box_body_begin();
-echo "<form method=\"post\" action=\"remindme.php3\">\n";
-echo "<table border=0 cellspacing=0 cellpadding=3>\n";
-echo "<tr><td align=right>".$t->translate("Username").":</td><td><input type=\"text\" name=\"username\" size=20 maxlength=32 value=\"\"></td></tr>\n";
-echo "<tr valign=middle align=left>\n";
-echo "<td align=right>".$t->translate("E-Mail").":</td><td><input type=\"text\" name=\"email_usr\" size=20 maxlength=32 value=\"\"></td></tr>\n";
-echo "<tr valign=middle align=left><td></td><td>\n";
-echo "<input type=\"submit\" name=\"remind\" value=\"".$t->translate("Remind me")."\">\n";
-echo "</td></tr></form></table>\n";
+$bx->box_columns_begin(2);
+
+htmlp_form_action("remindme.php3",array());
+
+$bx->box_column("right","40%","","<b>".$t->translate("Username").":</b> ");
+$bx->box_column("left","60%","",html_input_text("username",20,32,""));
+
+$bx->box_next_row_of_columns();
+
+$bx->box_column("right","40%","","<b>".$t->translate("E-Mail").":</b> ");
+$bx->box_column("left","60%","",html_input_text("email_usr",20,32,""));
+
+$bx->box_next_row_of_columns();
+
+$bx->box_column("right","40%","","");
+$bx->box_column("left","60%","",html_form_submit($t->translate("Remind me"),"remind"));
+
+$bx->box_columns_end();
 $bx->box_body_end();
 $bx->box_end();
-?>
-<!-- end content -->
 
-<?php
-require("footer.inc");
-page_close();
+require("footer2.inc");
 ?>
