@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: html.inc,v 1.11 2002/05/09 17:11:49 grex Exp $
+// $Id: html.inc,v 1.12 2002/05/10 10:23:42 grex Exp $
 
 /**
  * HTML library for PHP (and PHPLib)
@@ -143,30 +143,26 @@ function html_form_action($target = 'PHP_SELF', $query = '', $method = 'post')
 {
     global $sess;
 
-     $output = "\n".'<form action="test.php3" method="'.$method.'">';
-
-     /* TODO */
+    /* TODO: has to be finished */
     /* 4 different cases
      * a) Target PHP_SELF and a given query
      * b) Target PHP_SELF, query not given
      * c) Other target, given query
      * d) Other target, query not given */
 
-     /*
     if ($target == 'PHP_SELF') {
         if (is_array($query)) {
-           $output = "\n".'<form action="'.$sess->self_url().$sess->add_query($query).'" method="post">';
+           $output = "\n".'<form action="'.$sess->self_url().$sess->add_query($query).'" method="'.$method.'">';
         } else {
-           $output = "\n".'<form action="'.$sess->self_url().'" method="post">';
+           $output = "\n".'<form action="'.$sess->self_url().'" method="'.$method.'">';
         }
     } else {
         if (is_array($query)) {
-           $output = "\n".'<form action="'.$sess->url($target).$sess->add_query($query).'" method="post">';
+           $output = "\n".'<form action="'.$sess->url($target).$sess->add_query($query).'" method="'.$method.'">';
         } else {
-           $output = "\n".'<form action="'.$sess->url($target).'" method="post">';
+           $output = "\n".'<form action="'.$sess->url($target).'" method="'.$method.'">';
         }
     }         
-     */
     return($output);
 }
 
