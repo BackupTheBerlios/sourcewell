@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: config.inc,v 1.50 2002/05/10 18:32:45 grex Exp $
+// $Id: config.inc,v 1.51 2002/05/10 23:13:14 grex Exp $
 
 /**
  * Directory configuration
@@ -110,6 +110,7 @@ function config_inc($include)
         include($_INC_PATH.$include.$class_extension);
         break;
     case 'lib':
+    case 'search':
     case 'security':
         include($_INC_PATH.$include.$library_extension);
         break;
