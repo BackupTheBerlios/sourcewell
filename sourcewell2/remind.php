@@ -13,7 +13,7 @@
 // |          Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
 // +----------------------------------------------------------------------+
 //
-// $Id: remind.php,v 1.1 2002/05/10 10:54:28 grex Exp $
+// $Id: remind.php,v 1.2 2002/05/10 10:54:55 grex Exp $
 
 require('start.inc');
 
@@ -58,7 +58,7 @@ if (!$FilledOut) {
     $table->table_begin();
     $table->table_title(_('Forgot Password'));
     $table->table_body_begin();
-    htmlp_form_action('remindme.php');
+    htmlp_form_action();
     $table->table_columns_begin();
 
     $table->table_column(_('Username'), '50%', '', 'right');
