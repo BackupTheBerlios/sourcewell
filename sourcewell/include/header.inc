@@ -30,8 +30,7 @@ require("box.inc");
 $t = new translation($la);
 $db = new DB_SourceWell;
 ?>
-
-<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
