@@ -12,43 +12,10 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: end.inc,v 1.5 2002/05/07 21:53:26 grex Exp $
+// $Id: end.inc,v 1.6 2002/05/09 16:32:37 grex Exp $
 
-/* Configuration parameters are set as global */
-/* their values can be found at config.inc */
-global $config_navstrip_bgcolor;
-global $config_navstrip_font_color;
-global $config_org_url;
-global $config_org_name;
-global $config_sys_url;
-global $config_nav_bgcolor;
+config_inc('footer');
 
-?>
-<br><p>
-</td>
-</tr>
-</table>
-
-<!-- footer -->
-<table border="0" cellspacing="0" cellpadding="2" width="100%" 
-bgcolor="<?php echo $config_navstrip_bgcolor;?>">
-<tr>
-<td width="15%">&nbsp;</td>
-<td align="center" width="70%"><span class="titlebar">
-<font color="<?php echo $config_navstrip_font_color;?>">Copyright
-&copy; 2001,2002 <a href="<?php echo $config_org_url;?>" class="maintitlebar" 
-target="_blank"><?php echo $config_org_name;?></a>.</font></span></td>
-<td width="15%" align="right"><span class="titlebar">
-<a href="<?php echo $config_sys_url;?>html" target="_blank"><font 
-color="<?php echo $config_nav_bgcolor;?>">
-<?php echo _('System Credits');?></font></a>&nbsp;</span></td>
-</tr>
-</table>
-<!-- end footer -->
-
-</body>
-</html>
-<?php
 #
 # the last we do is shut down the logger
 #
