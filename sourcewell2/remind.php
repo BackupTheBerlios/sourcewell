@@ -13,7 +13,7 @@
 // |          Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
 // +----------------------------------------------------------------------+
 //
-// $Id: remind.php,v 1.2 2002/05/10 10:54:55 grex Exp $
+// $Id: remind.php,v 1.3 2002/05/10 10:56:15 grex Exp $
 
 require('start.inc');
 
@@ -61,12 +61,12 @@ if (!$FilledOut) {
     htmlp_form_action();
     $table->table_columns_begin();
 
-    $table->table_column(_('Username'), '50%', '', 'right');
+    $table->table_column('<b>'._('Username').':</b>', '50%', '', 'right');
     $table->table_column(html_form_textField('username', $username, 20, 32), '50%', '', 'left');
 
     $table->table_nextRowWithColumns();
 
-    $table->table_column(_('E-mail'), '50%', '', 'right');
+    $table->table_column(('<b>'._('E-mail').':</b>', '50%', '', 'right');
     $table->table_column(html_form_textField('email_usr', $email_usr, 20, 64), '50%', '', 'left');
 
     $table->table_nextRowWithColumns();
