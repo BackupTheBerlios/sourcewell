@@ -13,7 +13,7 @@
 // |          Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
 // +----------------------------------------------------------------------+
 //
-// $Id: newsletter.php,v 1.1 2002/05/10 18:17:50 grex Exp $
+// $Id: newsletter.php,v 1.2 2002/05/10 18:18:28 grex Exp $
 
 require('start.inc');
 
@@ -95,5 +95,5 @@ if (!$configure_ml_list) {
     }
 }
 
-require('end');
+config_inc('end');
 ?>
