@@ -15,7 +15,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: config.inc,v 1.23 2002/04/21 22:43:47 grex Exp $
+// $Id: config.inc,v 1.24 2002/05/07 12:15:48 grex Exp $
 
 /**
  * General System Configuration
@@ -205,8 +205,6 @@ $config_path_images = 'images/';
 function config_inc($include)
 {
     global $_FIELD_CLASS_INCLUDED, $_INC_PATH;
-
-    print "Including: $include<br>";
 
     /* default extensions */
     $class_extension = '.inc';
