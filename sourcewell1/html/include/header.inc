@@ -39,7 +39,7 @@ require("./include/top_title.inc");
 <tr VALIGN=TOP BGCOLOR="<?php echo $th_body_bgcolor;?>">
 <td BGCOLOR="<?php echo $th_nav_bgcolor;?>">
 <?php
-require("menubar.inc");
+require("./include/menubar.inc");
 ?>
 <td WIDTH="10"><img SRC="../images/blank.gif" BORDER=0 height=1 width=10></td>
 
