@@ -21,7 +21,7 @@
 require("header2.inc");
 require("app2.inc");
 
-security_page_access("app_version");
+security_page_access("appsearch");
 
 $bx = new box("general","95%");
 
