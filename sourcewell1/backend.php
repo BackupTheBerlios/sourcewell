@@ -54,7 +54,7 @@ $db->query("SELECT * FROM software,counter,auth_user WHERE software.appid=counte
 $i=0;
 while($db->next_record()) {
   echo "  <item>\n";
-  echo "    <title>".$db->f("name")." ".$db->f("version")."</title>\n";
+  echo "    <title>".htmlspecialchars($db->f("name"))." ".$db->f("version")."</title>\n";
   echo "    <link>".$sys_url."appbyid.php?id=".$db->f("appid")."</link>\n";
 //  echo "    <description>".wrap($db->f("description"))."</description>\n";
   echo "  </item>\n";
