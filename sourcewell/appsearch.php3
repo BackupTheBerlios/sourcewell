@@ -18,24 +18,13 @@
 # the Free Software Foundation; either version 2 or later of the GPL.
 ######################################################################
 
-page_open(array("sess" => "SourceWell_Session"));
-if (isset($auth) && !empty($auth->auth["perm"])) {
-  page_close();
-  page_open(array("sess" => "SourceWell_Session",
-                  "auth" => "SourceWell_Auth",
-                  "perm" => "SourceWell_Perm"));
-}
+require("header2.inc");
+//require("app2.inc");
 
-require("header.inc");
+security_page_access("appsearch");
 
-$bx = new box("100%",$th_box_frame_color,$th_box_frame_width,$th_box_title_bgcolor,$th_box_title_font_color,$th_box_title_align,$th_box_body_bgcolor,$th_box_body_font_color,$th_box_body_align);
-$bs = new box("100%",$th_strip_frame_color,$th_strip_frame_width,$th_strip_title_bgcolor,$th_strip_title_font_color,$th_strip_title_align,$th_strip_body_bgcolor,$th_strip_body_font_color,$th_strip_body_align);
-$be = new box("",$th_box_frame_color,$th_box_frame_width,$th_box_title_bgcolor,$th_box_title_font_color,$th_box_title_align,$th_box_body_bgcolor,$th_box_error_font_color,$th_box_body_align);
-?>
+$bx = new box("general","96%");
 
-<!-- content -->
-<?php
-$db = new DB_SourceWell;
 
       // When there's a search for a blank line, we look for "xxxxxxxx"
 if (!isset($search) || $search=="") {
@@ -44,65 +33,107 @@ if (!isset($search) || $search=="") {
 
 // $iter is a variable for printing the Top Statistics in steps of 10 apps
 if (!isset($iter)) $iter=0;
-$iter*=10;
+else $iter*=10;
 
-$columns = "COUNT(*)";
-$tables = "software,counter";
-$where = "software.appid=counter.appid AND software.status='A' AND software.name LIKE '%$search%'";
+// FIXME: apps that appear in superior matches should not be repeated
+// TODO: does it make sense to show so much information? 
+// WISH: have a navigation bar with the different options
 
-// We need to know the total number of apps
-$result = mysql_db_query($db_name,"SELECT $columns FROM $tables WHERE $where");
-$row = mysql_fetch_row($result);
-$numiter = ($row[0]/10);
-mysql_free_result($result);
-
-$columns = "*,SUM(app_cnt+homepage_cnt+download_cnt+changelog_cnt+rpm_cnt+deb_cnt+tgz_cnt+cvs_cnt+screenshots_cnt+mailarch_cnt) AS sum_cnt";
-$tables = "software,counter,auth_user";
-$where = "software.appid=counter.appid AND software.user=auth_user.username AND software.status='A' AND software.name LIKE '%$search%' GROUP BY software.appid";
-switch ($by) {
-  case "Importance":
-    $order = "sum_cnt DESC";
-    break;			
-  case "Urgency":
-    $order = "software.urgency DESC";
-    break;			
-  case "Name":
-    $order = "software.name ASC";
-    break;			
-  case "Date":
-  default:
-    $by = "Date";
-    $order = "software.modification DESC";
-    break;
+// 1a Section
+$db->query("SELECT DISTINCT(section) FROM categories WHERE section='$search'");
+if ($db->num_rows() > 0) {
+        $db->next_record();
+        $bx->box_strip("See also Section ".html_link("categories.php3",array(section => $db->f("section")),$db->f("section")));
 }
 
-$limit = "$iter,10";
-if (!$result = mysql_db_query($db_name,"SELECT $columns FROM $tables WHERE $where ORDER BY $order LIMIT $limit")) {
-  mysql_die();
-} else {
-  if (mysql_num_rows($result) < 1) {
-    $bx->box_full($t->translate("Search"),$t->translate("No Application found"));
-  } else {
-    $sort = $t->translate("sorted by").": "
-    ."<a href=\"".basename($PHP_SELF)."?search=".rawurlencode($search)."&by=Date\">".$t->translate("Date")."</a>"
-    ." | <a href=\"".basename($PHP_SELF)."?search=".rawurlencode($search)."&by=Importance\">".$t->translate("Importance")."</a>"
-    ." | <a href=\"".basename($PHP_SELF)."?search=".rawurlencode($search)."&by=Urgency\">".$t->translate("Urgency")."</a>"
-    ." | <a href=\"".basename($PHP_SELF)."?search=".rawurlencode($search)."&by=Name\">".$t->translate("Name")."</a>\n";
-    $bs->box_strip($sort);
-    while($row = mysql_fetch_array($result)) {
-      appdat($row);
+// 1b Category
+$db->query("SELECT * FROM categories WHERE category='$search'");
+if ($db->num_rows() > 0) {
+    while($db->next_record()) {
+        $bx->box_strip("See also Category ".html_link("appbycat.php3",array(section => $db->f("section"), category => $db->f("category")),$db->f("section")."/".$db->f("category")));
     }
-    mysql_free_result($result);
-    if ($numiter > 1) {
-      $url = basename($PHP_SELF)."?search=$search&by=$by&";
-      show_more ($iter,$numiter,$url);
-    }
-  }
 }
-?>
-<!-- end content -->
 
-<?php
-require("footer.inc");
-page_close();
+// 2. Exact match
+$query = "SELECT * FROM software,counter WHERE software.appid=counter.appid AND software.status='A' AND software.name='$search'";
+$db->query($query);
+if ($db->num_rows() > 0) {
+    $bx->box_strip("Exact match");
+    appdat($query);
+}
+
+
+// 3. Search parameters for the apps
+// TODO: there are no such parameters yet
+
+// 4a Partial Match in the name (single word match)
+// FIXME: three conditions:
+// FIXME: LIKE '$search %' for starting word
+// FIXME: LIKE ' % $search %' for a condition in the middle
+// FIXME: LIKE '% $search' for the last word
+$query = "SELECT COUNT(*) FROM software,counter WHERE software.appid=counter.appid AND software.status='A' AND software.name LIKE '% $search%'";
+$db->query($query);
+$db->next_record();
+if ($db->f("COUNT(*)") > 0) {
+    $bx->box_strip("Matches a single word in the name");
+    $numiter = (($db->f("COUNT(*)")-1)/10);
+    $order = lib_sort_by_order($by);
+    lib_sort_box("search",$search);
+
+    $query="SELECT *,SUM(app_cnt+homepage_cnt+download_cnt+changelog_cnt+rpm_cnt+deb_cnt+tgz_cnt+cvs_cnt+screenshots_cnt+mailarch_cnt) AS sum_cnt FROM software,counter,auth_user WHERE software.appid=counter.appid AND software.user=auth_user.username AND software.status='A' AND software.name LIKE '% $search%' GROUP BY software.appid $order LIMIT $iter,10";
+    appdat($query);
+}
+// If there are more than numiter apps, then a link to show more apps is given
+
+if ($numiter > 1) {
+  $urlquery = array("search" => ($search), "by" => $by);
+  show_more ($iter,$numiter,"appsearch.php3",$urlquery);
+}
+
+// 4b Partial Match in the name
+$query = "SELECT COUNT(*) FROM software,counter WHERE software.appid=counter.appid AND software.status='A' AND software.name LIKE '%$search%'";
+$db->query($query);
+$db->next_record();
+if ($db->f("COUNT(*)") > 0) {
+    $bx->box_strip("Partial match in the name");
+    $numiter = (($db->f("COUNT(*)")-1)/10);
+    $order = lib_sort_by_order($by);
+    lib_sort_box("search",$search);
+
+    $query="SELECT *,SUM(app_cnt+homepage_cnt+download_cnt+changelog_cnt+rpm_cnt+deb_cnt+tgz_cnt+cvs_cnt+screenshots_cnt+mailarch_cnt) AS sum_cnt FROM software,counter,auth_user WHERE software.appid=counter.appid AND software.user=auth_user.username AND software.status='A' AND software.name LIKE '%$search%' GROUP BY software.appid $order LIMIT $iter,10";
+    appdat($query);
+}
+// If there are more than numiter apps, then a link to show more apps is given
+
+if ($numiter > 1) {
+  $urlquery = array("search" => ($search), "by" => $by);
+  show_more ($iter,$numiter,"appsearch.php3",$urlquery);
+}
+
+// 5. Global match in the despcription
+// FIXME: three conditions:
+// FIXME: LIKE '$search %' for starting word
+// FIXME: LIKE ' % $search %' for a condition in the middle
+// FIXME: LIKE '% $search' for the last word
+$query = "SELECT *,SUM(app_cnt+homepage_cnt+download_cnt+changelog_cnt+rpm_cnt+deb_cnt+tgz_cnt+cvs_cnt+screenshots_cnt+mailarch_cnt) AS sum_cnt  FROM software,counter WHERE software.appid=counter.appid AND software.status='A' AND software.description LIKE '% $search %' GROUP BY software.appid";
+$db->query($query);
+if ($db->num_rows() > 0) {
+    $bx->box_strip("Exact match in the description");
+    appdat($query);
+}
+
+// 6. Partial Match in the description
+$query = "SELECT *,SUM(app_cnt+homepage_cnt+download_cnt+changelog_cnt+rpm_cnt+deb_cnt+tgz_cnt+cvs_cnt+screenshots_cnt+mailarch_cnt) AS sum_cnt  FROM software,counter WHERE software.appid=counter.appid AND software.status='A' AND software.description LIKE '%$search%' GROUP BY software.appid";
+$db->query($query);
+if ($db->num_rows() > 0) {
+    $bx->box_strip("Partial match in the description");
+    appdat($query);
+}
+
+
+// FIXME: if nothing is found:
+//  $bx->box_full($t->translate("Search"),$t->translate("No Application found"));
+// FIXME: Search in Google, Freshmeat, developer.berlios, sourceforge, savannah, icewalk
+
+require("footer2.inc");
 ?>
