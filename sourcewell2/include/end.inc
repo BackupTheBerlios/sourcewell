@@ -12,8 +12,9 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: end.inc,v 1.3 2002/05/07 21:48:04 grex Exp $
-?>
+// $Id: end.inc,v 1.4 2002/05/07 21:51:29 grex Exp $
+
+global $config_navstrip_bgcolor;
 ?>
 <br><p>
 </td>
