@@ -101,7 +101,7 @@ function app_preview() {
 
 	if ($download) {
 	  	$bx->box_next_row_of_columns();
-	  	$bx->box_column ("right","30%","","<b>"._("Donwload").":</b> ");
+	  	$bx->box_column ("right","30%","","<b>"._("Download").":</b> ");
 	  	$bx->box_column ("left","70%","",html_redirect($appid,"download_cnt",$download,$download)._app_show_count("download"));
 	}
 
@@ -151,7 +151,7 @@ function app_preview() {
 	if ($developer) {
 	  	$bx->box_next_row_of_columns();
 	  	$bx->box_column ("right","30%","","<b>"._("Author").":</b> ");
-	  	$bx->box_column ("left","70%","",$developer." &lt;".html_link("mailto:".ereg_replace("@"," at ",htmlentities($email)),array(),ereg_replace("@"," at ",htmlentities($email)))."&gt;");
+	  	$bx->box_column ("left","70%","",$developer." &lt; ".html_link("mailto:".ereg_replace("@"," at ",htmlentities($email)),array(),ereg_replace("@"," at ",htmlentities($email)))."&gt;");
 	}
 
 	$bx->box_next_row_of_columns();
@@ -218,7 +218,6 @@ function app_preview() {
 		$bx->box_next_row_of_columns();
 	  	$bx->box_column ("right","30%","","<b>"._("Announcements").":</b> ");
  	 	$bx->box_column ("left","70%","",_app_announcements($appid));
-
 		$bx->box_columns_end();
 
 		app_footer($appid);
@@ -294,6 +293,10 @@ function app_form() {
 
   $bx->box_next_row_of_columns();
 
+		// Default License is the GPL, because it is the most common one!
+  if(!isset($license) || empty($license)) {
+      $license = "GPL";
+  }
   $bx->box_column ("right","40%","","<b>"._("License").":</b> ");
   $bx->box_column ("left","60%","",_app_select_license($license));
 
@@ -421,53 +424,53 @@ function app_modification($appid) {
 }
 
 function app_insert() {
-  global $t, $perm, $be, $db, $auth, $type, $name, $version, $sec_and_cat, $license, $homepage, $download, $changelog, $rpm, $deb, $tgz, $cvs, $screenshots, $mailarch, $developer, $description, $email, $depend, $urgency, $preview;
+  global $t, $perm, $be, $bx, $db, $auth, $type, $name, $version, $sec_and_cat, $license, $homepage, $download, $changelog, $rpm, $deb, $tgz, $cvs, $screenshots, $mailarch, $developer, $description, $email, $depend, $urgency, $preview;
 
-if (empty($name) || empty($version)) {
+  if (empty($name) || empty($version)) {
 	$be->box_full(_("Error"), _("Parameter missing"));
-} else {
-
-  _app_trim_everything();
-  _app_split_sec_and_cat ($sec_and_cat);
-                      
-  $db->query($GLOBALS[select_appid_by_name_and_type]);
-  if ($db->num_rows() > 0) {
-	     $be->box_full(_("Error"), _("Application")." $name "._("already exists"));
   } else {
 
-     if ($perm->have_perm("editor")) {
-       $status = 'A';
-     } else {
-       $status = 'P';
-     }
+    _app_trim_everything();
+    _app_split_sec_and_cat ($sec_and_cat);
+    $email = _app_email_validation($email);
+                      
+    $db->query($GLOBALS[select_appid_by_name_and_type]);
+    if ($db->num_rows() > 0) {
+	     $be->box_full(_("Error"), _("Application")." $name "._("already exists"));
+    } else {
 
-  	$db->query(insert_app_in_software($GLOBALS["section"],$GLOBALS["category"],$status));
+       if ($perm->have_perm("editor")) {
+         $status = 'A';
+       } else {
+         $status = 'P';
+       }
+
+       $db->query(insert_app_in_software($GLOBALS["section"],$GLOBALS["category"],$status));
 
 	  // Get appid
 
- 	$db->query($GLOBALS[select_appid_by_name_and_type]);
-  	$db->next_record();
-	$appid = $db->f("appid");
+       $db->query($GLOBALS[select_appid_by_name_and_type]);
+       $db->next_record();
+       $appid = $db->f("appid");
 
  	 // New History
-
-  	$db->query(insert_history($appid));
-
+       if ($perm->have_perm("editor")) {
+  	  $db->query(insert_history($appid, $auth->auth["uname"], $version));
+       }
 	  // New Counter
 
-  	$db->query(insert_counter($appid));
+       $db->query(insert_counter($appid));
 
 	   // Mail notification
 
-   	if ($GLOBALS["ml_notify"]) {
-       		$msg = "insert application $name $version (".typestr($type).") by ".$auth->auth["uname"].".";
-       		mailuser("editor", "insert application", $msg);
-   	}
+       if ($GLOBALS["ml_notify"]) {
+         $msg = "insert application $name $version (".typestr($type).") by ".$auth->auth["uname"].".";
+       	 mailuser("editor", "insert application", $msg);
+       }
 
-	$preview = 1;
-  	app_show($appid);
+       $bx->box_full(_("Application has been inserted successfully"), _("Application")." $name "._("is now on the queue for being reviewed by an editor."));
+    }
   }
-}
 }
 
 function app_modify($appid) {
@@ -475,10 +478,19 @@ function app_modify($appid) {
 
   _app_trim_everything();
   _app_split_sec_and_cat ($sec_and_cat);
+  $email = _app_email_validation($email);
 
-//	$db->query("SELECT creation FROM software WHERE appid='$appid'");
+  // FIXME: and from temp?
 
-// FIXME: Do we have to take creation in order to not modify it?
+  $db->query("SELECT user, version, modification, modification FROM temp WHERE appid='$appid'");
+  if ($db->num_rows() == 0) {
+      $db->query("SELECT user, version, modification, modification FROM software WHERE appid='$appid'");
+  }
+  $db->next_record();
+  $user_old = $db->f("user");
+  $version_old = $db->f("version");
+  $modification_old = $db->f("modification");
+
   if ($perm->have_perm("editor")) {
 	if ($validation == "review") $status = 'A';
 	elseif ($validation == "delete") $status = 'D';
@@ -487,10 +499,16 @@ function app_modify($appid) {
 	$db->query($GLOBALS[delete_app_from_temp]);
 
     	// New History
-	// FIXME - this does not work as expected:
 	// If an editor is validating an app (reviewing or deleting it), then no new entry in history has to appear
+	// Only new history if the version number has changed!!!!
 
-    	if (!isset($validation)) $db->query("INSERT history SET appid='$appid',user_his='".$auth->auth["uname"]."',creation_his=NOW(),version_his='$version'");
+    	if (!isset($validation) && $version != $version_old) {
+            $db->query("INSERT history SET appid='$appid',user_his='".$auth->auth["uname"]."',version_his='$version',creation_his=NOW()");
+        } elseif ($version == $version_old) {
+    	        $db->query(insert_history($appid, $user_old, $version_old, $modification_old));
+        } else {
+    	        $db->query(insert_history($appid, $auth->auth["uname"], $version));
+        }
 
     } else {
       	$status = 'P';
@@ -506,19 +524,15 @@ function app_modify($appid) {
 	}
     }
 
-    // New History
-
-    $db->query(insert_history($appid));
-
 
    if ($ml_notify) {
-		print "mensaje mandado al editor";
        		$msg = "update application $name $version (".typestr($type).") by ".$auth->auth["uname"].".";
        		mailuser("editor", "update application", $msg);
    }
 
-  $preview = 1;
-  app_show($appid);
+
+   $bx->box_full(_("Application has been modified successfully"), _("Application")." $name "._("is now on the queue for being reviewed by an editor."));
+
 }
 
 function _app_announcements($appid) { 
@@ -762,5 +776,79 @@ function _app_status($status,$name) {
         $be->box_full(_("Error"), _("Application")." (ID: $id) "._("does not exist").".");
 	break;
   }
+}
+
+
+function app_show_summary($appid, $search = "xxxxx") {
+  global $t, $bx, $sess, $perm
+
+  $db_local = new DB_SourceWell;
+
+  $db_local->query(select_everything_for_an_app($appid));
+  if ($db_local->num_rows() == 0) print "no app with that appid or app pending";
+  else {
+        if (empty($search)) $search = "xxxxxxx";
+ 
+	$db_local->next_record();
+
+        $array_types = _app_types($db_local->f("name"));
+
+	$bx->box_begin();
+        $bx->box_title_begin();
+        print "<b>".eregi_replace($search,"<font color=red><b>".$search."</b></font>",$db_local->f("name"))."<b>";
+        if (isset($perm) && !empty($perm) && $perm->have_perm("editor")) {
+            for ($i=0; $i< sizeof($array_types); $i++) {
+                print " (".html_link("app_mod.php3",array("appid" => $array_types[$i]["appid"]),$array_types[$i]["type"]." ".$array_types[$i]["version"]).")";
+            }
+        } else {
+            for ($i=0; $i< sizeof($array_types); $i++) {
+                print " (".html_link("app.php3",array("appid" => $array_types[$i]["appid"]),$array_types[$i]["type"]." ".$array_types[$i]["version"]).")";
+            }
+        }
+        $bx->box_title_end();
+	$bx->box_body_begin();
+	echo "<b>by ".lib_nick($db_local->f("user"));
+    	echo " - ".timestr(mktimestamp($db_local->f("modification")))."</b><p>\n";
+
+	print eregi_replace($search,"<font color=red><b>".$search."</b></font>",$db_local->f("description"));
+
+	app_footer($appid);
+    	$bx->box_body_end();
+    	$bx->box_end();
+  }
+}
+
+function _app_types($name)
+{
+
+    $db_local = new DB_SourceWell;
+
+    $db_local->query(select_types_and_versions_for_an_app($name));
+    if ($db_local->num_rows() == 0) {
+        return 0;
+    } else {
+        $i = 0;
+        while ($db_local->next_record()) {
+            $array[$i]["type"] = typestr($db_local->f("type"));
+            $array[$i]["appid"] = $db_local->f("appid");
+            $array[$i]["version"] = $db_local->f("version");
+            $i++;
+        }
+        return $array;
+    }
+}
+
+## This function enables to insert "<my slash mail at server dot org>"
+## in the formular
+## as it transforms it into "my-mail@server.org" automatically
+
+function _app_email_validation($email)
+{
+    $email = ereg_replace("<","",$email);
+    $email = ereg_replace(" at ","@",$email);
+    $email = ereg_replace(" slash ","-",$email);
+    $email = ereg_replace(" dot ",".",$email);
+    $email = ereg_replace(">","",$email);
+    return $email;
 }
 ?>
