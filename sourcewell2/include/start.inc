@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: start.inc,v 1.36 2002/05/09 14:49:48 grex Exp $
+// $Id: start.inc,v 1.35 2002/05/09 14:49:03 grex Exp $
 
 if (!isset($login)) {
     page_open(array('sess' => 'SourceWell_Session'));
@@ -165,7 +165,7 @@ width="<?php echo $config_org_logo_width;?>" align="RIGHT"></a>
 
 while (list(, $value) = each($nav_bar_array)) {
     // Polimorfism
-    print $value->render();
+    $value->render();
 }
 
 print "</td>\n";
