@@ -12,7 +12,7 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: footer.inc,v 1.19 2002/05/10 11:01:25 grex Exp $
+// $Id: footer.inc,v 1.20 2002/05/14 15:33:15 grex Exp $
 
 /* Configuration parameters are set as global */
 /* their values can be found at config.inc */
@@ -22,6 +22,10 @@ global $config_org_url;
 global $config_org_name;
 global $config_sys_url;
 global $config_nav_bgcolor;
+
+function _o($string) {
+    return $string;
+}
 
 /* Only the */
 
@@ -63,7 +67,7 @@ target="_blank"><?php echo $config_org_name;?></a>.</font></span></td>
 <td width="15%" align="right"><span class="titlebar">
 <a href="<?php echo $config_sys_url;?>html" target="_blank"><font 
 color="<?php echo $config_nav_bgcolor;?>">
-<?php echo _('System Credits');?></font></a>&nbsp;</span></td>
+<?php echo _o('System Credits');?></font></a>&nbsp;</span></td>
 </tr>
 </table>
 <!-- end footer -->
