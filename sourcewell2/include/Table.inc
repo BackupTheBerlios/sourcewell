@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: Table.inc,v 1.12 2002/05/09 22:22:40 grex Exp $
+// $Id: Table.inc,v 1.13 2002/05/10 23:08:13 grex Exp $
 
 /**
  * Class Table: a class for HTML Tables
@@ -162,7 +162,7 @@ class Table {
             $this->table_body_align = $config_table_error_body_align;
             break;
         }
-        /* Internet Explorer does not work ok when we put the widht
+        /* Internet Explorer does not work ok when we put the width
            of the tables to 100%
            If we have a width that is greater than 98% we set it to 98% */
 
@@ -422,7 +422,6 @@ class Table {
      * @param    string      $align                Text align
      * @access public
      */
-
     function table_colspan($text = '&nbsp;', $numberOfColumns ='2', $bgcolor = '', $align = 'center')
     {
         echo "      <!-- Column that extends itself over $numberOfColumns columns columns begins -->\n";
@@ -430,6 +429,37 @@ class Table {
         echo "      ".$text."\n";
         echo "      </td>\n";
         echo "      <!-- End of column that extends itself over  $number_of_columns columns columns -->\n";
+    }
+
+    /**
+     * This is just a single (usual) table
+     * It has no title and body part. It is just a simple strip
+     *
+     * Example:
+     * table_strip('This is a strip');
+     * will print out the following:
+     *
+     * +------------------------------------------------+
+     * | This is a strip                                |
+     * +------------------------------------------------+
+     *
+     * The strip takes the $this->table_title_* parameters as the
+     * ones to be used (the body parameters are discarded)
+     *
+     * @param    string      $text                 Text in the column
+     * @access public
+     */
+    function table_strip($text = '$nbsp;') {
+        echo "\n<!-- Table (strip) Begins -->\n";
+        echo '<table style="border: 0; padding: '.$this->table_filling.'; width: '.$this->table_width.';" align="center">'."\n";
+        echo "   <tr style=\"background: $this->table_title_bgcolor\">\n";
+        echo "      <td style=\"text-align: $this->table_title_align; color: $this->table_title_font_color\">\n";
+        echo $text;
+        echo "      </td>\n";
+        echo "   </tr>\n";
+        echo "</table>\n";
+        echo "<!-- Table (strip) ends -->\n";
+        echo "<br>\n";
     }
 }
 ?>
