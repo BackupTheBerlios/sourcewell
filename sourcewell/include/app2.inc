@@ -798,7 +798,7 @@ function app_show_summary($appid, $search = "xxxxx") {
         print "<b>"._app_colour_search($search,$db_local->f("name"))."<b>";
         if (isset($perm) && !empty($perm) && $perm->have_perm("editor")) {
             for ($i=0; $i< sizeof($array_types); $i++) {
-                print " (".html_link("app_mod.php3",array("appid" => $array_types[$i]["appid"]),$array_types[$i]["type"]." ".$array_types[$i]["version"]).")";
+                print " (".html_link("app_mod.php3",array("appid" => $array_types[$i]["appid"]),$array_types[$i]["type"])." ".html_link("app_version.php3",array("appid" => $array_types[$i]["appid"]),$array_types[$i]["version"]).")";
             }
         } else {
             for ($i=0; $i< sizeof($array_types); $i++) {
@@ -856,4 +856,64 @@ function _app_email_validation($email)
     $email = ereg_replace(">","",$email);
     return $email;
 }
+
+
+function app_ChangeVersion($appid, $old_version, $new_version)
+{
+    global $bx, $be;
+
+    $db_local = new DB_SourceWell;
+    $db_local->query("SELECT * FROM software WHERE appid='$appid'");
+    $db_local->next_record();
+    $version = ereg_replace($old_version, $new_version, $db_local->f("version"));
+    $homepage = ereg_replace($old_version, $new_version, $db_local->f("homepage"));
+    $changelog = ereg_replace($old_version, $new_version, $db_local->f("changelog"));
+    $download = ereg_replace($old_version, $new_version, $db_local->f("download"));
+    $rpm = ereg_replace($old_version, $new_version, $db_local->f("rpm"));
+    $deb = ereg_replace($old_version, $new_version, $db_local->f("deb"));
+    $tgz = ereg_replace($old_version, $new_version, $db_local->f("tgz"));
+
+    $query = "UPDATE software SET version='$version', changelog='$changelog', homepage='$homepage', download='$download', rpm='$rpm', deb='$deb', tgz='$tgz' WHERE appid='$appid'";
+    $db_local->query($query);
+
+    if ($db_local->affected_rows() > 0) {
+        $bx->box_full("Everything went OK", "Application updated correctly. ".$query);
+    } else {
+        $be->box_full("Error","The following query is erroneous: ".$query);
+    }
+}
+
+function app_ChangeVersionForm($appid)
+{
+    global $bx;
+
+    $db_local = new DB_SourceWell;
+    $db_local->query("SELECT name,version,type FROM software WHERE appid='$appid'");
+    $db_local->next_record();
+
+
+    $bx->box_begin();
+    $bx->box_title($db_local->f("name")." ("._(typestr($db_local->f("type"))).")");
+    $bx->box_body_begin();
+    $bx->box_columns_begin(3);
+
+    $bx->box_column ("center","33%","","<b>"._("Old Version").":</b> ");
+    $bx->box_column ("center","33%","","<b>"._("New Version").":</b> ");
+    $bx->box_column ("center","34%","","&nbsp;");
+
+    $bx->box_next_row_of_columns();
+
+    htmlp_form_action("PHP_SELF",array("" => "", "appid" => $appid));
+    htmlp_form_hidden("old_version",$db_local->f("version"));
+
+    $bx->box_column ("center","33%","","<b>".$db_local->f("version")."</b> ");
+    $bx->box_column ("center","33%","",html_input_text("new_version", 16, 16, $new_version));
+    $bx->box_column ("center","34%","",html_form_submit("Submit","submit"));
+    htmlp_form_end();
+
+    $bx->box_columns_end();
+    $bx->box_body_end();
+    $bx->box_end();
+}
+
 ?>
