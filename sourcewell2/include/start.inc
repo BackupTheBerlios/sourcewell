@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: start.inc,v 1.28 2002/05/07 22:01:17 grex Exp $
+// $Id: start.inc,v 1.29 2002/05/07 22:07:08 grex Exp $
 
 if (!isset($login)) {
     page_open(array('sess' => 'SourceWell_Session'));
@@ -100,7 +100,7 @@ if (isset($auth) && !empty($auth->auth["perm"])  && !($logout)) {
 
 <tr valign="top" bgcolor="<?php echo $config_nav_bgcolor;?>">
 <td bgcolor="#FFFFFF">
-<a href="<?php echo $config_sys_url_title;?>">
+<a href="<?php echo $config_sys_url_image;?>">
 <img src="<?php echo $config_sys_logo_image;?>" border="0" 
 height="<?php echo $config_sys_logo_height;?>" width="<?php echo $config_sys_logo_width;?>"
 vspace="5" hspace="5" alt="<?php echo $config_sys_logo_alt;?>"></a>

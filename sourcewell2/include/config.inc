@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: config.inc,v 1.28 2002/05/07 22:00:10 grex Exp $
+// $Id: config.inc,v 1.29 2002/05/07 22:07:08 grex Exp $
 
 /**
  * Directory configuration
@@ -153,7 +153,7 @@ $config_sys_url = 'http://sourcewell.berlios.de/sourcewell2/';
  */
 
 $config_sys_logo_image = $config_path_images.'berliOS_logo.png';
-$config_sys_url_image = 'http://www.berlios.de/index.php.en';
+$config_sys_url_image = 'http://www.berlios.de/';
 $config_sys_logo_alt = 'BerliOS';
 $config_sys_logo_width = 238;
 $config_sys_logo_heigth = 61;
