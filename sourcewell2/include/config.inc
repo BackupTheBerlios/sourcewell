@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: config.inc,v 1.46 2002/05/09 23:24:12 grex Exp $
+// $Id: config.inc,v 1.47 2002/05/10 10:06:46 grex Exp $
 
 /**
  * Directory configuration
@@ -445,8 +445,8 @@ $config_RightColumnWidth = '67%';
  */
 
 $config_ml_notify = '1';
-$config_ml_fromaddr = 'noreply@berlios.de';
-$config__replyaddr = 'noreply@berlios.de';
+$config_ml_fromAddr = 'noreply@berlios.de';
+$config_ml_replyAddr = 'noreply@berlios.de';
 
 /**
  * SourceWell 2 Version
