@@ -4,6 +4,8 @@ include('Field.inc');
 include('TextField.inc');
 include('TextAreaField.inc');
 include('SelectField.inc');
+include('Form.inc');
+include('Preview.inc');
 include('Table.inc');
 
 //$table = new Table();
