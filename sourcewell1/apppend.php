@@ -53,12 +53,14 @@ if (($config_perm_apppend != "all") && (!isset($perm) || !$perm->have_perm($conf
 // We need to know the total number of apps
   $db->query("SELECT $columns FROM $tables WHERE $where");
   $db->next_record();
-  $numiter = ($db->f("COUNT")/10);
+  $numiter = ($db->f("COUNT(*)")/10);
 
   $columns = "*";
   $order = "pending.modification DESC";
 
-  $query = "SELECT $columns FROM $tables WHERE $where ORDER BY $order";
+  $limit = "$iter,10";
+
+  $query = "SELECT $columns FROM $tables WHERE $where ORDER BY $order LIMIT $limit";
   appupdate($query);
 
   $db->query($query);
