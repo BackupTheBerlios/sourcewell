@@ -44,23 +44,23 @@ if (($config_perm_admdate != "all") && (!isset($perm) || !$perm->have_perm($conf
 } else {
 
   if (!isset($action)) $action = "check";
-  $where = "";
-  if (isset($id)) $where = "WHERE appid='$id'";
+  $where = "WHERE status='A'";
+  if (isset($id)) $where .= " AND appid='$id'";
 			
-				// Check application
-//ab hier
+// Check application
   $db->query("SELECT * FROM software $where");
+  // echo"<p>SELECT * FROM software $where\n";
   $i=0;
   while($db->next_record()) {
     $db_appid = $db->f("appid");
     $db2 = new DB_SourceWell;
     $db2->query("SELECT * FROM history WHERE appid='$db_appid' ORDER BY creation_his DESC");
-    $db2->next_record();
+    $db2_exists = $db2->next_record();
     $db_modification = $db->f("modification");
     $db2_creation_his = $db2->f("creation_his");
     if ($db_modification != $db2_creation_his) {
       $timestamp = mktimestamp($db_modification);
-      $title = "<b>".$db->f(name)." (".$db->f(appid).")</b>";
+      $title = "<b><a href=\"http://sourcewell.berlios.de/appbyid.php".$sess->add_query(array("id"=> $db->f(appid)))."\">".$db->f(name)."</a> (".$db->f(appid).")</b>";
       $bx->box_begin();
       $bx->box_title($title);
       $body = "Modification date: ".timestr($timestamp)."\n";
@@ -69,8 +69,9 @@ if (($config_perm_admdate != "all") && (!isset($perm) || !$perm->have_perm($conf
       $bx->box_body($body);    
       switch ($action) {
 	case "check":
-          $appid = $db->f("appid");
-	  $title = "<a href=\"".$sess->self_url().$sess->add_query(array("action" => "update", "id"=> $appid))."\"><img src=\"images/recycled.png\" border=0 alt=\"".$t->translate("Update")."\"></a>\n";
+          if ($db2_exists) $action2 = "update";
+          else $action2 = "insert";
+	  $title = "<a href=\"".$sess->self_url().$sess->add_query(array("action" => $action2, "id"=> $db_appid))."\"><img src=\"images/recycled.png\" border=0 alt=\"".$t->translate("Update")."\"></a>\n";
 	  $bx->box_title($title);
 	  break;
         case "update":
@@ -80,6 +81,16 @@ if (($config_perm_admdate != "all") && (!isset($perm) || !$perm->have_perm($conf
           $title = "Modification date is updated to ".timestr($timestamp)."\n";
           $bx->box_title($title);
           break;
+        case "insert":
+          $db3 = new DB_SourceWell;
+          $db_user = $db->f("user");
+          $db_version = $db->f("version");
+          $db3->query("INSERT history SET appid='$db_appid', user_his='$db_user', creation_his='$db_modification', version_his='$db_version'");
+          // echo "<p>INSERT history SET appid='$db_appid', user_his='$db_user', creation_his='$db_modification', version_his='$db_version'\n";
+          $timestamp = mktimestamp($db_modification);
+          $title = "History date is updated to ".timestr($timestamp)."\n";
+          $bx->box_title($title);
+        break;
         default:
 	  $be->box_full($t->translate("Error"), $t->translate("Invalid action"));
 	  break;

@@ -93,8 +93,7 @@ if ($perm->have_perm("user_pending") || ($action == "review" && !$perm->have_per
 		  $db->query("INSERT counter SET appid='$id'");
 		  // echo "<p>INSERT counter SET appid='$id'\n";
 		}
-
-                if ($oldversion != $version) {
+                if ($oldversion != stripslashes($version)) {
                   // Insert new history
                   $db->query("INSERT history SET appid='$id',user_his='$user',creation_his='$modification',version_his='$version'");
                   // echo "<p>INSERT history SET appid='$id',user_his='$user',creation_his='$modification',version_his='$version'\n";

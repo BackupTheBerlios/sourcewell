@@ -37,6 +37,7 @@ if (!$perm->have_perm("editor")) {
 	$be->box_full($t->translate("Error"), $t->translate("Access denied"));
 } else {
 	echo "<p><b>Automatic Software Update</b>\n";
+	echo "<br>(<a href=\"http://www.gnome.org/softwaremap/latest.php\">http://www.gnome.org/softwaremap/latest.php</a>)\n";
 	$string = "";
 	$fcontents = file("http://www.gnome.org/softwaremap/latest.php");
 	while (list(, $line) = each($fcontents)) {
@@ -45,7 +46,7 @@ if (!$perm->have_perm("editor")) {
 	$items = explode("</tr>",$string);
 	while(list(, $val) = each($items)) {
 //		echo "<br>val: $val\n";
-		if (ereg("<tr valign=\"top\"><td><a href=\".*\">(.*)</a></td><td nowrap>.*</td><td align=\"center\" nowrap>(.*)</td><td>(.*)</td>", $val, $regs)) {
+		if (ereg("<tr valign=\"top\"><td><a href=\".*\">(.*)</a></td><td nowrap>.*</td><td align=\"center\">(.*)</td><td>(.*)</td>", $val, $regs)) {
 			echo "<p>Name: $regs[1]\n";
 			echo "<br>Version: $regs[2]\n";
 			echo "<br>Description: $regs[3]\n";
@@ -79,23 +80,24 @@ if (!$perm->have_perm("editor")) {
 			}
 			// Look if application is already in table
 			$query = "SELECT * FROM software WHERE name=";
-			if (ereg("\"", $regs[1]))
-				$query .= "'".$regs[1]."'";
-			else
-				$query .= "\"".$regs[1]."\"";
-			$query .= " AND type=\"$type\"";
+			$query .= "'".addslashes($regs[1])."'";
+			$query .= " AND type='$type'";
 			$db->query($query);
   			if ($db->next_record()) {
 				if ($regs[2] > $db->f("version")) {
 
 					// Update software with new version
-					$query = "UPDATE software SET version=\"$regs[2]\",user=\"helix\" WHERE appid=\"".$db->f("appid")."\"";
+					$query = "UPDATE software SET version=";
+					$query .= "'".addslashes($regs[2])."'";
+					$query .= ",user='helix' WHERE appid='".$db->f("appid")."'";
 					$db->query($query);
 					echo "<p>Update: ".$db->f("name")."; Type: ".$type."; Old Version: ".$db->f("version")."; New Version: ".$regs[2]."\n";
 					echo "<br>$query\n";
 
 					// Insert new history entry for new version
-					$query = "INSERT history SET appid=\"".$db->f("appid")."\",user_his=\"helix\",version_his=\"$regs[2]\",creation_his=NOW()";
+					$query = "INSERT history SET appid='".$db->f("appid")."',user_his='helix',version_his=";
+					$query .= "'".addslashes($regs[2])."'";
+					$query .= ",creation_his=NOW()";
 					echo "<br>$query\n";
 					$db->query($query);
 

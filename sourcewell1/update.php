@@ -38,9 +38,9 @@ if ($perm->have_perm("user_pending") || ($action == "review" && !$perm->have_per
 } else {
   if (isset($id)) {
 					// Update application
-    $name = trim($name);
+    $name = stripslashes(trim($name));
     $type = trim($type);
-    $version = trim($version);
+    $version = stripslashes(trim($version));
     $license = trim($license);
     $homepage = trim($homepage);
     $download = trim($download);
@@ -57,23 +57,23 @@ if ($perm->have_perm("user_pending") || ($action == "review" && !$perm->have_per
     $depend = trim($depend);
     $urgency = trim($urgency);
     $user = trim($user);
-	
+
     $columns = "modification,creation,version,status";
     $tables = "software";
-	$where = "appid='$id'";
-	$db->query("SELECT $columns FROM $tables WHERE $where");
+    $where = "appid='$id'";
+    $db->query("SELECT $columns FROM $tables WHERE $where");
     if ($db->num_rows() > 0) {
-		$db->next_record();
+	$db->next_record();
     	$modification = $db->f("modification");
     	$creation = $db->f("creation");
     	$oldversion = $db->f("version");
     	$status = $db->f("status");
-	}
-	
+    }
+
     $columns = "*";
     $section = trim(strtok($seccat, "/"));
     $category = trim(strtok("."));
-    $set = "name='$name',type='$type',version='$version',section='$section',category='$category',license='$license',homepage='$homepage',download='$download',changelog='$changelog',rpm='$rpm',deb='$deb',tgz='$tgz',cvs='$cvs',screenshots='$screenshots',mailarch='$mailarch',developer='$developer',description='$description',email='$email',depend='$depend',urgency='$urgency',creation='$creation'";
+    $set = "name='".addslashes($name)."',type='$type',version='".addslashes($version)."',section='$section',category='$category',license='$license',homepage='$homepage',download='$download',changelog='$changelog',rpm='$rpm',deb='$deb',tgz='$tgz',cvs='$cvs',screenshots='$screenshots',mailarch='$mailarch',developer='$developer',description='$description',email='$email',depend='$depend',urgency='$urgency',creation='$creation'";
 
     switch ($action) {
       case "update":
@@ -137,11 +137,11 @@ if ($perm->have_perm("user_pending") || ($action == "review" && !$perm->have_per
       cmtshow($query);
     } else { // $operation = "INSERT"
       $tables = "pending,auth_user";
-      $where = "pending.name='$name' AND type='$type' AND version='$version' AND pending.user=auth_user.username";
+      $where = "pending.name='".addslashes($name)."' AND type='$type' AND version='".addslashes($version)."' AND pending.user=auth_user.username";
       $group = "pending.name";
 
       $query  = "SELECT * FROM $tables WHERE $where GROUP BY $group";
-	  // echo "<p>$query\n";
+      // echo "<p>$query\n";
 
       apppend($query);
     }
