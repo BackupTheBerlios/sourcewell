@@ -12,7 +12,14 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: header.inc,v 1.3 2002/05/09 16:41:07 grex Exp $
+// $Id: header.inc,v 1.4 2002/05/09 16:45:12 grex Exp $
+
+/**
+ * TODO: global explanation of this file
+ * structure and possibilities
+ * say that there are partial explanations along this file
+ */
+
 
 /* PHPLib authentication object */
 /* @see PHPLib */
@@ -48,6 +55,10 @@ global $config_adm_bar_array;
 global $config_la_array;
 global $config_addNetscapePanel;
 
+/**
+ * Todo: explanation
+ */
+
 ?>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
@@ -63,6 +74,12 @@ global $config_addNetscapePanel;
    <link rel="shortcut icon" href="berlios.ico">
 </head>
 <body bgcolor="<?php echo $th_body_bgcolor;?>">
+
+<?php
+/**
+ * TODO: explanation
+ */
+?>
 
 <!-- top strip -->
 <table border="0" cellspacing="0" cellpadding="2" width="100%" bgcolor="<?php echo $config_navstrip_bgcolor;?>">
@@ -89,6 +106,12 @@ if (isset($auth) && !empty($auth->auth["perm"])  && !($logout)) {
   </tr>
 </table>
 <!-- end top strip -->
+
+<?php
+/**
+ * TODO: explanation
+ */
+?>
 
 <!-- top title -->
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
@@ -139,6 +162,13 @@ if (isset($auth) && !empty($auth->auth["perm"])  && !($logout)) {
 </table>
 <!-- end top title -->
 
+<?php
+/**
+ * TODO: explanation
+ */
+?>
+
+<!-- navigation bar -->
 <table border="0" cellspacing="0" cellpadding="0" width="100%" >
   <tr valign="top" bgcolor="<?php echo $config_body_bgcolor;?>">
     <td bgcolor="<?php echo $config_nav_bgcolor;?>">
