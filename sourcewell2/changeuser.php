@@ -13,7 +13,7 @@
 // |          Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
 // +----------------------------------------------------------------------+
 //
-// $Id: changeuser.php,v 1.2 2002/05/10 11:17:48 grex Exp $
+// $Id: changeuser.php,v 1.3 2002/05/10 11:57:29 grex Exp $
 
 require('start.inc');
 /* TODO: add monitoring class / library */
@@ -49,7 +49,7 @@ while (is_array($HTTP_POST_VARS)
                 break;
             }
 
-            $bi->table_full(_('Change User Parameters'), 
+            $table->table_full(_('Change User Parameters'), 
                           _('Password and/or E-Mail Address of')
                           .' <b>'. $auth->auth['uname'] .'</b> '
                           ._('is changed').'.');
@@ -102,22 +102,22 @@ $table->table_column(html_form_textField('realname', $db->f('realname'), 20, 64)
 $table->table_nextRowWithColumns();
 
 $table->table_column('<b>'._('E-mail').':</b>', '50%', '', 'right');
-$table->table_column(html_form_textField('email_usr', $db->f('$email_usr'), 20, 128), '50%', '', 'left');
+$table->table_column(html_form_textField('email_usr', $db->f('email_usr'), 20, 128), '50%', '', 'left');
 
 $table->table_nextRowWithColumns();
 
 $table->table_column('<b>'._('Creation').':</b>', '50%', '', 'right');
-$table->table_column(lib_date_long($db->f("creation_usr")), '50%', '', 'left');
+$table->table_column(lib_date_long($db->f('creation_usr')), '50%', '', 'left');
 
 $table->table_nextRowWithColumns();
 
 $table->table_column('<b>'._('Last Modification').':</b>', '50%', '', 'right');
-$table->table_column(lib_date_long($db->f("modification_usr")), '50%', '', 'left');
+$table->table_column(lib_date_long($db->f('modification_usr')), '50%', '', 'left');
 
 $table->table_nextRowWithColumns();
 
 $table->table_column('<b>'._('Permisions').':</b>', '50%', '', 'right');
-$table->table_column(lib_date_long($db->f("perms")), '50%', '', 'left');
+$table->table_column(lib_date_long($db->f('perms')), '50%', '', 'left');
 
 $table->table_nextRowWithColumns();
 
