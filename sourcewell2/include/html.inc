@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: html.inc,v 1.9 2002/05/09 15:23:00 grex Exp $
+// $Id: html.inc,v 1.10 2002/05/09 16:56:39 grex Exp $
 
 /**
  * HTML library for PHP (and PHPLib)
@@ -170,7 +170,7 @@ function html_form_action($target = 'PHP_SELF', $query = '', $method = 'post')
     return($output);
 }
 
-function htmlp_form_action($file = 'PHP_SELF', $query = '', $metod='post')
+function htmlp_form_action($file = 'PHP_SELF', $query = '', $method='post')
 {
     print html_form_action($file, $query, $method);
 }
@@ -205,7 +205,7 @@ function htmlp_form_hidden($name, $value)
  * @access public
  */
 
-function html_form_select($name, $multiple = 0, $size = 0)
+function html_form_select($name, $multiple = 0, $size = 1)
 {
     $output = "\n".'   <select name="'.$name.'" size="'.$size.'"';
     if ($multiple) {
@@ -215,9 +215,9 @@ function html_form_select($name, $multiple = 0, $size = 0)
     return($output);
 }
 
-function htmlp_form_select($name, $multiple = 0, $size = 0)
+function htmlp_form_select($name, $multiple = 0, $size = 1)
 {
-    print html_form_select($name, $multiple, $tamanio);
+    print html_form_select($name, $multiple, $size);
 }
 
 /**

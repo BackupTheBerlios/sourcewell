@@ -12,7 +12,7 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: header.inc,v 1.6 2002/05/09 16:48:16 grex Exp $
+// $Id: header.inc,v 1.7 2002/05/09 16:56:35 grex Exp $
 
 /**
  * TODO: global explanation of this file
@@ -99,7 +99,7 @@ echo "\n</span></td><td width=\"55%\" align=\"right\">\n";
 if (isset($auth) && !empty($auth->auth["perm"])  && !($logout)) {
     echo "<font color=\"".$config_nav_bgcolor."\">"._("Logged in")." <b>".$auth->auth["uname"]."</b> (<b>".$auth->auth["perm"]."</b>) / "._("Expires")." <b>".timestr_short($auth->auth["exp"])."</b></font>";
 } else {
-    echo "<font color=\"".$config_nav_bgcolor."\"><b>"._("Not Logged in")."</b><font>";
+    echo "<font color=\"".$config_nav_bgcolor."\"><b>"._("Not Logged in")."</b></font>";
 }
 ?>
     </td>
@@ -222,7 +222,9 @@ while (list(, $value) = each($config_adm_bar_array)) {
 <!-- Search menu -->
 <table border=0 cellspacing=0 cellpadding=3 width="100%">
   <tr bgcolor="<?php echo $config_navstrip_bgcolor;?>">
-    <td align="center"><img src="http://www.berlios.de/images/blank.gif" height="1" width="135" border=0><br>
+    <td align="center">
+      <img src="http://www.berlios.de/images/blank.gif" height="1" width="135" border=0 alt="">
+      <br>
       <span class="titlebar"><font color="<?php echo $config_navstrip_font_color;?>"><?php echo _("Search"); ?></font></span>
     </td>
   </tr>
@@ -282,7 +284,9 @@ if (ereg('Gecko', '$HTTP_USER_AGENT') && $config_addNetscapePanel) {
 
 
   </td>
-  <td width="10"><img src="images/blank.gif" border="0" height="1" width="10"></td>
+  <td width="10">
+    <img src="images/blank.gif" border="0" height="1" width="10" alt="">
+  </td>
   <td width="99%">
     <p>&nbsp;
 

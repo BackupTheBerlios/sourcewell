@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: config.inc,v 1.37 2002/05/09 16:32:37 grex Exp $
+// $Id: config.inc,v 1.38 2002/05/09 16:56:35 grex Exp $
 
 /**
  * Directory configuration
@@ -279,7 +279,7 @@ include('Navigation.inc');
 
 /* Normal navigation bar */
 $config_nav_bar_array[] = new Navigation('Recent Apps', 'index.php3');
-$temp = new Navigation('Q&A', 'faq.php3');
+$temp = new Navigation('Q&amp;A', 'faq.php3');
 $temp->additionalBR();
 $config_nav_bar_array[] = $temp;
 $config_nav_bar_array[] = new Navigation('Login', 'login.php3');
@@ -339,7 +339,7 @@ $temp = new Navigation('Comments', 'admcomments.php3');
 $temp->setStatistics('comments');
 $temp->setPermisions('admin');
 $config_adm_bar_array[] = $temp;
-$temp = new Navigation('Q&A', 'admfaq.php3');
+$temp = new Navigation('Q&amp;A', 'admfaq.php3');
 $temp->setStatistics('faq');
 $temp->setPermisions('admin');
 $config_adm_bar_array[] = $temp;
