@@ -13,7 +13,7 @@
 // |          Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
 // +----------------------------------------------------------------------+
 //
-// $Id: newsletter.php,v 1.5 2002/05/10 18:24:01 grex Exp $
+// $Id: newsletter.php,v 1.6 2002/05/10 18:26:13 grex Exp $
 
 require('start.inc');
 
@@ -43,13 +43,14 @@ if (!$config_ml_list) {
             if ($period == 'daily') {		// Daily Newsletter
 	        mail($config_ml_dailyNewsreqaddr,"subscribe $password",$message,"From: $email_usr\nReply-To: $email_usr\nX-Mailer: PHP");
 	        $msg = _('Congratulations').'! '
-	              ._('You have subscribed to $sys_name daily Newsletter').'.'.'<p>'
+	              ._('You have subscribed to').' '.$sys_name.' '._('daily Newsletter').'.'.'<p>'
                       ._('You are now being sent a confirmation email to verify your email address').'.';
 	        $table->table_full(_('Subscribe daily Newsletter'), $msg);
             } else { // Weekly Newsletter
-	        mail($config_ml_weeklyNewsReqAddr,"subscribe $password",$message,"From: $email_usr\nReply-To: $email_usr\nX-Mailer: PHP");
+	        mail($config_ml_weeklyNewsReqAddr, 'subscribe $password',
+                     $message, "From: $email_usr\nReply-To: $email_usr\nX-Mailer: PHP");
 	        $msg = _('Congratulations').'! '
-	               ._('You have subscribed to $sys_name weekly Newsletter').'.'
+	               ._('You have subscribed to').' '.$sys_name.' '._('weekly Newsletter').'.'
 	               .'<p>'._('You are now being sent a confirmation email to verify your email address').'.';
 	        $table->table_full(_('Subscribe weekly Newsletter'), $msg);
             }
