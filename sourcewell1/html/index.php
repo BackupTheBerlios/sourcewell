@@ -2,10 +2,10 @@
 
 ######################################################################
 # SourceWell: Software Announcement & Retrieval System
-# ================================================
+# ====================================================
 #
-# Copyright (c) 2001 by
-#                Lutz Henckel (lutz.henckel@fokus.gmd.de) and
+# Copyright (c) 2001-2003 by
+#                Lutz Henckel (lutz.henckel@fokus.fraunhofer.de) and
 #                Gregorio Robles (grex@scouts-es.org)
 #
 # BerliOS SourceWell: http://sourcewell.berlios.de
@@ -27,9 +27,8 @@ require("./include/header.inc");
 
 <P><H2>SourceWell</H2>
 
-<P><B>Latest Version: 1.1.0 (Development)</b>
-<BR><b>Latest Stable Version: 1.1.0</B>
-<br><b>BerliOS SourceWell (<a href="http://sourcewell.berlios.de">http://sourcewell.berlios.de</a>): 1.1.0</b>
+<P><b>Latest Stable Version: 1.1.1</B>
+<br><b>BerliOS SourceWell (<a href="http://sourcewell.berlios.de">http://sourcewell.berlios.de</a>): 1.1.1</b>
 
 <p><b>Demo site</b>: <a href="http://sourcewell.berlios.de">BerliOS SourceWell</a> with <b>more than 2000 applications</b>!
 
