@@ -17,13 +17,13 @@
 # the Free Software Foundation; either version 2 or later of the GPL.
 ######################################################################
 
-$select_app_from_temp = "SELECT * FROM temp WHERE appid='$appid'";
+$select_app_from_temp = "SELECT * FROM psoftware WHERE appid='$appid'";
 
 $select_app_from_software = "SELECT * FROM software WHERE appid='$appid'";
 
 $select_apps_by_name_and_type = "SELECT * FROM software WHERE name='$name' AND type='$type'";
 
-$delete_app_from_temp = "DELETE FROM temp WHERE appid='$appid'";
+$delete_app_from_temp = "DELETE FROM psoftware WHERE appid='$appid'";
 
 $select_history = "SELECT * FROM history WHERE appid='$appid' ORDER BY creation_his DESC";
 
@@ -58,14 +58,14 @@ function insert_app_in_temp($section,$category,$status) {
 	global $auth;
 	global $name, $type, $version, $license, $homepage, $download, $changelog, $rpm, $deb, $tgz, $cvs, $screenshot, $mailarch, $developer, $description, $email, $depend, $urgency, $status;
 
-	return "INSERT INTO temp SET appid='$appid', name='$name', type='$type', version='$version', license='$license', section='$section', category='$category', homepage='$homepage', download='$download', changelog='$changelog', rpm='$rpm', deb='$deb', tgz='$tgz', cvs='$cvs', screenshots='$screenshots', mailarch='$mailarch', developer='$developer', description='$description', email='$email', depend='$depend', urgency='$urgency', user='".$auth->auth["uname"]."', status='$status'";
+	return "INSERT INTO psoftware SET appid='$appid', name='$name', type='$type', version='$version', license='$license', section='$section', category='$category', homepage='$homepage', download='$download', changelog='$changelog', rpm='$rpm', deb='$deb', tgz='$tgz', cvs='$cvs', screenshots='$screenshots', mailarch='$mailarch', developer='$developer', description='$description', email='$email', depend='$depend', urgency='$urgency', user='".$auth->auth["uname"]."', status='$status'";
 }
 
 function update_app_in_temp($section,$category,$status) {
 	global $auth;
 	global $name, $type, $version, $license, $homepage, $download, $changelog, $rpm, $deb, $tgz, $cvs, $screenshot, $mailarch, $developer, $description, $email, $depend, $urgency, $status, $appid;
 
-	return "UPDATE temp SET type='$type', version='$version', license='$license', section='$section', category='$category', homepage='$homepage', download='$download', changelog='$changelog', rpm='$rpm', deb='$deb', tgz='$tgz', cvs='$cvs', screenshots='$screenshots', mailarch='$mailarch', developer='$developer', description='$description', email='$email', depend='$depend', urgency='$urgency', user='".$auth->auth["uname"]."', status='$status' WHERE appid='$appid'";
+	return "UPDATE psoftware SET type='$type', version='$version', license='$license', section='$section', category='$category', homepage='$homepage', download='$download', changelog='$changelog', rpm='$rpm', deb='$deb', tgz='$tgz', cvs='$cvs', screenshots='$screenshots', mailarch='$mailarch', developer='$developer', description='$description', email='$email', depend='$depend', urgency='$urgency', user='".$auth->auth["uname"]."', status='$status' WHERE appid='$appid'";
 }
 
 function insert_history($appid) {
