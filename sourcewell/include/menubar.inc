@@ -6,7 +6,7 @@
 </tr>
 
 <tr ALIGN=RIGHT BGCOLOR="<?php echo $th_nav_bgcolor;?>">
-<td><a href="<?php $sess->purl("index_static.php3") ?>" class="menus"><?php echo _("Recent Apps"); ?></a>
+<td><a href="<?php $sess->purl("index.php3") ?>" class="menus"><?php echo _("Recent Apps"); ?></a>
 <br><a href="<?php $sess->purl("faq.php3") ?>" class="menus"><?php echo _("Q&amp;A"); ?></a>
 
 <br><br>
@@ -53,7 +53,7 @@ if (($config_perm_apppend == "all") || (isset($perm) && $perm->have_perm($config
   $db->query("SELECT COUNT(*) FROM software WHERE status='P'");
   $db->next_record();
   $count = $db->f("COUNT(*)");
-  $db->query("SELECT COUNT(*) FROM temp WHERE status='P'");
+  $db->query("SELECT COUNT(*) FROM psoftware WHERE status='P'");
   $db->next_record();
   $count += $db->f("COUNT(*)");
   echo "<br><a href=\"".$sess->url("admapp.php3")."\" class=\"menus\">"._("Pending Apps")." [".$count."]</a>\n";
@@ -64,7 +64,7 @@ if (($config_perm_appdom == "all") || (isset($perm) && $perm->have_perm($config_
   $db->query("SELECT COUNT(*) FROM software WHERE status='D'");
   $db->next_record();
   $count = $db->f("COUNT(*)");
-  $db->query("SELECT COUNT(*) FROM temp WHERE status='D'");
+  $db->query("SELECT COUNT(*) FROM psoftware WHERE status='D'");
   $db->next_record();
   $count += $db->f("COUNT(*)");
   echo "<br><a href=\"".$sess->url("admapp.php3?status=D")."\" class=\"menus\">"._("Deleted Apps")." [".$count."]</a>\n";
@@ -72,7 +72,7 @@ if (($config_perm_appdom == "all") || (isset($perm) && $perm->have_perm($config_
   $db->query("SELECT COUNT(*) FROM software WHERE status='M'");
   $db->next_record();
   $count = $db->f("COUNT(*)");
-  $db->query("SELECT COUNT(*) FROM temp WHERE status='M'");
+  $db->query("SELECT COUNT(*) FROM psoftware WHERE status='M'");
   $db->next_record();
   $count += $db->f("COUNT(*)");
   echo "<br><a href=\"".$sess->url("admapp.php3?status=M")."\" class=\"menus\">"._("Modified Apps")." [".$count."]</a>\n";

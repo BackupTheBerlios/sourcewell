@@ -1,6 +1,10 @@
 CHANGELOG for SourceWell
 http://sourcewell.berlios.de/html
 
+18-12-2001 Gregorio Robles <grex@scouts-es.org>
+
+* appsearch.php3: displays message when no app is encountered
+
 15-12-2001 Gregorio Robles <grex@scouts-es.org>
 
 bugs fixed in stats.php3. Thanx go to Jörg Schilling

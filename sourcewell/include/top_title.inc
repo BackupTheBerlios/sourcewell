@@ -33,7 +33,6 @@
 <a href="<?php echo $org_url;?>" TARGET="_blank"><img SRC="<?php echo $org_logo_image;?>" ALT="<?php echo $org_logo_alt;?>" HSPACE=10 BORDER=0 height=<?php echo $org_logo_heigth;?> width=<?php echo $org_logo_width;?> align=RIGHT></a></td>
 </tr>
 <!-- end logo at right -->
-
 <tr>
 <td COLSPAN="4" BGCOLOR="<?php echo $th_navstrip_bgcolor;?>"><img SRC="images/blank.gif" height=2 width=2></td>
 </tr>

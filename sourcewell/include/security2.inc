@@ -54,7 +54,9 @@ function security_permision_hierarchy($permision_level) {
 		case "pending":		return 1;
 		case "anonymous": 	return 2;
 		case "user":		return 4;
+		case "editor":		return 8;
 		case "user,editor":		return 8;
+		case "admin":			return 16;
 		case "user,editor,admin":		return 16;
 	}
 }

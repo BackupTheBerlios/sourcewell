@@ -87,7 +87,7 @@ function app_preview() {
 	else lib_pnick($username);
     	echo " - ".timestr($timestamp)."</b><p>\n";
 
-	print $description;
+	print $description."<br>";
 
 	$bx->box_columns_begin(2);
 
@@ -209,6 +209,7 @@ function app_preview() {
 	  	$bx->box_column ("right","40%","","&nbsp;");
 	  	$bx->box_column ("left","60%","",html_form_submit("Submit","submit"));
 		htmlp_form_end();
+		$bx->box_columns_end();
 	} else {
 		$bx->box_next_row_of_columns();
 	  	$bx->box_column ("right","30%","","<b>"._("Application ID").":</b> ");
@@ -218,12 +219,13 @@ function app_preview() {
 	  	$bx->box_column ("right","30%","","<b>"._("Announcements").":</b> ");
  	 	$bx->box_column ("left","70%","",_app_announcements($appid));
 
-		// FIXME: show comments on this application!
+		$bx->box_columns_end();
 
 		app_footer($appid);
+
+		// FIXME: show comments on this application!
 	}
 
-	$bx->box_columns_end();
     	$bx->box_body_end();
     	$bx->box_end();
 }

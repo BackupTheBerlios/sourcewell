@@ -122,8 +122,8 @@ $th_strip_body_font_color = "";
 #
 ######################################################################
 
-$config_show_appsperpage = "10";
-$config_show_numberofdays = 7; 
+$config_show_appsperpage = "15";
+$config_show_numberofdays = 4; 
 
 ######################################################################
 # Email Notification

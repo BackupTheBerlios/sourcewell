@@ -52,7 +52,7 @@ function admapp_count_apps_with_status($status) {
 	$db->next_record();
 	$count = $db->f("COUNT(*)");
 
-	$db->query("SELECT COUNT(*) FROM temp WHERE status='$status'");
+	$db->query("SELECT COUNT(*) FROM psoftware WHERE status='$status'");
 	$db->next_record();	
 
 	$count += $db->f("COUNT(*)");
@@ -73,7 +73,7 @@ function lib_show_app_shortly($appid,$status) {
   $i = 1;
   while($i<3) {
 	if ($i == 1) $table = "software";
-	elseif ($i == 2) $table = "temp";
+	elseif ($i == 2) $table = "psoftware";
 
 	$db->query("SELECT * FROM $table WHERE $where");
   	if ($db->num_rows() == 0) echo "";

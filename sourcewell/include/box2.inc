@@ -139,7 +139,7 @@ class box {
 	function box_column_start($align,$width,$bg_color="#FFFFFF") {
 		if (!isset($bg_color) || empty($bg_color)) $bg_color="#FFFFFF";
 		echo "<!-- New Column starts -->\n";
-		echo "<td align=\"".$align."\" width=\"".$width."\" bgcolor=\"".$bg_color."\">";
+		echo "<td align=\"".$align."\" width=\"".$width."\" bgcolor=\"".$bg_color."\" valign=\"top\">";
 	}
 
 	function box_column_finish() {
