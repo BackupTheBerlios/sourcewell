@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: html.inc,v 1.6 2002/05/09 15:18:37 grex Exp $
+// $Id: html.inc,v 1.7 2002/05/09 15:19:23 grex Exp $
 
 /**
  * HTML library for PHP (and PHPLib)
@@ -281,7 +281,7 @@ function html_form_textField($name, $value, $size = 24, $maxlength = 128)
 
 function htmlp_form_textField($name, $value, $size= 24, $maxlength = 128)
 {
-    print html_form_textField($name, $value, $maxlength, $maxlength);
+    print html_form_textField($name, $value, $size, $maxlength);
 }
 
 /**
