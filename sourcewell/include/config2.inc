@@ -34,7 +34,7 @@
 $sys_name = "SourceWell";
 $sys_title = "Open Source Software Announcement &amp; Retrieval";
 $sys_url_title = "http://www.berlios.de/";
-$sys_url = "http://sourcewell.berlios.de/sw/";
+$sys_url = "http://sourcewell.berlios.de/sourcewell/";
 $sys_logo_image = "images/berlios.jpg";
 $sys_logo_alt = "BerliOS";
 $sys_logo_width = "238";
@@ -55,8 +55,8 @@ $org_name = "FOKUS";
 $org_url = "http://www.fokus.fhg.de/";
 $org_logo_image = "images/logo_fokus.png";
 $org_logo_alt = $org_name;
-$org_logo_width = "66";
-$org_logo_heigth = "73";
+$org_logo_width = "60";
+$org_logo_heigth = "60";
 
 ######################################################################
 # Top Strip
