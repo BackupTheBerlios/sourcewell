@@ -2,6 +2,11 @@ SourceWell 2 - The GPL Software Announcement System from BerliOS
 
 2002-03-15  Gregorio Robles <grex@scouts-es.org>
 
+	* include/config.inc: HTML meta information can be configured
+	  with several variables in the configuration file
+
+	* include/start.inc: File that should be included when a page starts
+
 	* include/Field.inc: class has been made PHPLib independent. Other
 	  database access pending.
 

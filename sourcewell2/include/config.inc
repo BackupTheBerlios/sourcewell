@@ -15,7 +15,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: config.inc,v 1.2 2002/03/15 15:14:24 grex Exp $
+// $Id: config.inc,v 1.3 2002/03/15 21:56:04 grex Exp $
 
 /**
  * General System Configuration
@@ -23,6 +23,102 @@
  * This file contains all the constants with the general system
  * parameters, basically tied to visualization (colors, fonts, etc.)
  */
+
+/**
+ * System
+ *
+ * config_sys_name  string      Name of your SourceWell system
+ * config_sys_title string      
+ * config_sys_url   string 	URL of your SourceWell system
+ */
+
+$config_sys_name = 'SourceWell';
+$config_sys_title = 'Open Source Software Announcement &amp; Retrieval':
+$config_sys_url = 'http://sourcewell.berlios.de/sourcewell2/';
+
+/**
+ * Header image
+ *
+ * config_sys_logo_image   string  Image of your System (should be in the images directory)
+ * config_sys_url_image    string  URL the image of your system points to
+ * config_sys_logo_alt	   string  Alternative text for your site's image
+ * config_sys_logo_width   int     Width of the image of your site
+ * config_sys_logo_heigth  int     Height of the image of your site
+ */
+
+$config_sys_logo_image = $config_path_images.'berlios.jpg';
+$config_sys_url_image = 'http://www.berlios.de/';
+$config_sys_logo_alt = 'BerliOS';
+$config_sys_logo_width = 238;
+$config_sys_logo_heigth = 104;
+
+/**
+ * Organisation Config
+ * (this can be sometimes the same as the one of the system)
+ *
+ * org_name	    string    Name of your Organisation
+ * org_url	    string    URL of your Organisation
+ * org_logo_image   string    Image of your Organisation
+ * org_logo_alt	    string    Alternative text for the image of your Organisation
+ * org_logo_width   int       Width of the image of your Organisation
+ * org_logo_heigth  int       Height of the image of your Organisation
+ */
+
+$config_org_name = 'FOKUS';
+$config_org_url = 'http://www.fokus.fhg.de/';
+$config_org_logo_image = $config_path_images.'logo_fokus.png';
+$config_org_logo_alt = $org_name;
+$config_org_logo_width = 60;
+$config_org_logo_heigth = 60;
+
+/**
+ * Page Layout
+ *
+ * config_show_appsperpage    int   maximum number of applications shown each time
+ * config_show_numberofdays   int   maximum number of days show at the right side
+ */
+
+$config_show_appsperpage = 15;
+$config_show_numberofdays = 4; 
+
+
+/**
+ * General configurations
+ *
+ * config_topStrip:             boolean      if a Top Strip is wanted or not
+ * config_Footer:               boolean      if a Footer is wanted or not
+ * config_addNetscapePanel:     boolean      if Netscape6 panels is available
+ */
+
+$config_topStrip = 1;
+$config_Footer = 1;
+$config_addNetscapePanel = 1;
+
+/**
+ * Top Strip
+ * 
+ * You can change (add, delete, modify) the top strip
+ * as you wish as long as you mantain this syntax:
+ * (don't forget that the last one hasn't got a comma!)
+ */
+
+$config_TopStripArray = array (
+	'Home'	        => $config_sys_url_image.'index.php',
+	'About us'	=> $config_sys_url_image.'about/index.php',
+	'Partners'	=> $config_sys_url_image.'partners/index.php',
+	'Contact'	=> $config_sys_url_image.'contact/index.php'
+);
+
+/**
+ * HTML Metainformation
+ * 
+ *
+ *
+ */
+
+$config_meta_author = 'BerliOS';
+$config_meta_description = 'SourceWell is a Free Software/Open Source Software announcement system';
+$config_meta_keywords = 'Free Software, Open Source, Freshmeat, GPL, Applications, BerliOS';
 
 /**
  * Themes
@@ -92,6 +188,7 @@ $config_path_Classes = 'include/';
 $config_path_translations = 'include/';
 $config_path_design = 'include/';
 
+$config_path_images = 'images/';
 
 /*
  * Include directories
@@ -201,7 +298,6 @@ $config_RightColumnWidth = '67%';
  * ml_replyaddr		Return Email address
  */
 
-$config_sys_name = 'SourceWell';
 $config_ml_notify = '1';
 $config_ml_fromaddr = 'noreply@berlios.de';
 $config__replyaddr = 'noreply@berlios.de';
