@@ -13,10 +13,13 @@
 // |          Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
 // +----------------------------------------------------------------------+
 //
-// $Id: login.php,v 1.9 2002/05/09 23:18:58 grex Exp $
+// $Id: login.php,v 1.10 2002/05/09 23:26:57 grex Exp $
 
 $login = 1;
-include('start.inc');
+page_open(array('sess' => 'SourceWell_Session',
+                'auth' => 'SourceWell_Auth',
+                'perm' => 'SourceWell_Perm'));
+require('start.inc');
 
 if (isset($perm) && $perm->have_perm('user_pending')) {
     $table_error->table_full(_('Error'), _('Access denied')

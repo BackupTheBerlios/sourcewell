@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: config.inc,v 1.45 2002/05/09 22:25:08 grex Exp $
+// $Id: config.inc,v 1.46 2002/05/09 23:24:12 grex Exp $
 
 /**
  * Directory configuration
