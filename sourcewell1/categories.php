@@ -61,7 +61,7 @@ $bx->box_end();
 if (isset($section)) {
   $db->query("SELECT category FROM categories WHERE section='$section' ORDER BY category ASC");
   $bx->box_begin();
-  $bx->box_title($t->translate("Categories"));
+  $bx->box_title($section." ".$t->translate("Categories"));
   $bx->box_body_begin();
   while($db->next_record()) {
     $current_category = $db->f("category");
