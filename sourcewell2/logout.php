@@ -13,7 +13,7 @@
 // |          Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
 // +----------------------------------------------------------------------+
 //
-// $Id: logout.php,v 1.1 2002/05/10 10:36:05 grex Exp $
+// $Id: logout.php,v 1.2 2002/05/10 10:36:55 grex Exp $
 
 /* TODO: has to be implemented */
 /* Special status for the logout page (menubar, etc.) */
@@ -21,13 +21,13 @@ $logout = 1;
 
 require('start.inc');
 
-$msg = ( _('You have been logged in as')
-         .' <b>'.$auth->auth['uname'].'</b> '._('with').' <b>'
-         .$auth->auth['perm'].'</b> '._('permision').'.<br>'
-         ._('Your authentication was valid until').' <b>'
-         .timestr($auth->auth['exp'])
-         .'</b>.<p>'
-         ._('This is all over now. You have been logged out').'.';
+$msg = _('You have been logged in as')
+       .' <b>'.$auth->auth['uname'].'</b> '._('with').' <b>'
+       .$auth->auth['perm'].'</b> '._('permision').'.<br>'
+       ._('Your authentication was valid until').' <b>'
+       .timestr($auth->auth['exp'])
+       .'</b>.<p>'
+       ._('This is all over now. You have been logged out').'.';
 
 $table->table_full(_('Logout'), $msg);
 
