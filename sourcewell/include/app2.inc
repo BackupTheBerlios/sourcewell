@@ -474,7 +474,7 @@ function app_insert() {
 }
 
 function app_modify($appid) {
-  global $db, $auth, $perm, $name, $type, $version, $sec_and_cat, $license, $homepage, $download, $changelog, $rpm, $deb, $tgz, $cvs, $screenshots, $mailarch, $developer, $description, $email, $depend, $urgency, $validation, $preview;
+  global $db, $auth, $bx, $perm, $name, $type, $version, $sec_and_cat, $license, $homepage, $download, $changelog, $rpm, $deb, $tgz, $cvs, $screenshots, $mailarch, $developer, $description, $email, $depend, $urgency, $validation, $preview;
 
   _app_trim_everything();
   _app_split_sec_and_cat ($sec_and_cat);
