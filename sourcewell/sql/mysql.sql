@@ -352,51 +352,77 @@ CREATE TABLE licenses (
    url varchar(255) NOT NULL
 );
 
-INSERT INTO licenses VALUES ( 'Artifex Public License (AFPL)', 'http://web.mit.edu/ghostscript/www/Public.htm');
-INSERT INTO licenses VALUES ( 'Apache style', 'http://www.apache.org/docs-2.0/LICENSE');
-INSERT INTO licenses VALUES ( 'Artistic & GPL', 'http://www.perl.com/language/misc/Artistic.html');
-INSERT INTO licenses VALUES ( 'BSD type', 'http://www.freebsd.org/copyright/license.html');
-INSERT INTO licenses VALUES ( 'commercial', 'licnotavailable.php3');
-INSERT INTO licenses VALUES ( 'Eiffel Forum Freeware License', 'http://www.eiffel-forum.org/license/index.htm#efl');
-INSERT INTO licenses VALUES ( 'free for non-commercial use', 'licnotavailable.php3');
-INSERT INTO licenses VALUES ( 'Free Trail', 'licnotavailable.php3');
-INSERT INTO licenses VALUES ( 'freely distributable', 'licnotavailable.php3');
-INSERT INTO licenses VALUES ( 'Freeware', 'http://sourcewell.berlios.de/licnotavailable.php3');
-INSERT INTO licenses VALUES ( 'GPL', 'http://www.gnu.org/copyleft/gpl.html');
-INSERT INTO licenses VALUES ( 'LGPL', 'http://www.gnu.org/copyleft/lesser.html');
-INSERT INTO licenses VALUES ( 'MIT', 'licnotavailable.php3');
-INSERT INTO licenses VALUES ( 'Mozilla Public License (MPL)', 'http://www.mozilla.org/MPL/');
-INSERT INTO licenses VALUES ( 'Open Source', 'http://www.opensource.org/osd.html');
-INSERT INTO licenses VALUES ( 'Public Domain', 'http://www.eiffel-forum.org/license/index.htm#pd');
-INSERT INTO licenses VALUES ( 'Q Public License (QPL)', 'http://www.trolltech.com/products/download/freelicense/license.html');
-INSERT INTO licenses VALUES ( 'Shareware', 'licnotavailable.php3');
-INSERT INTO licenses VALUES ( 'source-available commercial', 'licnotavailable.php3');
-INSERT INTO licenses VALUES ( 'FreeBSD', 'http://www.freebsd.org/copyright/freebsd-license.html');
-INSERT INTO licenses VALUES ( 'OpenBSD', 'http://www.openbsd.org/policy.html');
-INSERT INTO licenses VALUES ( 'UCL/LBL', 'licnotavailable.php3');
-INSERT INTO licenses VALUES ( 'Other', 'licnotavailable.php3');
-INSERT INTO licenses VALUES ( 'Artistic License', 'http://www.perl.com/language/misc/Artistic.html');
-INSERT INTO licenses VALUES ( 'PHP License', 'http://www.php.net/license.html');
-INSERT INTO licenses VALUES ( 'free to use but restricted', 'licnotavailable.php3');
-INSERT INTO licenses VALUES ( 'X11 License', 'http://www.x.org/terms.htm');
-INSERT INTO licenses VALUES ( 'Cryptix General License', 'http://www.cryptix.org/docs/license.html');
-INSERT INTO licenses VALUES ( 'Zlib License', 'ftp://ftp.freesoftware.com/pub/infozip/zlib/zlib_license.html');
-INSERT INTO licenses VALUES ( 'W3C Software', 'http://www.w3.org/Consortium/Legal/copyright-software-19980720');
-INSERT INTO licenses VALUES ( 'Berkeley Database License', 'http://www.sleepycat.com/license.net');
-INSERT INTO licenses VALUES ( 'Clarified Artistic License', 'http://www.appwatch.com/license/ncftp-3.0.2.txt');
-INSERT INTO licenses VALUES ( 'Netscape Public License (NPL)', 'http://www.mozilla.org/MPL/NPL-1.0.html');
-INSERT INTO licenses VALUES ( 'Arphic Public License', 'ftp://ftp.gnu.org/non-gnu/chinese-fonts-truetype/LICENSE');
-INSERT INTO licenses VALUES ( 'Zope Public License (ZPL)', 'http://www.zope.com/Resources/ZPL');
-INSERT INTO licenses VALUES ( 'IBM Public License', 'http://oss.software.ibm.com/developerworks/opensource/license10.html');
-INSERT INTO licenses VALUES ( 'Phorum', 'http://phorum.org/license.txt');
-INSERT INTO licenses VALUES ( 'Interbase Public License', 'http://www.borland.com/interbase/IPL.html');
-INSERT INTO licenses VALUES ( 'Sun Public License', 'http://www.netbeans.org/spl.html');
-INSERT INTO licenses VALUES ( 'Jabber Open Source License', 'http://www.jabber.com/license/index.shtml');
-INSERT INTO licenses VALUES ( 'Open Compability License', 'http://www.gizmodrome.com/opencompatibilitylicense.htm');
-INSERT INTO licenses VALUES ( 'Plan 9 Open Source License', 'http://plan9.bell-labs.com/plan9dist/license.html');
-INSERT INTO licenses VALUES ( 'Sun Community Source License', 'http://www.sun.com/981208/scsl/principles.html;$sessionid$RNI1GOQAAB3PHAMTA1LU5YQ');
-INSERT INTO licenses VALUES ( 'FreeType License', 'http://v.hbi-stuttgart.de/doku/packages/freetype/license.txt');
-INSERT INTO licenses VALUES ( 'LaTeXProject Public License', 'http://www.latex-project.org/lppl.html');
+INSERT INTO licenses SET license='The GNU General Public License (GPL)', url='licenses/gpl.html';
+INSERT INTO licenses SET license='The GNU Library or "Lesser" Public License (LGPL)', url='licenses/lgpl.html';
+INSERT INTO licenses SET license='The BSD license', url='licenses/bsd.html';
+INSERT INTO licenses SET license='The MIT license', url='licenses/mit.html';
+INSERT INTO licenses SET license='The Artistic license', url='licenses/artistic.html';
+INSERT INTO licenses SET license='The Mozilla Public License v. 1.0 (MPL)', url='licenses/mpl10.html';
+INSERT INTO licenses SET license='The Qt Public License (QPL)', url='licenses/qpl.html';
+INSERT INTO licenses SET license='The IBM Public License', url='licenses/ibmpl.html';
+INSERT INTO licenses SET license='The MITRE Collaborative Virtual Workspace License (CVW License)', url='licenses/cvwl.html';
+INSERT INTO licenses SET license='The Ricoh Source Code Public License', url='licenses/rscpl.html';
+INSERT INTO licenses SET license='The Python license (CNRI Python License)', url='licenses/cnripl.html';
+INSERT INTO licenses SET license='The Python Software Foundation License', url='licenses/psfl.html';
+INSERT INTO licenses SET license='The zlib/libpng license', url='licenses/zlib.html';
+INSERT INTO licenses SET license='The Apache Software License', url='licenses/apache.html';
+INSERT INTO licenses SET license='The Vovida Software License v. 1.0', url='licenses/vsl.html';
+INSERT INTO licenses SET license='The Sun Industry Standards Source License (SISSL)', url='licenses/sissl.html';
+INSERT INTO licenses SET license='The Intel Open Source License', url='licenses/iosl.html';
+INSERT INTO licenses SET license='The Mozilla Public License 1.1 (MPL 1.1)', url='licenses/mpl11.html';
+INSERT INTO licenses SET license='The Jabber Open Source License', url='licenses/josl.html';
+INSERT INTO licenses SET license='The Nokia Open Source License', url='licenses/nosl.html';
+INSERT INTO licenses SET license='The Sleepycat License', url='licenses/sl.html';
+INSERT INTO licenses SET license='The Nethack General Public License', url='licenses/ngpl.html';
+INSERT INTO licenses SET license='The Common Public License', url='licenses/cpl.html';
+INSERT INTO licenses SET license='The Apple Public Source License', url='licenses/apsl.html';
+INSERT INTO licenses SET license='The X.Net License', url='licenses/xnl.html';
+INSERT INTO licenses SET license='The Sun Public License', url='licenses/spl.html';
+INSERT INTO licenses SET license='The Eiffel Forum License', url='licenses/efl.html';
+INSERT INTO licenses SET license='The W3C License', url='licenses/w3cl.html';
+INSERT INTO licenses SET license='The Motosoto License', url='licenses/ml.html';
+INSERT INTO licenses SET license='The Open Group Test Suite License', url='licenses/ogtsl.html';
+
+#NOT OS
+
+INSERT INTO licenses SET license='OSI Approved (Open Source)', url='licenses/licnotavailable.html';
+INSERT INTO licenses SET license='Public Domain', url='licenses/pd.html' WHERE license='Public Domain';
+INSERT INTO licenses SET license='The GNU Free Documentation License (FDL)', url='licenses/fdl.html';
+INSERT INTO licenses SET license='The PHP License', url='licenses/phpl.html' WHERE license='PHP License';
+INSERT INTO licenses SET license='The OpenLDAP Public License', url='licenses/oldapl.html';
+INSERT INTO licenses SET license='The SUN Community Source License', url='licenses/scl.html';
+INSERT INTO licenses SET license='The Zope Public License (ZPL)', url='licenses/zpl.html';
+INSERT INTO licenses SET license='The Clarified Artistic License', url='licenses/cal.html';
+INSERT INTO licenses SET license='The Voxel Public License (VPL)', url='licenses/vpl.html';
+INSERT INTO licenses SET license='The Netscape Public License (NPL)', url='licenses/npl10.html';
+INSERT INTO licenses SET license='The SUN Binary Code License', url='licenses/sbcl.html';
+INSERT INTO licenses SET license='The Latex Project Public License (LPPL)', url='licenses/lppl.html';
+INSERT INTO licenses SET license='The Open Content License', url='licenses/opcl.html';
+INSERT INTO licenses SET license='The Open Public License', url='licenses/opl.html';
+INSERT INTO licenses SET license='The Open Publication License', url='licenses/opul.html';
+INSERT INTO licenses SET license='The Open Public License', url='licenses/opl.html';
+INSERT INTO licenses SET license='The Aladdin Free Public License (AFPL)', url='licenses/afpl.html';
+INSERT INTO licenses SET license='The Arphic Public License', url='licenses/apl.html' WHERE license='Arphic Public License';
+INSERT INTO licenses SET license='The Cryptix General License', url='licenses/cgl.html' WHERE license='Cryptix General License';
+INSERT INTO licenses SET license='The FreeType License', url='licenses/ftl.html' WHERE license='FreeType License';
+INSERT INTO licenses SET license='The Interbase Public License', url='licenses/ipl.html' WHERE license='Interbase Public License';
+INSERT INTO licenses SET license='The Phorum License', url='licenses/pl.html' WHERE license='Phorum';
+INSERT INTO licenses SET license='The Plan 9 Open Source License', url='licenses/p9osl.html';
+
+# URL/explanation Needed
+
+INSERT INTO licenses SET license='The Open Compatibility License', url='licenses/licnotavailable.html';
+INSERT INTO licenses SET license='The GNAT Modified GPL (GMGPL)', url='licenses/licnotavailable.html';
+INSERT INTO licenses SET license='The Free For Educational Use', url='licenses/licnotavailable.html';
+INSERT INTO licenses SET license='Source-available Commercial', url='licenses/licnotavailable.html';
+INSERT INTO licenses SET license='Free Trail', url='licenses/licnotavailable.html';
+INSERT INTO licenses SET license='Freely Distributable', url='licenses/freely_distributable.html';
+INSERT INTO licenses SET license='Freeware', url='licenses/licnotavailable.html' WHERE license='Freeware';
+INSERT INTO licenses SET license='Free for non-commercial use', url='licenses/licnotavailable.html';
+INSERT INTO licenses SET license='Free To Use But Restricted', url='licenses/licnotavailable.html';
+INSERT INTO licenses SET license='Other/Proprietary License', url='licenses/licnotavailable.html';
+INSERT INTO licenses SET license='Shareware', url='licenses/licnotavailable.html';
+INSERT INTO licenses SET license='Unknown', url='licenses/licnotavailable.html';
 
 # --------------------------------------------------------
 #
@@ -438,7 +464,7 @@ CREATE TABLE software (
 #
 
 
-INSERT INTO software VALUES ( '1', 'SourceWell', 'D', '1.0.13', 'Networking', 'PHP', 'GPL', 'http://sourcewell.berlios.de/html/', 'http://developer.berlios.de/project/filelist.php?group_id=23', 'http://sourcewell.berlios.de/doc/CHANGELOG', '', '', '', 'http://cvs.berlios.de/cgi-bin/cvsweb.cgi/?cvsroot=sourcewell', 'http://sourcewell.berlios.de', 'http://lists.berlios.de/pipermail/sourcewell-support/', 'Lutz Henckel & Gregorio Robles', 'SourceWell is a highly configurable, well documented software announcement and retrieval system entirely writen in PHP3 and database independent. It includes user authentication and autherization system (anonymous/user/editor/admin), sessions with and without cookies, high configurability, multilangual support, ease of administration, RDF-type document backend, advanced statistics, announcing mailing lists, application indexing by sections and many other useful features.', '20011226230000', '20010403163452', 'sourcewell-support@lists.berlios.de', 'PHP3, PHPLib, database, (Mailman)', 'anonymous', 'A', '3');
+INSERT INTO software VALUES ( '1', 'SourceWell', 'D', '1.0.13', 'Networking', 'PHP', 'The GNU General Public License (GPL)', 'http://sourcewell.berlios.de/html/', 'http://developer.berlios.de/project/filelist.php?group_id=23', 'http://sourcewell.berlios.de/doc/CHANGELOG', '', '', '', 'http://cvs.berlios.de/cgi-bin/cvsweb.cgi/?cvsroot=sourcewell', 'http://sourcewell.berlios.de', 'http://lists.berlios.de/pipermail/sourcewell-support/', 'Lutz Henckel & Gregorio Robles', 'SourceWell is a highly configurable, well documented software announcement and retrieval system entirely writen in PHP3 and database independent. It includes user authentication and autherization system (anonymous/user/editor/admin), sessions with and without cookies, high configurability, multilangual support, ease of administration, RDF-type document backend, advanced statistics, announcing mailing lists, application indexing by sections and many other useful features.', '20011226230000', '20010403163452', 'sourcewell-support@lists.berlios.de', 'PHP3, PHPLib, database, (Mailman)', 'anonymous', 'A', '3');
 
 
 # --------------------------------------------------------
