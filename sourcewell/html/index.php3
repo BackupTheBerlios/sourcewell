@@ -27,19 +27,17 @@ require("header.inc");
 
 <P><H2>SourceWell</H2>
 
-<P>SourceWell is an announce and retrieval system for software applications.
+<P><B>Latest Version: 1.0.10 (Development)
+<BR>Latest Stable Version: 1.0</B>
 
-<P>It is based in <A HREF="http://www.php.net">PHP3</A> and uses <A HREF="http://www.mysql.com">MySQL</A> as its database system. SourceWell depends on
-the <A HREF="http://phplib.netuse.de/">PHPLib library</A> (version 7.2 or
-later). Future versions may have database independence, but this is
-not yet supported. We are still working on it. Only if you want to have
-diary and weekly mailing lists with the announcements, you should also have
-Mailman installed in your box.
+<P>SourceWell is a highly configurable, well documented software announcement and retrieval system entirely writen in PHP3 and database independent. It includes user authentication and autherization system (anonymous/user/editor/admin), sessions with and without cookies, high configurability, multilangual support, ease of administration, RDF-type document backend, advanced statistics, announcing mailing lists, application indexing by sections, installation support  and many other useful features.
+
+<P>SourceWell depends on the PHPLib library (version 7.2d). Only if you want to have diary and weekly mailing lists with the announcements, you should also have Mailman installed in your box.
 
 <P>You can see a fully working example of the SourceWell system at BerliOS
 SourceWell by visiting <A HREF="http://sourcewell.berlios.de">http://sourcewell.berlios.de</A>. A close look at it will show you what
 you can do with SourceWell. BerliOS SourceWell has at this moment more
-than 750 applications inserted and has been the main reason why we have
+than 850 applications inserted and has been the main reason why we have
 made this software.
 
 <P>BerliOS SourceWell is part of the BerliOS project at GMD FOKUS. Please, have
@@ -55,31 +53,35 @@ internationalization</A> of SourceWell by sending us your translation.
 
 <P>SourceWell Features:
 <UL>
-<LI>Different type of users (nonauthorized users, users, editors and
-administrators) with different functions
+<LI>Different type of users (nonauthorized users, anonymous user, users, editors and administrators) with different functions
+<LI>Session management with and without cookies (beta)
+<LI>Database independent
 <LI>Advanced configurability from a single file
 <LI>Simple, intuitive use of the system
-<LI>Session management with and without cookies
+<LI>Documentation for further development and/or adjustment
+<LI>Comments on applications
 <LI>Through-the-web reviewing and application administration for editors
 <LI>Through-the-web administration of applications, comments and licenses
+<LI>system FAQ and through-the-web administration of it
 <LI>Dynamic order of applications by date (default), importance, urgency or
 by alphabetical order
 <LI>"true" software counter for apps download, homepage redirections, etc.
 <LI>Multilingual support
+<LI>Anonymous users can introduce apps and comments
+<LI>The administrator can easily administrate whether there are anonymous users allowed or not
+<LI>Dynamic permission configuration
 <LI>Stable and development branches for applications
 <LI>XML Backend (RDF-document format)
 <LI>Daily and Weekly automatic Newsletters
-<LI>Comments on applications
 <LI>Version history of the applications
-<LI>FAQ
 <LI>Links between apps from the same author
 <LI>"intelligent" application validation for editors
 <LI>EMail advice for editors when apps are inserted or updated
 <LI>EMail advice for administrators when new users register
-<LI>Graphical statistics
+<LI>Graphical statistics (a lot of them!)
+<LI>Test page (very helpfull when installing the system and something goes wrong)
 <LI>Web browser independence
 <LI>Cache avoidance
-<LI>Documentation for further development and/or adjustment
 </UL>
 
 <P>&nbsp;
