@@ -12,7 +12,7 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: header.inc,v 1.17 2002/05/10 10:21:01 grex Exp $
+// $Id: header.inc,v 1.18 2002/05/10 18:41:58 grex Exp $
 
 /**
  * TODO: global explanation of this file
@@ -101,7 +101,7 @@ while (list($title, $url) = each($config_TopStripArray)) {
 echo "\n</span></td><td width=\"55%\" align=\"right\">\n";
 
 if (isset($auth) && !empty($auth->auth["perm"])  && !($logout)) {
-    echo "<font color=\"".$config_nav_bgcolor."\">"._o("Logged in")." <b>".$auth->auth["uname"]."</b> (<b>".$auth->auth["perm"]."</b>) / "._o("Expires")." <b>".timestr_short($auth->auth["exp"])."</b></font>";
+    echo "<font color=\"".$config_nav_bgcolor."\">"._o("Logged in")." <b>".$auth->auth["uname"]."</b> (<b>".$auth->auth["perm"]."</b>) / "._o("Expires")." <b>".lib_date_short($auth->auth["exp"])."</b></font>";
 } else {
     echo "<font color=\"".$config_nav_bgcolor."\"><b>"._o("Not Logged in")."</b></font>";
 }
