@@ -13,10 +13,10 @@
 // |          Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
 // +----------------------------------------------------------------------+
 //
-// $Id: login.php,v 1.7 2002/05/09 22:44:49 grex Exp $
+// $Id: login.php,v 1.8 2002/05/09 23:01:26 grex Exp $
 
 $login = 1;
-include('include/start.inc');
+include('start.inc');
 
 if (isset($perm) && $perm->have_perm('user_pending')) {
     $table_error->table_full(_('Error'), _('Access denied'));
@@ -27,7 +27,7 @@ if (isset($perm) && $perm->have_perm('user_pending')) {
            .'<b>'.$auth->auth['perm'].'</b> '._('permission').'.'
            .'<br>'._('Your authentication is valid until')
            .' <b>'.lib_date_long($auth->auth['exp']).'</b>';
-    $table->table_full(_('Welcome to ').$config_sys_name, $msg);
+    $table->table_full(_('Welcome to').' '.$config_sys_name, $msg);
 }
 
 config_inc('end');
