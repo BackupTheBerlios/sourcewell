@@ -877,10 +877,17 @@ function app_ChangeVersion($appid, $old_version, $new_version)
     $db_local->query($query);
 
     if ($db_local->affected_rows() > 0) {
-        $bx->box_full("Everything went OK", "Application updated correctly.");
+        $bx->box_full(_("Everything went OK"), _("Application updated correctly."));
         $db_local->query(insert_history($appid, $auth->auth["uname"], $version));
     } else {
-        $be->box_full("Error","The following query is erroneous: ".$query);
+        $be->box_full(_("Error"),_("The following query is erroneous: ").$query);
+    }
+
+    if ($GLOBALS["ml_notify"]) {
+        $msg = "Version update for application ".$db_local->f("name")." by ".$auth->auth["uname"].".\n\n";
+        $msg .= "Old version: $old_version. New Version: $new_version\n\n";
+        $msg .= "Automatic query thas has been generated:\n$query";
+       	mailuser("editor", "update version", $msg);
     }
 }
 
