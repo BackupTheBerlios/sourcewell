@@ -3,8 +3,13 @@ http://sourcewell.berlios.de/html
 
 22-04-2003 Lutz Henckel <lutz.henckel@fokus.fraunhofer.de> -- SourceWell 1.1.1
 
+* include/config.inc: new version number
+* include/footer.inc: copyright message
 * include/translation.inc: add missing path to language files
 * html/index.php: correct description
+* html/CHANGELOG: add recent changes
+* html/include/footer.inc: copyright message
+* doc/CHANGELOG: add recent changes
 
 16-04-2003 Lutz Henckel <lutz.henckel@fokus.fraunhofer.de> -- SourceWell 1.1.0
 
