@@ -15,7 +15,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: config.inc,v 1.3 2002/03/15 21:56:04 grex Exp $
+// $Id: config.inc,v 1.4 2002/03/18 10:28:02 grex Exp $
 
 /**
  * General System Configuration
@@ -33,7 +33,7 @@
  */
 
 $config_sys_name = 'SourceWell';
-$config_sys_title = 'Open Source Software Announcement &amp; Retrieval':
+$config_sys_title = 'Open Source Software Announcement &amp; Retrieval';
 $config_sys_url = 'http://sourcewell.berlios.de/sourcewell2/';
 
 /**

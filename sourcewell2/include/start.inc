@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: start.inc,v 1.2 2002/03/18 10:18:16 grex Exp $
+// $Id: start.inc,v 1.4 2002/03/18 10:31:22 grex Exp $
 
 // Disabling cache
 header("Cache-Control: no-cache, must-revalidate");     // HTTP/1.1
@@ -24,10 +24,10 @@ require('config.inc');
 require('lib.inc');
 
 
-lib_require('Lang');
-lib_require('Translation');
-lib_require('Table');
-$t = new Translation($la);
+//lib_require('Lang');
+//lib_require('Translation');
+lib_include('Table');
+//$t = new Translation($la);
 $$config_database_variable = new DB_SourceWell;
 
 /*
