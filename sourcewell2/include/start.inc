@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: start.inc,v 1.37 2002/05/09 14:52:46 grex Exp $
+// $Id: start.inc,v 1.38 2002/05/09 15:09:23 grex Exp $
 
 if (!isset($login)) {
     page_open(array('sess' => 'SourceWell_Session'));
@@ -200,7 +200,7 @@ while (list(, $value) = each($adm_bar_array)) {
 <!-- Search menu -->
 <table border=0 cellspacing=0 cellpadding=3 width="100%">
 <tr bgcolor="<?php echo $config_navstrip_bgcolor;?>">
-<td ALIGN=CENTER><img src="http://www.berlios.de/images/blank.gif" height="1" width="135" border=0><br>
+<td align="center"><img src="http://www.berlios.de/images/blank.gif" height="1" width="135" border=0><br>
 <span class="titlebar"><font color="<?php echo $config_navstrip_font_color;?>"><?php echo _("Search"); ?></font></span></td>
 </tr>
 
@@ -227,31 +227,22 @@ echo "<p><input type=\"submit\" name=\"Search\" value=\""._("Search")."\">";
 <tr ALIGN=RIGHT bgcolor="<?php echo $config_nav_bgcolor;?>">
 <td align=center>
 <p>
-<form action="<?php $sess->pself_url()?>">
 <?php
+htmlp_form_action();
 while (is_array($HTTP_GET_VARS) 
 		&& list($key, $val) = each($HTTP_GET_VARS)) {
 	if ($key != "lang" && $key != "go") {
-		echo "<input TYPE=\"hidden\" NAME=\"$key\" VALUE=\"$val\">\n";
+  	    htmlp_form_hidden($key, $val);
 	}
 }
-?>
-<select name="lang" size="1">
-<?php
+htmlp_form_select($lang);
 while (list(, $ln) = each($config_la_array)) {
-    if ($la == $ln) {
-	$sel = 'selected';
-    } else {
-	$sel ='';
-    }
-    echo "<option value=\"$ln\" $sel>"._($ln)."\n";
+    htmlp_form_select_option($ln, $la, _($ln));;
 }
+htmlp_form_select_end();
+htmlp_form_submit(_('Go'), 'go');
+htmlp_form_end();
 ?>
-</select>
-<?php
-echo "<p><input TYPE=\"submit\" name=\"go\" value=\""._("Go")."\">";
-?>
-</form>
 </td>
 </tr>
 </table>
