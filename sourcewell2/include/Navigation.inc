@@ -12,7 +12,7 @@
 // | Authors: Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
 // +----------------------------------------------------------------------+
 //
-// $Id: Navigation.inc,v 1.6 2002/05/09 14:30:27 grex Exp $
+// $Id: Navigation.inc,v 1.7 2002/05/09 14:37:16 grex Exp $
 
 /**
  * Class Navigation: a class for links in the navigation bar
@@ -94,13 +94,17 @@ class Navigation {
     function setStatistics($table, $where = '') {
         $this->statistics = 1;
         $this->table = $table;
-        $this->where = $where;
+        if ($where) {
+            $this->where = " WHERE ".$where;
+	} else {
+  	    $where = '';
+	}
     }
 
     function countStatistics() {
         global $db;
 
-        $db->query("SELECT COUNT(*) FROM ".$this->table." WHERE ".$this->where);
+        $db->query("SELECT COUNT(*) FROM ".$this->table.$this->where);
         $db->next_record();
         return $db->f('COUNT(*)');
     }
