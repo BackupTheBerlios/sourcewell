@@ -45,9 +45,10 @@ if ($perm->have_perm("user_pending")) {
     # sends email to system administrators
 
     if ($GLOBALS["ml_notify"]) {
-         $msg = "New Comment to application with id $id by ".$auth->auth["uname"].".\n\n";
-         $msg .= "Subject".$subject."\n";
-         $msg .= "Body".$body;
+         $msg = "New Comment inserted by ".$auth->auth["uname"].".\n\n";
+         $msg .= "Subject: ".$subject."\n\n";
+         $msg .= "Body: ".$text"\n\n\n";
+         $msg .= $sys_url."app.php3?appid=".$id;
     	 mailuser("editor", "comment inserted", $msg);
     }
 
