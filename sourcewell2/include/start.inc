@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: start.inc,v 1.25 2002/05/07 21:32:14 grex Exp $
+// $Id: start.inc,v 1.26 2002/05/07 21:37:45 grex Exp $
 
 if (!isset($login)) {
     page_open(array('sess' => 'SourceWell_Session'));
@@ -100,10 +100,10 @@ if (isset($auth) && !empty($auth->auth["perm"])  && !($logout)) {
 
 <tr valign="top" bgcolor="<?php echo $config_nav_bgcolor;?>">
 <td bgcolor="#FFFFFF">
-<a href="<?php echo $sys_url_title;?>">
-<img src="<?php echo $sys_logo_image;?>" border="0" 
-height="<?php echo $sys_logo_height;?>" width="<?php echo $sys_logo_width;?>"
-vspace="5" hspace="5" alt="<?php echo $sys_logo_alt;?>"></a>
+<a href="<?php echo $config_sys_url_title;?>">
+<img src="<?php echo $config_sys_logo_image;?>" border="0" 
+height="<?php echo $config_sys_logo_height;?>" width="<?php echo $config_sys_logo_width;?>"
+vspace="5" hspace="5" alt="<?php echo $config_sys_logo_alt;?>"></a>
 </td>
 
 <td width="10">
@@ -113,8 +113,8 @@ vspace="5" hspace="5" alt="<?php echo $sys_logo_alt;?>"></a>
 <td align="left" valign="middle" > <!-- removed att: width="99%" -->
 <p align="left">
 <font color="<?php echo $config_nav_font_color;?>">
-<b><font size="+1"><?php echo $sys_name;?></font></b>
-<br><?php echo _($sys_title);?></font></p>
+<b><font size="+1"><?php echo $config_sys_name;?></font></b>
+<br><?php echo _($config_sys_title);?></font></p>
 </td>
 
 <!-- beta string -->
@@ -130,10 +130,10 @@ vspace="5" hspace="5" alt="<?php echo $sys_logo_alt;?>"></a>
 
 <!-- logo at right -->
 <td valign="middle">
-<a href="<?php echo $org_url;?>" target="_blank">
-<img src="<?php echo $org_logo_image;?>" alt="<?php echo $org_logo_alt;?>" 
-hspace="10" border="0" height="<?php echo $org_logo_height;?>" 
-width="<?php echo $org_logo_width;?>" align="RIGHT"></a>
+<a href="<?php echo $config_org_url;?>" target="_blank">
+<img src="<?php echo $config_org_logo_image;?>" alt="<?php echo $config_org_logo_alt;?>" 
+hspace="10" border="0" height="<?php echo $config_org_logo_height;?>" 
+width="<?php echo $config_org_logo_width;?>" align="RIGHT"></a>
 </td>
 </tr>
 <!-- end logo at right -->
@@ -156,7 +156,7 @@ width="<?php echo $org_logo_width;?>" align="RIGHT"></a>
 <table border=0 cellspacing=0 cellpadding=3 width="100%">
 <tr bgcolor="<?php echo $config_navstrip_bgcolor;?>">
 <td ALIGN=CENTER>
-<span class="titlebar"><font color="<?php echo $config_navstrip_font_color;?>"><?php echo $sys_name?></font></span></td>
+<span class="titlebar"><font color="<?php echo $config_navstrip_font_color;?>"><?php echo $config_sys_name?></font></span></td>
 </tr>
 
 <tr ALIGN=RIGHT bgcolor="<?php echo $config_nav_bgcolor;?>">
