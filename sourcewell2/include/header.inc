@@ -12,7 +12,7 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: header.inc,v 1.14 2002/05/09 20:29:14 grex Exp $
+// $Id: header.inc,v 1.15 2002/05/09 20:32:32 grex Exp $
 
 /**
  * TODO: global explanation of this file
@@ -73,7 +73,7 @@ global $config_addNetscapePanel;
    <link rel="stylesheet" type="text/css" href="berlios.css">
    <link rel="shortcut icon" href="berlios.ico">
 </head>
-<body bgcolor="<?php echo $th_body_bgcolor;?>" topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" marginheight="0" marginwidth="0">
+<body bgcolor="<?php echo $config_body_bgcolor;?>">
 
 <?php
 /**
