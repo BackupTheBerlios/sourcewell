@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: start.inc,v 1.42 2002/05/09 15:17:01 grex Exp $
+// $Id: start.inc,v 1.43 2002/05/09 15:21:58 grex Exp $
 
 if (!isset($login)) {
     page_open(array('sess' => 'SourceWell_Session'));
@@ -208,7 +208,7 @@ while (list(, $value) = each($adm_bar_array)) {
 <td align="center">
 <p>
 <?php
-htmlp_form_action('appsearch.php3');
+htmlp_form_action('appsearch.php3', '', 'get');
 htmlp_form_textField('search', '', $size = 10);
 htmlp_form_submit(_('Search'));
 htmlp_form_end();

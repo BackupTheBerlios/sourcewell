@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: html.inc,v 1.8 2002/05/09 15:21:58 grex Exp $
+// $Id: html.inc,v 1.9 2002/05/09 15:23:00 grex Exp $
 
 /**
  * HTML library for PHP (and PHPLib)
@@ -170,9 +170,9 @@ function html_form_action($target = 'PHP_SELF', $query = '', $method = 'post')
     return($output);
 }
 
-function htmlp_form_action($file = 'PHP_SELF', $query = '')
+function htmlp_form_action($file = 'PHP_SELF', $query = '', $metod='post')
 {
-    print html_form_action($file, $query);
+    print html_form_action($file, $query, $method);
 }
 
 /**
