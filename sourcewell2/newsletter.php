@@ -13,7 +13,7 @@
 // |          Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
 // +----------------------------------------------------------------------+
 //
-// $Id: newsletter.php,v 1.4 2002/05/10 18:22:50 grex Exp $
+// $Id: newsletter.php,v 1.5 2002/05/10 18:24:01 grex Exp $
 
 require('start.inc');
 
@@ -64,8 +64,8 @@ if (!$config_ml_list) {
         $table->table_begin();
         $table->table_title(_('Subscribe Newsletter'));
         $table->table_body_begin();
-        $table->table_columns_begin(2);
         htmlp_form_action();
+        $table->table_columns_begin(2);
         
         $table->table_column('<b>'._('E-Mail').':</b> ', '40%', '', 'right');
         $table->table_column(html_form_textField('email_usr', '', 20, 128) ,'60%', '', 'left');
@@ -90,6 +90,7 @@ if (!$config_ml_list) {
         $table->table_colspan(html_form_submit(_('Subscribe'), 'subscribe'), 2, '', 'center');
 
         $table->table_columns_end();
+	htmlp_form_end();
         $table->table_body_end();
         $table->table_end();
     }
