@@ -12,7 +12,7 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: header.inc,v 1.20 2002/05/10 22:49:46 grex Exp $
+// $Id: header.inc,v 1.21 2002/05/14 15:45:21 grex Exp $
 
 /**
  * TODO: global explanation of this file
@@ -95,10 +95,13 @@ global $config_addNetscapePanel;
 <?php
 $i = 0;
 while (list($title, $url) = each($config_TopStripArray)) {
-    if ($i > 0)
+    if ($i > 0) {
 	echo "\n | ";
-	echo "<b><a href=\"$url\" class=\"maintitlebar\">"._o($title)."</a></b>";
-	$i++;
+    } else {
+        echo ' &nbps; ';
+    }
+    echo "<b><a href=\"$url\" class=\"maintitlebar\">"._o($title)."</a></b>";
+    $i++;
 };
 echo "\n</span></td><td width=\"55%\" align=\"right\">\n";
 
