@@ -32,7 +32,7 @@
 ######################################################################
 
 $sys_name = "SourceWell";
-$sys_title = "Open Source Software Announcement & Retrieval";
+$sys_title = "Open Source Software Announcement &amp; Retrieval";
 $sys_url_title = "http://www.berlios.de/";
 $sys_url = "http://sourcewell.berlios.de/sw/";
 $sys_logo_image = "images/berlios.jpg";
@@ -51,9 +51,9 @@ $sys_logo_heigth = "104";
 # org_logo_heigth  Height of the image of your Organisation
 ######################################################################
 
-$org_name = "GMD FOKUS";
-$org_url = "http://www.fokus.gmd.de/";
-$org_logo_image = "images/logo_fokus.gif";
+$org_name = "FOKUS";
+$org_url = "http://www.fokus.fhg.de/";
+$org_logo_image = "images/logo_fokus.png";
 $org_logo_alt = $org_name;
 $org_logo_width = "66";
 $org_logo_heigth = "73";
@@ -122,8 +122,8 @@ $th_strip_body_font_color = "";
 #
 ######################################################################
 
-$config_show_appsperpage = "15";
-$config_show_numberofdays = 4; 
+$config_show_appsperpage = "10";
+$config_show_numberofdays = 7; 
 
 ######################################################################
 # Email Notification
@@ -275,7 +275,7 @@ $hash_secret = "Jabberwocky...";
 #
 ######################################################################
 
-$SourceWell_Version = "1.0.11beta";
+$SourceWell_Version = "1.1.0beta";
 
 # general box
 $config_box_general_frame_color =$th_box_frame_color;
