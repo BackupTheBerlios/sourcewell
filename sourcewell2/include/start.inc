@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: start.inc,v 1.23 2002/05/07 21:21:20 grex Exp $
+// $Id: start.inc,v 1.24 2002/05/07 21:28:36 grex Exp $
 
 if (!isset($login)) {
     page_open(array('sess' => 'SourceWell_Session'));
@@ -69,7 +69,7 @@ $table_error = new Table('error', '80%');
 
 <!-- top strip -->
 <table border="0" cellspacing="0" cellpadding="2" width="100%" 
-       bgcolor="<?php echo $th_navstrip_bgcolor;?>">
+       bgcolor="<?php echo $config_navstrip_bgcolor;?>">
 <tr>
 <td width="45%"><span class=maintitlebar>
 <?php
@@ -82,9 +82,9 @@ while (list($title, $url) = each($ts_array)) {
 };
 echo "\n</span></td><td width=\"55%\" align=\"right\">\n";
 if (isset($auth) && !empty($auth->auth["perm"])  && !($logout)) {
-	echo "<FONT COLOR=\"".$th_nav_bgcolor."\">"._("Logged in")." <b>".$auth->auth["uname"]."</b> (<b>".$auth->auth["perm"]."</b>) / "._("Expires")." <b>".timestr_short($auth->auth["exp"])."</b></FONT>";
+	echo "<font color=\"".$config_nav_bgcolor."\">"._("Logged in")." <b>".$auth->auth["uname"]."</b> (<b>".$auth->auth["perm"]."</b>) / "._("Expires")." <b>".timestr_short($auth->auth["exp"])."</b></font>";
 } else {
-	echo "<FONT COLOR=\"".$th_nav_bgcolor."\"><B>"._("Not Logged in")."</B></FONT>";
+	echo "<font color=\"".$config_nav_bgcolor."\"><b>"._("Not Logged in")."</b><font>";
 }
 ?>
 
@@ -98,7 +98,7 @@ if (isset($auth) && !empty($auth->auth["perm"])  && !($logout)) {
 
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
 
-<tr valign="top" bgcolor="<?php echo $th_nav_bgcolor;?>">
+<tr valign="top" bgcolor="<?php echo $config_nav_bgcolor;?>">
 <td bgcolor="#FFFFFF">
 <a href="<?php echo $sys_url_title;?>">
 <img src="<?php echo $sys_logo_image;?>" border="0" 
@@ -112,7 +112,7 @@ vspace="5" hspace="5" alt="<?php echo $sys_logo_alt;?>"></a>
 
 <td align="left" valign="middle" > <!-- removed att: width="99%" -->
 <p align="left">
-<font color="<?php echo $th_nav_font_color;?>">
+<font color="<?php echo $config_nav_font_color;?>">
 <b><font size="+1"><?php echo $sys_name;?></font></b>
 <br><?php echo _($sys_title);?></font></p>
 </td>
@@ -139,7 +139,7 @@ width="<?php echo $org_logo_width;?>" align="RIGHT"></a>
 <!-- end logo at right -->
 
 <tr>
-<td colspan="5" bgcolor="<?php echo $th_navstrip_bgcolor;?>">
+<td colspan="5" bgcolor="<?php echo $config_navstrip_bgcolor;?>">
 <img src="images/blank.gif" height="1" width="1" alt="">
 </td>
 </tr>
@@ -149,8 +149,8 @@ width="<?php echo $org_logo_width;?>" align="RIGHT"></a>
 <!-- end top title -->
 
 <table border=0 cellspacing=0 cellpadding=0 width="100%" >
-<tr valign="top" bgcolor="<?php echo $th_body_bgcolor;?>">
-<td bgcolor="<?php echo $th_nav_bgcolor;?>">
+<tr valign="top" bgcolor="<?php echo $config_body_bgcolor;?>">
+<td bgcolor="<?php echo $config_nav_bgcolor;?>">
 
 <?php
 /*
@@ -158,12 +158,12 @@ width="<?php echo $org_logo_width;?>" align="RIGHT"></a>
 
 <!-- BerliOS menu -->
 <table border=0 cellspacing=0 cellpadding=3 width="100%">
-<tr bgcolor="<?php echo $th_navstrip_bgcolor;?>">
+<tr bgcolor="<?php echo $config_navstrip_bgcolor;?>">
 <td ALIGN=CENTER>
-<span class="titlebar"><font color="<?php echo $th_navstrip_font_color;?>"><?php echo $sys_name?></font></span></td>
+<span class="titlebar"><font color="<?php echo $config_navstrip_font_color;?>"><?php echo $sys_name?></font></span></td>
 </tr>
 
-<tr ALIGN=RIGHT bgcolor="<?php echo $th_nav_bgcolor;?>">
+<tr ALIGN=RIGHT bgcolor="<?php echo $config_nav_bgcolor;?>">
 <td><a href="<?php $sess->purl("index.php3") ?>" class="menus"><?php echo _("Recent Apps"); ?></a>
 <br><a href="<?php $sess->purl("faq.php3") ?>" class="menus"><?php echo _("Q&amp;A"); ?></a>
 
@@ -278,17 +278,17 @@ if (
 
 ?>
 <table border=0 cellspacing=0 cellpadding=3 width="100%">
-<tr bgcolor="<?php echo $th_navstrip_bgcolor;?>">
+<tr bgcolor="<?php echo $config_navstrip_bgcolor;?>">
 <td ALIGN=CENTER><img src="http://www.berlios.de/images/blank.gif" height="1" width="135" border=0><br>
-<span class="titlebar"><font color="<?php echo $th_navstrip_font_color;?>"><?php echo _("Administration"); ?></font></span></td>
+<span class="titlebar"><font color="<?php echo $config_navstrip_font_color;?>"><?php echo _("Administration"); ?></font></span></td>
 </tr>
 
-<tr ALIGN=RIGHT bgcolor="<?php echo $th_nav_bgcolor;?>">
+<tr ALIGN=RIGHT bgcolor="<?php echo $config_nav_bgcolor;?>">
 <td>
 <?php
 
   if (($config_perm_admuser == "all") || (isset($perm) && $perm->have_perm($config_perm_admuser))  && !($logout)) {
-    $db->query("SELECT COUNT(*) FROM auth_user");
+    $db->query("SELECT COUNT(*) FROM auconfig_user");
     $db->next_record();
     echo "<a href=\"".$sess->url("admuser.php3")."\" class=\"menus\">"._("Users")." [".$db->f("COUNT(*)")."]</a>\n";
   }
@@ -357,12 +357,12 @@ if (
 <!-- end Admin menu -->
 <!-- Search menu -->
 <table border=0 cellspacing=0 cellpadding=3 width="100%">
-<tr bgcolor="<?php echo $th_navstrip_bgcolor;?>">
+<tr bgcolor="<?php echo $config_navstrip_bgcolor;?>">
 <td ALIGN=CENTER><img src="http://www.berlios.de/images/blank.gif" height="1" width="135" border=0><br>
-<span class="titlebar"><font color="<?php echo $th_navstrip_font_color;?>"><?php echo _("Search"); ?></font></span></td>
+<span class="titlebar"><font color="<?php echo $config_navstrip_font_color;?>"><?php echo _("Search"); ?></font></span></td>
 </tr>
 
-<tr ALIGN=RIGHT bgcolor="<?php echo $th_nav_bgcolor;?>">
+<tr ALIGN=RIGHT bgcolor="<?php echo $config_nav_bgcolor;?>">
 <td align=center>
 <p>
 <form action="<?php $sess->purl("appsearch.php3"); ?>">
@@ -377,12 +377,12 @@ echo "<p><input TYPE=\"submit\" NAME=\"Search\" VALUE=\""._("Search")."\">";
 <!-- end Search menu -->
 <!-- Language menu -->
 <table border=0 cellspacing=0 cellpadding=3 width="100%">
-<tr bgcolor="<?php echo $th_navstrip_bgcolor;?>">
+<tr bgcolor="<?php echo $config_navstrip_bgcolor;?>">
 <td ALIGN=CENTER><img src="http://www.berlios.de/images/blank.gif" height="1" width="135" border=0><br>
-<span class="titlebar"><font color="<?php echo $th_navstrip_font_color;?>"><?php echo _("Language");?></font></span></td>
+<span class="titlebar"><font color="<?php echo $config_navstrip_font_color;?>"><?php echo _("Language");?></font></span></td>
 </tr>
 
-<tr ALIGN=RIGHT bgcolor="<?php echo $th_nav_bgcolor;?>">
+<tr ALIGN=RIGHT bgcolor="<?php echo $config_nav_bgcolor;?>">
 <td align=center>
 <p>
 <form action="<?php $sess->pself_url()?>">
