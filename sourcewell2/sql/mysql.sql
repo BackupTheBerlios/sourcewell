@@ -1,4 +1,3 @@
-
 # +----------------------------------------------------------------------+
 # |        SourceWell 2 - The GPL Software Announcement System           |
 # +----------------------------------------------------------------------+
@@ -12,7 +11,7 @@
 # |          Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
 # +----------------------------------------------------------------------+
 #
-# $Id: mysql.sql,v 1.1 2002/03/08 17:10:56 grex Exp $
+# $Id: mysql.sql,v 1.2 2002/05/07 16:46:10 grex Exp $
 
 # Database sourcewell2
 #
@@ -467,14 +466,14 @@ CREATE TABLE comments (
    subject varchar(128) NOT NULL,
    text blob NOT NULL,
    creation timestamp(14),
-   UNIQUE cmt_id (cmt_id)
+   UNIQUE cmt_id (comment_id)
 );
 
 #
 # Dumping data for table 'comments'
 #
 
-INSERT INTO comments VALUES ( '1', 'anonymous', 'We use SourceWell successfully!', 'You can visit our web site at <A HREF="http://sourcewell.berlios.de">http://sourcewell.berlios.de</a> where we have been using the SourceWell system succesfully for more than three months yet. You will find more than 900 inserted applications and 2000 releases announced in our system. A closer look a at it will let you see how far you can go with it!', '20010522133952');
+INSERT INTO comments VALUES ('1', '1', 'anonymous', 'A', 'We use SourceWell successfully!', 'You can visit our web site at <A HREF="http://sourcewell.berlios.de">http://sourcewell.berlios.de</a> where we have been using the SourceWell system succesfully for more than three months yet. You will find more than 900 inserted applications and 2000 releases announced in our system. A closer look a at it will let you see how far you can go with it!', '20010522133952');
 
 
 # --------------------------------------------------------
@@ -594,9 +593,9 @@ INSERT INTO history VALUES ( '5', '1', 'anonymous', '20010425181410', '1.0.8');
 INSERT INTO history VALUES ( '6', '2', 'anonymous', '20010628174629', '0.8');
 INSERT INTO history VALUES ( '7', '1', 'anonymous', '20010629170128', '1.0.9');
 INSERT INTO history VALUES ( '8', '1', 'anonymous', '20011129183128', '1.0.10');
-INSERT INTO history VALUES ( '8', '1', 'anonymous', '20011215203421', '1.0.11');
-INSERT INTO history VALUES ( '8', '1', 'anonymous', '20011221192343', '1.0.12');
-INSERT INTO history VALUES ( '8', '1', 'anonymous', '20011226230000', '1.0.13');
+INSERT INTO history VALUES ( '9', '1', 'anonymous', '20011215203421', '1.0.11');
+INSERT INTO history VALUES ( '10', '1', 'anonymous', '20011221192343', '1.0.12');
+INSERT INTO history VALUES ( '11', '1', 'anonymous', '20011226230000', '1.0.13');
 
 # --------------------------------------------------------
 #
@@ -706,7 +705,7 @@ CREATE TABLE projects (
    categories varchar(255),
    source varchar(16),
 
-   UNIQUE id (id)
+   UNIQUE proid (id)
 );
 
 # --------------------------------------------------------
@@ -769,4 +768,3 @@ CREATE TABLE authors (
    author varchar(32) NOT NULL,
    e-mail varchar(64)
 );
-
