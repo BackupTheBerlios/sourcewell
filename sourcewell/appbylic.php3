@@ -35,20 +35,22 @@ $be = new box("",$th_box_frame_color,$th_box_frame_width,$th_box_title_bgcolor,$
 
 <!-- content -->
 <?php
-$db = new DB_SourceWell;
 
 // $iter is a variable for printing the Top Statistics in steps of 10 apps
 if (!isset($iter)) $iter=0;
 $iter*=10;
 
-// We need to know the total number of apps inserted by the user
-$result = mysql_db_query($db_name,"SELECT COUNT(*) FROM software WHERE license='$license' AND status='A'");
-$row = mysql_fetch_row($result);
-$numiter = ($row[0]/10);
+// We extract the URL for the license_text
 
-$columns = "*,SUM(app_cnt+homepage_cnt+download_cnt+changelog_cnt+rpm_cnt+deb_cnt+tgz_cnt+cvs_cnt+screenshots_cnt+mailarch_cnt) AS sum_cnt";
-$tables = "software,counter";
-$where = "license='$license' AND status='A' AND software.appid=counter.appid GROUP BY software.appid";
+$db->query("SELECT url FROM licenses WHERE license='$license'");
+$db->next_record();
+$license_text = $db->f("url");
+
+
+// We need to know the total number of apps with the given license
+$db->query("SELECT COUNT(*) FROM software WHERE license='$license' AND status='A'");
+$db->next_record();
+$numiter = ($db->f("COUNT(*)")/10);
 
 switch ($by) {
   case "Importance":
@@ -68,24 +70,22 @@ switch ($by) {
   }
 
 $limit = "$iter,10";
-if (!$result = mysql_db_query($db_name,"SELECT $columns FROM $tables WHERE $where ORDER BY $order LIMIT $limit")) {
-  mysql_die();
-} else {
-  $sort = $t->translate("sorted by").": "
-  ."<a href=\"".basename($PHP_SELF)."?license=".rawurlencode($license)."&by=Date\">".$t->translate("Date")."</a>"
-  ." | <a href=\"".basename($PHP_SELF)."?license=".rawurlencode($license)."&by=Importance\">".$t->translate("Importance")."</a>"
-  ." | <a href=\"".basename($PHP_SELF)."?license=".rawurlencode($license)."&by=Urgency\">".$t->translate("Urgency")."</a>"
-  ." | <a href=\"".basename($PHP_SELF)."?license=".rawurlencode($license)."&by=Name\">".$t->translate("Name")."</a>\n";
 
-  $bs->box_strip($sort);
-  appcat($result,$t->translate("License").": ".$license,$iter+1);
+$db->query("SELECT *,SUM(app_cnt+homepage_cnt+download_cnt+changelog_cnt+rpm_cnt+deb_cnt+tgz_cnt+cvs_cnt+screenshots_cnt+mailarch_cnt) AS sum_cnt FROM software,counter WHERE license='$license' AND status='A' AND software.appid=counter.appid GROUP BY software.appid ORDER BY $order LIMIT $limit");
 
-  if ($numiter > 1) {
-    $url = "appbylic.php3?license=".rawurlencode($license)."&by=$by&";
-    show_more ($iter,$numiter,$url);
-  }
+$sort = $t->translate("sorted by").": "
+."<a href=\"".$sess->self_url().$sess->add_query(array("license" => $license, "by" => "Date"))."\">".$t->translate("Date")."</a>"
+." | <a href=\"".$sess->self_url().$sess->add_query(array("license" => $license, "by" => "Importance"))."\">".$t->translate("Importance")."</a>"
+." | <a href=\"".$sess->self_url().$sess->add_query(array("license" => $license, "by" => "Urgency"))."\">".$t->translate("Urgency")."</a>"
+." | <a href=\"".$sess->self_url().$sess->add_query(array("license" => $license, "by" => "Name"))."\">".$t->translate("Name")."</a>\n";
 
-  mysql_free_result($result);
+$bs->box_strip($sort);
+appcat($query,$t->translate("License").": ".$license." (<a href=\"".$sess->url("licenses.php3").$sess->add_query(array("license" => $license))."\">license text</a>)",$iter+1);
+
+if ($numiter > 1) {
+  $url = "appbylic.php3";
+  $urlquery = array("license" => $license, "by" => $by);
+  show_more ($iter,$numiter,$url,$urlquery);
 }
 ?>
 <!-- end content -->

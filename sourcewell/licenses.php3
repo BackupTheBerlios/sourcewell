@@ -1,76 +1,77 @@
 <?php
 
 ######################################################################
-# SourceWell: Software Announcement & Retrieval System
+# SourceWell 2
 # ================================================
 #
+# This script shows the text for the license given as parameter
+# If no license is specified a list of licenses is given
+#
 # Copyright (c) 2001 by
-#                Lutz Henckel (lutz.henckel@fokus.gmd.de) and
-#                Gregorio Robles (grex@scouts-es.org)
+#                Gregorio Robles (grex@scouts-es.org) and
+#                Lutz Henckel (lutz.henckel@fokus.gmd.de)
 #
 # BerliOS SourceWell: http://sourcewell.berlios.de
 # BerliOS - The OpenSource Mediator: http://www.berlios.de
-#
-# This file indexes the software licenses
-# It also gives the number of inserted apps for each license
 #
 # This program is free software. You can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 or later of the GPL.
 ######################################################################
 
-page_open(array("sess" => "SourceWell_Session"));
-if (isset($auth) && !empty($auth->auth["perm"])) {
-  page_close();
-  page_open(array("sess" => "SourceWell_Session",
-                  "auth" => "SourceWell_Auth",
-                  "perm" => "SourceWell_Perm"));
-}
+require("header2.inc");
 
-require "header.inc";
+security_page_access("licenseText");
 
-$bx = new box("100%",$th_box_frame_color,$th_box_frame_width,$th_box_title_bgcolor,$th_box_title_font_color,$th_box_title_align,$th_box_body_bgcolor,$th_box_body_font_color,$th_box_body_align);
-$be = new box("",$th_box_frame_color,$th_box_frame_width,$th_box_title_bgcolor,$th_box_title_font_color,$th_box_title_align,$th_box_body_bgcolor,$th_box_error_font_color,$th_box_body_align);
-?>
+$bx = new box("general","95%");
 
-<!-- content -->
-<?php
-$db = new DB_SourceWell;
+if (is_not_set_or_empty ($license)) {
 
-$columns = "*";
-$tables = "licenses";
-if (!$result = mysql_db_query($db_name,"SELECT DISTINCT $columns FROM $tables")) {
-  mysql_die();
-} else {
-  $bx->box_begin();
-  $bx->box_title($t->translate("Licenses"));
-  $bx->box_body_begin();
-  $i = 1;
-  echo "<table border=0 align=center cellspacing=1 cellpadding=1 width=100%>\n";
-  echo "<tr><td><b>".$t->translate("No").".</b></td><td><b>#&nbsp;".$t->translate("Apps")."</b></td><td><b>".$t->translate("License")."</b></td></tr>\n";
-  while($row = mysql_fetch_array($result)) {
-    $columns = "COUNT(*)";
-    $tables = "software";
-    $where = "license='".$row["license"]."' AND status='A'";
-    $num = "";
-    if ($resultn = mysql_db_query($db_name,"SELECT $columns FROM $tables WHERE $where")) {
-      $rown = mysql_fetch_row($resultn);
-      $num = "[".sprintf("%03d",$rown[0])."]";
-      mysql_free_result($resultn);
+    $db->query("SELECT DISTINCT * FROM licenses ORDER BY license ASC");
+
+    $bx->box_begin();
+    $bx->box_title($t->translate("Licenses"));
+    $bx->box_body_begin();
+    $bx->box_columns_begin(3);
+
+    $bx->box_column("center","","","<b>"._("No")."</b>");
+    $bx->box_column("center","","","<b>"._("Apps")."</b>");
+    $bx->box_column("left","","","<b>"._("License")."</b>");
+
+    $i = 1;
+    while($db->next_record()) {
+        $db2 = new DB_SourceWell;
+        $db2->query("SELECT COUNT(*) FROM software WHERE license='".$db->f("license")."' AND status='A'");
+        $db2->next_record();
+        $num = "[".sprintf("%03d",$db2->f("COUNT(*)"))."]";
+
+        $bx->box_next_row_of_columns();
+        $bx->box_column("center","","",$i);
+        $bx->box_column("center","","",html_link("appbylic.php3",array("license" => $db->f("license")),$num));
+# FIXME: The OSI aproved: in front of license should be deleted in the link :-)
+        $bx->box_column("left","","",html_link("PHP_SELF",array("license" => $db->f("license")), $db->f("license")));
+
+        $i++;
     }
-    echo "<tr><td>$i</td><td><a href=\"appbylic.php3?license=".rawurlencode($row["license"])."\">$num</a></td><td><a href=\"".$row["url"]."\" target=\"_blank\">".$row["license"]."</a></td></tr>\n";
-    $i++;
-  }
 
-  echo "</table>\n";
-  $bx->box_body_end();
-  $bx->box_end();
-  mysql_free_result($result);
+    $bx->box_columns_end();
+    $bx->box_body_end();
+    $bx->box_end();
+
+} else {
+
+    $bx->box_begin();
+    $bx->box_title($license);
+    $bx->box_body_begin();
+
+    $db->query("SELECT url FROM licenses WHERE license='$license'");
+    $db->next_record();
+    include($db->f("url"));
+
+    $bx->box_body_end();
+    $bx->box_end();
+
 }
-?>
-<!-- end content -->
 
-<?php
-require("footer.inc");
-page_close();
+require("footer2.inc");
 ?>

@@ -396,7 +396,7 @@ if (isset($option)) {
      $db->query("SELECT licenses.license, licenses.url, COUNT(*) AS lic_cnt FROM software,licenses WHERE software.license = licenses.license GROUP BY licenses.license ORDER BY lic_cnt DESC");
      while($db->next_record()) {
        $urlquery = "0";   // no additional query needed!
-       stats_display($db->f("license"),$db->f("lic_cnt"),$db->f("url"),$urlquery,$total);
+       stats_display($db->f("license"),$db->f("lic_cnt"),"licenses.php3?license=".urlencode($db->f("license")),$urlquery,$total);
      }
      stats_end();
      break;
@@ -564,7 +564,7 @@ if (isset($option)) {
       stats_title($t->translate("Application Importance listed by Licenses"));
       $db->query("SELECT licenses.license, licenses.url, SUM(app_cnt+homepage_cnt+changelog_cnt+download_cnt+rpm_cnt+deb_cnt+tgz_cnt+cvs_cnt+screenshots_cnt+mailarch_cnt) AS sum_cnt FROM software,counter,licenses WHERE software.appid = counter.appid AND software.license = licenses.license GROUP BY licenses.license ORDER BY sum_cnt DESC");
       while($db->next_record()) {
-        stats_display($db->f("license"),$db->f("sum_cnt"),$db->f("url"),$urlquery,$total);
+        stats_display($db->f("license"),$db->f("sum_cnt"),"licenses.php3?license=".urlencode($db->f("license")),$urlquery,$total);
       }
       stats_end();
       break;
