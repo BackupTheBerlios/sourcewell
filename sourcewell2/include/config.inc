@@ -15,7 +15,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: config.inc,v 1.18 2002/04/21 21:58:00 grex Exp $
+// $Id: config.inc,v 1.19 2002/04/21 22:17:12 grex Exp $
 
 /**
  * General System Configuration
@@ -178,8 +178,6 @@ $config_database_variable  = '_DB_';
  *
  */
 
-$config_path_extension = '.inc';
-
 $config_path_lib = 'include/';
 $config_path_html = 'include/';
 $config_path_TableClass = 'include/';
@@ -200,7 +198,6 @@ $config_path_images = 'images/';
  * @global string    $_INC_PATH                Path to the include directory
  * @access public
  */
-
 function config_inc($include)
 {
     global $_FIELD_CLASS_INCLUDED, $_INC_PATH;
@@ -241,7 +238,7 @@ function config_inc($include)
     case 'Summary':
         /* Show parent class included */
         include($_INC_PATH.'/Show'.$class_extension);
-        /* there's no break here! ;-) */
+        /* there's no break! ;-) */
     case 'Comment':
     case 'Form':
     case 'Insertion':
