@@ -12,7 +12,7 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: TextAreaField.inc,v 1.4 2002/03/18 11:28:28 grex Exp $
+// $Id: TextAreaField.inc,v 1.5 2002/03/18 11:40:29 grex Exp $
 
 /**
  * Requires Table.inc and html.inc
@@ -173,7 +173,7 @@ class TextAreaField extends Field {
             $table->table_nextRowWithColumns();
             return 1;
         } elseif ($this->default && $this->showType == 'B') {
-    	    $table->table_colspan($this->default);
+    	    $table->table_colspan($this->default, 2, '', 'left');
             $table->table_nextRowWithColumns();
             return 1;
         } elseif ($this->notNull) {
