@@ -13,9 +13,9 @@
 // |          Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
 // +----------------------------------------------------------------------+
 //
-// $Id: login.php,v 1.3 2002/05/09 22:40:11 grex Exp $
+// $Id: login.php,v 1.4 2002/05/09 22:40:54 grex Exp $
 
-require('include/start.inc');
+include('include/start.inc');
 
 if (isset($perm) && $perm->have_perm('user_pending')) {
     $be->box_full(_('Error'), _('Access denied'));
