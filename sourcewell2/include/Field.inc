@@ -12,7 +12,7 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: Field.inc,v 1.8 2002/04/21 15:20:31 grex Exp $
+// $Id: Field.inc,v 1.9 2002/05/09 16:59:02 grex Exp $
 
 /**
  * Requires Table.inc, html.inc and config.inc
@@ -108,7 +108,7 @@ class Field {
         global $table;
     
         if ($this->default) {
-            $table->table_column('<b>'.$this->description.': <b>', $config_LeftColumnWidth, '', 'right');
+            $table->table_column('<b>'.$this->description.': </b>', $config_LeftColumnWidth, '', 'right');
             $table->table_column($this->default, $config_RightColumnWidth, '', 'left');
             $table->table_nextRowWithColumns();
             return 1;

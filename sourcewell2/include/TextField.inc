@@ -13,7 +13,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: TextField.inc,v 1.4 2002/04/21 15:20:31 grex Exp $
+// $Id: TextField.inc,v 1.5 2002/05/09 17:01:59 grex Exp $
 
 /**
  * Requires table.inc and html.inc
@@ -145,7 +145,7 @@ class TextField extends Field {
     {
         global $table;
 
-        $table->table_column('<b>'.$this->description.': <b>'.$this->_specifyNotNull(), '33%', '', 'right');
+        $table->table_column('<b>'.$this->description.': </b>'.$this->_specifyNotNull(), '33%', '', 'right');
         $table->table_column(html_form_textField($this->name, $this->default, $this->length, $this->maxlength), '67%', '', 'left');
         $table->table_nextRowWithColumns();
     }

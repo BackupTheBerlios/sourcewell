@@ -12,24 +12,30 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: MultipleOptionField.inc,v 1.2 2002/03/09 01:43:59 grex Exp $
+// $Id: MultipleOptionField.inc,v 1.3 2002/05/09 17:01:58 grex Exp $
 
 /**
- * Requires Table.inc and html.inc
+ * Requires table.inc and html.inc
+ * Inherits from Field.inc
  */
 
 /**
- * MultipleOptionField class
- * This class represents a field where multiple options can be selected
- * It is a class that inherits from SelectField
- * and that serves as parent class for MultipleSelectField and CheckField
+ * This class represents a hidden field in a form
+ * (usually text (char, varchar, etc.) field in the database)
  *
  * @author Gregorio Robles <grex@scouts-es.org>
  * @package Field
- * @access private
+ * @access public
  */
 
-class MultipleOptionField extends SelectField {
+class HiddenField extends Field {
+
+    /**
+     * If the hidden field has to be displayed in Form, Preview and Show classes
+     *
+     * @var boolean            default 0
+     */
+    var $display;
 
     /**
      * Constructor
@@ -37,97 +43,69 @@ class MultipleOptionField extends SelectField {
      * @param   string  $description     description of the field
      * @param   string  $name            name of the field
      * @param   string  $default         default value
-     * @param   string  $values          array (of strings) with the different possibilities
      * @param   string  $notNull         if the field has to be filled out or not
      * @access  public
      */
 
-    function MultipleOptionField($description, $name, $default = '', $values = '', $notNull = 0)
+    function HiddenField($description, $name, $default = '', $notNull = 0)
     {
         /* Parent class constructor */
-        $this->SelectField($description, $name, $default, $values, $notNull);
+        $this->Field($description, $name, $default, $notNull);
+        $this->display = 0;
     }
- 
+
+    /**
+     * Sets the value of the display attribute
+     * (interesting for the Preview, Show and other classes)
+     *
+     * @access public
+     */
+
+    function setDisplay($status = 1)
+    {
+        $this->display = $status;
+    }  
+
+    /**
+     * Prints the form for this field (in table)
+     *
+     * @access public
+     */
+
+    function fieldForm()
+    {
+        htmlp_form_hidden($this->name, $this->default);
+
+        if($this->display) {
+  	     global $table;
+             $table->table_column('<b>'.$this->description.': <b>', '33%', '', 'right');
+             $table->table_column($this->default, '67%', '', 'left');
+             $table->table_nextRowWithColumns();
+        }
+    }
+
     /**
      * Shows the content of the field (in a table)
      *
-     * FIXME: @return bolean       checks if fields labeled as NotNull are non-empty
-     *   ---> has to be implemented
+     * @return bolean       checks if fields labeled as NotNull are non-empty
      * @access public
      */
 
     function fieldShow()
     {
         global $table;
-
-        if ($this->default) {
-            $table->table_column('<b>'.$this->description.': <b>', '33%','', 'right');
-            while (is_array($this->default) && list(, $value) = each($this->default)) {
-                $selected_values .= $value.", ";
-            }
-            $selected_values = ereg_replace(', $', '', $selected_values);
-
-            $table->table_column($selected_values, '67%','', 'left');
-            $table->table_nextRowWithColumns();
+    
+        if (!$this->default && $this->notNull) {
+             $table->table_column('<b>'.$this->description.': </b>', '33%', '', 'right');
+             $table->table_column('<font color=red><b>Requires to be filled out</b></font>','67%', '', 'left');
+             $table->table_nextRowWithColumns();
+             return 0;
+        } elseif($this->display) {
+             $table->table_column('<b>'.$this->description.': </b>', '33%', '', 'right');
+             $table->table_column($this->default, '67%', '', 'left');
+             $table->table_nextRowWithColumns();
         }
-    }
-
-    /**
-     * Passes the value of the field as hidden
-     * (this is interesting for Preview)
-     *
-     * @see Preview
-     * @access public
-     */
-
-    function fieldHidden()
-    {
-        while (is_array($this->default) && list(, $value) = each($this->default)) {
-            $name = $this->name.'[]';
-            htmlp_form_hidden($name, $value);
-	}
-    }
-
-    /**
-     * Functions that help with the database insertion
-     *
-     * @return string/int    value of the name of the field
-     * @access public
-     */
-
-    function getAttribute()
-    {
-        $i = 0;
-        while (is_array($this->default) && list(, $value) = each($this->default)) {
-	    $i++;
-            $return .= $this->name.$i.', ';
-        }
-        /* we remove the last comma */
-        $return = substr($return, 0, -2);
-        return $return;
-    }
-
-    /**
-     * Gets the default value of the field
-     * The default value depends on the situation:
-     *    in Form: it can be assigned manually by the programmer
-     *    in Preview: it can be put from the value in HTTP_POST_VARS
-     *    in Show: it is the value stored in the database
-     *
-     * @return string/int    value of the default value of the field
-     * @access public
-     */
-
-    function getValue()
-    {
-        reset($this->default);
-        while (is_array($this->default) && list(, $value) = each($this->default)) {
-            $return .= $value.', ';
-        }
-        /* we remove the last comma */
-        $return = substr($return, 0, -2);
-        return $return;
+        return 1;
     }
 }
-
 ?>

@@ -12,7 +12,7 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: header.inc,v 1.7 2002/05/09 16:56:35 grex Exp $
+// $Id: header.inc,v 1.8 2002/05/09 16:59:02 grex Exp $
 
 /**
  * TODO: global explanation of this file
@@ -205,7 +205,7 @@ while (list(, $value) = each($config_adm_bar_array)) {
         print "<!-- Admin menu -->\n";
 	print "<table border=\"0\" cellspacing=\"0\" cellpadding=\"3\" width=\"100%\">\n";
 	print "  <tr bgcolor=\"<?php echo $config_navstrip_bgcolor;?>\">\n";
-	print "    <td align=\"center\"><img src=\"http://www.berlios.de/images/blank.gif\" height=\"1\" width=\"135\" border=0><br>\n";
+	print "    <td align=\"center\"><img src=\"http://www.berlios.de/images/blank.gif\" height=\"1\" width=\"135\" border=\"0\" alt=\"\"><br>\n";
 	print "      <span class=\"titlebar\"><font color=\"$config_navstrip_font_color\">"._('Administration')."</font></span></td>\n";
 	print "  </tr>\n";
         print "  <tr ALIGN=RIGHT bgcolor=\"$config_nav_bgcolor\">\n";
@@ -290,6 +290,6 @@ if (ereg('Gecko', '$HTTP_USER_AGENT') && $config_addNetscapePanel) {
   <td width="99%">
     <p>&nbsp;
 
-<!-------------------------------------------------------------->
-<!---------------------- Starting Content ---------------------->
-<!-------------------------------------------------------------->
+<!-- ---------------------------------------------------------- -->
+<!-- -------------------- Starting Content -------------------- -->
+<!-- ---------------------------------------------------------- -->

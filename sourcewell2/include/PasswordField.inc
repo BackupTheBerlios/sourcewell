@@ -12,7 +12,7 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: PasswordField.inc,v 1.2 2002/03/09 01:43:59 grex Exp $
+// $Id: PasswordField.inc,v 1.3 2002/05/09 17:01:58 grex Exp $
 
 /**
  * Requires Table.inc and html.inc
@@ -73,7 +73,7 @@ class PasswordField extends TextField {
         global $table;
 
         if ($this->default) {
-            $table->table_column('<b>'.$this->description.': <b>', '33%', '', 'right');
+            $table->table_column('<b>'.$this->description.': </b>', '33%', '', 'right');
             $table->table_column(ereg_replace('.', '*', $this->default), '67%', '', 'left');
             $table->table_nextRowWithColumns();
             return 1;

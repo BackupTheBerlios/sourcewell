@@ -12,7 +12,7 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: HiddenField.inc,v 1.2 2002/03/09 01:43:59 grex Exp $
+// $Id: HiddenField.inc,v 1.3 2002/05/09 17:01:58 grex Exp $
 
 /**
  * Requires table.inc and html.inc
@@ -96,12 +96,12 @@ class HiddenField extends Field {
         global $table;
     
         if (!$this->default && $this->notNull) {
-             $table->table_column('<b>'.$this->description.': <b>', '33%', '', 'right');
+             $table->table_column('<b>'.$this->description.': </b>', '33%', '', 'right');
              $table->table_column('<font color=red><b>Requires to be filled out</b></font>','67%', '', 'left');
              $table->table_nextRowWithColumns();
              return 0;
         } elseif($this->display) {
-             $table->table_column('<b>'.$this->description.': <b>', '33%', '', 'right');
+             $table->table_column('<b>'.$this->description.': </b>', '33%', '', 'right');
              $table->table_column($this->default, '67%', '', 'left');
              $table->table_nextRowWithColumns();
         }
