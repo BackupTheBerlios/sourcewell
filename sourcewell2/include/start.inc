@@ -14,14 +14,14 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: start.inc,v 1.6 2002/03/18 10:34:41 grex Exp $
+// $Id: start.inc,v 1.7 2002/03/18 10:36:39 grex Exp $
 
 // Disabling cache
 header("Cache-Control: no-cache, must-revalidate");     // HTTP/1.1
 header("Pragma: no-cache"); 				// HTTP/1.0
 
 require('config.inc');
-//require('lib.inc');
+require('lib.inc');
 
 
 //lib_require('Lang');

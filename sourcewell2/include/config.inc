@@ -15,7 +15,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: config.inc,v 1.5 2002/03/18 10:28:46 grex Exp $
+// $Id: config.inc,v 1.6 2002/03/18 10:39:33 grex Exp $
 
 /**
  * General System Configuration
@@ -178,7 +178,7 @@ $config_database_variable  = '_DB_';
  *
  */
 
-$config_path_extension = 'inc.php';
+$config_path_extension = '.inc';
 
 $config_path_lib = 'include/';
 $config_path_html = 'include/';
@@ -204,6 +204,7 @@ $config_path_images = 'images/';
 function lib_include($class)
 {
     switch($class) {
+    case 'Field':
     case ereg('Field',$class):
     case ereg('Show',$class):
     case 'Preview':
