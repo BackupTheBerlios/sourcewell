@@ -16,15 +16,12 @@
 # the Free Software Foundation; either version 2 or later of the GPL.
 ######################################################################
 
-# Primero vienen los permisos de las diferentes paginas
-# En la columna de la izquierda debe aparecer el nombre de la pagina (sin el php3)
-# y en la de la derecha, los usuarios que tienen permiso para acceder a la misma
-
 $required_permision = array (
 	"app"		=>	"all",
 	"app_edi"	=> 	"anonymous",
 	"app_mod"	=>	"anonymous",
         "app_version" => "user,editor",
+        "appsearch"     =>      "all",
 	"admapp"	=>	"user,editor",
 	"register"	=>	"all",
 	"login"		=>	"all",
