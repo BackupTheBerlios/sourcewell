@@ -70,9 +70,6 @@ function search_for_partial_match_single_word($search, $count)
 
     $db->query("SELECT * FROM software WHERE status='A' AND (name LIKE '% $search%' OR name LIKE '$search %' OR name LIKE '$search %') ORDER BY modification DESC");
     if ($db->num_rows() > 0) {
-//        $numiter = (($db->num_rows()-1)/10);
-//        $order = lib_sort_by_order($by);
-//        lib_sort_box("search",$search, $count);
         return _showIt(&$db,"Matches a single word in the name",$count, $search);
     } else {
         return 0;
@@ -85,9 +82,6 @@ function search_for_partial_match($search, $count)
 
     $db->query("SELECT * FROM software WHERE status='A' AND name LIKE '%$search%' ORDER BY modification DESC");
     if ($db->num_rows() > 0) {
-//        $numiter = (($db->num_rows()-1)/10);
-//        $order = lib_sort_by_order($by);
-//        lib_sort_box("search",$search, $count, $search);
         return _showIt(&$db,"Partial match in the name",$count, $search);
     } else {
         return 0;
