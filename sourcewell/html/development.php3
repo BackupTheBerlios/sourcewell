@@ -27,7 +27,7 @@ require("header.inc");
 
 <P><H2>For developers</H2>
 
-<P>SourceWell is Open Source, so you're invited to contribute to it.
+<P>SourceWell is Open Source, so you're invited to contribute to it. Just have a look at the <a href="http://developer.berlios.de/projects/sourcewell">project page</a> at the BerliOS developer platform.
 
 <P>SourceWell has been thought as an announcement and retrieval system
 for software, but maybe you're interested in adapting SourceWell for
@@ -50,6 +50,20 @@ and making other SourceWell users benefit from your work.
 PHPLib's API in PHPLib's manual. At this moment, PHPLib is used only
 for sessions and authentication. If you aren't going to work with
 them, you don't need to have a look at PHPLib.
+
+
+
+		<!-- This table is just to make some space
+		 between the content and the footer
+		 so that the web page doesn't look that ugly -->
+<center><table width=80% border=0 cellspacing=15 cellpadding=8>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+</table></center>
+
 
 <P>&nbsp;
 

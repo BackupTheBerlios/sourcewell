@@ -1,4 +1,2 @@
-<Files local.inc>
-    Order allow,deny
-    Deny from all
-</Files>                                                                       
+Order Deny,Allow
+Deny from All
