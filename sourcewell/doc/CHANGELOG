@@ -1,7 +1,36 @@
 CHANGELOG for SourceWell
 http://sourcewell.berlios.de/html
 
-21-12-2001 Gregorio Robles <grex@scouts-es.org>
+26-12-2001 Gregorio Robles <grex@scouts-es.org> ------------- SourceWell 1.0.13
+
+* include/config.inc and include/config2.inc: Version update for SourceWell 1.0.13
+* include/app2.inc: new function _app_changesBetweenSoftwareAndTemp() that allows easy reviewing for editors
+* include/app2.inc: comments on apps are now shown
+* include/lib2.inc: two new functions is_not_set_or_empty() and is_set_and_not_empty()
+* include/cmtlib.inc: minor change when showing the owner of the comment
+
+25-12-2001 Gregorio Robles <grex@scouts-es.org>
+
+* include/app2.inc: Description is not only trimmed, all the \r and \n are substituted by spaces. Superfluous spaces are removed
+* cmtins.php3: Edigtors are send an email for any comment submission
+* include/app2.inc: bug fixed in version update; the correct user is now introduced
+* include/app2.inc: bug fix. history insertions only whith version changes
+* search.php3: minor improvements
+* include/search2.inc: minor improvements (shows the number of coincidences)
+
+24-12-2001 Gregorio Robles <grex@scouts-es.org>
+
+* include/app2.inc: success message when inserting or updating apps has been changed and depends on the user permissions
+* include/app2.inc: "dangerous" characters as & and " are changed into their &xxx notation for description and name
+* include/lib2.inc: macro "_" set instead of the translate function -> this would permit GNU gettext manipulation in future (and the use of the gettext automatic extraction tools)
+
+23-12-2001 Gregorio Robles <grex@scouts-es.org>
+
+* include/page_permision2.inc: Permision for app_version.php3 page set (editor)
+* app_version.php3: New automatic version update for download, rpm and debian packages
+* include/app2.inc: Functionality for automatic version update (app_changeVersion() and app_changeVersionForm())
+
+21-12-2001 Gregorio Robles <grex@scouts-es.org> ------------- SourceWell 1.0.12
 
 * In the insertion form: GPL as default license
 * In the insertion form: it is possible to enter an email as <email slash young at server dot com> and the transformation occurs automatically
@@ -19,12 +48,12 @@ http://sourcewell.berlios.de/html
 * Search (stable + version) (development + version)
 * when reviewing an updated application (the one that is copied from temp into the software table), the old user is the one that is inserted in the software database!
 
-15-12-2001 Gregorio Robles <grex@scouts-es.org>
+15-12-2001 Gregorio Robles <grex@scouts-es.org> ------------- SourceWell 1.0.11
 
 * Bug fixed in stats.php3. Thanx go to Jörg Schilling
 * Major bug fixed in verify.php3. Users do not get an error message when they have registered ok.
 
-29-11-2001 Gregorio Robles <grex@scouts-es.org>
+29-11-2001 Gregorio Robles <grex@scouts-es.org> ------------- SourceWell 1.0.10
 
 major changes in many files looking forward to the new architecture:
 almost all files have been adapted to the new html.inc library which abstracts the PHP and PHPLib from the HTML

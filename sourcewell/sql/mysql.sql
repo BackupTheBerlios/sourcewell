@@ -2,7 +2,7 @@
 # phpMyAdmin MySQL-Dump
 # http://phpwizard.net/phpMyAdmin/
 #
-# SourceWell Version 1.0.10
+# SourceWell Version 1.0.13
 #	     Lutz Henckel <lutz.henckel@fokus.gmd.de>
 #	     Gregorio Robles <grex@scouts-es.org>
 #
@@ -246,7 +246,6 @@ CREATE TABLE counter (
 #
 
 INSERT INTO counter VALUES ( '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO counter VALUES ( '2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
 
 # --------------------------------------------------------
 #
@@ -338,6 +337,9 @@ INSERT INTO history VALUES ( '5', '1', 'anonymous', '20010425181410', '1.0.8');
 INSERT INTO history VALUES ( '6', '2', 'anonymous', '20010628174629', '0.8');
 INSERT INTO history VALUES ( '7', '1', 'anonymous', '20010629170128', '1.0.9');
 INSERT INTO history VALUES ( '8', '1', 'anonymous', '20011129183128', '1.0.10');
+INSERT INTO history VALUES ( '8', '1', 'anonymous', '20011215203421', '1.0.11');
+INSERT INTO history VALUES ( '8', '1', 'anonymous', '20011221192343', '1.0.12');
+INSERT INTO history VALUES ( '8', '1', 'anonymous', '20011226230000', '1.0.13');
 
 # --------------------------------------------------------
 #
@@ -436,7 +438,7 @@ CREATE TABLE software (
 #
 
 
-INSERT INTO software VALUES ( '1', 'SourceWell', 'D', '1.0.10', 'Networking', 'PHP', 'GPL', 'http://sourcewell.berlios.de/html/', 'http://developer.berlios.de/project/filelist.php?group_id=23', 'http://sourcewell.berlios.de/doc/CHANGELOG', '', '', '', 'http://cvs.berlios.de/cgi-bin/cvsweb.cgi/?cvsroot=sourcewell', 'http://sourcewell.berlios.de', 'http://lists.berlios.de/pipermail/sourcewell-support/', 'Lutz Henckel & Gregorio Robles', 'SourceWell is a highly configurable, well documented software announcement and retrieval system entirely writen in PHP3 and database independent. It includes user authentication and autherization system (anonymous/user/editor/admin), sessions with and without cookies, high configurability, multilangual support, ease of administration, RDF-type document backend, advanced statistics, announcing mailing lists, application indexing by sections and many other useful features.', '20011129183128', '20010403163452', 'sourcewell-support@lists.berlios.de', 'PHP3, PHPLib, database, (Mailman)', 'anonymous', 'A', '3');
+INSERT INTO software VALUES ( '1', 'SourceWell', 'D', '1.0.13', 'Networking', 'PHP', 'GPL', 'http://sourcewell.berlios.de/html/', 'http://developer.berlios.de/project/filelist.php?group_id=23', 'http://sourcewell.berlios.de/doc/CHANGELOG', '', '', '', 'http://cvs.berlios.de/cgi-bin/cvsweb.cgi/?cvsroot=sourcewell', 'http://sourcewell.berlios.de', 'http://lists.berlios.de/pipermail/sourcewell-support/', 'Lutz Henckel & Gregorio Robles', 'SourceWell is a highly configurable, well documented software announcement and retrieval system entirely writen in PHP3 and database independent. It includes user authentication and autherization system (anonymous/user/editor/admin), sessions with and without cookies, high configurability, multilangual support, ease of administration, RDF-type document backend, advanced statistics, announcing mailing lists, application indexing by sections and many other useful features.', '20011226230000', '20010403163452', 'sourcewell-support@lists.berlios.de', 'PHP3, PHPLib, database, (Mailman)', 'anonymous', 'A', '3');
 
 
 # --------------------------------------------------------

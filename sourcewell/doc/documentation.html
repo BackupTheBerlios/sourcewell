@@ -4,10 +4,10 @@
    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
    <meta http-equiv="expires" content="0">
    <META NAME="Author" CONTENT="Gregorio Robles & Lutz Henckel">
-   <META NAME="Description" CONTENT="Documentation for SourceWell 1.0.12">
+   <META NAME="Description" CONTENT="Documentation for SourceWell 1.0.13">
    <META NAME="KeyWords" CONTENT="BerliOS, SourceWEll, software, announcement,
    linux, retrieval, GPL, GNU">
-   <title>SourceWell 1.0.12 Documentation</title>
+   <title>SourceWell 1.0.13 Documentation</title>
 
    <STYLE type="text/css">
       P { font-size: 12pt;
@@ -88,10 +88,10 @@
 <body bgcolor="#FFCC33" topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" marginheight="0" marginwidth="0">
 
 <BR>&nbsp;
-<P CLASS="title">SourceWell 1.0.12
+<P CLASS="title">SourceWell 1.0.13
 </P>
 
-<P Class="authors">Berlin - Madrid, December 21 2001<BR>
+<P Class="authors">Berlin - Madrid, December 27 2001<BR>
 Gregorio Robles &lt;<A
 HREF="mailto:grex@scouts-es.org">grex@scouts-es.org</a>&gt;<BR>
 Lutz Henckel  &lt;<A
@@ -216,7 +216,7 @@ and use the SourceWell system, you may not have to read it
 as a whole as advanced features for developers are
 also explained.
 
-<p>SourceWell 1.0.12 is a development version. It is the first step towards the new architecture that will arise with SourceWell 2. There are no feature enhancements towards SourceWell's 1.0.9 version, but some bugs (one big security bug and another memory bug) were fixed. Backwards compatibility with SourceWell 1.0.9 has been mantained. We expect that SourceWell's development will acquire lots of new features with the new architecture.
+<p>SourceWell 1.0.13 is a development version. It is the first step towards the new architecture that will arise with SourceWell 2. There are no feature enhancements towards SourceWell's 1.0.9 version, but some bugs (one big security bug and another memory bug) were fixed. Backwards compatibility with SourceWell 1.0.9 has been mantained. We expect that SourceWell's development will acquire lots of new features with the new architecture.
 
 <P>&nbsp;
 <A NAME="copyleft">
@@ -247,9 +247,8 @@ along with this program; if not, write to the
 <P>SourceWell depends on the <a href="http://phplib.netuse.de/" target="_blank">PHPLib library</a> (version 7.2d). Only if you want to have diary and weekly mailing lists with the announcements, you should also have Mailman installed in your box.
 
 <P>You can see a fully working example of the SourceWell system at BerliOS
-SourceWell by visiting <a href="http://sourcewell.berlios.de" target="_blank">http://sourcewell.berlios.de</a>. A close look at it will show you what
-you can do with SourceWell. BerliOS SourceWell has at this moment more
-than 1500 applications inserted and has been the main reason for making this software.
+SourceWell by visiting <a href="http://sourcewell.berlios.de" target="_blank">http://sourcewell.berlios.de</a>. A close look at it will show you what you can do with SourceWell. BerliOS SourceWell has at this moment more
+than 1750 applications inserted and has been the main reason for making this software.
 
 <P>BerliOS SourceWell is part of the BerliOS project at GMD FOKUS. Please, have
 a look at <a href="http://www.berlios.de" target="_blank">http://www.berlios.de</a> for further information. At this moment, BerliOS also has other services: <a href="http://developer.berlios.de/" target="_blank">BerliOS Developer</a> (a SourceForge clone), <a href="http://news.berlios.de" target="_blank">BerliOS News</a> (news about Open Source - in German) and <a href="http://sourcebiz.berlios.de" target="_blank">SourceBiz</a> (a directory with Open Source companies, services, products and solutions - in German).
@@ -324,7 +323,7 @@ PASSWORD('<I>operator_password</I>'), 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'N', 'N
 <LI>mysql> FLUSH PRIVILEGES;
 <LI>mysql> CREATE DATABASE sourcewell;
 <LI>mysql> exit;
-<LI>user$ tar -zxvf sourcewell-1.0.12.tar.gz
+<LI>user$ tar -zxvf sourcewell-1.0.13.tar.gz
 <LI>user$ mysql -h <I>host</I> -u <I>operator</I> -p < sourcewell/sql/mysql.sql
 <BR>(insert the <I>operator_password</I>)
 <LI>user$ vi sourcewell/include/local.inc
@@ -472,7 +471,7 @@ as root. It's not even necessary.
 <LI>verify that the user public_html exists and is accesible from the
 web
 <LI>uncompress SourceWell in the parent directory
-<BR>user$ tar -zvxf sourcewell-1.0.12.tar.gz
+<BR>user$ tar -zvxf sourcewell-1.0.13.tar.gz
 <LI>List the content of the directories. You should have a directory
 sourcewell with five subdirectories. Read chapter 7 of this documentation for further information
 about the files.
@@ -630,7 +629,7 @@ translation. Keep on reading and you'll find out how easy it is.
 <P CLASS="subsubtitle">5.1. Main outputs
 
 <P>Download the lang-translate.inc file (it also comes in SourceWell's
-1.0.12 tarball) . If you edit it, you'll find lines
+1.0.13 tarball) . If you edit it, you'll find lines
 like this:
 
 <PRE>
@@ -694,7 +693,7 @@ examples of this idea. Maybe more statistics of this type are added in the futur
 
 <P>Any feedback you might have on this topic is always welcome.
 
-<P>Here is a list of the statistics you'll find in SourceWell 1.0.12:
+<P>Here is a list of the statistics you'll find in SourceWell 1.0.13:
 
 <UL>
 <LI>General SourceWell Statistics:
@@ -745,7 +744,7 @@ examples of this idea. Maybe more statistics of this type are added in the futur
 <P CLASS="subtitle">7. Files and functionality
 
 <P>The following list gives all the files that come with SourceWell Version
-1.0.12. It is
+1.0.13. It is
 interesting to have a look at it for any adaption and/or modification
 you would like to do to the system.
 
@@ -1182,7 +1181,7 @@ or last modification</TD><TD>varchar</TD><TD>16</TD><TD>X</TD><TD>&nbsp;</TD></T
 <P Class=authors>L: Length
 <BR>N: Not Null
 
-<p>Table temp has been added in SourceWell 1.0.12 in order to avoid that false insertions delete previous insertions. Hence, all applications that are already in the database and are going to be updated by visitors with permissions different from editor and administrator permission. The pending state of these applications is stored in the temp table. Once these contents are validated, they are moved from this table into the software table.
+<p>Table temp has been added in SourceWell 1.0.13 in order to avoid that false insertions delete previous insertions. Hence, all applications that are already in the database and are going to be updated by visitors with permissions different from editor and administrator permission. The pending state of these applications is stored in the temp table. Once these contents are validated, they are moved from this table into the software table.
 
 <P>&nbsp;
 <A NAME="developers">
