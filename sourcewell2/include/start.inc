@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: start.inc,v 1.35 2002/05/09 14:49:03 grex Exp $
+// $Id: start.inc,v 1.37 2002/05/09 14:52:46 grex Exp $
 
 if (!isset($login)) {
     page_open(array('sess' => 'SourceWell_Session'));
@@ -165,7 +165,7 @@ width="<?php echo $config_org_logo_width;?>" align="RIGHT"></a>
 
 while (list(, $value) = each($nav_bar_array)) {
     // Polimorfism
-    $value->render();
+    print $value->render();
 }
 
 print "</td>\n";
@@ -182,15 +182,15 @@ while (list(, $value) = each($adm_bar_array)) {
     if ($links) {
         print "<!-- Admin menu -->\n";
 	print "<table border=\"0\" cellspacing=\"0\" cellpadding=\"3\" width=\"100%\">\n";
-	print "<tr bgcolor=\"<?php echo $config_navstrip_bgcolor;?>\">\n";
-	print "<td align=\"center\"><img src=\"http://www.berlios.de/images/blank.gif\" height=\"1\" width=\"135\" border=0><br>\n";
-	print "<span class=\"titlebar\"><font color=\"$config_navstrip_font_color\">"._('Administration')."</font></span></td>\n";
-	print "</tr>\n";
-        print "<tr ALIGN=RIGHT bgcolor=\"$config_nav_bgcolor\">\n";
-        print "<td>\n";
+	print "  <tr bgcolor=\"<?php echo $config_navstrip_bgcolor;?>\">\n";
+	print "    <td align=\"center\"><img src=\"http://www.berlios.de/images/blank.gif\" height=\"1\" width=\"135\" border=0><br>\n";
+	print "      <span class=\"titlebar\"><font color=\"$config_navstrip_font_color\">"._('Administration')."</font></span></td>\n";
+	print "  </tr>\n";
+        print "  <tr ALIGN=RIGHT bgcolor=\"$config_nav_bgcolor\">\n";
+        print "    <td>\n";
         print $links;
-        print "</td>\n";
-	print "</tr>\n";
+        print "    </td>\n";
+	print "  </tr>\n";
 	print "</table>\n";
 	print "<!-- end Admin menu -->\n";
     }
