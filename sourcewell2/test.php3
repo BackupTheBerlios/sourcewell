@@ -8,8 +8,6 @@ config_inc('Form');
 config_inc('Preview');
 config_inc('Insertion');
 
-$table = new Table();
-
 $name = new TextField('Name', 'name','',1);
 $name->setIsTitle();
 $fields[] = $name;

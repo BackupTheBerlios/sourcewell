@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: start.inc,v 1.17 2002/04/21 22:20:00 grex Exp $
+// $Id: start.inc,v 1.18 2002/04/21 22:26:00 grex Exp $
 
 if (!isset($login)) {
     page_open(array('sess' => 'SourceWell_Session'));
@@ -37,11 +37,18 @@ $_INC_PATH = '/home/groups/sourcewell/htdocs/sourcewell2/include/';
 require($_INC_PATH.'config.inc');
 config_inc('lib');
 config_inc('html');
+config_inc('Table');
+
+/* Inicializamos la base de datos con los usuarios del sistema */
+
+$db = new DB_SourceAgency;
+
+$table = new Table();
+$table_error = new Table('error', '80%');
 
 //setlocale('LC_TIME','es_ES');
 //config_inc('Lang');
 //config_inc('Translation');
-//config_include('Table');
 //$t = new Translation($la);
 //$$config_database_variable = new DB_SourceWell;
 
