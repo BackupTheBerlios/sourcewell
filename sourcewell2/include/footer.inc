@@ -12,7 +12,7 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: footer.inc,v 1.8 2002/05/09 20:44:44 grex Exp $
+// $Id: footer.inc,v 1.9 2002/05/09 20:47:47 grex Exp $
 
 /* Configuration parameters are set as global */
 /* their values can be found at config.inc */
@@ -23,7 +23,10 @@ global $config_org_name;
 global $config_sys_url;
 global $config_nav_bgcolor;
 
+/* Only the */
+
 global $PHP_SELF;
+$php_self = eregi_replace('^[^/]*/', '', $PHP_SELF);
 
 /**
  * WISH: here we could have some functions that
@@ -37,7 +40,7 @@ global $PHP_SELF;
     <img border="0"
          src="http://www.w3.org/Icons/valid-html40"
          alt="Valid HTML 4.0!" height="31" width="88"></a>
-    <a href="http://jigsaw.w3.org/css-validator?uri=<?php echo $config_sys_url.'/'.$PHP_SELF;?>">
+    <a href="http://jigsaw.w3.org/css-validator?uri=<?php echo $config_sys_url.'/'.$php_self;?>">
     <img style="border:0;width:88px;height:31px"
          src="http://jigsaw.w3.org/css-validator/images/vcss"
          alt="Valid CSS!"></a>
