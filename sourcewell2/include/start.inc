@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: start.inc,v 1.4 2002/03/18 10:31:22 grex Exp $
+// $Id: start.inc,v 1.5 2002/03/18 10:33:13 grex Exp $
 
 // Disabling cache
 header("Cache-Control: no-cache, must-revalidate");     // HTTP/1.1
@@ -30,7 +30,6 @@ lib_include('Table');
 //$t = new Translation($la);
 $$config_database_variable = new DB_SourceWell;
 
-/*
 ?>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
@@ -45,7 +44,9 @@ $$config_database_variable = new DB_SourceWell;
    <title><?php echo $config_sys_name;?> - <?php echo _($config_sys_title);?></title>
    <link rel="stylesheet" type="text/css" href="berlios.css">
 </head>
-
+?>
+   /*
+?>
 <body bgcolor="<?php echo $th_body_bgcolor;?>">
 
 <!-- top strip -->

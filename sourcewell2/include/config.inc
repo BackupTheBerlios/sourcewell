@@ -15,7 +15,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: config.inc,v 1.4 2002/03/18 10:28:02 grex Exp $
+// $Id: config.inc,v 1.5 2002/03/18 10:28:46 grex Exp $
 
 /**
  * General System Configuration
@@ -286,7 +286,7 @@ $config_table_error_body_font_color = '#FF2020';
  * Note that both values should sum up 100%
  */
 
-$config_LeftColumnWidth = '33%':
+$config_LeftColumnWidth = '33%';
 $config_RightColumnWidth = '67%';
 
 /**
