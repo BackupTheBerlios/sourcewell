@@ -5,7 +5,7 @@
  * Copyright (c) 1998-2000 NetUSE AG
  *                    Boris Erdmann, Kristian Koehntopp
  *
- * $Id: session.inc,v 1.2 2003/04/16 11:54:50 helix Exp $
+ * $Id: session.inc,v 1.3 2003/04/22 10:59:46 helix Exp $
  *
  */ 
 
@@ -15,7 +15,7 @@ class Session {
   ## Define the parameters of your session by either overwriting
   ## these values or by subclassing session (recommended).
 
-  var $magic = "";                    ## Some string you should change.
+  var $magic = "KaiserinAugusta";     ## Some string you should change.
   var $mode = "cookie";               ## We propagate session IDs with cookies
   var $fallback_mode;                 ## If this doesn't work, fall back...
   var $lifetime = 0;                  ## 0 = do session cookies, else minutes
@@ -30,7 +30,10 @@ class Session {
   var $secure_auto_init = 1;          ## Set to 0 only, if all pages call
                                       ## page_close() guaranteed.
 
-  var $allowcache = "no";             ## "passive", "no", "private", "public"
+  var $allowcache = "private";        ## Set this to 'private' to allow private
+                                      ## caching; set this to 'public' to allow
+                                      ## public caching; set this to 'no' to
+                                      ## never cache the page.
   var $allowcache_expire = 1440;      ## If you allowcache, data expires in this
                                       ## many minutes.
   var $that_class = "";               ## Name of data storage container
@@ -215,6 +218,12 @@ class Session {
     global $PHP_SELF;
     global $QUERY_STRING;
 
+			// fix no.1: Gregorio Robles <grex@scouts-es.org>
+			// We want to start always with a "clean"
+			// query url string!!!!
+    $QUERY_STRING = "";
+			// end fix
+
     if ((isset($QUERY_STRING) && ("" != $QUERY_STRING))
      || ($this->mode == "get")) {
       $sep_char = "&";
@@ -224,6 +233,14 @@ class Session {
 
     $qstring = "";
     while (list($k, $v) = each($qarray)) {
+
+				// Fix no. 2 for SourceWell
+				// when iter from show_more function
+				// then do not print a question mark
+      if ($k == "iter") $sep_char = "&";
+      $v = ereg_replace("%20", " ", $v); 
+				// end fix no. 2 Grex
+
       $qstring .= $sep_char . urlencode($k) . "=" . urlencode($v);
       $sep_char = "&";
     }
