@@ -12,7 +12,7 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: header.inc,v 1.19 2002/05/10 22:35:53 grex Exp $
+// $Id: header.inc,v 1.20 2002/05/10 22:49:46 grex Exp $
 
 /**
  * TODO: global explanation of this file
@@ -227,7 +227,7 @@ while (list(, $value) = each($config_adm_bar_array)) {
 ?>
 
 <!-- Search menu -->
-<table border=0 cellspacing=0 cellpadding=3 width="100%">
+<table border="0" cellspacing="0" cellpadding="3" width="100%">
   <tr bgcolor="<?php echo $config_navstrip_bgcolor;?>">
     <td align="center">
       <img src="http://www.berlios.de/images/blank.gif" height="1" width="135" border=0 alt="">
@@ -239,7 +239,7 @@ while (list(, $value) = each($config_adm_bar_array)) {
     <td align="center">
       <p>
 <?php
-htmlp_form_action('appsearch.php3', '', 'get');
+htmlp_form_action('search.php', '', 'get');
 htmlp_form_textField('search', '', $size = 10);
 print '<p>';
 htmlp_form_submit(_o('Search'));

@@ -13,9 +13,8 @@
 // |          Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
 // +----------------------------------------------------------------------+
 //
-// $Id: logout.php,v 1.4 2002/05/10 10:38:30 grex Exp $
+// $Id: logout.php,v 1.5 2002/05/10 22:49:46 grex Exp $
 
-/* TODO: has to be implemented */
 /* Special status for the logout page (menubar, etc.) */
 $logout = 1;
 
