@@ -5,7 +5,7 @@
  * Copyright (c) 1998-2000 NetUSE AG
  *                    Boris Erdmann, Kristian Koehntopp
  *
- * $Id: local.inc,v 1.1 2001/05/17 07:06:24 helix Exp $
+ * $Id: local.inc,v 1.2 2001/07/19 13:15:18 helix Exp $
  *
  */ 
 
@@ -252,9 +252,9 @@ class SourceWell_Perm extends Perm {
   
   var $permissions = array(
                             "user_pending" => 1,
-                            "user"       => 2,
-                            "editor"     => 4,
-                            "supervisor" => 8,
+                            "anonymous" => 2,
+                            "user"       => 4,
+                            "editor"     => 8,
                             "admin"      => 16
                           );
 

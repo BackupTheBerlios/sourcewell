@@ -32,7 +32,7 @@
 ######################################################################
 
 $sys_name = "SourceWell";
-$sys_title = "Open Source Software Announcement &amp; Retrieval";
+$sys_title = "Open Source Software Announcement & Retrieval";
 $sys_url_title = "http://www.berlios.de/";
 $sys_url = "http://sourcewell.berlios.de/";
 $sys_logo_image = "images/berlios.jpg";
@@ -71,24 +71,11 @@ $org_logo_heigth = "73";
 ######################################################################
 
 $ts_array = array (
-	"Home"		=> $sys_url_title."index.php",
+	"Home"	=> $sys_url_title."index.php",
 	"About us"	=> $sys_url_title."about/index.php",
 	"Partners"	=> $sys_url_title."partners/index.php",
 	"Contact"	=> $sys_url_title."contact/index.php"
 );
-
-######################################################################
-# Languages
-#
-# List of languages supported by your website
-# You can add/delete/modify as long as you mantain the syntax
-# New languages are always wellcome. Contact with the authors!
-#
-######################################################################
-
-$la_array[] = "English";
-$la_array[] = "German";
-$la_array[] = "Spanish";
 
 ######################################################################
 # Theme
@@ -130,11 +117,13 @@ $th_strip_body_font_color = "";
 ######################################################################
 # Page Layout
 #
-# pl_appsperpage	maximum number of applications shown each time
+# config_show_appsperpage	maximum number of applications shown each time
+# config_show_numberofdays	maximum number of days show at the right side
 #
 ######################################################################
 
-$pl_appsperpage = 10;
+$config_show_appsperpage = "10";
+$config_show_numberofdays = 7; 
 
 ######################################################################
 # Email Notification
@@ -148,34 +137,51 @@ $pl_appsperpage = 10;
 #
 ######################################################################
 
-$ml_notify = 1;
+$ml_notify = "1";
 $ml_fromaddr = "noreply@mail.berlios.de";
 $ml_replyaddr = "noreply@mail.berlios.de";
 
 ######################################################################
 # Newsletter Configuration
 #
+# ml_list: Whether you want to have Mailing Lists ('1') or not ('0')
 # ml_listurl		
 # ml_weeklylisturl	
 # ml_newstoaddr 
 # ml_newsreqaddr 
 # ml_weeklynewstoaddr 
-# ml_weeklynewsreqaddr =
-# ml_newsadmaddr 
-# ml_newsfromaddr 
-# ml_newsreplyaddr 
+# ml_weeklynewsreqaddr 
+# ml_newsadmaddr: E-mail address of the list administrator
+# ml_newsfromaddr: From-field of the e-mails
+# ml_newsreplyaddr: Replay-addreess of th e-mails
 #
 ######################################################################
 
+$ml_list = "1";
 $ml_listurl = "http://lists.berlios.de/mailman/listinfo/sourcewell-news";
-$ml_weeklylisturl = "http://lists.berlios.de/mailman/listinfo/sourcewell-weeklynews";
+$ml_weeklylisturl =  "http://lists.berlios.de/mailman/listinfo/sourcewell-weeklynews";
 $ml_newstoaddr = "sourcewell-news@lists.berlios.de";
 $ml_newsreqaddr = "sourcewell-news-request@lists.berlios.de";
 $ml_weeklynewstoaddr = "sourcewell-weeklynews@lists.berlios.de";
 $ml_weeklynewsreqaddr = "sourcewell-weeklynews-request@lists.berlios.de";
 $ml_newsadmaddr = "sourcewell-admin@lists.berlios.de";
-$ml_newsfromaddr = $ml_newsadmaddr;
-$ml_newsreplyaddr = $ml_newsadmaddr;
+$ml_newsfromaddr = "sourcewell-admin@lists.berlios.de";
+$ml_newsreplyaddr = "sourcewell-admin@lists.berlios.de";
+
+######################################################################
+# Languages
+#
+# List of languages supported by your website
+# You can delete/modify as long as you mantain the syntax
+# New languages are always wellcome. Have a look at the documentation!
+#
+######################################################################
+
+$la_array[] = "English";
+$la_array[] = "German";
+$la_array[] = "Spanish";
+$la_array[] = "French";
+
 
 ######################################################################
 # Statistic configuration
@@ -191,10 +197,52 @@ $ml_newsreplyaddr = $ml_newsadmaddr;
 #
 ######################################################################
 
-$MinimumAppsByEmail = 0.4;
-$MinimumSeccByEmail = 5;
-$MinimumLicByEmail = 1;
-$Minimum_apps_in_license = 1;
+$MinimumAppsByEmail = "0.4";
+$MinimumSeccByEmail = "5";
+$MinimumLicByEmail = "1";
+$Minimum_apps_in_license = "1";
+
+######################################################################
+# Permission for accessing web pages
+#
+# "user"    only allows access to registered users with user permission
+# "editor"  only allows access to registered users with editor permission
+# "admin"   only allows access to registered users with admin permission
+# "all"     allows access to everybody (also unregistered users)
+#
+# Please, be sure of what you make!
+# An error could make your system fragile.
+#
+# config_perm_apppend    Access permission to enter apppend.php3
+# config_perm_appdom     Access permission to enter appdom.php3
+# config_perm_developer  Access permission to enter developer.php3
+# config_perm_users      Access permission to enter users.php3
+# config_perm_admdate    Access permission to enter admdate.php3
+# config_perm_admuser    Access permission to enter admuser.php3
+# config_perm_admlicens  Access permission to administrate licenses
+# config_perm_admcomment Access permission to administrate comments
+# config_perm_admsec     Access permission to administrate sections
+# config_perm_admcat     Access permission to administrate categories
+# config_perm_nladm      Access permission to administrate newsletters
+# config_perm_admfaq     Access permission for administrating the faq
+# config_perm_configure  Access permission for configuring the system
+# 
+######################################################################
+
+$config_perm_apppend = "editor";
+$config_perm_appdom = "editor";
+$config_perm_developer = "all";
+$config_perm_users = "user";
+$config_perm_admdate = "admin";
+$config_perm_admuser = "admin";
+$config_perm_admlicens = "admin";
+$config_perm_admcomment = "admin";
+$config_perm_admsec = "admin";
+$config_perm_admcat = "admin";
+$config_perm_nladm = "admin";
+$config_perm_admfaq = "admin";
+$config_perm_configure = "admin";
+
 
 ######################################################################
 # PHPLIB user authorization
@@ -213,24 +261,6 @@ $hash_secret = "Jabberwocky...";
 #
 ######################################################################
 
-
-######################################################################
-# Database Name Config
-#
-# All the database configuration is done in local.inc
-# This is only needed for a correct functioning of the system
-# and has only to be changed if you make changes in the DB config
-# that you make in local.inc
-# 
-# The default (and recommended) configuration is the one with
-# "sourcewell" as the database name. Do better not change it ;-)
-#
-# In future versions, this parameter will disappear from this file
-#
-###################################################################### 
-
-$db_name = "sourcewell";
-
 ######################################################################
 # SourceWell Version
 #
@@ -245,6 +275,6 @@ $db_name = "sourcewell";
 #
 ######################################################################
 
-$SourceWell_Version = "1.0";
+$SourceWell_Version = "1.0.9";
 
 ?>
