@@ -24,8 +24,8 @@ header("Pragma: no-cache"); 				// HTTP/1.0
 
 require("config.inc");
 require("lib.inc");
-require("translation.inc");
 require("lang.inc");
+require("translation.inc");
 require("box.inc");
 $t = new translation($la);
 $db = new DB_SourceWell;
@@ -36,7 +36,7 @@ $db = new DB_SourceWell;
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
    <meta http-equiv="expires" content="0">
-   <title><?php echo $sys_name;?> - <?php echo $t->translate($sys_title);?></title>
+   <title><?php echo $sys_name;?> - <?php echo _($sys_title);?></title>
 <link rel="stylesheet" type="text/css" href="berlios.css">
 
 <SCRIPT LANGUAGE="JavaScript"> function addNetscapePanel() { 
