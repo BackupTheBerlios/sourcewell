@@ -287,7 +287,7 @@ if (isset($option)) {
       $db->query($query_partial);
       $numiter = $db->num_rows()/10;
       $url = "stats.php3";
-      $urlquery = array("option" => "apps");
+      $urlquery = array("option" => "hits");
       show_more ($iter,$numiter,$url,$urlquery);
       break;
 

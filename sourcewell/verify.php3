@@ -34,19 +34,24 @@ $be = new box("",$th_box_frame_color,$th_box_frame_width,$th_box_title_bgcolor,$
 
 <!-- content -->
 <?php
-$db = new DB_SourceWell;
 
-$tables = "auth_user";
-$set = "perms='user'";
-$where = "user_id='$confirm_hash'";
-if ($result = mysql_db_query($db_name,"UPDATE $tables SET $set WHERE $where")) {
-  if (mysql_affected_rows() == 0) {
-    $be->box_full($t->translate("Error"), $t->translate("Verification of Registration failed").":<br>$query");
-  } else {
-    $msg = $t->translate("Your account is now activated. Please login").".";
-    $bx->box_full($t->translate("Verification of Registration"), $msg);
-  }
+$db->query("SELECT perms,username FROM auth_user WHERE  user_id='$confirm_hash'");
+$db->next_record();
+
+if ($db->f("perms") == "user") {
+       $msg = $t->translate("Your account is active. Please login");
+       $bx->box_full($t->translate("Your account has already been verified"), "");
+} else {
+    $db->query("UPDATE auth_user SET perms='user' WHERE user_id='$confirm_hash'");
+
+    if ($db->affected_rows() == 0) {
+        $be->box_full($t->translate("Error"), $t->translate("Verification of Registration failed"));
+    } else {
+        $msg = $t->translate("Your account is now activated. Please login").".";
+        $bx->box_full($t->translate("Verification of Registration"), $msg);
+    }
 }
+
 ?>
 <!-- end content -->
 
