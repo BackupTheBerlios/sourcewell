@@ -12,7 +12,7 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: Field.inc,v 1.9 2002/05/09 16:59:02 grex Exp $
+// $Id: Field.inc,v 1.10 2002/05/15 10:52:21 grex Exp $
 
 /**
  * Requires Table.inc, html.inc and config.inc
@@ -113,7 +113,7 @@ class Field {
             $table->table_nextRowWithColumns();
             return 1;
         } elseif ($this->notNull) {
-            $table->table_column('<b>'.$this->description.': <b>', $config_LeftColumnWidth, '', 'right');
+            $table->table_column('<b>'.$this->description.': </b>', $config_LeftColumnWidth, '', 'right');
             $table->table_column('<b style="color: red">Requires to be filled out</b>', $config_RightColumnWidth, '', 'left');
             $table->table_nextRowWithColumns();
             return 0;

@@ -12,7 +12,7 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: TabularShow.inc,v 1.2 2002/03/10 01:30:20 grex Exp $
+// $Id: TabularShow.inc,v 1.3 2002/05/15 10:50:32 grex Exp $
 
 /**
  * Requires table.inc
@@ -89,7 +89,7 @@ class TabularShow extends Show {
 
         while (list(, $value) = each($FieldObjectArray)) {
             // Polimorfism 
-            $table->table_column('<b>'.$value->getAttribute().'<b>', $width);
+            $table->table_column('<b>'.$value->getAttribute().'</b>', $width);
         }
 
         $table->table_columns_end();

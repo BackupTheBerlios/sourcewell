@@ -13,7 +13,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: TextField.inc,v 1.5 2002/05/09 17:01:59 grex Exp $
+// $Id: TextField.inc,v 1.6 2002/05/15 10:53:30 grex Exp $
 
 /**
  * Requires table.inc and html.inc
@@ -162,12 +162,12 @@ class TextField extends Field {
        global $table;
 
        if (!$this->isTitle && $this->default) {
-            $table->table_column('<b>'.$this->description.': <b>', '33%', '', 'right');
+            $table->table_column('<b>'.$this->description.': </b>', '33%', '', 'right');
             $table->table_column($this->default, '67%', '', 'left');
             $table->table_nextRowWithColumns();
             return 1;
        } elseif ($this->notNull && !$this->default) {
-            $table->table_column('<b>'.$this->description.': <b>', '33%', '', 'right');
+            $table->table_column('<b>'.$this->description.': </b>', '33%', '', 'right');
             $table->table_column('<b style="color: red">Requires to be filled out</b>', '67%','', 'left');
             $table->table_nextRowWithColumns();
             return 0;

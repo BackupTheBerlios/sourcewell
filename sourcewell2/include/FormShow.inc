@@ -12,7 +12,7 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: FormShow.inc,v 1.2 2002/03/10 01:30:20 grex Exp $
+// $Id: FormShow.inc,v 1.3 2002/05/15 10:50:32 grex Exp $
 
 /**
  * Requires table.inc and lib.inc
@@ -116,7 +116,7 @@ class FormShow extends Show {
 
         $table->table_body_begin("top");
 
-        print "\tpor <b>".$db->f("user")."</b> - <b>".lib_date_long($db->f("creation"))."<b><br>&nbsp;\n";
+        print "\tpor <b>".$db->f("user")."</b> - <b>".lib_date_long($db->f("creation"))."</b><br>&nbsp;\n";
 
         reset($FieldObjectArray);
 
