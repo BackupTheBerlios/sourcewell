@@ -100,5 +100,5 @@ if (($config_perm_developer != "all") && (!isset($perm) || !$perm->have_perm($co
 
 <?php
 require("./include/footer.inc");
-qpage_close();
+page_close();
 ?>
