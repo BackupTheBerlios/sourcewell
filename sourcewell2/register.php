@@ -13,7 +13,7 @@
 // |          Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
 // +----------------------------------------------------------------------+
 //
-// $Id: register.php,v 1.4 2002/05/10 10:17:18 grex Exp $
+// $Id: register.php,v 1.5 2002/05/10 10:21:01 grex Exp $
 
 require('start.inc');
 /* TODO: add monitoring class / library */
@@ -134,7 +134,7 @@ if (!$reg) {
 
     $table->table_nextRowWithColumns();
 
-    $table->table_column('<b>'._('Real Name'), '50%', '', 'right');
+    $table->table_column('<b>'._('Real Name').':</b>', '50%', '', 'right');
     $table->table_column(html_form_textField('realname', $realname, 20, 64), '50%', '', 'left');
 
     $table->table_nextRowWithColumns();
@@ -144,7 +144,7 @@ if (!$reg) {
 
     $table->table_nextRowWithColumns();
 
-    $table->table_colspan(html_form_submit(_('Register').':</b>', 'register'), 2, '', 'center');
+    $table->table_colspan(html_form_submit(_('Register'), 'register'), 2, '', 'center');
 
     $table->table_columns_end();
     htmlp_form_end();
