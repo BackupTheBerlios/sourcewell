@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: html.inc,v 1.5 2002/03/18 11:30:58 grex Exp $
+// $Id: html.inc,v 1.4 2002/03/18 11:29:52 grex Exp $
 
 /**
  * HTML library for PHP (and PHPLib)
@@ -241,7 +241,7 @@ function html_form_select_option($value, $selected, $text)
 
 function htmlp_form_select_option($value, $selected, $text)
 {
-    print html_form_select_option($value, $selected, $text);
+    print html_form_select_opcion($value, $selected, $text);
 }
 
 /**
