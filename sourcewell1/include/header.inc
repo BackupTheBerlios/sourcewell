@@ -45,7 +45,7 @@ $db = new DB_SourceWell;
       if ((typeof window.sidebar == "object") && (typeof window.sidebar.addPanel == "function")) 
       { 
          window.sidebar.addPanel ("<?php echo $sys_name ?>", 
-         "<?php echo $sys_url."sitebar.php"?>",""); 
+         "http:<?php echo $sys_url."sitebar.php"?>",""); 
       } 
       else 
       { 
@@ -77,8 +77,8 @@ require("menubar.inc");
 <td WIDTH="99%">
 <br>
 <?php
-if ( file_exists("/usr/local/httpd/include/adsense.php") ) {
-        include("/usr/local/httpd/include/adsense.php");
+if ( file_exists("./include/adsense.php") ) {
+        include("./include/adsense.php");
 }
 ?>
 <br>
