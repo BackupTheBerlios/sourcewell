@@ -12,7 +12,7 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: TextAreaField.inc,v 1.3 2002/03/18 11:18:46 grex Exp $
+// $Id: TextAreaField.inc,v 1.4 2002/03/18 11:28:28 grex Exp $
 
 /**
  * Requires Table.inc and html.inc
@@ -152,7 +152,7 @@ class TextAreaField extends Field {
         global $table;
 
         $table->table_column('<b>'.$this->description.': </b>'.$this->_specifyNotNull(), '33%', '', 'right');
-        $table->table_column(html_form_textAreao($this->name, $this->default, $this->columns, $this->rows), '67%', '', 'left');
+        $table->table_column(html_form_textArea($this->name, $this->default, $this->columns, $this->rows), '67%', '', 'left');
         $table->table_nextRowWithColumns();
     }
 

@@ -12,7 +12,7 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: Form.inc,v 1.3 2002/03/18 11:20:47 grex Exp $
+// $Id: Form.inc,v 1.4 2002/03/18 11:34:42 grex Exp $
 
 /**
  * Requires table.inc
@@ -213,7 +213,7 @@ class Form {
         global $table;
 
         $table->table_column();
-        $table->table_column_start('', '', 'left');
+        $table->table_column_start('67%', '', 'left');
     }
 
     /** 

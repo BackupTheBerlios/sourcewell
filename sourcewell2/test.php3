@@ -16,7 +16,7 @@ $fields[] = $name;
 $description = new TextAreaField('Description', 'description','',1);
 $description->setShowType('B');
 $fields[] = $description;
-$fields[] = new SelectField('Type', 'type', '', array(1, 2, 3, 4));
+$fields[] = new SelectField('Type', 'type', '', array('1', '2', '3', '4'));
 
 $form = new Form('Testing classes');
 
