@@ -1,0 +1,68 @@
+<?php
+/* vim: set expandtab tabstop=4 shiftwidth=4: */
+// +----------------------------------------------------------------------+
+// |        SourceWell 2 - The GPL Software Announcement System           |
+// +----------------------------------------------------------------------+
+// |      Copyright (c) 2001-2002 BerliOS, FOKUS Fraunhofer Institut      |
+// +----------------------------------------------------------------------+
+// | This program is free software. You can redistribute it and/or modify |
+// | it under the terms of the GNU General Public License as published by |
+// | the Free Software Foundation; either version 2 or later of the GPL.  |
+// +----------------------------------------------------------------------+
+// | Authors: Gregorio Robles <grex@scouts-es.org>                        |
+// |          Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
+// +----------------------------------------------------------------------+
+//
+// $Id: loginform.ihtml,v 1.1 2002/05/09 22:22:24 grex Exp $
+
+global $la;
+global $username;
+
+require('include/start.inc');
+
+print "<!-- failed login code -->\n";
+
+if (isset($username)) {
+    $table_error->table_full(_('Error'), _('Either your Username or Password are invalid').'.'
+		.'<br>'._('Please try again').'!'
+		.'<br><br>'._('If you are not yet a registered User, please select')
+                .' '.html_link(_('New User'), 'register.php3'));
+	);
+}
+
+$table->table_begin();
+$table->table_title(_("$sys_name Login"));
+$table->table_body_begin();
+htmlp_form_action();
+$table->table_columns_begin();
+
+$table->table_column(_('Username'), '50%', '', 'right');
+$table->table_column(html_form_textField('username', '', 20, 32), '50%', '', 'left');
+
+$table->table_nextRowWithColumns();
+
+$table->table_column(_('Password'), '50%', '', 'right');
+$table->table_column(html_form_PassWordField('password', 20, 32), '50%', '', 'left');
+
+$table->table_nextRowWithColumns();
+
+$table->table_colspan(html_form_submit(_("Login"), 'submit'), 2, '', 'center');
+
+$table->table_columns_end();
+htmlp_form_end();
+$table->table_body_end();
+$table->table_end();
+
+config_inc('end');
+?>
+
+<script language="JavaScript">
+<!--
+  if (document.forms[0][0].value != '') {
+      document.forms[0][1].focus();
+  } else {
+      document.forms[0][0].focus();
+  }
+// -->
+</script>
+</html>
