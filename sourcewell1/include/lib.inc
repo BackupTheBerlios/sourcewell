@@ -179,7 +179,7 @@ function appfull($query) {
       $i += 1;
     }
 
-    $db2->query("SELECT * FROM software WHERE developer=\"".$db->f("developer")."\" AND appid != \"".$db->f("appid")."\"");
+    $db2->query("SELECT * FROM software WHERE developer=\"".$db->f("developer")."\" AND appid != \"".$db->f("appid")."\" AND status=\"A\"");
     $i = 0;
     while ($db2->next_record()) {
       if ($i == 0) {
@@ -193,7 +193,7 @@ function appfull($query) {
     echo "</td></tr></table>\n";
     $bx->box_body_end();
     $bx->box_title_begin();
-    echo "<a href=\"".$sess->url("updapp.php").$sess->add_query(array("id" => $db->f("appid")))."\"><img src=\"images/recycled.png\" border=0 alt=\"".$t->translate("Update")."\"></a>&nbsp;&nbsp;<a href=\"".$sess->url("cmtapp.php").$sess->add_query(array("id" => $db->f("appid")))."\"><img src=\"images/txt.png\" border=0 alt=\"".$t->translate("Comment")."\"></a>\n";
+    echo "<b><a href=\"".$sess->url("updapp.php").$sess->add_query(array("id" => $db->f("appid")))."\" class=\"small\"><img src=\"images/recycled.png\" border=0 alt=\"".$t->translate("Update")."\">&nbsp;".$t->translate("Update")."</a>&nbsp;&nbsp;<a href=\"".$sess->url("cmtapp.php").$sess->add_query(array("id" => $db->f("appid")))."\" class=\"small\"><img src=\"images/txt.png\" border=0 alt=\"".$t->translate("Comment")."\">&nbsp;".$t->translate("Comment")."</a></b>\n";
    $bx->box_title_end();
    $bx->box_end();
 }
