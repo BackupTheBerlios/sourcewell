@@ -35,31 +35,27 @@ $bs = new box("100%",$th_strip_frame_color,$th_strip_frame_width,$th_strip_title
 
 <!-- content -->
 <?php
-$db = new DB_SourceWell;
-
-if (!isset($by) || empty($by)) {
-  $by = "";
-}
-
-$alphabet = array ("A","B","C","D","E","F","G","H","I","J","K","L",
-		"M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z");
-$msg = "[ ";
-
-while (list(, $ltr) = each($alphabet)) {
-  $msg .= "<a href=\"".basename($PHP_SELF)."?by=$ltr%\">$ltr</a>&nbsp;| ";
-}
-
-$msg .= "<a href=\"".basename($PHP_SELF)."?by=%\">".$t->translate("All")."</a>&nbsp;| ";
-$msg .= "<a href=\"".basename($PHP_SELF)."\">".$t->translate("Unknown")."</a>&nbsp;]";
-
-$bs->box_strip($msg);
-$columns = "developer,email";
-$tables = "software";
-$where = "developer LIKE '$by'";
-$order = "developer ASC";
-if (!$result = mysql_db_query($db_name,"SELECT DISTINCT $columns FROM $tables WHERE $where ORDER BY $order")) {
-  mysql_die();
+if (($config_perm_developer != "all") && (!isset($perm) || !$perm->have_perm($config_perm_developer))) {
+  $be->box_full($t->translate("Error"), $t->translate("Access denied"));
 } else {
+
+  if (!isset($by) || empty($by)) {
+    $by = "";
+  }
+
+  $alphabet = array ("A","B","C","D","E","F","G","H","I","J","K","L",
+		"M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z");
+  $msg = "[ ";
+
+  while (list(, $ltr) = each($alphabet)) {
+    $msg .= "<a href=\"".$sess->self_url().$sess->add_query(array("by" => $ltr."%"))."\">$ltr</a>&nbsp;| ";
+  }
+
+  $msg .= "<a href=\"".$sess->self_url().$sess->add_query(array("by" => "%"))."\">".$t->translate("All")."</a>&nbsp;| ";
+  $msg .= "<a href=\"".$sess->self_url().$sess->add_query(array("by" => ""))."\">".$t->translate("Unknown")."</a>&nbsp;]";
+
+  $bs->box_strip($msg);
+  $db->query("SELECT DISTINCT developer,email FROM software WHERE developer LIKE '$by' ORDER BY developer ASC");
   $bx->box_begin();
   $bx->box_title($t->translate("Authors"));
   $bx->box_body_begin();		
@@ -68,39 +64,36 @@ if (!$result = mysql_db_query($db_name,"SELECT DISTINCT $columns FROM $tables WH
 <?php
   echo "<tr><td><b>".$t->translate("No").".</b></td><td><b>#&nbsp;".$t->translate("Apps")."</b></td><td><b>".$t->translate("Names")."</b></td><td><b>".$t->translate("E-Mail")."</b></td></tr>\n";
   $i = 1;
-  while($row = mysql_fetch_array($result)) {
-    $columns = "COUNT(*)";
-    $tables = "software";
-    $where = "developer=\"".$row["developer"]."\" AND status=\"A\"";
-    $num = "";
-    if ($resultn = mysql_db_query($db_name,"SELECT $columns FROM $tables WHERE $where")) {
-      $rown = mysql_fetch_row($resultn);
-      if ($rown[0] > 0) {
-        $num = "[".sprintf("%03d",$rown[0])."]";
-        mysql_free_result($resultn);
-	echo "<tr><td>".sprintf("%d",$i)."</td>\n";
-	if (empty($row["developer"])) {
-	  echo "<td><a href=\"appbydev.php3?developer=\">$num</a></td>\n";
-	  echo "<td>".$t->translate("Unknown")."</td>\n";
-	  echo "<td>&nbsp;</td>\n";
+  while($db->next_record()) {
+    $developer = addslashes($db->f("developer"));
+    $email = $db->f("email");
+    $db2 = new DB_SourceWell;
+    $db2->query("SELECT COUNT(*) FROM software WHERE developer='$developer' AND email='$email' AND status='A'");
+    $db2->next_record();
+    if ($db2->f("COUNT(*)")) {
+      $num = "[".sprintf("%03d",$db2->f("COUNT(*)"))."]";
+      echo "<tr><td>".sprintf("%d",$i)."</td>\n";
+      if (empty($developer)) {
+	echo "<td><a href=\"".$sess->url("appbydev.php3").$sess->add_query(array("developer" => ""))."\">$num</a></td>\n";
+	echo "<td>".$t->translate("Unknown")."</td>\n";
+	echo "<td>&nbsp;</td>\n";
+      } else {
+	echo "<td><a href=\"".$sess->url("appbydev.php3").$sess->add_query(array("developer" => $db->f("developer")))."\">$num</a></td>\n";
+        echo "<td>".$db->f("developer")."</td>\n";
+        $email = $db->f("email");
+	if (!empty($email)) {
+	  echo "<td>&lt;<a href=\"mailto:".$email."\">".ereg_replace("@"," at ",htmlentities($email))."</a>&gt;</td>\n";
 	} else {
-	  echo "<td><a href=\"appbydev.php3?developer=".rawurlencode($row["developer"])."\">$num</a></td>\n";
-	  echo "<td>".$row["developer"]."</td>\n";
-	  if (!empty($row["email"])) {
-	    echo "<td>&lt;<a href=\"mailto:".$row["email"]."\">".ereg_replace("@"," at ",htmlentities($row["email"]))."</a>&gt;</td>\n";
-	  } else {
-	    echo "<td>&nbsp;</td>\n";
-	  }
-	  echo "</tr>\n";
+	  echo "<td>&nbsp;</td>\n";
 	}
-	$i++;
+        echo "</tr>\n";
       }
+      $i++;
     }
   }
   echo "</table>\n";
   $bx->box_body_end();
   $bx->box_end();
-  mysql_free_result($result);
 }
 ?>
 <!-- end content -->

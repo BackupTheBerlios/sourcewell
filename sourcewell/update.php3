@@ -33,11 +33,8 @@ $be = new box("",$th_box_frame_color,$th_box_frame_width,$th_box_title_bgcolor,$
 <?php
 if ($perm->have_perm("user_pending") || ($action == "review" && !$perm->have_perm("editor")) || ($action == "change" && !$perm->have_perm("editor"))) {
     $be->box_full($t->translate("Error"), $t->translate("Access denied"));
-    $auth->logout();
 } else {
   if (isset($id)) {
-    $db = new DB_SourceWell;
-
 					// Update application
     $type = trim($type);
     $version = trim($version);
@@ -56,101 +53,87 @@ if ($perm->have_perm("user_pending") || ($action == "review" && !$perm->have_per
     $email = trim($email);
     $depend = trim($depend);
     $urgency = trim($urgency);
-
-    $columns = "*";
+	
+    $columns = "modification,version,status";
     $tables = "software";
+	$where = "appid='$id'";
+	$db->query("SELECT $columns FROM $tables WHERE $where");
+    if ($db->num_rows() > 0) {
+		$db->next_record();
+    	$modification = $db->f("modification");
+    	$oldversion = $db->f("version");
+    	$status = $db->f("status");
+	}
+	
+    $columns = "*";
     $section = trim(strtok($seccat, "/"));
     $category = trim(strtok("."));
     $set = "type='$type',version='$version',section='$section',category='$category',license='$license',homepage='$homepage',download='$download',changelog='$changelog',rpm='$rpm',deb='$deb',tgz='$tgz',cvs='$cvs',screenshots='$screenshots',mailarch='$mailarch',developer='$developer',description='$description',email='$email',depend='$depend',urgency='$urgency'";
 
     switch ($action) {
       case "update":
-	$set = $set.",modification=NOW(),user='".$auth->auth["uname"]."'";
-	if ($perm->have_perm("editor")) {
-	  $set = $set.",status='A'";
-	} else {
-	  $set = $set.",status='P'";
-	}
-	break;
+	    $set .= ",user='".$auth->auth["uname"]."'";
+		if ($version == $oldversion) {
+		    $set .= ",modification='$modification'";
+		} else {
+			$set .= ",modification=NOW()";
+		}
+	    if ($perm->have_perm("editor")) {
+		  if ($status != 'D') {
+	        $set .= ",status='A'";
+		  }
+	    } else {
+	      $set .= ",status='P'";
+	    }
+	    break;
       case "review":
-	$set = $set.",modification='$modification'";
-	$set = $set.",status='A'";
-	break;
-      case "change":
-	$set = $set.",modification='$modification'";
-	$set = $set.",status='$status'";
-	break;
+	    $set .= ",modification='$modification'";
+	    $set .= ",status='A'";
+	    break;
       case "delete":
-	$set = $set.",modification='$modification'";
-	$set = $set.",status='D'";
-	break;
+	    $set .= ",modification='$modification'";
+	    $set .= ",status='D'";
+	    break;
       case "undelete":
-	$set = $set.",modification='$modification'";
-	if ($perm->have_perm("editor")) {
-	  $set = $set.",status='A'";
-	} else {
-	  $set = $set.",status='P'";
-	}
-	break;
+	    $set .= ",modification='$modification'";
+	    if ($perm->have_perm("editor")) {
+	      $set .= ",status='A'";
+	    } else {
+	      $set .= ",status='P'";
+	    }
+	    break;
     }
     $where = "appid='$id'";
-    if (!$result = mysql_db_query($db_name, "UPDATE $tables SET $set WHERE $where")) {
-      mysql_die();
-    } else {
+    $db->query("UPDATE $tables SET $set WHERE $where");
 
-						// Insert new history if apps is updated
-      if ($action == "update") {
-        $tables = "history";
-        $set = "appid='$id',user_his='".$auth->auth["uname"]."',creation_his=NOW(),version_his='$version'";
-        if (!$result = mysql_db_query($db_name, "INSERT $tables SET $set")) {
-	  mysql_die();
-        }
-      }
+				// Insert new history if apps is updated
+    if ($action == "update" && $version != $oldversion) {
+      $tables = "history";
+      $set = "appid='$id',user_his='".$auth->auth["uname"]."',creation_his=NOW(),version_his='$version'";
+      $db->query("INSERT $tables SET $set");
+    }
 
-						// Modify existing history if apps is changed
-      if ($action == "change") {
-        $tables = "history";
-        $set = "creation_his='$modification',version_his='$version'";
-        $where = "appid='$id' AND creation_his='$modification' AND version_his='$oldversion'";
-        if (!$result = mysql_db_query($db_name, "UPDATE $tables SET $set WHERE $where")) {
-	  mysql_die();
-        }
-      }
+		// Select and show new/updated application with comments
+    $columns = "*,SUM(app_cnt+homepage_cnt+download_cnt+changelog_cnt+rpm_cnt+deb_cnt+tgz_cnt+cvs_cnt+screenshots_cnt+mailarch_cnt) AS sum_cnt";
+    $tables = "software,counter,auth_user";
+    $where = "software.appid='$id' AND software.appid=counter.appid AND software.user=auth_user.username";
+    $group = "software.appid";
+    $query = "SELECT $columns FROM $tables WHERE $where GROUP BY $group";
+    appfull($query);
 
-				// Select and show new/updated application with comments
-      $columns = "*,SUM(app_cnt+homepage_cnt+download_cnt+changelog_cnt+rpm_cnt+deb_cnt+tgz_cnt+cvs_cnt+screenshots_cnt+mailarch_cnt) AS sum_cnt";
-      $tables = "software,counter,auth_user";
-      $where = "software.appid='$id' AND software.appid=counter.appid AND software.user=auth_user.username";
-      $group = "software.appid";
+    $query = "SELECT * FROM comments,auth_user WHERE appid='$id' AND auth_user.username=comments.user_cmt ORDER BY creation_cmt DESC";
+    cmtshow($query);
 
-      if (!$result = mysql_db_query($db_name, "SELECT $columns FROM $tables WHERE $where GROUP BY $group")) {
-        mysql_die();
-      } else {
-        if ($row = mysql_fetch_array($result)) {
-          appfull($row);
-          $columns = "*";
-          $tables = "comments,auth_user";
-          $where = "appid='$id' AND auth_user.username=comments.user_cmt";
-          $order = "creation_cmt DESC";
-          if (!$result = mysql_db_query($db_name, "SELECT $columns FROM $tables WHERE $where ORDER BY $order")) {
- 	    mysql_die();
-          } else {
-	    while ($rowc = mysql_fetch_array($result)) {
-	      cmtshow($rowc);
-	    }
-          }
-          if ($ml_notify) {
-  	    $message = $action." application ".$row["name"]." ".$row["version"]." (".typestr($row["type"]).") by ".$auth->auth["uname"];
-	    mailuser("editor", $action." application", $message);
-          }
-        } else {
-          $be->box_full($t->translate("Error"), $t->translate("Application")." (ID: $id) ".$t->translate("does not exist"));
-        }
-      }
+
+    if ($ml_notify) {
+      $db->query("SELECT name,version,type FROM software WHERE appid='$id'");
+      $db->next_record();
+      $message = $action." application ".$db->f("name")." ".$db->f("version")." (".typestr($db->f("type")).") by ".$auth->auth["uname"];
+      mailuser("editor", $action." application", $message);
     }
   } else {
     $be->box_full($t->translate("Error"), $t->translate("No Application ID specified")."."
-    ."<br>".$t->translate("Please select")." <a href=\"appbyuser.php3\">".$t->translate("Change Apps")."</a>.");
+  ."<br>".$t->translate("Please select")." <a href=\"".$sess->url("appbyuser.php3")."\">".$t->translate("Change Apps")."</a>.");
   }
 }
 ?>

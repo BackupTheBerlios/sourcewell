@@ -30,23 +30,24 @@ if (isset($auth) && !empty($auth->auth["perm"])) {
 require("header.inc");
 
 $bx = new box("80%",$th_box_frame_color,$th_box_frame_width,$th_box_title_bgcolor,$th_box_title_font_color,$th_box_title_align,$th_box_body_bgcolor,$th_box_body_font_color,$th_box_body_align);
+$be = new box("",$th_box_frame_color,$th_box_frame_width,$th_box_title_bgcolor,$th_box_title_font_color,$th_box_title_align,$th_box_body_bgcolor,$th_box_error_font_color,$th_box_body_align);
 ?>
 
 <!-- content -->
 <?php
-require("$la-faq.inc");
-$i = 1;
-$msg = "";
-while (list($key, $val) = each($qa)) {
-  $msg .= "<li><a href=#".$i++.">$key</a>";
-} 
-
+$db->query("SELECT * FROM faq WHERE language='$la'");
+if ($db->num_rows() > 0) {
+while($db->next_record()) {
+  $msg .= "<li><a href=#".$db->f("faqid").">".$db->f("question")."</a>";
+}
 $bx->box_full($t->translate("Frequently Asked Questions"), $msg);
-reset($qa);
-$i = 1;
-while (list($key, $val) = each($qa)) {
-  echo "<a name=".$i++.">\n";
-  $bx->box_full($t->translate("Question").": ".$key, "<b>".$t->translate("Answer").":</b> ".$val);
+$db->seek(0);
+while($db->next_record()) {
+  echo "<a name=".$db->f("faqid").">\n";
+  $bx->box_full($t->translate("Question").": ".$db->f("question"), "<b>".$t->translate("Answer").":</b> ".$db->f("answer"));
+}
+} else {
+  $be->box_full($t->translate("Error"), $t->translate("No Frequently Asked Questions exist"));
 }
 ?>
 <!-- end content -->

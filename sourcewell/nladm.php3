@@ -18,9 +18,13 @@
 # the Free Software Foundation; either version 2 or later of the GPL.
 ######################################################################
 
-page_open(array("sess" => "SourceWell_Session",
-                "auth" => "SourceWell_Auth",
-                "perm" => "SourceWell_Perm"));
+page_open(array("sess" => "SourceWell_Session"));
+if (isset($auth) && !empty($auth->auth["perm"])) {
+  page_close();
+  page_open(array("sess" => "SourceWell_Session",
+                  "auth" => "SourceWell_Auth",
+                  "perm" => "SourceWell_Perm"));
+}
 
 require("header.inc");
 
@@ -30,12 +34,19 @@ $be = new box("80%",$th_box_frame_color,$th_box_frame_width,$th_box_title_bgcolo
 
 <!-- content -->
 <?php
-if ($perm->have_perm("admin")) {
-  $db = new DB_SourceWell;
+if (($config_perm_nladm != "all") && (!isset($perm) || !$perm->have_perm($config_perm_nladm)) || (!$ml_list)) {
+  if (!$ml_list) {
+    $be->box_full($t->translate("Error"), $t->translate("The Mailing Lists are not enabled").".");
+  } else {
+    $be->box_full($t->translate("Error"), $t->translate("Access denied"));
+  }
+} else {
 
   if (!isset($period)) $period = "daily";
   if ($msg = nlmsg($period)) {
-    $subj = "$sys_name $period newsletter for ".date("l dS of F Y");
+	$title = "$sys_name ".$t->translate("$period newsletter for");
+    $subj = $title." ".date("l dS of F Y");
+    $title .= " ".strftime("%A, %e %b %Y, %T %Z",time());
     if (isset($send)) { // Send newsletter
       switch ($period) {
 	case "weekly":
@@ -51,7 +62,7 @@ if ($perm->have_perm("admin")) {
 	  break;
       }
     }
-    $bx->box_full($subj, "<pre>\n".htmlentities($msg)."\n</pre>\n");
+    $bx->box_full($title, "<pre>\n".htmlentities($msg)."\n</pre>\n");
 ?>
 <form method="get" action="<?php $sess->pself_url() ?>">
 <?php
@@ -61,8 +72,6 @@ if ($perm->have_perm("admin")) {
   } else {
     $be->box_full($t->translate("Error"), $t->translate("No Application found").".");
   }
-} else {
-  $be->box_full($t->translate("Error"), $t->translate("Access denied").".");
 }
 ?>
 <!-- end content -->

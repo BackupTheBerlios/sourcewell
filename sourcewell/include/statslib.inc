@@ -20,33 +20,59 @@
 # the Free Software Foundation; either version 2 or later of the GPL.
 ######################################################################
 
+## function statslib_top($query,$var,$message,$position)
+##
+## Displays a top
+##
+## $query has the database query to be listed
+## $var gives what should be listed
+## $message has the title of the box
+## $position gives the starting position for the top
 
-function stats($result,$var,$message,$position) {
-    global $bx, $t;
-    $max = 1; 		// max is a number which gives the top 1!!
-    $length = 280; 	// length is the maximal lenght of the image
+function statslib_top($query,$var,$message,$position) {
+  global $sess, $db, $bx, $t;
+  $max = 1; 		// max is a number which gives the top 1!!
+  $length = 280; 	// length is the maximal lenght of the image
 
-	$bx->box_begin();
-	$bx->box_title($t->translate($message));
-	$bx->box_body_begin();
+  $bx->box_begin();
+  $bx->box_title($t->translate($message));
+	
+  $bx->box_body_begin();
+  $db->query($query);
+  echo "<table width=100%>";
+  while($db->next_record()) {
+   if ( ($db->f("$var") > $max) ) {
+      $max = $db->f("$var");
+    } 
+    $position +=1;
+    $width = $db->f("$var") * $length / $max;
+    echo "<tr><td width=5% align=right valign=top>".$position.".</td>\n";
+    echo "<td width=35%>".$db->f("name");
 
-    echo "<table border=0 width=100% cellspacing=0>\n";
-        
-    while($row = mysql_fetch_array($result)) {
-       $position +=1;
-       if ( ($row[$var] > $max) ) {
-	       $max = $row[$var];
-       } 
-
-       echo "<tr><td width=5% align=right>&nbsp;".$position.".</td>\n";
-       echo "<td width=35%>&nbsp;<a href=\"appbyid.php3?id=".$row["appid"]."\">$row[name]</A> (".typestr($row["type"]).")</td>\n";
-       echo "<td width=1%>&nbsp;</td>\n";
-       echo "<td width=59%><img src=\"images/leftbar.gif\" height=14 width=7 Alt=\"$row[name]\"><img src=\"images/mainbar.gif\" Alt=\"$row[name]\" height=14 width=", $row[$var] * $length / $max, "><img src=\"images/rightbar.gif\" height=14 width=7 Alt=\"$row[name]\">&nbsp; $row[$var]</td></tr>\n";
-       echo "</td></tr>\n";
+		// We show (S) for the stable branch
+		// and (D) for the development branch
+    $db_local = new DB_SourceWell;
+    $db_name = $db->f("name");
+    $db_local->query("SELECT appid,type FROM software WHERE name='$db_name'");
+    while ($db_local->next_record()) {
+      $db_local_appid = $db_local->f("appid");
+      $db_local_type = $db_local->f("type");
+      if ($db_local_type == "S") {
+        echo " (<a href=\"".$sess->url("appbyid.php3").$sess->add_query(array("id" => $db_local->f("appid")))."\">S</A>)";
+      }
+      if ($db_local_type == "D") {
+        echo " (<a href=\"".$sess->url("appbyid.php3").$sess->add_query(array("id" => $db_local->f("appid")))."\">D</A>)";
+      }
     }
-    echo "</table>\n";
-	$bx->box_body_end();
-	$bx->box_end();
+    echo "</td>\n";
+
+    echo "<td width=1%>&nbsp;</td>\n";
+    echo "<td width=59%><img src=\"images/leftbar.gif\" height=14 width=7 Alt=\"".$db->f("name")."\"><img src=\"images/mainbar.gif\" Alt=\"".$db->f("name")."\" height=14 width=\"$width\"><img src=\"images/rightbar.gif\" height=14 width=7 Alt=\"".$db->f("name")."\">&nbsp;".$db->f("$var")."</td></tr>\n";
+    echo "</td></tr>\n";
+  }
+  echo "</table>\n";
+  $bx->box_body_end();
+  $bx->box_end();
 }
 
 
@@ -55,17 +81,17 @@ function stats($result,$var,$message,$position) {
 ## Displays the header of the table with the title given by $message
 
 function stats_title($message) {
-    global $t;
-    echo "<center>\n";
-    echo "<table width=600 border=0 cellspacing=0 cellpadding=0 bgcolor=\"".$GLOBALS["th_box_frame_color"]."\" align=center>\n";
-    echo "<tr><td>\n";
-    echo "<table width=100% border=0 cellspacing=1 cellpadding=3>\n";
-    echo "<tr bgcolor=\"".$GLOBALS["th_box_title_bgcolor"]."\">\n";
-    echo "<td><b>";
-    	echo $t->translate($message);
-    		echo "</b></td>\n";
-    echo "</tr><tr bgcolor=\"".$GLOBALS["th_box_body_bgcolor"]."\"><td>\n";
-    echo "<table border=0 width=100% cellspacing=0>\n";
+  global $t;
+  echo "<center>\n";
+  echo "<table width=600 border=0 cellspacing=0 cellpadding=0 bgcolor=\"".$GLOBALS["th_box_frame_color"]."\" align=center>\n";
+  echo "<tr><td>\n";
+  echo "<table width=100% border=0 cellspacing=1 cellpadding=3>\n";
+  echo "<tr bgcolor=\"".$GLOBALS["th_box_title_bgcolor"]."\">\n";
+  echo "<td><b>";
+  echo $t->translate($message);
+  echo "</b></td>\n";
+  echo "</tr><tr bgcolor=\"".$GLOBALS["th_box_body_bgcolor"]."\"><td>\n";
+  echo "<table border=0 width=100% cellspacing=0>\n";
 }
 
 ## stats_subtitle($message):
@@ -73,42 +99,27 @@ function stats_title($message) {
 ## Displays a subtitle
 
 function stats_subtitle($message) {
-
-    echo "<tr><td bgcolor=\"".$GLOBALS["th_box_title_bgcolor"]."\"><B>".$message."</B></td>\n";
-    echo "<td bgcolor=\"".$GLOBALS["th_box_title_bgcolor"]."\">&nbsp;</td>";
-    echo "<td bgcolor=\"".$GLOBALS["th_box_title_bgcolor"]."\">&nbsp;</td>";
-    echo "<td bgcolor=\"".$GLOBALS["th_box_title_bgcolor"]."\">&nbsp;</td>";
-    echo "<td bgcolor=\"".$GLOBALS["th_box_title_bgcolor"]."\">&nbsp;</td></tr>";
+  echo "<tr><td bgcolor=\"".$GLOBALS["th_box_title_bgcolor"]."\"><B>".$message."</B></td>\n";
+  echo "<td bgcolor=\"".$GLOBALS["th_box_title_bgcolor"]."\">&nbsp;</td>";
+  echo "<td bgcolor=\"".$GLOBALS["th_box_title_bgcolor"]."\">&nbsp;</td>";
+  echo "<td bgcolor=\"".$GLOBALS["th_box_title_bgcolor"]."\">&nbsp;</td>";
+  echo "<td bgcolor=\"".$GLOBALS["th_box_title_bgcolor"]."\">&nbsp;</td></tr>";
 }
 
 
-## stats_display($what,$count,$url):
+## stats_display($what,$count,$url,$urlquery,$total):
 ##
 ## Displays the statistic graphically in one column
 ## $what is the string which gives the name
 ## $count gives the number of times it appears
 ## $url gives the corresponding url
-## if $url = 0 then no url is displayed
-
-function stats_display($what,$count,$url) {
-    $max= 400;		// max is a number to ensure the maximum lenght of the graph
-    $length = 575; 	// length is the maximal lenght of the image
-
-    echo "<tr><td width=47%>&nbsp;<a href=\"".$url."\">".$what."</A>:</td>\n";
-    echo "<td width=1%>&nbsp;</td>\n";
-    echo "<td width=52%><img src=\"images/leftbar.gif\" height=14 width=7 Alt=\"${$type}[$i]\"><img src=\"images/mainbar.gif\" Alt=\"${$type}[$i]\" height=14 width=", $count * $length / $max, "><img src=\"images/rightbar.gif\" height=14 width=7 Alt=\"${$type}[$i]\">&nbsp; $count</td></tr>\n";
-    echo "</FONT></td></tr>";
-}
-
-## stats_display_alt($what,$count,$url,$total):
-##
-## Displays the statistic graphically in one column
-## $what is the string which gives the name
-## $count gives the number of times it appears
-## $url gives the corresponding url
+## $urlquery contains an array with the paramaters for the new page
+##            (everything after the ?)
+##            if $urlquery = 0, no additional query will be set
 ## $total gives the total sum of all the studied items
 
-function stats_display_alt($what,$count,$url,$total) {
+function stats_display($what,$count,$url,$urlquery,$total) {
+  global $sess;
 
   $epsilon = 0.0001;    // To avoid having division by zero
   if (empty($total) || !isset($total) || $total == 0) {$total=1; $count=0;}
@@ -122,27 +133,28 @@ function stats_display_alt($what,$count,$url,$total) {
   }
 
   echo "<tr><td width=246>&nbsp;";
-    if (strcmp($url,"0")) echo "<a href=\"".$url."\">";
+    if (strcmp($url,"0")) echo "<a href=\"".$sess->url($url);
+    if (strcmp($urlquery,"0")) echo $sess->add_query($urlquery);
+    if (strcmp($url,"0")) echo "\">";
        echo $what;
 	 if (strcmp($url,"0")) echo "</A>:</td>\n";
   echo "<td width=6>&nbsp;</td>\n";
-  echo "</td width=42><td>&nbsp; $count</td>\n";
+  echo "<td align=right>&nbsp;$count</td>\n";
 
   echo "<td><table width=264><TR><td><img src=\"images/leftbar.gif\" height=14 width=7 Alt=\"$what\"><img src=\"images/mainbar.gif\" Alt=\"$what\" height=14 width=", $count * 240 / $total_normalize, "><img src=\"images/rightbar.gif\" height=14 width=7 Alt=\"$what\"></td></tr></table>\n";
 
-  echo "</td><td width=42>&nbsp;".(Ceil(($count*100 /($total+$epsilon))*10)/10)."%</td></tr>\n";
+  echo "</td><td width=42 align=right>&nbsp;".(Ceil(($count*100 /($total+$epsilon))*10)/10)."%</td></tr>\n";
 }
 
 ## stats_end():
 ##
 ## Finishes the table
 
-
 function stats_end(){
-    echo "</table>\n";
-    echo "</TD></TR></TABLE>\n";
-    echo "</TD></TR></TABLE></CENTER>\n";
-    echo "<BR>\n";
+  echo "</table>\n";
+  echo "</TD></TR></TABLE>\n";
+  echo "</TD></TR></TABLE></CENTER>\n";
+  echo "<BR>\n";
 }
 
 
@@ -164,16 +176,20 @@ $domain_country[7][0] = "uk";	$domain_country[7][1] = "United Kingdom (.uk)";
 $domain_country[8][0] = "it";	$domain_country[8][1] = "Italy (.it)";
 $domain_country[9][0] = "se";	$domain_country[9][1] = "Sweden (.se)";
 $domain_country[10][0] = "nl";	$domain_country[10][1] = "The Netherlands (.nl)";
-$domain_country[11][0] = "be";	$domain_country[11][1] = "Belgium (.be)";
+$domain_country[11][0] = "au";	$domain_country[11][1] = "Australia (.au)";
 $domain_country[12][0] = "es";	$domain_country[12][1] = "Spain (.es)";
-$domain_country[13][0] = "au";	$domain_country[13][1] = "Australia (.au)";
+$domain_country[13][0] = "be";	$domain_country[13][1] = "Belgium (.be)";
 $domain_country[14][0] = "nu";	$domain_country[14][1] = "Niue (.nu)";
 $domain_country[15][0] = "ca";	$domain_country[15][1] = "Canada (.ca)";
 $domain_country[16][0] = "jp";	$domain_country[16][1] = "Japan (.jp)";
 $domain_country[17][0] = "cz";	$domain_country[17][1] = "Czech Republik (.cz)";
 $domain_country[18][0] = "ru";	$domain_country[18][1] = "Russian Federation (.ru)";
 $domain_country[19][0] = "no";	$domain_country[19][1] = "Norway (.no)";
-$domain_country[20][0] = "at";	$domain_country[20][1] = "Austria (at.)";
+$domain_country[20][0] = "at";	$domain_country[20][1] = "Austria (.at)";
+$domain_country[21][0] = "xx";	$domain_country[21][1] = "";
+$domain_country[22][0] = "xx";	$domain_country[22][1] = "";
+$domain_country[23][0] = "xx";	$domain_country[23][1] = "";
+$domain_country[24][0] = "xx";	$domain_country[24][1] = "";
 
 // In alfabetical order
 $domain_country[25][0] = "ac";	$domain_country[25][1] = "Ascension Island (.ac)";
@@ -409,5 +425,4 @@ $domain_country[255][0] = "gov";	$domain_country[255][1] = "U.S. Governement";
 $domain_country[256][0] = "mil";	$domain_country[256][1] = "U.S. Miltary";
 $domain_country[257][0] = "su";	$domain_country[257][1] = "Ex U.S.R.R.";
 $domain_country[258][0] = "arpa";	$domain_country[258][1] = "ArpaNet";
-
 ?>

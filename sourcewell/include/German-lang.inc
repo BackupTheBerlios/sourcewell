@@ -32,7 +32,7 @@ switch($phrase) {
      case "Not Logged in": $tmp = "Nicht eingeloggt"; break;
 
 // Top title
-     case "Open Source Software Announcement &amp; Retrieval":  $tmp = "Open Source Software Ank&uuml;ndigung &amp; Recherche"; break;
+     case "Open Source Software Announcement & Retrieval":  $tmp = "Open Source Software Ank&uuml;ndigung & Recherche"; break;
 
 // Menue bar
      case "Recent Apps": $tmp = "Neueste Anw."; break;
@@ -69,6 +69,7 @@ switch($phrase) {
 	 case "English": $tmp = "Englisch"; break;
 	 case "German": $tmp = "Deutsch"; break;
 	 case "Spanish": $tmp = "Spanisch"; break;
+	 case "French": $tmp = "Französisch"; break;
 
 // sorted by
 	 case "sorted by": $tmp = "sortiert nach"; break;
@@ -323,7 +324,7 @@ switch($phrase) {
 	 case "Number of Licenses listed in $GLOBALS[sys_name]": $tmp = "Anzahl der Lizenzen in $GLOBALS[sys_name]"; break;
 	 case "Number of $GLOBALS[sys_name] Sections": $tmp = "Anzahl der Sektionen in $GLOBALS[sys_name]"; break;
 	 case "Number of $GLOBALS[sys_name] Categories": $tmp = "Anzahl der Kategorien in $GLOBALS[sys_name]"; break;
-	 case "Total Number of Hits on Applications": $tmp = "Gesamtzahl der Zugriffe auf Anwendungen"; break;
+	 case "Number of Hits on Applications": $tmp = "Gesamtzahl der Zugriffe auf Anwendungen"; break;
 	 case "Number of redirected Homepages": $tmp = "Anzahl der Zugriffe auf Homepages"; break;
 	 case "Number of Downloads": $tmp = "Anzahl der Zugriffe auf Downloads"; break;
 	 case "Number of redirected Changelogs": $tmp = "Anzahl der Zugriffe auf Changlogs"; break;
@@ -348,7 +349,7 @@ switch($phrase) {
 	 case "Applications listed by Homepage Visits": $tmp = "Anwendungen geordnet nach Anzahl der Homepage-Besuche"; break;
 	 case "Top downloaded Red Hat Packages": $tmp = "Top der heruntergeladenen RPM-Pakete"; break;
 	 case "Top downloaded Debian Packages": $tmp = "Top der heruntergeladenen Debian-Pakete"; break;
-	 case "Top downloaded Debian Packages": $tmp = "Top der heruntergeladenen Debian-Pakete"; break;
+	 case "Top downloaded Slackware Packages": $tmp = "Top der heruntergeladenen Slackware-Pakete"; break;
 	 case "Application Importance listed by Sections": $tmp = "Anwendungsbedeutung geordnet nach Sektionen"; break;
 	 case "Applications listed by Sections": $tmp = "Anwendungen geordnet nach Sektionen"; break;
 	 case "Applications listed by Categories": $tmp = "Anwendungen geordnet nach Kategrien"; break;
@@ -394,6 +395,100 @@ switch($phrase) {
      case "The passwords are not identical": $tmp = "Die Passworte sind nicht identisch"; break;
      case "Please try again": $tmp = "Bitte versuchen Sie es nochmal"; break;
      case "License description is not available": $tmp = "Lizenzbeschreibung ist nicht verfügbar"; break;
+     case "No Frequently Asked Questions exist": $tmp = "Es existieren keine oft gestellten Fragen"; break;
+
+// New Translations for version 1.0.9
+
+// stats.php3
+    case "Number of Insertions and Modifications in the last day": $tmp = "Anzahl der Eintragungen und Modifikationen während des letzten Tages"; break;
+    case "Number of today's visitors": $tmp = "Anzahl der heutigen Besucher"; break;
+    case "Today": $tmp = "Heute"; break;
+    case "Version Number":  $tmp = "Versionsnummer"; break;
+
+// admuser.php3
+    case "User Administration": $tmp = "Benutzeradministration"; break;
+    case "There can only be one anonymous user in the system": $tmp = "Es darf nur ein anonymer Benutzer existieren"; break;
+    case "The anonymous permission is incompatible with another type of permission": $tmp = "Das anonyme Recht ist inkompatibel zu anderen Rechten"; break;
+
+// inscat.php3 and inssec.php3
+    case "Former category": $tmp = "Bestehende Kategorie"; break;
+    case "in Section": $tmp = "in Sektion"; break;
+    case "has been renamed to": $tmp = "wurde geändert in"; break;
+    case "affecting": $tmp = "afectando a"; break;
+    case "applications": $tmp = "Anwendungen"; break;
+    case "already exists!": $tmp = "existiert bereits!"; break;
+    case "Category not specified": $tmp = "Keine Kategorie angegeben"; break;
+    case "This is the unique category of the section. For deleting it, you should delete the whole section.": $tmp = "Dies ist die einzige Kategorie der Sektion. Wenn die Kategorie gelöscht wird, sollte die Sektion ebenfalls gelöscht werden"; break;
+    case "If you press another time the Delete-button you will delete": $tmp = "Wenn Sie den Löschen-Knopf ein weiteres Mal drücken, dann wird endgültig gelöscht"; break;
+    case "applications that are actually in the": $tmp = "Anwendungen, die gerade gehören zu"; break;
+    case "category": $tmp = ""; break;
+    case "Delete Category": $tmp = "Kategorie löschen"; break;
+    case "Delete": $tmp = "Löschen"; break;
+    case "Deletion succesfully completed.": $tmp = "Löschvorgang wurde erfolgreich durchgeführt."; break;
+    case "Deletion succesfully completed affecting": $tmp = "Löschvorgang wurde erfolgreich durchgeführt für"; break;
+    case "applications": $tmp = "Anwendungen"; break;
+    case "has been added succesfully to the database": $tmp = "wurde erfolgreich in die Datenbank eingetragen"; break;
+    case "Warning!": $tmp = "Warnung!"; break;
+    case "If you press another time the Delete-button you will delete the": $tmp = "Wenn Sie den Löschen-Knopf ein weiteres Mal drücken, dann Löschen Sie die"; break;
+    case "categories and": $tmp = "Kategorien und"; break;
+    case "section": $tmp = "Sektion"; break;
+    case "Delete Section": $tmp = "Lösche Sektion"; break;
+
+// inslic.php3
+
+    case "License name not specified": $tmp = "Kein Lizenzname angegeben"; break;
+    case "has a new URL:": $tmp = "hat eine neue URL"; break;
+    case "New URL not specified": $tmp = "Keine neue URL angegeben"; break;
+    case "If you press another time the Delete-button you will alter": $tmp = "Wenn Sie den Löschen-Knopf ein weiteres Mal drücken, dann ändern Sie"; break;
+    case "applications that have actually license": $tmp = "aplicaciones que tiene actualmente bajo la licencia"; break;
+    case "That license already exists!": $tmp = "Diese Lizenz existiert bereits!"; break;
+    case "with URL": $tmp = "mit URL"; break;
+    case "License URL not specified": $tmp = "URL der Lizenz wurde nicht angeben"; break;
+    case "License not specified": $tmp = "Lizenz nicht angeben"; break;
+    case "Delete License": $tmp = "Lösche Lizenz"; break;
+
+// admcomment.php3 and comment.php3
+    case "Posted on": $tmp = "Erstellt am"; break;
+    case "Modify": $tmp = "Ändern"; break;
+    case "Comment about": $tmp = "Kommentar zu"; break;
+    case "Delete this comment? (please, think there's no way for undoing comment deletion)": $tmp = "Diesen Kommentar löschen? (Bitte bedenken Sie, dass es keine Möglichkeit gibt, dies wieder rückgängig zu machen)"; break;
+    case "Yes, Delete": $tmp = "Ja, löschen"; break;
+    case "No, Just Modify": $tmp = "Nein, nur ändern"; break;
+    case "Comment Deleted": $tmp = "Kommentar gelöscht"; break;
+    case "Selected Comment was deleted": $tmp = "Der ausgewählte Kommentar wurde gelöscht"; break;
+
+// admfaq.php3 and insfaq.php3
+
+    case "Enter a New Frequently Asked Question": $tmp = "Erstellen einer neuen häufig gestellten Frage"; break;
+    case "Frequently Asked Questions Administration": $tmp = "Administration der häufig gestellten Fragen"; break;
+    case "Delete this faq? (please, think there's no way for undoing comment deletion)": $tmp = "Diese Frage löschen? (Bitte bedenken Sie, dass es keine Möglichkeit gibt, dies wieder rückgängig zu machen)"; break;
+    case "Create": $tmp = "Erstelle"; break;
+    case "FAQ Deleted": $tmp = "Frage gelöscht"; break;
+    case "FAQ Administration": $tmp = "Administration der häufig gestellten Fragen"; break;
+    case "The following FAQ has been modified": $tmp = "Die folgende Frage wurde geändert"; break;
+    case "The following FAQ has been inserted in this language": $tmp = "Die folgende Frage wurde erstellt in der Sprache"; break;
+
+// admdate.php3
+    case "Modification date": $tmp = "Änderungsdatum"; break;
+    case "History date": $tmp = "Datum der Historie"; break;
+
+// nladm.php3
+    case "The Mailing Lists are not enabled": $tmp = "Die Benutzung der Mailinglisten ist nicht freigegeben"; break;
+    case "daily newsletter for": $tmp = "täglicher Newsletter für"; break;
+    case "weekly newsletter for": $tmp = "wöchentlicher Newsletter für"; break;
+    case "Newsletter was sent at ": $tmp = "Newsletter wurde gesendet am"; break;
+    case "Send newsletter": $tmp = "Sende Newsletter"; break;
+
+// footer.inc
+    case "System Credits": $tmp = "Cr&eacute;ditos"; break;
+
+// login.php3
+    case "Anonymous login": $tmp = "Anonymes Login"; break;
+    case "If you are not registered and/or you do not want to, you can login as an anonymous user by entering": $tmp = "Wenn Sie nicht registriert sind und/oder Sie möchten dies auch nicht, dann authentifizieren Sie sich als anonymer Benutzer durch Eingabe von"; break;
+    case "as user name and": $tmp = "als Benutzername und"; break;
+    case "as password.": $tmp = "als Passwort"; break;
+
+// configure.php3
 
 // If no translation available, keep the original phrase
      default: $tmp = "$phrase"; break;

@@ -63,7 +63,7 @@ class box {
 
 	function box_body($text) {
 		$this->box_body_begin();
-		echo "<font color=\"$this->box_body_font_color\">$text</font>\n";
+		echo "$text\n";
 		$this->box_body_end();
 	}
 

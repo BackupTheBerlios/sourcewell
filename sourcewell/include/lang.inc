@@ -15,6 +15,7 @@ switch($la) {
    case "English": $locale = "en_EN"; break;
    case "German": $locale = "de_DE"; break;
    case "Spanish": $locale = "es_ES"; break;
+   case "French": $locale = "fr_FR"; break;
    default: $locale = "en_EN"; break;
 }
 setlocale ("LC_TIME", $locale);

@@ -36,25 +36,12 @@ if ($perm->have_perm("user_pending")) {
     $auth->logout();
 } else {
   if (isset($id)) {
-    $db = new DB_SourceWell;
-
 					// Look if application is already in table
     $columns = "*";
     $tables = "software";
     $where = "appid='$id'";
-    if (!$result = mysql_db_query($db_name, "SELECT $columns FROM $tables WHERE $where")) {
-      mysql_die();
-    } else {
-
-				// If application in table show existing values to change
-      if ($row = mysql_fetch_array($result)) {
-        updform($row);
-
-				// If application is not in table die
-      } else {
-        mysql_die();
-      }
-    }
+    $query = "SELECT $columns FROM $tables WHERE $where";
+    updform($query);
   } else {
     $be->box_full($t->translate("Error"), $t->translate("No Application ID specified"));
   }

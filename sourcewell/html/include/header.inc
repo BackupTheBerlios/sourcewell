@@ -42,7 +42,7 @@ require("top_title.inc");
 <?php
 require("menubar.inc");
 ?>
-<td WIDTH="10"><img SRC="images/blank.gif" BORDER=0 height=1 width=10></td>
+<td WIDTH="10"><img SRC="../images/blank.gif" BORDER=0 height=1 width=10></td>
 
 <td WIDTH="99%">
 <p>&nbsp;

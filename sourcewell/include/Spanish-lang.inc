@@ -32,7 +32,7 @@ switch($phrase) {
      case "Not Logged in": $tmp = "No autentificado"; break;
 
 // Top title
-     case "Open Source Software Announcement &amp; Retrieval":  $tmp = "Anuncio y B&uacute;squeda de Aplicaciones de C&oacute;digo Abierto"; break;
+     case "Open Source Software Announcement & Retrieval":  $tmp = "Anuncio y B&uacute;squeda de Aplicaciones de Fuente Abierta"; break;
 
 // Menue Bar
      case "Recent Apps": $tmp = "Novedades"; break;
@@ -43,13 +43,13 @@ switch($phrase) {
      case "Forgot Password": $tmp = "Recordar Contrase&ntilde;a"; break;
      case "Change User": $tmp = "Modificar Registro"; break;
      case "Users": $tmp = "Usuarios"; break;
-
+ 
      case "Apps Index": $tmp = "&Iacute;ndice"; break;
      case "New Apps": $tmp = "Introducir"; break;
      case "Update Apps": $tmp = "Actualizar"; break;
      case "Pending Apps": $tmp = "Validar"; break;
-     case "Deleted Apps": $tmp = "Borrar";break;
-     case "Modified Apps": $tmp = "Modified Apps";break;
+     case "Deleted Apps": $tmp = "Borradas";break;
+     case "Modified Apps": $tmp = "Modificadas";break;
 
      case "Newsletter": $tmp = "Lista de Noticias"; break;
      case "Backend": $tmp = "$phrase"; break;
@@ -60,7 +60,7 @@ switch($phrase) {
      case "Categories": $tmp = "Categor&iacute;as"; break;
      case "Authors": $tmp = "Autores"; break;
      case "Licenses": $tmp = "Licencias"; break;
-     case "Check Date": $tmp = "Check Date"; break;
+     case "Check Date": $tmp = "Consistencia"; break;
 
      case "Search": $tmp = "Buscar"; break;
      case "Language": $tmp = "Idioma"; break;
@@ -70,6 +70,7 @@ switch($phrase) {
 	 case "English": $tmp = "Ingl&eacute;s"; break;
 	 case "German": $tmp = "Alem&aacute;n"; break;
 	 case "Spanish": $tmp = "Espa&ntilde;ol"; break;
+	 case "French": $tmp = "Franc&eacute;s"; break;
 
 // sorted by
 	 case "sorted by": $tmp = "ordenado por"; break;
@@ -94,8 +95,8 @@ switch($phrase) {
 // Apps by identifier
      case "Application": $tmp = "La aplicaci&oacute;n"; break;
      case "has not yet been reviewed by a $GLOBALS[sys_name] Editor.<br> Please, be patient. It will be surely done in the next time.": $tmp = "no ha sido todav&iacute;a revisada por $GLOBALS[sys_name].<br> Por favor, sea paciente. Seguro que ser&aacute; revisada en poco tiempo."; break;
-     case "is modified": $tmp = "$phrase"; break;
-     case "is deleted": $tmp = "$phrase"; break;
+     case "is modified": $tmp = "ha sido modificada"; break;
+     case "is deleted": $tmp = "ha sido borrada"; break;
 
 
 // User registration
@@ -164,12 +165,12 @@ switch($phrase) {
      case "Red Hat Package": $tmp = "Paquete Red Hat"; break;
      case "Debian Package": $tmp = "Paquete Debian"; break;
      case "Slackware Package": $tmp = "Paquete Slackware"; break;
-     case "CVS Tree": $tmp = "CVS Tree"; break;
-     case "Screenshots": $tmp = "Screenshots"; break;
-     case "Mailing List Archive": $tmp = "Mailing List Archive"; break;
+     case "CVS Tree": $tmp = "&Aacute;rbol CVS"; break;
+     case "Screenshots": $tmp = "Capturas de Pantalla"; break;
+     case "Mailing List Archive": $tmp = "Archivos Lista de Correo"; break;
      case "Description": $tmp = "Descripci&oacute;n"; break;
      case "Author": $tmp = "Autor"; break;
-     case "Depends on": $tmp = "Depende de"; break;
+     case "Depends on": $tmp = "Dependencias"; break;
 
 // Update Apps
      case "Update Application": $tmp = "Modificar Aplicaci&oacute;n"; break;
@@ -177,8 +178,8 @@ switch($phrase) {
      case "Announcements": $tmp = "Avisos"; break;
 
 // Comment
-     case "Your Comment about": $tmp = "Tu comentario a"; break;
-     case "Subject": $tmp = "Tema"; break;
+     case "Your Comment about": $tmp = "Tu comentario acerca de"; break;
+     case "Subject": $tmp = "T&iacute;tulo"; break;
      case "Comment": $tmp = "Comentario"; break;
      case "Send": $tmp = "Enviar"; break;
 
@@ -203,7 +204,7 @@ switch($phrase) {
      case "created": $tmp = "ha sido creado"; break;
      case "User Change": $tmp = "Cambiar Usuario"; break;
      case "User Deletion": $tmp = "Borrar Usuario"; break;
-     case "is deleted": $tmp = "ha sido borrado"; break;
+     case "has been deleted": $tmp = "ha sido borrado"; break;
 
 // Section admin
      case "Section Administration": $tmp = "Administraci&oacute;n de Secciones"; break;
@@ -312,15 +313,15 @@ switch($phrase) {
 
 // General Statistics
 	 case "Number of Applications in $GLOBALS[sys_name]": $tmp = "N&uacute;mero de Aplicaciones en $GLOBALS[sys_name]"; break;
-	 case "Total Number of Insertions and Modifications": $tmp = "N&uacute;mero de Introducciones y Modificaciones"; break;
-	 case "Number of Insertions and Modifications during the last week": $tmp = "N&uacute;mero de Introducciones y Modificaciones en la &uacute;ltima semana"; break;
+	 case "Total Number of Insertions and Modifications": $tmp = "N&uacute;mero de Inserciones y Modificaciones"; break;
+	 case "Number of Insertions and Modifications during the last week": $tmp = "N&uacute;mero de Inserciones y Modificaciones en la &uacute;ltima semana"; break;
 	 case "Number of pending Applications": $tmp = "N&uacute;mero de aplicaciones pendientes de validaci&oacute;n"; break;
-	 case "Number of $GLOBALS[sys_name] authorised Users": $tmp = "N&uacute;mero de Usuarios Autorizados de $GLOBALS[sys_name]"; break;
+	 case "Number of $GLOBALS[sys_name] authorised Users": $tmp = "N&uacute;mero de Usuarios Autorizados en $GLOBALS[sys_name]"; break;
 	 case "Number of Comments on Applications": $tmp = "N&uacute;mero de Comentarios a Aplicaciones"; break;
 	 case "Number of Licenses listed in $GLOBALS[sys_name]": $tmp = "N&uacute;mero de Licencias listadas en $GLOBALS[sys_name]"; break;
 	 case "Number of $GLOBALS[sys_name] Sections": $tmp = "N&uacute;mero de Secciones en $GLOBALS[sys_name]"; break;
 	 case "Number of $GLOBALS[sys_name] Categories": $tmp = "N&uacute;mero de Categor&iacute;as en $GLOBALS[sys_name]"; break;
-	 case "Total Number of Hits on Applications": $tmp = "N&uacute;mero total de &quot;Hits&quot; sobre Aplicaciones"; break;
+	 case "Number of Hits on Applications": $tmp = "N&uacute;mero total de &quot;Hits&quot; sobre Aplicaciones"; break;
 	 case "Number of redirected Homepages": $tmp = "N&uacute;mero de P&aacute;ginas Principales redireccionadas"; break;
 	 case "Number of Downloads": $tmp = "N&uacute;mero de Descargas"; break;
 	 case "Number of redirected Changelogs": $tmp = "N&uacute;mero de Log de Cambios redireccionados"; break;
@@ -391,6 +392,105 @@ switch($phrase) {
      case "The passwords are not identical": $tmp = "Las contrase&ntilde;as no son id&eacute;nticas"; break;
      case "Please try again": $tmp = "Por favor, int&eacute;ntelo otra vez"; break;
      case "License description is not available": $tmp = "La descripci&oacute;n de la licencia no est&aacute; disponible"; break;
+     case "No Frequently Asked Questions exist": $tmp = "No existen Preguntas Frecuentes"; break;
+
+// New Translations for version 1.0.9
+
+// stats.php3
+    case "Number of Insertions and Modifications in the last day": $tmp = "N&uacute;mero de Inserciones y Modificaciones en el &uacute;ltimo d&iacute;a"; break;
+    case "Number of today's visitors": $tmp = "N&uacute;mero de visitas en el d&iacute;a de hoy"; break;
+    case "Today": $tmp = "Hoy"; break;
+    case "Version Number":  $tmp = "N&uacute;mero de Versi&oacute;n"; break;
+    case "High Urgency": $tmp = "Urgencia Alta"; break;
+    case "Medium Urgency": $tmp = "Urgencia Media"; break;
+    case "Low Urgency": $tmp = "Urgencia Baja"; break;
+
+// admuser.php3
+    case "User Administration": $tmp = "Administraci&oacute;n de usuarios"; break;
+    case "There can only be one anonymous user in the system": $tmp = "S&oacute;lo puede haber un usuario an&oacute;nimo en el sistema"; break;
+    case "The anonymous permission is incompatible with another type of permission": $tmp = "El permiso de usuario an&oacute;nimo es incompatible con cualquier otro tipo de permisos"; break;
+
+// inscat.php3 and inssec.php3
+    case "Former category": $tmp = "La categor&iacute;a"; break;
+    case "in Section": $tmp = "en secci&oacute;n"; break;
+    case "has been renamed to": $tmp = "ha sido renombrada a"; break;
+    case "affecting": $tmp = "afectando a"; break;
+    case "applications": $tmp = "aplicaciones"; break;
+    case "already exists!": $tmp = "ya existe!"; break;
+    case "Category not specified": $tmp = "No ha especificado ninguna categor&iaute;a"; break;
+    case "This is the unique category of the section. For deleting it, you should delete the whole section.": $tmp = "Esta es la &uacute;nica categor&iacute;a en esta secci&oacute;n. Para borrarla, debe borrar la secci&oacute;n entera"; break;
+    case "If you press another time the Delete-button you will delete": $tmp = "Si presiona otra vez el bot&oacute;n de Borrar, ser&aacute; borrada"; break;
+    case "applications that are actually in the": $tmp = "aplicaciones que actualmente est&aacute;n en la categor&iacute;a"; break;
+    case "category": $tmp = ""; break; // en la fila m&aacute;s arriba
+    case "Delete Category": $tmp = "Borrar Categor&iacute;a"; break;
+    case "Delete": $tmp = "Borrar"; break;
+    case "Deletion succesfully completed.": $tmp = "El borrado se ha producido de manera satisfactoria."; break;
+    case "Deletion succesfully completed affecting": $tmp = "El borrado se ha producido de manera satisfactoria afectando a"; break;
+    case "applications": $tmp = "aplicaciones"; break;
+    case "has been added succesfully to the database": $tmp = "ha sido a&ntilde;adida satisfactoriamente a la base de datos"; break;
+    case "Warning!": $tmp = "&iexcl;Atenci&oacute;n!"; break;
+    case "If you press another time the Delete-button you will delete the": $tmp = "Si presiona otra vez el bot&oacute;n de Borrar, borrar&aacute; las"; break;
+    case "categories and": $tmp = "categor&iacute;as y"; break;
+    case "applications that are actually in the": $tmp = "aplicaciones que actualmente se encuentran en la secci&oacute;n"; break;
+    case "section": $tmp = ""; break;    // en la fila de arriba
+    case "Delete Section": $tmp = "Borrar Secci&oacute;n"; break;
+
+// inslic.php3
+
+    case "License name not specified": $tmp = "No ha especificado ning&uacute;n nombre de licencia"; break;
+    case "has a new URL:": $tmp = "tiene &eacute;sta direcci&oacute;n como nueva URL"; break;
+    case "New URL not specified": $tmp = "No ha especificado ninguna URL nueva"; break;
+    case "If you press another time the Delete-button you will alter": $tmp = "Si presiona otra vez el bot&oacute;n Borrar, alterar&aacute;"; break;
+    case "applications that have actually license": $tmp = "aplicaciones que tiene actualmente bajo la licencia"; break;
+    case "That license already exists!": $tmp = "&iexcl;Esta licencia ya existe!"; break;
+    case "with URL": $tmp = "con la URL"; break;
+    case "has been added succesfully to the database": $tmp = "ha sido a&ntilde;adida satisfactoriamente a la base de datos"; break;
+    case "License URL not specified": $tmp = "No ha especificado la URL de la licencia"; break;
+    case "License not specified": $tmp = "No ha especificado ninguna licencia"; break;
+    case "Delete License": $tmp = "Borrar licencia"; break;
+
+// admcomment.php3 and comment.php3
+    case "Posted on": $tmp = "Mandado el"; break;
+    case "Modify": $tmp = "Modificar"; break;
+    case "Comment about": $tmp = "Comentario acerca de"; break;
+    case "Delete this comment? (please, think there's no way for undoing comment deletion)": $tmp = "&iquest;Borrar este comentario? (por favor, tenga en cuenta que no hay vuelta atr&aacute;s para el borrado de comentarios)"; break;
+    case "Yes, Delete": $tmp = "S&iacute;, borrar"; break;
+    case "No, Just Modify": $tmp = "No, simplemente modificar"; break;
+    case "Comment Deleted": $tmp = "Comentario borrado"; break;
+    case "Selected Comment was deleted": $tmp = "El comentario seleccionado ha sido borrado"; break;
+
+// admfaq.php3 and insfaq.php3
+
+    case "Enter a New Frequently Asked Question": $tmp = "Introduzca una Pregunta Frecuente nueva"; break;
+    case "Frequently Asked Questions Administration": $tmp = "Administraci&oacute;n de Preguntas Frecuentes"; break;
+    case "Delete this faq? (please, think there's no way for undoing comment deletion)": $tmp = "&iquest;Borrar esta pregunta (y su respectiva respuesta)? (por favor, tenga en cuenta que no hay vuelta atr&aacute;s ara el borrado de Preguntas Frecuentes"; break;
+    case "Create": $tmp = "Crear"; break;
+    case "FAQ Deleted": $tmp = "Pregunta Frecuente borrada"; break;
+    case "FAQ Administration": $tmp = "Administraci&oacute;n de Preguntas Frecuentes"; break;
+    case "The following FAQ has been modified": $tmp = "La siguiente Pregunta Frecuente ha sido modificada"; break;
+    case "The following FAQ has been inserted in this language": $tmp = "Ehhhh... esto no deber&iacute;a salir"; break;
+
+// admdate.php3
+    case "Modification date": $tmp = "Fecha de modificaci&oacute;n"; break;
+    case "History date": $tmp = "Fecha en el historial"; break;
+
+// nladm.php3
+    case "The Mailing Lists are not enabled": $tmp = "Las listas de correo no est&aacute;n habilitadas"; break;
+    case "daily newsletter for": $tmp = ": Lista de noticias diaria del d&iacute;a"; break;
+    case "weekly newsletter for": $tmp = ": Lista de noticias semanal del d&iacute;a"; break;
+    case "Newsletter was sent at ": $tmp = "Lista de noticias enviada el"; break;
+    case "Send newsletter": $tmp = "Mandar lista de noticias"; break;
+
+// footer.inc
+    case "System Credits": $tmp = "Cr&eacute;ditos"; break;
+
+// login.php3
+    case "Anonymous login": $tmp = "Login como an&oacute;nimo"; break;
+    case "If you are not registered and/or you do not want to, you can login as an anonymous user by entering": $tmp = "Si no est&aacute; registrado y/o no quiere registrarse, puede autentificarse como usuario an&oacute;nimo introduciendo"; break;
+    case "as user name and": $tmp = "como nombre de usuario y"; break;
+    case "as password.": $tmp = "como contrase&ntilde;a"; break;
+
+// configure.php3
 
 // If no translation available, keep the original phrase
      default: $tmp = "$phrase"; break;

@@ -7,7 +7,23 @@
      }
    
      function translate($phrase) {
-	  include($this->$tolang."-lang.inc");
+      switch ($this->$tolang) {
+      case "English":
+	    require("English-lang.inc");
+        break;
+      case "German":
+	    require("German-lang.inc");
+        break;
+      case "Spanish":
+	    require("Spanish-lang.inc");
+        break;
+      case "French":
+	    require("French-lang.inc");
+        break;
+      default:
+	    require("English-lang.inc");
+        break;
+      }
 	  return($tmp);
      }
  }

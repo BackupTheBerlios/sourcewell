@@ -63,40 +63,8 @@ all the lines in this file.
 <P>Once you're finished, save it as <I>YourLanguage-lang.inc</I> and please send it to the authors. We will include
 it in the next releases so that everybody can benefit of your work.
 
-<A NAME="faq_file">
-<P><H3>2. The FAQ-file</H3>
-
-<P>Translating the FAQ file is a little more complicated at a first view,
-but a closer look at it will make you see it is not that much. Download
-<A HREF="../include/English-faq.inc">English-faq.inc</A> (this file comes also with the SourceWell 1.0 tarball) and edit it with your favorite editor. You should be
-able to read things like these:
-
-<PRE>
-     "How to change my Password or E-mail
-      address I am registered with?" =>
-     "Select \"&lt;a href=chguser.php3&gt;".$t-&gt;translate
-      ("Change User")."&lt;/a&gt;\"
-      and enter your new parameters. ",
-</PRE>
-
-<P>You should translate everything that is in between the quotes into
-your language. Don't worry about HTML tags (like <I>&lt;a href="....php3&gt;</I>) and
-other functions (<I>$t-&gt;translate("....")</I>). Just don't translate them.
-
-<P>As an example, you can see here the German translation of the upper
-paragraph:
-
-<PRE>
-    "Wie ändere ich mein Passwort oder E-Mail-Adresse?" =&gt;
-    "Wählen Sie \"&lt;a href=chguser.php3&gt;".$t-&gt;translate
-    ("Change User")."&lt;/a&gt;\" und geben Sie Ihre neuen Daten ein.",
-</PRE>
-
-<P>Once you're finished, save it as <I>YourLanguage-faq.inc</I> and please send it to the authors. We will include
-it in the next releases so that everybody can benefit from your work.
-
 <A NAME="contributors">
-<P><H3>3. Contributors</H3>
+<P><H3>2. Contributors</H3>
 
 <P>Here's a list of all the people that have contributed to the
 translation of SourceWell.
@@ -107,27 +75,14 @@ translation of SourceWell.
 <CENTER>
 <TABLE width=95%>
 <TR><TD>Language</TD><TD>Translator</TD><TD>Version</TD><TD>Last Modified</TD></TR>
-<TR><TD>German</TD><TD>Lutz Henckel &lt;<A
-HREF="mailto:lutz.henckel@fokus.gmd.de">lutz.henckel@fokus.gmd.de</A>&gt;</TD><TD>1.0</TD><TD>3
-April 2001</TD></TR>
-<TR><TD>Spanish</TD><TD>Gregorio Robles &lt;<A
-HREF="mailto:grex@scouts-es.org">grex@scouts-es.org</A>&gt;</TD><TD>1.0</TD><TD>3
-April 2001</TD></TR>
+<TR><TD><A HREF="../include/German-lang.inc">German</A></TD><TD>Lutz Henckel &lt;<A
+HREF="mailto:lutz.henckel@fokus.gmd.de">lutz.henckel@fokus.gmd.de</A>&gt;</TD><TD>1.0</TD><TD>3 April 2001</TD></TR>
+<TR><TD><A HREF="../include/Spanish-lang.inc">Spanish</A></TD><TD>Gregorio Robles &lt;<A
+HREF="mailto:grex@scouts-es.org">grex@scouts-es.org</A>&gt;</TD><TD>1.0</TD><TD>3 April 2001</TD></TR>
+<TR><TD><A HREF="../include/French-lang.inc">Frensh</A></TD><TD>Frédéric Boiteux &lt;<A
+HREF="mailto:fredericB@caramail.com">fredericB@caramail.com</A>&gt;</TD><TD>1.0</TD><TD>13 Juli 2001</TD></TR>
 </TABLE></CENTER>
 
-<P>FAQ files:
-<BR>&nbsp;
-
-<CENTER>
-<TABLE width=95%>
-<TR><TD>Language</TD><TD>Translator</TD><TD>Version</TD><TD>Last Modified</TD></TR>
-<TR><TD>German</TD><TD>Lutz Henckel &lt;<A
-HREF="mailto:lutz.henckel@fokus.gmd.de">lutz.henckel@fokus.gmd.de</A>&gt;</TD><TD>1.0</TD><TD>3
-April 2001</TD></TR>
-<TR><TD>Spanish</TD><TD>Gregorio Robles &lt;<A
-HREF="mailto:grex@scouts-es.org">grex@scouts-es.org</A>&gt;</TD><TD>1.0</TD><TD>3
-April 2001</TD></TR>
-</TABLE></CENTER>
 
 <P>&nbsp;
 
