@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: start.inc,v 1.32 2002/05/09 14:19:02 grex Exp $
+// $Id: start.inc,v 1.33 2002/05/09 14:24:11 grex Exp $
 
 if (!isset($login)) {
     page_open(array('sess' => 'SourceWell_Session'));
@@ -148,18 +148,19 @@ width="<?php echo $config_org_logo_width;?>" align="RIGHT"></a>
 
 <!-- end top title -->
 
-<table border=0 cellspacing=0 cellpadding=0 width="100%" >
+<table border="0" cellspacing="0" cellpadding="0" width="100%" >
 <tr valign="top" bgcolor="<?php echo $config_body_bgcolor;?>">
 <td bgcolor="<?php echo $config_nav_bgcolor;?>">
 
 <!-- BerliOS menu -->
-<table border=0 cellspacing=0 cellpadding=3 width="100%">
+<table border="0" cellspacing="0" cellpadding="3" width="100%">
 <tr bgcolor="<?php echo $config_navstrip_bgcolor;?>">
-<td ALIGN=CENTER>
+<td align="center">
 <span class="titlebar"><font color="<?php echo $config_navstrip_font_color;?>"><?php echo $config_sys_name?></font></span></td>
 </tr>
 
-<tr ALIGN=RIGHT bgcolor="<?php echo $config_nav_bgcolor;?>">
+<tr align="right" bgcolor="<?php echo $config_nav_bgcolor;?>">
+<td>
 <?php
 
 while (list(, $value) = each($nav_bar_array)) {
@@ -174,7 +175,7 @@ while (list(, $value) = each($nav_bar_array)) {
 <!-- end BerliOS menu -->
 <!-- Admin menu -->
 
-<table border=0 cellspacing=0 cellpadding=3 width="100%">
+<table border="0" cellspacing="0" cellpadding="3" width="100%">
 <tr bgcolor="<?php echo $config_navstrip_bgcolor;?>">
 <td ALIGN=CENTER><img src="http://www.berlios.de/images/blank.gif" height="1" width="135" border=0><br>
 <span class="titlebar"><font color="<?php echo $config_navstrip_font_color;?>"><?php echo _("Administration"); ?></font></span></td>
@@ -204,9 +205,9 @@ while (list(, $value) = each($adm_bar_array)) {
 <td align=center>
 <p>
 <form action="<?php $sess->purl("appsearch.php3"); ?>">
-<input TYPE="text" SIZE="10" NAME="search" VALUE="">
+<input type="text" size="10" name="search" value="">
 <?php
-echo "<p><input TYPE=\"submit\" NAME=\"Search\" VALUE=\""._("Search")."\">";
+echo "<p><input type=\"submit\" name=\"Search\" value=\""._("Search")."\">";
 ?>
 </form>
 </td>
@@ -214,7 +215,7 @@ echo "<p><input TYPE=\"submit\" NAME=\"Search\" VALUE=\""._("Search")."\">";
 </table>
 <!-- end Search menu -->
 <!-- Language menu -->
-<table border=0 cellspacing=0 cellpadding=3 width="100%">
+<table border="0" cellspacing="0" cellpadding="3" width="100%">
 <tr bgcolor="<?php echo $config_navstrip_bgcolor;?>">
 <td ALIGN=CENTER><img src="http://www.berlios.de/images/blank.gif" height="1" width="135" border=0><br>
 <span class="titlebar"><font color="<?php echo $config_navstrip_font_color;?>"><?php echo _("Language");?></font></span></td>
@@ -232,7 +233,7 @@ while (is_array($HTTP_GET_VARS)
 	}
 }
 ?>
-<select name="lang" size=1>
+<select name="lang" size="1">
 <?php
 while (list(, $ln) = each($config_la_array)) {
     if ($la == $ln) {
@@ -260,6 +261,6 @@ if (ereg('Gecko', '$HTTP_USER_AGENT') && $config_addNetscapePanel) {
 
 
 </td>
-<td width="10"><img src="images/blank.gif" border=0 height=1 width=10></td>
+<td width="10"><img src="images/blank.gif" border="0" height="1" width="10"></td>
 <td width="99%">
 <p>&nbsp;
