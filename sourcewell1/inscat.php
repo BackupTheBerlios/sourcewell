@@ -55,15 +55,16 @@ if (($config_perm_admcat != "all") && (!isset($perm) || !$perm->have_perm($confi
       if (isset($new_category)) {
 		       // If sec/cat pair in database and a new name is given, then rename
         if (!empty($new_category)) {
-          $db->query("SELECT name,modification FROM software WHERE category = '$category' AND section='$section'");
+          $db->query("SELECT appid,modification FROM software WHERE category = '$category' AND section='$section'");
 			// All the affected apps are treated as modified
 			// BUT they are assigned to the new category!!!!
+	  $affected_apps =  $db->num_rows();
+	  $db2 = new DB_SourceWell;
           while ($db->next_record()) {
+	    $appid = $db->f("appid");
             $modification = $db->f("modification");
-            $db2 = new DB_SourceWell;
-	    $db2->query("UPDATE software SET status='M',category='$new_category',modification='$modification' WHERE section='$section' AND category='$category'");
+	    $db2->query("UPDATE software SET status='M',category='$new_category',modification='$modification' WHERE appid='$appid'");
           }
-          $affected_apps =  $db->affected_rows();          
 
           $db->query("UPDATE categories SET category='$new_category' WHERE section='$section' AND category='$category'");
           $affected_rows =  $db->affected_rows();
@@ -120,12 +121,12 @@ if (($config_perm_admcat != "all") && (!isset($perm) || !$perm->have_perm($confi
           }
 	} else {
           $db->query("SELECT appid,modification FROM software WHERE category = '$category' and section='$section'");
-          $affected_apps = $db->affected_rows();
+          $affected_apps = $db->num_rows();
 			// All the affected apps are treated as modified
+	  $db2 = new DB_SourceWell;
           while($db->next_record()) {
             $modification = $db->f("modification");
             $appid = $db->f("appid");
-            $db2 = new DB_SourceWell;
             $db2->query("UPDATE software SET status='M',modification='$modification' WHERE appid='$appid'");
           }
 
