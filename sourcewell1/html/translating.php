@@ -4,8 +4,8 @@
 # SourceWell: Software Announcement & Retrieval System
 # ================================================
 #
-# Copyright (c) 2001 by
-#                Lutz Henckel (lutz.henckel@fokus.gmd.de) and
+# Copyright (c) 2001-2004 by
+#                Lutz Henckel (lutz.henckel@fokus.fraunhofer.de) and
 #                Gregorio Robles (grex@scouts-es.org)
 #
 # BerliOS SourceWell: http://sourcewell.berlios.de
@@ -76,7 +76,7 @@ translation of SourceWell.
 <TABLE width=95%>
 <TR><TD>Language</TD><TD>Translator</TD><TD>Version</TD><TD>Last Modified</TD></TR>
 <TR><TD><A HREF="../include/German-lang.inc">German</A></TD><TD>Lutz Henckel &lt;<A
-HREF="mailto:lutz.henckel@fokus.gmd.de">lutz.henckel@fokus.gmd.de</A>&gt;</TD><TD>1.0</TD><TD>3 April 2001</TD></TR>
+HREF="mailto:lutz.henckel@fokus.fraunhofer.de">lutz.henckel@fokus.fraunhofer.de</A>&gt;</TD><TD>1.0</TD><TD>3 April 2001</TD></TR>
 <TR><TD><A HREF="../include/Spanish-lang.inc">Spanish</A></TD><TD>Gregorio Robles &lt;<A
 HREF="mailto:grex@scouts-es.org">grex@scouts-es.org</A>&gt;</TD><TD>1.0</TD><TD>3 April 2001</TD></TR>
 <TR><TD><A HREF="../include/French-lang.inc">Frensh</A></TD><TD>Frédéric Boiteux &lt;<A
