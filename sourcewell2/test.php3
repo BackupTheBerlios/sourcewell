@@ -3,6 +3,7 @@ include('start.inc');
 include('Field.inc');
 include('TextField.inc');
 include('TextAreaField.inc');
+include('SelectField.inc');
 include('Table.inc');
 
 //$table = new Table();
@@ -11,7 +12,7 @@ $name = new TextField('Name', 'name','',1);
 $name->setIsTitle();
 $fields[] = $name;
 $description = new TextAreaField('Description', 'description','',1);
-$resumen->setShowType('B');
+$description->setShowType('B');
 $fields[] = $description;
 $fields[] = new SelectField('Type', 'type', '', array(1, 2, 3, 4));
 
