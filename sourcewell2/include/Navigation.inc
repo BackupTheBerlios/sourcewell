@@ -12,7 +12,7 @@
 // | Authors: Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
 // +----------------------------------------------------------------------+
 //
-// $Id: Navigation.inc,v 1.9 2002/05/09 14:52:47 grex Exp $
+// $Id: Navigation.inc,v 1.10 2002/05/09 14:56:55 grex Exp $
 
 /**
  * Class Navigation: a class for links in the navigation bar
@@ -66,6 +66,11 @@ class Navigation {
      * @var  string
      */
     var $where;
+   /**
+     * 
+     * @var  string
+     */
+    var $additionalBR;
 
     /**
      * Constructor
@@ -81,6 +86,8 @@ class Navigation {
 	$this->httpGetArray = '';
 	$this->permisions = '';
 	$this->statistics = 0;
+	$this->where = '';
+	$this->additionalBR = 0;
     }
 
     function setHttpGetArray($array) {
@@ -89,6 +96,10 @@ class Navigation {
 
     function setPermisions($perm) {
         $this->permisions = $perm;
+    }
+
+    function additionalBR() {
+        $this->additionalBR = 1;
     }
 
     function setStatistics($table, $where = '') {
@@ -120,6 +131,9 @@ class Navigation {
   	        $return .= ' ['.$this->countStatistics().']';
 	    }
 	    $return .= '<br>';
+	    if ($this->additionalBR) {
+	        $return .= '<br>';
+	    }
             $return .= "\n";
         }
         return $return;

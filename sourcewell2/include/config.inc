@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: config.inc,v 1.34 2002/05/09 14:47:36 grex Exp $
+// $Id: config.inc,v 1.35 2002/05/09 14:56:55 grex Exp $
 
 /**
  * Directory configuration
@@ -275,12 +275,16 @@ include('Navigation.inc');
 
 /* Normal navigation bar */
 $nav_bar_array[] = new Navigation('Recent Apps', 'index.php3');
-$nav_bar_array[] = new Navigation('Q&A', 'faq.php3');
+$temp = new Navigation('Q&A', 'faq.php3');
+$temp->additionalBR();
+$nav_bar_array[] = $temp;
 $nav_bar_array[] = new Navigation('Login', 'login.php3');
 $nav_bar_array[] = new Navigation('Logout', 'logout.php3');
 $nav_bar_array[] = new Navigation('New User', 'register.php3');
 $nav_bar_array[] = new Navigation('Forgot Password?', 'remind.php3');
-$nav_bar_array[] = new Navigation('Change User', 'chguser.php3');
+$temp = new Navigation('Change User', 'chguser.php3');
+$temp->additionalBR();
+$nav_bar_array[] = $temp;
 $temp = new Navigation('Users', 'users.php3');
 $temp->setPermisions('editor');
 $nav_bar_array[] = $temp;
@@ -302,7 +306,9 @@ $nav_bar_array[] = $temp;
 $temp = new Navigation('Developers', 'developers.php3');
 $temp->setPermisions('editor');
 $nav_bar_array[] = $temp;
-$nav_bar_array[] = new Navigation('Licenses', 'licenses.php3');
+$temp = new Navigation('Licenses', 'licenses.php3');
+$temp->additionalBR();
+$nav_bar_array[] = $temp;
 $nav_bar_array[] = new Navigation('Newsletter', 'newsletter.php3');
 $nav_bar_array[] = new Navigation('Backend', 'backend.php3');
 $nav_bar_array[] = new Navigation('Statistics', 'stats.php3');
