@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: start.inc,v 1.39 2002/05/09 15:10:17 grex Exp $
+// $Id: start.inc,v 1.40 2002/05/09 15:12:30 grex Exp $
 
 if (!isset($login)) {
     page_open(array('sess' => 'SourceWell_Session'));
@@ -210,7 +210,7 @@ while (list(, $value) = each($adm_bar_array)) {
 <form action="<?php $sess->purl("appsearch.php3"); ?>">
 <input type="text" size="10" name="search" value="">
 <?php
-echo "<p><input type=\"submit\" name=\"Search\" value=\""._("Search")."\">";
+echo "<p><input type=\"submit\" value=\""._("Search")."\">";
 ?>
 </form>
 </td>
@@ -241,7 +241,7 @@ while (list(, $ln) = each($config_la_array)) {
 }
 htmlp_form_select_end();
 print "<p>\n";
-htmlp_form_submit(_('Go'), 'go');
+htmlp_form_submit(_('Go'));
 htmlp_form_end();
 ?>
 </td>
