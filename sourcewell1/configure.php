@@ -118,7 +118,7 @@ if (($config_perm_admlicens != "all") && (!isset($perm) || !$perm->have_perm($co
 ?>
 
 <Center><h3>Configuring the SourceWell system (alpha version)</h3></CENTER>
-<?
+<?php
 
   if ($configure == "1"){
 
@@ -403,7 +403,7 @@ if (($config_perm_admlicens != "all") && (!isset($perm) || !$perm->have_perm($co
 #
 ######################################################################
 
-\$SourceWell_Version = \"1.0.9\";
+\$SourceWell_Version = \"1.1.0\";
 
 ?>");
 
