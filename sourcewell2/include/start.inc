@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: start.inc,v 1.29 2002/05/07 22:07:08 grex Exp $
+// $Id: start.inc,v 1.30 2002/05/09 14:01:15 grex Exp $
 
 if (!isset($login)) {
     page_open(array('sess' => 'SourceWell_Session'));
@@ -160,6 +160,15 @@ width="<?php echo $config_org_logo_width;?>" align="RIGHT"></a>
 </tr>
 
 <tr ALIGN=RIGHT bgcolor="<?php echo $config_nav_bgcolor;?>">
+<?php
+
+while (list(, $value) = each($nav_bar_array)) {
+    // Polimorfism
+    $value->render();
+}
+
+/*
+?>
 <td><a href="<?php $sess->purl("index.php3") ?>" class="menus"><?php echo _("Recent Apps"); ?></a>
 <br><a href="<?php $sess->purl("faq.php3") ?>" class="menus"><?php echo _("Q&amp;A"); ?></a>
 
@@ -271,7 +280,11 @@ if (
         ($perm->have_perm($config_perm_admfaq)) ||
         ($perm->have_perm($config_perm_configure) ) ))
   && !($logout)) {
-
+*/
+while (list(, $value) = each($adm_bar_array)) {
+    // Polimorfism
+    $value->render();
+}
 ?>
 <table border=0 cellspacing=0 cellpadding=3 width="100%">
 <tr bgcolor="<?php echo $config_navstrip_bgcolor;?>">
@@ -282,7 +295,7 @@ if (
 <tr ALIGN=RIGHT bgcolor="<?php echo $config_nav_bgcolor;?>">
 <td>
 <?php
-
+											       /*
   if (($config_perm_admuser == "all") || (isset($perm) && $perm->have_perm($config_perm_admuser))  && !($logout)) {
     $db->query("SELECT COUNT(*) FROM auconfig_user");
     $db->next_record();
@@ -342,7 +355,7 @@ if (
   if (($config_perm_configure == "all") || (isset($perm) && $perm->have_perm($config_perm_configure))  && !($logout)) {
     echo "<br><a href=\"".$sess->url("configure.php3")."\" class=\"menus\">"._("Configure")."</a>\n";
   }
-
+*/
 ?>
 </td>
 </tr>

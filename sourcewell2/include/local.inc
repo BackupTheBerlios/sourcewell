@@ -5,7 +5,7 @@
  * Copyright (c) 1998-2000 NetUSE AG
  *                    Boris Erdmann, Kristian Koehntopp
  *
- * $Id: local.inc,v 1.2 2002/04/21 21:53:51 grex Exp $
+ * $Id: local.inc,v 1.3 2002/05/09 14:01:15 grex Exp $
  *
  */ 
 
@@ -21,10 +21,10 @@
 ######################################################################
 
 class DB_SourceWell extends DB_Sql {
-  var $Host     = 'db.berlios.de';
-  var $Database = 'sourcewell';
-  var $User     = 'operator';
-  var $Password = 'password';
+    var $Host     = 'db.berlios.de';
+    var $Database = 'sourcewell2';
+    var $User     = 'operator';
+    var $Password = 'password';
 }
 
 /*********************************************************************/
@@ -57,8 +57,8 @@ class DB_SourceWell extends DB_Sql {
 ######################################################################
 
 class SourceWell_CT_Sql extends CT_Sql {
-  var $database_class = 'DB_SourceWell';   ## Which database to connect...
-  var $database_table = 'active_sessions'; ## and find our session data in this table.
+    var $database_class = 'DB_SourceWell';   ## Which database to connect...
+    var $database_table = 'active_sessions'; ## and find our session data in this table.
 }
 
 class SourceWell_Session extends Session {

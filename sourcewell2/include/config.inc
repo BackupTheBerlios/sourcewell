@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: config.inc,v 1.30 2002/05/09 14:01:15 grex Exp $
+// $Id: config.inc,v 1.31 2002/05/09 14:03:43 grex Exp $
 
 /**
  * Directory configuration
@@ -270,6 +270,8 @@ $config_database_variable  = '_DB_';
  *
  * for further information see Navigation.inc for the Navigation class
  */
+
+include('Navigation.inc');
 
 /* Normal navigation bar */
 $nav_bar_array[] = new Navigation('Recent Apps', 'index.php3');
