@@ -13,15 +13,11 @@
 // |          Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
 // +----------------------------------------------------------------------+
 //
-// $Id: register.php,v 1.3 2002/05/10 10:13:21 grex Exp $
+// $Id: register.php,v 1.4 2002/05/10 10:17:18 grex Exp $
 
 require('start.inc');
 /* TODO: add monitoring class / library */
 //config_inc('monitorlib');
-
-function _o($string) {
-    return $string;
-}
 
 // Check if there was a submission
 $reg = 0;
@@ -37,18 +33,18 @@ while (is_array($HTTP_POST_VARS)
         if (empty($username) || empty($password)  
             || empty($cpassword) || empty($email_usr)) { 
             // Do we have all necessary data?
-            $table_error->table_full(_o('Error'), 
-                           _o('Please enter').' <b>'
-                          ._o('Username').'</b>, <b>'
-                          ._o('Password').'</b> '
-                          ._o('and').' <b>'
-                          ._o('E-Mail').'</b>!');
+            $table_error->table_full(_('Error'), 
+                           _('Please enter').' <b>'
+                          ._('Username').'</b>, <b>'
+                          ._('Password').'</b> '
+                          ._('and').' <b>'
+                          ._('E-Mail').'</b>!');
             break;
         }
         if (strcmp($password,$cpassword)) { // password are identical?
-            $table_error->table_full(_o('Error'), 
-                           _o('The passwords are not identical')
-                           .'. '._o('Please try again').'!');
+            $table_error->table_full(_('Error'), 
+                           _('The passwords are not identical')
+                           .'. '._('Please try again').'!');
             break;
         }
 
@@ -56,10 +52,10 @@ while (is_array($HTTP_POST_VARS)
            NOTE: This should be a transaction, but it isn't... */
         $db->query("SELECT * FROM auth_user WHERE username='$username'");
         if ($db->nf()>0) {
-            $table_error->table_full(_o('Error'), 
-                           _o('User')." <B>$username</B> "
-                           ._o('already exists').'!<br>'
-                           ._o('Please select a different Username')
+            $table_error->table_full(_('Error'), 
+                           _('User')." <B>$username</B> "
+                           ._('already exists').'!<br>'
+                           ._('Please select a different Username')
                            .'.');
             break;
         }
@@ -74,38 +70,38 @@ while (is_array($HTTP_POST_VARS)
         $db->query($query);
         if ($db->affected_rows() == 0) {
   	    /* TODO: use lib_die('') so that the message gets logged */
-            $table_error->table_full(_o('Error'), 
-                          _o('Registration of new User failed')
+            $table_error->table_full(_('Error'), 
+                          _('Registration of new User failed')
                           .":<br> $query");
             break;
         }
         // send mail
-        $message = _o('Thank you for registering on the').' '.$sys_name
-                   ._o('Site. In order to complete your registration, visit '
+        $message = _('Thank you for registering on the').' '.$sys_name
+                   ._('Site. In order to complete your registration, visit '
                       .'the following URL').": \n\n"
                    .$sys_url."verify.php?confirm_hash=$u_id\n\n"
-                   ._o('Enjoy the site').".\n\n"
-                   .' -- '._o('the').' '.$sys_name.' '._o('crew')."\n";
+                   ._('Enjoy the site').".\n\n"
+                   .' -- '._('the').' '.$sys_name.' '._('crew')."\n";
 
-        mail($email_usr,'['.$sys_name.'] '._o('User Registration'),
+        mail($email_usr,'['.$sys_name.'] '._('User Registration'),
                  $message, "From: $config_ml_fromAddr\nReply-To: "
                  ."$config_ml_replyAddr\nX-Mailer: PHP");
 
-        $msg = _o('Congratulations').'! '
-               ._o('You have registered on ').'$sys_name.<p>'
-               ._o('Your new username is').": <b>$username</b><p>"
-               ._o('You are now being sent a confirmation '
+        $msg = _('Congratulations').'! '
+               ._('You have registered on ').'$sys_name.<p>'
+               ._('Your new username is').": <b>$username</b><p>"
+               ._('You are now being sent a confirmation '
                   .'email to verify your email address').'.'.'<br>'
-               ._o('Visiting the link sent to you in this '
+               ._('Visiting the link sent to you in this '
                   .'email will activate your account').'.';
 
-        $table->table_full(_o('User Registration'), $msg);
+        $table->table_full(_('User Registration'), $msg);
 
         if ($config_ml_notify) {
-            $message  = _o('Username').": $username\n";
-            $message .= _o('Realname').": $realname\n";
-            $message .= _o('E-Mail').":   $email_usr\n";
-            mailuser('admin', _o('New User has registered'), $message);
+            $message  = _('Username').": $username\n";
+            $message .= _('Realname').": $realname\n";
+            $message .= _('E-Mail').":   $email_usr\n";
+            mailuser('admin', _('New User has registered'), $message);
         }
 
         $reg = 1;
@@ -117,38 +113,38 @@ while (is_array($HTTP_POST_VARS)
 
 if (!$reg) {
     $table->table_begin();
-    $table->table_title(_o("Register as a new User"));
+    $table->table_title(_("Register as a new User"));
     $table->table_body_begin();
 
     htmlp_form_action();
     $table->table_columns_begin();
 
-    $table->table_column(_o('Username'), '50%', '', 'right');
+    $table->table_column('<b>'._('Username').':</b>', '50%', '', 'right');
     $table->table_column(html_form_textField('username', $username, 20, 32), '50%', '', 'left');
 
     $table->table_nextRowWithColumns();
 
-    $table->table_column(_o('Password'), '50%', '', 'right');
+    $table->table_column('<b>'._('Password').':</b>', '50%', '', 'right');
     $table->table_column(html_form_PassWordField('password', 20, 32), '50%', '', 'left');
 
     $table->table_nextRowWithColumns();
 
-    $table->table_column(_o('Confirm Password'), '50%', '', 'right');
+    $table->table_column('<b>'._('Confirm Password').':</b>', '50%', '', 'right');
     $table->table_column(html_form_PassWordField('cpassword', 20, 32), '50%', '', 'left');
 
     $table->table_nextRowWithColumns();
 
-    $table->table_column(_o('Real Name'), '50%', '', 'right');
+    $table->table_column('<b>'._('Real Name'), '50%', '', 'right');
     $table->table_column(html_form_textField('realname', $realname, 20, 64), '50%', '', 'left');
 
     $table->table_nextRowWithColumns();
 
-    $table->table_column(_o('E-mail'), '50%', '', 'right');
+    $table->table_column('<b>'._('E-mail').':</b>', '50%', '', 'right');
     $table->table_column(html_form_textField('email_usr', $email_usr, 20, 128), '50%', '', 'left');
 
     $table->table_nextRowWithColumns();
 
-    $table->table_colspan(html_form_submit(_o('Register'), 'register'), 2, '', 'center');
+    $table->table_colspan(html_form_submit(_('Register').':</b>', 'register'), 2, '', 'center');
 
     $table->table_columns_end();
     htmlp_form_end();

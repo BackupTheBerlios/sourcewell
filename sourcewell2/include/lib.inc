@@ -12,7 +12,7 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: lib.inc,v 1.3 2002/04/21 22:06:46 grex Exp $
+// $Id: lib.inc,v 1.4 2002/05/10 10:17:18 grex Exp $
 
 /**
  * Miscellaneous Library
@@ -138,12 +138,12 @@ function lib_mostrar_mas($iter,$maxiter,$url,$urlquery) {
    echo "</td>\n";
    echo "</tr></table><br>";
 }
-
+/*
 function _($string)
 {
     return $string;
 }
-
+*/
 /**
  * Our 'die' function
  * Should be called when something anomalous happens

@@ -12,13 +12,17 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: header.inc,v 1.16 2002/05/09 22:37:42 grex Exp $
+// $Id: header.inc,v 1.17 2002/05/10 10:21:01 grex Exp $
 
 /**
  * TODO: global explanation of this file
  * structure and possibilities
  * say that there are partial explanations along this file
  */
+
+function _o($string) {
+    return $string;
+}
 
 
 /* PHPLib authentication object */
@@ -69,7 +73,7 @@ global $config_addNetscapePanel;
    <meta name="Author" content="<?php echo $config_meta_author;?>">
    <meta name="Description" content="<?php echo $config_meta_description;?>">
    <meta name="KeyWords" content="<?php echo $config_meta_keywords;?>">
-   <title><?php echo $config_sys_name;?> - <?php echo _($config_sys_title);?></title>
+   <title><?php echo $config_sys_name;?> - <?php echo $config_sys_title;?></title>
    <link rel="stylesheet" type="text/css" href="berlios.css">
    <link rel="shortcut icon" href="berlios.ico">
 </head>
@@ -91,15 +95,15 @@ $i = 0;
 while (list($title, $url) = each($config_TopStripArray)) {
     if ($i > 0)
 	echo "\n | ";
-	echo "<b><a href=\"$url\" class=\"maintitlebar\">"._("$title")."</a></b>";
+	echo "<b><a href=\"$url\" class=\"maintitlebar\">"._o($title)."</a></b>";
 	$i++;
 };
 echo "\n</span></td><td width=\"55%\" align=\"right\">\n";
 
 if (isset($auth) && !empty($auth->auth["perm"])  && !($logout)) {
-    echo "<font color=\"".$config_nav_bgcolor."\">"._("Logged in")." <b>".$auth->auth["uname"]."</b> (<b>".$auth->auth["perm"]."</b>) / "._("Expires")." <b>".timestr_short($auth->auth["exp"])."</b></font>";
+    echo "<font color=\"".$config_nav_bgcolor."\">"._o("Logged in")." <b>".$auth->auth["uname"]."</b> (<b>".$auth->auth["perm"]."</b>) / "._o("Expires")." <b>".timestr_short($auth->auth["exp"])."</b></font>";
 } else {
-    echo "<font color=\"".$config_nav_bgcolor."\"><b>"._("Not Logged in")."</b></font>";
+    echo "<font color=\"".$config_nav_bgcolor."\"><b>"._o("Not Logged in")."</b></font>";
 }
 ?>
     </td>
@@ -132,7 +136,7 @@ if (isset($auth) && !empty($auth->auth["perm"])  && !($logout)) {
       <p align="left">
       <font color="<?php echo $config_nav_font_color;?>">
       <b><font size="+1"><?php echo $config_sys_name;?></font></b>
-      <br><?php echo _($config_sys_title);?></font></p>
+      <br><?php echo _o($config_sys_title);?></font></p>
     </td>
 
     <!-- beta string -->
@@ -206,7 +210,7 @@ while (list(, $value) = each($config_adm_bar_array)) {
 	print "<table border=\"0\" cellspacing=\"0\" cellpadding=\"3\" width=\"100%\">\n";
 	print "  <tr bgcolor=\"<?php echo $config_navstrip_bgcolor;?>\">\n";
 	print "    <td align=\"center\"><img src=\"http://www.berlios.de/images/blank.gif\" height=\"1\" width=\"135\" border=\"0\" alt=\"\"><br>\n";
-	print "      <span class=\"titlebar\"><font color=\"$config_navstrip_font_color\">"._('Administration')."</font></span></td>\n";
+	print "      <span class=\"titlebar\"><font color=\"$config_navstrip_font_color\">"._o('Administration')."</font></span></td>\n";
 	print "  </tr>\n";
         print "  <tr ALIGN=RIGHT bgcolor=\"$config_nav_bgcolor\">\n";
         print "    <td>\n";
@@ -224,7 +228,7 @@ while (list(, $value) = each($config_adm_bar_array)) {
   <tr bgcolor="<?php echo $config_navstrip_bgcolor;?>">
     <td align="center">
       <img src="http://www.berlios.de/images/blank.gif" height="1" width="135" border=0 alt="">
-      <span class="titlebar"><font color="<?php echo $config_navstrip_font_color;?>"><?php echo _("Search"); ?></font></span>
+      <span class="titlebar"><font color="<?php echo $config_navstrip_font_color;?>"><?php echo _o("Search"); ?></font></span>
     </td>
   </tr>
 
@@ -235,7 +239,7 @@ while (list(, $value) = each($config_adm_bar_array)) {
 htmlp_form_action('appsearch.php3', '', 'get');
 htmlp_form_textField('search', '', $size = 10);
 print '<p>';
-htmlp_form_submit(_('Search'));
+htmlp_form_submit(_o('Search'));
 htmlp_form_end();
 ?>
     </td>
@@ -247,7 +251,7 @@ htmlp_form_end();
 <table border="0" cellspacing="0" cellpadding="3" width="100%">
   <tr bgcolor="<?php echo $config_navstrip_bgcolor;?>">
     <td ALIGN=CENTER><img src="http://www.berlios.de/images/blank.gif" height="1" width="135" border="0" alt=""><br>
-      <span class="titlebar"><font color="<?php echo $config_navstrip_font_color;?>"><?php echo _("Language");?></font></span>
+      <span class="titlebar"><font color="<?php echo $config_navstrip_font_color;?>"><?php echo _o("Language");?></font></span>
     </td>
   </tr>
 
@@ -264,11 +268,11 @@ while (is_array($HTTP_GET_VARS)
 }
 htmlp_form_select($lang);
 while (list(, $ln) = each($config_la_array)) {
-    htmlp_form_select_option($ln, $la, _($ln));;
+    htmlp_form_select_option($ln, $la, _o($ln));;
 }
 htmlp_form_select_end();
 print "<p>\n";
-htmlp_form_submit(_('Go'));
+htmlp_form_submit(_o('Go'));
 htmlp_form_end();
 ?>
     </td>
