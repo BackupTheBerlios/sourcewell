@@ -128,4 +128,9 @@ function lib_mostrar_mas($iter,$maxiter,$url,$urlquery) {
    echo "</tr></table><br>";
 }
 
+function _($string)
+{
+    return $string;
+}
+
 ?>

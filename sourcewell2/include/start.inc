@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: start.inc,v 1.7 2002/03/18 10:36:39 grex Exp $
+// $Id: start.inc,v 1.8 2002/03/18 10:37:36 grex Exp $
 
 // Disabling cache
 header("Cache-Control: no-cache, must-revalidate");     // HTTP/1.1
@@ -44,7 +44,7 @@ require('lib.inc');
    <title><?php echo $config_sys_name;?> - <?php echo _($config_sys_title);?></title>
    <link rel="stylesheet" type="text/css" href="berlios.css">
 </head>
-?>
+<?php
    /*
 ?>
 <body bgcolor="<?php echo $th_body_bgcolor;?>">
