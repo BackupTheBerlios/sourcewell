@@ -46,7 +46,7 @@ certain SQL experience if you want to handle with databases.
 could help us knowing what SourceWell should implement in the future
 and making other SourceWell users benefit from your work.
 
-<P>For advanced uses, <A HREF="http://phplib.netuse.de/">PHPLib</A> should also be known. You can read about
+<P>For advanced uses, <A HREF="http://phplib.sourceforge.net/">PHPLib</A> should also be known. You can read about
 PHPLib's API in PHPLib's manual. At this moment, PHPLib is used only
 for sessions and authentication. If you aren't going to work with
 them, you don't need to have a look at PHPLib.

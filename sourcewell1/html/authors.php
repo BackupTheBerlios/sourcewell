@@ -28,9 +28,8 @@ require("./include/header.inc");
 <P><H2>About the authors:</H2>
 
 <UL>
-<LI>Lutz Henckel &lt;<A HREF="mailto:lutz.henckel@fokus.gmd.de">lutz.henckel@fokus.gmd.de</A>&gt;
-<BR>Lutz Henckel is the project manager of the BerliOS team. He is known for his
-earlier home page "Woven Goods for Linux", which has evolved to what BerliOS is today.
+<LI>Lutz Henckel &lt;<A HREF="mailto:lutz.henckel@fokus.fraunhofer.de">lutz.henckel@fokus.fraunhofer.de</A>&gt;
+<BR>Lutz Henckel is the project manager of the BerliOS.
 
 <BR>&nbsp;
 <LI>Gregorio Robles &lt;<A HREF="mailto:grex@scouts-es.org">grex@scouts-es.org</A>&gt;
@@ -40,7 +39,7 @@ thesis at the Technical University of Berlin in contact with BerliOS.
 
 <P>You can also find the authors writing to the SourceWell supporting mailing list at <A HREF="mailto:sourcewell-support@lists.berlios.de">sourcewell-support@lists.berlios.de</A>.
 
-<P>BerliOS SourceWell is part of the BerliOS project at GMD FOKUS. Please, have
+<P>BerliOS SourceWell is part of the BerliOS project at FOKUS. Please, have
 a look at <A HREF="http://www.berlios.de">http://www.berlios.de</A> for further information.
 
 <p>&nbsp;
