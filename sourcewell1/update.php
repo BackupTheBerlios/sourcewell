@@ -73,52 +73,56 @@ if ($perm->have_perm("user_pending") || ($action == "review" && !$perm->have_per
     $columns = "*";
     $section = trim(strtok($seccat, "/"));
     $category = trim(strtok("."));
-    $set = "name='$name',type='$type',version='$version',section='$section',category='$category',license='$license',homepage='$homepage',download='$download',changelog='$changelog',rpm='$rpm',deb='$deb',tgz='$tgz',cvs='$cvs',screenshots='$screenshots',mailarch='$mailarch',developer='$developer',description='$description',email='$email',depend='$depend',urgency='$urgency',creation='$creation',user='$user'";
+    $set = "name='$name',type='$type',version='$version',section='$section',category='$category',license='$license',homepage='$homepage',download='$download',changelog='$changelog',rpm='$rpm',deb='$deb',tgz='$tgz',cvs='$cvs',screenshots='$screenshots',mailarch='$mailarch',developer='$developer',description='$description',email='$email',depend='$depend',urgency='$urgency',creation='$creation'";
 
     switch ($action) {
       case "update":
-		if ($version == $oldversion) {
-		    $set .= ",modification='$modification'";
-		} else {
-			$set .= ",modification=NOW()";
-		}
+	    if ($version == $oldversion) {
+                $set .= ",user='$user'";
+	        $set .= ",modification='$modification'";
+	    } else {
+                $set .= ",user='".$auth->auth["uname"]."'";
+	        $set .= ",modification=NOW()";
+	    }
 	    $set .= ",status='P'";
 	    $set = "appid='$id',".$set;
-		$tables = "pending";
-		$operation = "INSERT";
-        $where = "";
+	    $tables = "pending";
+	    $operation = "INSERT";
+            $where = "";
 	    break;
       case "delete":
+	    $set .= ",user='$user'";
 	    $set .= ",modification='$modification'";
 	    $set .= ",status='D'";
-		$operation = "UPDATE";
-        $where = "WHERE appid='$id'";
+	    $operation = "UPDATE";
+            $where = "WHERE appid='$id'";
 	    break;
       case "undelete":
+            $set .= ",user='$user'";
 	    $set .= ",modification='$modification'";
-		$set .= ",status='P'";
+	    $set .= ",status='P'";
 	    $set = "appid='$id',".$set;
-		$tables = "pending";
-		$operation = "INSERT";
-		$where = "";
+	    $tables = "pending";
+	    $operation = "INSERT";
+	    $where = "";
 	    break;
       case "delete_version":
-		$operation = "UPDATE";
+	    $operation = "UPDATE";
 	    break;
     }
 
-	if ($action == "delete_version") {
-		$db->query("SELECT idx_his FROM history WHERE appid='$id' ORDER BY creation_his DESC LIMIT 2");
+    if ($action == "delete_version") {
+	$db->query("SELECT idx_his FROM history WHERE appid='$id' ORDER BY creation_his DESC LIMIT 2");
       	if ($db->next_record() && $db->num_rows() > 1) {
-			$db->query("DELETE FROM history WHERE idx_his='".$db->f("idx_his")."' LIMIT 1");
-			$db->query("SELECT * FROM history WHERE appid='$id' ORDER BY creation_his DESC LIMIT 1");
-      		if ($db->next_record()) {
-				$db->query("$operation software SET version='".$db->f("version_his")."', modification='".$db->f("creation_his")."' WHERE appid='$id'");
+	    $db->query("DELETE FROM history WHERE idx_his='".$db->f("idx_his")."' LIMIT 1");
+	    $db->query("SELECT * FROM history WHERE appid='$id' ORDER BY creation_his DESC LIMIT 1");
+      	    if ($db->next_record()) {
+		$db->query("$operation software SET version='".$db->f("version_his")."', modification='".$db->f("creation_his")."', user='".$db->f("user_his")."' WHERE appid='$id'");
 			}
 		}
 	} else {
     	$db->query("$operation $tables SET $set $where");
-		// echo "<p>$operation $tables SET $set $where\n";
+	// echo "<p>$operation $tables SET $set $where\n";
 	}
 
 	// Select and show new/updated application with comments
