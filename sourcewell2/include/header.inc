@@ -12,7 +12,7 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: header.inc,v 1.21 2002/05/14 15:45:21 grex Exp $
+// $Id: header.inc,v 1.22 2002/05/14 15:45:45 grex Exp $
 
 /**
  * TODO: global explanation of this file
@@ -98,7 +98,7 @@ while (list($title, $url) = each($config_TopStripArray)) {
     if ($i > 0) {
 	echo "\n | ";
     } else {
-        echo ' &nbps; ';
+        echo ' &nbsp; ';
     }
     echo "<b><a href=\"$url\" class=\"maintitlebar\">"._o($title)."</a></b>";
     $i++;
