@@ -44,7 +44,7 @@ $db = new DB_SourceWell;
 <SCRIPT LANGUAGE="JavaScript"> function addNetscapePanel() { 
       if ((typeof window.sidebar == "object") && (typeof window.sidebar.addPanel == "function")) 
       { 
-         window.sidebar.addPanel ("SourceWell", 
+         window.sidebar.addPanel ("<?php echo $sys_name ?>", 
          "<?php echo $sys_url."sitebar.php"?>",""); 
       } 
       else 
@@ -75,4 +75,10 @@ require("menubar.inc");
 <td WIDTH="10"><img SRC="images/blank.gif" BORDER=0 height=1 width=10></td>
 
 <td WIDTH="99%">
-<p>&nbsp;
+<br>
+<?php
+if ( file_exists("./include/adsense.php") ) {
+        include("./include/adsense.php");
+}
+?>
+<br>
