@@ -188,7 +188,7 @@ $ml_newsreplyaddr = "sourcewell-admin@lists.berlios.de";
 $la_array[] = "English";
 $la_array[] = "German";
 $la_array[] = "Spanish";
-
+$la_array[] = "French";
 
 ######################################################################
 # Statistic configuration
