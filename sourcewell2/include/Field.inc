@@ -12,11 +12,14 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: Field.inc,v 1.3 2002/03/10 01:30:20 grex Exp $
+// $Id: Field.inc,v 1.4 2002/03/15 15:14:24 grex Exp $
 
 /**
- * Requires Table.inc and html.inc
- * Uses the PHPLib database abstraction class (see @see)
+ * Requires Table.inc, html.inc and config.inc
+ * requires PHPLib
+ *
+ * Can be made PHPLib independent by setting the $config_PHPLib_installed
+ * configuration variable to 0 in the configuration file
  */
 
 /**
@@ -105,13 +108,13 @@ class Field {
         global $table;
     
         if ($this->default) {
-            $table->table_column('<b>'.$this->description.': <b>', '33%', '', 'right');
-            $table->table_column($this->default, '67%', '', 'left');
+            $table->table_column('<b>'.$this->description.': <b>', $config_LeftColumnWidth, '', 'right');
+            $table->table_column($this->default, $config_RightColumnWidth, '', 'left');
             $table->table_nextRowWithColumns();
             return 1;
         } elseif ($this->notNull) {
-            $table->table_column('<b>'.$this->description.': <b>', '33%', '', 'right');
-            $table->table_column('<font color=red><b>Requires to be filled out</b></font>', '67%', '', 'left');
+            $table->table_column('<b>'.$this->description.': <b>', $config_LeftColumnWidth, '', 'right');
+            $table->table_column('<font color=red><b>Requires to be filled out</b></font>', $config_RightColumnWidth, '', 'left');
             $table->table_nextRowWithColumns();
             return 0;
         }
@@ -135,13 +138,17 @@ class Field {
      *
      * @return string/int  value of the field in database
      * @access public
-     * @see PHPLib 
+     * @see PHPLib (it can be independent)
      */
 
     function getFieldFromDB()
     {
-        global $db;
-        return $db->f($this->name);
+        global $$config_database_variable;
+        if ($config_PHPLib_installed) {
+            return $$$config_database_variable->f($this->name);
+	} else {
+	  // TODO: with mysql or something like that
+	}
     }
 
     /**

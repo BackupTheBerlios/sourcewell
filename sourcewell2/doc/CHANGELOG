@@ -1,5 +1,28 @@
 SourceWell 2 - The GPL Software Announcement System from BerliOS
 
+2002-03-15  Gregorio Robles <grex@scouts-es.org>
+
+	* include/Field.inc: class has been made PHPLib independent. Other
+	  database access pending.
+
+	* include/config.inc: added database configuration parameters to the
+ 	  configuration file. A new variable can also be set to put the variable
+          that will have the database link.
+	  This is needed to make the classes independent from this name
+
+	* include/config.inc: added configuration parameter to include classes
+          and libraries easily
+
+	* include/Field.inc: replaced column width with configuration parameter
+
+	* include/config.inc: the width for the Form classes can be set up here
+	  with config_*ColumnWidth variables
+
+	* include/config.inc: configuration variable $config_PHPLib_installed
+ 	  added. This will make all our classes have the possibility to be
+	  PHPLib independent
+        * include/config.inc: all variables in the config file start with config_
+
 2002-03-10  Gregorio Robles <grex@scouts-es.org>
 
 	* include/Form.inc:
