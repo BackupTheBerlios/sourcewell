@@ -1,4 +1,26 @@
-SourceWell 2
+SourceWell 2 - The GPL Software Announcement System from BerliOS
+
+2002-03-09  Gregorio Robles <grex@scouts-es.org>
+
+	* include/Field.inc: attribute $show has been removed as it is
+	  not used in Field anymore (only in some of its children)
+
+	* include/HiddenField.inc: attribute $show has been renamed into 
+	  $display as this gives a better description of what it does
+
+	* include/PasswordField.inc
+	* include/TextAreaField.inc
+	* include/CheckField.inc
+	* include/MultipleSelectField.inc
+	* include/MultipleOptionField.inc
+	* include/SelectField.inc
+	* include/RadioField.inc:
+	* include/URLField.inc:
+	* include/HiddenField.inc:
+	* include/TextField.inc:
+	* include/Field.inc: documented these classes following the PHPDoc
+ 	  (http://www.phpdoc.de) conventions
+
 
 2002-03-08  Gregorio Robles <grex@scouts-es.org>
 

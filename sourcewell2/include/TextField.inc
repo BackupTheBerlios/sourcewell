@@ -1,5 +1,4 @@
 <?php
-
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 // +----------------------------------------------------------------------+
 // |        SourceWell 2 - The GPL Software Announcement System           |
@@ -13,7 +12,7 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: TextField.inc,v 1.1 2002/03/08 17:11:00 grex Exp $
+// $Id: TextField.inc,v 1.2 2002/03/09 01:43:59 grex Exp $
 
 /**
  * Requires table.inc and html.inc
@@ -21,17 +20,41 @@
  */
 
 /**
- * This class represents a Text field
+ * TextField class
+ * This class represents a Text field (char, varchar and that kind of fields in database)
+ *
+ * @author Gregorio Robles <grex@scouts-es.org>
+ * @package Field
+ * @access public
  */
 
 class TextField extends Field {
 
-    var $length; 		// TextField length in the form
-                                // by default its value is 32
-    var $maxlength;	       // maximum length of the field (from the database)
-                                // by default its value is 128
-    var $isTitle;    // '1' if this field contains the title (for showing or previewing)
-			// by default its value is 0
+    /**
+     * Field lenght for the form
+     * @var  int         default 32
+     */
+    var $length;
+    /**
+     * Maximum length of the field (from the database)
+     * @var  int          default 128
+     */
+    var $maxlength;
+    /**
+     * Whether this field contains the title (for showing or previewing)
+     * @var  boolean       default 0
+     */
+    var $isTitle;
+
+    /**
+     * Constructor
+     *
+     * @param   string  $description     description of the field
+     * @param   string  $name            name of the field
+     * @param   string  $default         default value
+     * @param   string  $notNull         if the field has to be filled out or not
+     * @access  public
+     */
 
     function TextField($description, $name, $default = '', $notNull = 0)
     {
@@ -42,35 +65,80 @@ class TextField extends Field {
         $this->isTitle = 0;
     }
 
+    /**
+     * Gets the value of the lenght attribute
+     *
+     * @return int        value of the lenght attribute
+     * @access public
+     */
+
     function getLength()
     {
         return $this->length;
     }
+
+    /**
+     * Sets the value of the lenght attribute
+     *
+     * @access public
+     */
 
     function setLength ($length)
     {
         $this->length = $length;
     }
 
+    /**
+     * Gets the value of the Maxlenght attribute
+     *
+     * @return int        value of the Maxlenght attribute
+     * @access public
+     */
+
     function getMaxLength()
     {
         return $this->maxlength;
     }
+
+    /**
+     * Sets the value of the Maxlenght attribute
+     *
+     * @access public
+     */
 
     function setMaxLength($maxlength)
     {
         $this->maxlength = $maxlength;
     }
 
+    /**
+     * Sets whether the field contains the title or not
+     *
+     * @access public
+     */
+
     function setIsTitle($mode = 1)
     {
         $this->isTitle = $mode;
     }
 
+    /**
+     * Gets whether the field contains the title or not
+     *
+     * @return boolean      Gets whether the field contains the title or not
+     * @access public
+     */
+
     function getIsTitle()
     {
         return $this->isTitle;
     }
+
+    /**
+     * Prints the form for this field (in table)
+     *
+     * @access public
+     */
 
     function fieldForm()
     {
@@ -80,6 +148,13 @@ class TextField extends Field {
         $table->table_column(html_form_textField($this->name, $this->default, $this->length, $this->maxlength), '67%', '', 'left');
         $table->table_nextRowWithColumns();
     }
+
+    /**
+     * Shows the content of the field (in a table)
+     *
+     * @return bolean       checks if fields labeled as NotNull are non-empty
+     * @access public
+     */
 
     function fieldShow()
     {
@@ -100,5 +175,4 @@ class TextField extends Field {
        }
    }
 }
-
 ?>

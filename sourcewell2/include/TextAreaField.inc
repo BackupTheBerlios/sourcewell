@@ -1,5 +1,4 @@
 <?php
-
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 // +----------------------------------------------------------------------+
 // |        SourceWell 2 - The GPL Software Announcement System           |
@@ -13,25 +12,53 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: TextAreaField.inc,v 1.1 2002/03/08 17:11:00 grex Exp $
+// $Id: TextAreaField.inc,v 1.2 2002/03/09 01:43:59 grex Exp $
 
 /**
- * Requires table.inc and html.inc
- * Inherits from Field.inc
+ * Requires Table.inc and html.inc
  */
 
-/*
- * Class tha represents a text area
+/**
+ * This class represents a text area (blob in the database)
+ *
+ * @author Gregorio Robles <grex@scouts-es.org>
+ * @package Field
+ * @access public
  */
 
 class TextAreaField extends Field {
 
-    var $rows;			// number of rows. By default 7
-    var $columns;		// number of columns. By default 40
-    var $showType;	// How the content is shown:
-			// type 'A':    Description: Content
-			// type 'B':    Content
-                        // By default: type 'A'
+    /**
+     * Number of rows
+     * @var  int         default 7
+     */
+    var $rows;
+    /**
+     * Number of columns
+     * @var  int         default 40
+     */
+    var $columns;
+    /**
+     * How the content is shown
+     *
+     *    type A: (description + content)        Type B: (only content)
+     *    _________________________________      ___________________________
+     *    | Description || Content.....   |      | Content.............    |
+     *    ---------------------------------      ---------------------------
+     *
+     * @var  char         default A
+     */
+    var $showType;
+
+    /**
+     * Constructor
+     *
+     * @param   string  $description     description of the field
+     * @param   string  $name            name of the field
+     * @param   string  $default         default value
+     * @param   string  $notNull         if the field has to be filled out or not
+     * @access  public
+     */
 
     function TextAreaField($description, $name, $default = '', $notNull = 0)
     {
@@ -42,35 +69,83 @@ class TextAreaField extends Field {
         $this->showType = 'A';
     }
 
+    /**
+     * Gets number of rows
+     *
+     * @return int        value of the rows attribute
+     * @access public
+     */
+
     function getRows()
     {
         return $this->rows;
     }
+
+    /**
+     * Sets number of rows
+     *
+     * @param    int          $number        number of rows
+     * @access public
+     */
 
     function setRows($number)
     {
         $this->rows = $number;
     }
 
+    /**
+     * Gets number of columns
+     *
+     * @return int        value of the columns attribute
+     * @access public
+     */
+
     function getColumns()
     {
         return $this->columns;
     }
+
+    /**
+     * Sets number of columns
+     *
+     * @param    int          $number        number of columns
+     * @access public
+     */
 
     function setColumns($number)
     {
         $this->columns = $number;
     }
 
+    /**
+     * Gets how it will be displayed
+     *
+     * @return char        value of the showType attribute
+     * @access public
+     */
+
     function getShowType()
     {
         return $this->showType;
     }
 
+    /**
+     * Sets how it will be displayed
+     *
+     * @param    char          $showType        'A' or 'B' type
+     * @access public
+     */
+
     function setShowType ($showType)
     {
         $this->showType = $showType;
     }
+
+    /**
+     * Prints the form for this field (in table)
+     *
+     * @access public
+     */
 
     function fieldForm()
     {
@@ -81,8 +156,15 @@ class TextAreaField extends Field {
         $table->table_nextRowWithColumns();
     }
 
-   function fieldShow()
-   {
+    /**
+     * Shows the content of the field (in a table)
+     *
+     * @return bolean       checks if fields labeled as NotNull are non-empty
+     * @access public
+     */
+
+    function fieldShow()
+    {
         global $table;
 
         if ($this->default && $this->showType == 'A') {
@@ -102,7 +184,6 @@ class TextAreaField extends Field {
 	} else {
 	    return 1;
         }
-   }
+    }
 }
-
 ?>

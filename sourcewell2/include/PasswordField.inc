@@ -1,5 +1,4 @@
 <?php
-
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 // +----------------------------------------------------------------------+
 // |        SourceWell 2 - The GPL Software Announcement System           |
@@ -13,18 +12,32 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: PasswordField.inc,v 1.1 2002/03/08 17:10:59 grex Exp $
+// $Id: PasswordField.inc,v 1.2 2002/03/09 01:43:59 grex Exp $
 
 /**
- * Requires table.inc and html.inc
- * Inherits from TextField
+ * Requires Table.inc and html.inc
  */
 
-/*
- * Class that represents a Password Field
+/**
+ * PasswordField class
+ * This class represents a password field (char, varchar and that kind of fields in database)
+ *
+ * @author Gregorio Robles <grex@scouts-es.org>
+ * @package Field
+ * @access public
  */
 
 class PasswordField extends TextField {
+
+    /**
+     * Constructor
+     *
+     * @param   string  $description     description of the field
+     * @param   string  $name            name of the field
+     * @param   string  $default         default value
+     * @param   string  $notNull         if the field has to be filled out or not
+     * @access  public
+     */
 
     function PasswordField($description, $name, $default = '', $notNull = 0)
     {
@@ -32,6 +45,11 @@ class PasswordField extends TextField {
         $this->TextField($description, $name, $default, $notNull);
     }
 
+    /**
+     * Prints the form for this field (in table)
+     *
+     * @access public
+     */
 
     function fieldForm()
     {
@@ -42,7 +60,13 @@ class PasswordField extends TextField {
         $table->table_nextRowWithColumns();
     }
 
-    /* Rewritten function in order to avoid printing the password in clear text */
+    /**
+     * Shows the content of the field (in a table)
+     * Replaces characters with * so that it does not display the password
+     *
+     * @return bolean       checks if fields labeled as NotNull are non-empty
+     * @access public
+     */
 
    function fieldShow()
    {
@@ -62,5 +86,4 @@ class PasswordField extends TextField {
         return 1;
    }
 }
-
 ?>

@@ -1,5 +1,4 @@
 <?php
-
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 // +----------------------------------------------------------------------+
 // |        SourceWell 2 - The GPL Software Announcement System           |
@@ -13,14 +12,32 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: RadioField.inc,v 1.1 2002/03/08 17:11:01 grex Exp $
+// $Id: RadioField.inc,v 1.2 2002/03/09 01:43:59 grex Exp $
 
 /**
- * Requires table.inc and html.inc
- * Inherits from SelectField.inc
+ * Requires Table.inc and html.inc
+ */
+
+/**
+ * This class represents an array of radio buttons
+ *
+ * @author Gregorio Robles <grex@scouts-es.org>
+ * @package Field
+ * @access public
  */
 
 class RadioField extends SelectField {
+
+    /**
+     * Constructor
+     *
+     * @param   string  $description     description of the field
+     * @param   string  $name            name of the field
+     * @param   string  $default         default value
+     * @param   string  $values          array (of strings) with the different possibilities
+     * @param   string  $notNull         if the field has to be filled out or not
+     * @access  public
+     */
 
     function RadioField($description, $name, $default = '', $values = '', $notNull = 0)
     {
@@ -28,11 +45,24 @@ class RadioField extends SelectField {
         $this->SelectField($description, $name, $default, $values, $notNull);
     }
 
+    /**
+     * Prints the form for this field (in table)
+     * if there are less than 5 possibilities,
+     * all of them are printed in the same line
+     * otherwise, every option gets a line for itself  
+     *
+     * TODO: the number of possibities could be an attribute of this class
+     *
+     * @access public
+     */
+
     function fieldForm()
     {
         global $table;
 
-	if (count($this->values) < 4) { 
+	if (count($this->values) < 5) { 
+
+ 	    /* Less than 5 different choices */
 
             $table->table_column('<b>'.$this->description.'</b>'.$this->_specifyNotNull(), '33%', '', 'right');
 	    $table->table_column_start('67%', '', 'left');
@@ -46,8 +76,9 @@ class RadioField extends SelectField {
             $table->table_column_finish();
             $table->table_nextRowWithColumns();
 
-
         } else {
+
+  	    /* More than 5 different choices */
 
             $table->table_colspan ('<b>'.$this->description.'</b>'.$this->_specifyNotNull());
             $table->table_nextRowWithColumns();

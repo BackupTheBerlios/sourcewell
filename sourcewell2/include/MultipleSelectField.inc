@@ -1,5 +1,4 @@
 <?php
-
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 // +----------------------------------------------------------------------+
 // |        SourceWell 2 - The GPL Software Announcement System           |
@@ -13,18 +12,40 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: MultipleSelectField.inc,v 1.1 2002/03/08 17:11:01 grex Exp $
+// $Id: MultipleSelectField.inc,v 1.2 2002/03/09 01:43:59 grex Exp $
 
 /**
- * Requires table.inc and html.inc
- * Inherits from MultipleOptionField.inc
+ * Requires Table.inc and html.inc
+ */
+
+/**
+ * MultipleSelectfield
+ * This class represents a selection (multiple-option) box
+ *
+ * @author Gregorio Robles <grex@scouts-es.org>
+ * @package Field
+ * @access public
+ * @see Form, Preview, Show, Summary
  */
 
 class MultipleSelectField extends MultipleOptionField {
 
-    var $size;		// number of options that are shown
-			// its default value is 6
-			// unless its number is smaller
+    /**
+     * Number of options that are shown
+     * @var  int         its default value is 6 unless its number is smaller
+     */
+    var $size;
+
+    /**
+     * Constructor
+     *
+     * @param   string  $description     description of the field
+     * @param   string  $name            name of the field
+     * @param   string  $default         default value
+     * @param   string  $values          array (of strings) with the different possibilities
+     * @param   string  $notNull         if the field has to be filled out or not
+     * @access  public
+     */
 
     function MultipleSelectField($description, $name, $default = '', $values = '', $notNull = 0)
     {
@@ -36,16 +57,35 @@ class MultipleSelectField extends MultipleOptionField {
             $this->size = 6;
         }
     }
+
+    /**
+     * Gets the size
+     *
+     * @return int        value of the size attribute
+     * @access public
+     */
  
     function getSize()
     {
         return $this->size;
     }
 
+    /**
+     * Sets the size
+     *
+     * @access public
+     */
+
     function setSize($size)
     {
         $this->size = $size;
     }
+
+    /**
+     * Prints the form for this field (in table)
+     *
+     * @access public
+     */
 
     function fieldForm()
     {
@@ -69,5 +109,4 @@ class MultipleSelectField extends MultipleOptionField {
         $table->table_nextRowWithColumns();
     }
 }
-
 ?>

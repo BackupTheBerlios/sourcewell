@@ -1,5 +1,4 @@
 <?php
-
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 // +----------------------------------------------------------------------+
 // |        SourceWell 2 - The GPL Software Announcement System           |
@@ -13,25 +12,58 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: Field.inc,v 1.1 2002/03/08 17:10:56 grex Exp $
+// $Id: Field.inc,v 1.2 2002/03/09 01:43:59 grex Exp $
 
 /**
- * Requires table.inc and html.inc
- * some classes also require lib.inc
- * Should be PHPLib independent
+ * Requires Table.inc and html.inc
+ * Uses the PHPLib database abstraction class (see @see)
+ */
+
+/**
+ * Field class
+ * Parent class for the different types of form/database fields
+ *
+ * @author Gregorio Robles <grex@scouts-es.org>
+ * @package Field
+ * @access private
+ * @see Form, Preview, Show, Summary
  */
 
 class Field {
 
-    var $description; 	// field description
-    var $name;		// field name (should be the same as the database field)
-    var $default;	// default value for field
-    var $show;          // 0 if the field is shown for preview
-                        // 1 if the field is shown (from database) 
-    var $notNull;       // 0 if the field can be empty (null)
-                        // 1 if the field cannot be empty (null)
+    /**
+     * Contains the description of the field
+     * @var  string
+     */
+    var $description;
+    /**
+     * Contains the name of the field
+     * (should be the same as the database field) 
+     * @var  string
+     */
+    var $name;
+    /**
+     * Default value for the field
+     * @var  mixed    string or int depending on the database field
+     */
+    var $default;
+    /**
+     * NotNull Field
+     * O if the field can be empty (= NULL)
+     * 1 if the field has to be filled out (= NOT NULL)
+     * @var boolean
+     */
+    var $notNull;
 
-    /* Constructor */
+    /**
+     * Constructor
+     *
+     * @param   string  $description     description of the field
+     * @param   string  $name            name of the field
+     * @param   string  $default         default value
+     * @param   string  $notNull         if the field has to be filled out or not
+     * @access  public
+     */
 
     function Field($description, $name, $default = '', $notNull = 0) 
     {
@@ -41,102 +73,155 @@ class Field {
         
         /* if value in HTTP_POST_VARS exist, that one will become the default one */
 
-        if ($this->_getPostValue($name)) {
-            $this->default = $this->_getPostValue($name);
+        if ($this->_getPostValue()) {
+            $this->default = $this->_getPostValue();
         } else {
             $this->default = $default;
         }
     }
 
-    function _getPostValue($name) {
-        return $GLOBALS['HTTP_POST_VARS'][$name];
+    /**
+     * Abstract function that
+     * should be rewritten by its children
+     */
+
+    function fieldForm()
+    {
+        die('<font color=red>Should be implemented by a chield of the Field class!</font>\n\n');
     }
 
     /**
-     * Function FieldForm is an abstract function that
-     * should be rewritten by its children */
+     * Shows the content of the field (in a table)
+     * may have to be rewritten by its children
+     *
+     * @return bolean       checks if fields labeled as NotNull are non-empty
+     * @access public
+     */
 
-   function fieldForm()
-   {
-       die('<font color=red>Should be implemented by a chield of the Field class!</font>\n\n');
-   }
-
-   /**
-    * Function FieldShow
-    * shows the field
-    */
-
-   function fieldShow()
-   {
-       global $table;
+    function fieldShow()
+    {
+        global $table;
     
-       if ($this->default) {
+        if ($this->default) {
             $table->table_column('<b>'.$this->description.': <b>', '33%', '', 'right');
             $table->table_column($this->default, '67%', '', 'left');
             $table->table_nextRowWithColumns();
             return 1;
-       } elseif ($this->notNull) {
+        } elseif ($this->notNull) {
             $table->table_column('<b>'.$this->description.': <b>', '33%', '', 'right');
             $table->table_column('<font color=red><b>Requires to be filled out</b></font>', '67%', '', 'left');
             $table->table_nextRowWithColumns();
             return 0;
-       }
-       return 1;
-   }
+        }
+        return 1;
+    }
 
-   /**
-    * Function FieldFromDB
-    * extracts the field values from database
-    * FIXME: should be reimplemented in class MultipleOption
-    */
+    /**
+     * Gets the Value of the variable $name passed through a HTTP POST method
+     *
+     * @return string/int  value of the field passed as POST in the form
+     * @access private
+     */
 
-   function getFieldFromDB()
-   {
-       global $BBDD;
-
-       return $BBDD->f($this->name);
-   }
-
-   function setShow()
-   {
-       $this->default = $this->getFieldFromDB();
-   }
-
-   /**
-    * Functions that help with the database insertion
-    */
-
-   function getAttribute()
-   {
-       return $this->name;
-   }
-
-   function getValue()
-   {
-       return $this->default;
-   }
+    function _getPostValue() {
+        return $GLOBALS['HTTP_POST_VARS'][$this->name];
+    }
 
     /**
-     * Function FieldHidden
-     * passes the value of the field as hidden
-     * this is interesting for preview */
+     * Extracts the field values from database
+     * FIXME: should be reimplemented in class MultipleOption
+     *
+     * @return string/int  value of the field in database
+     * @access public
+     * @see PHPLib 
+     */
 
-   function fieldHidden()
-   {
+    function getFieldFromDB()
+    {
+        global $db;
+        return $db->f($this->name);
+    }
+
+    /**
+     * Assigns the value in database as the default one
+     * (interesting for the Show class)
+     *
+     * @return string/int    value of the field in database
+     * @access public
+     * @see Show class
+     */
+
+    function setShow()
+    {
+        $this->default = $this->getFieldFromDB();
+    }
+
+    /**
+     * Functions that help with the database insertion
+     *
+     * @return string/int    value of the name of the field
+     * @access public
+     */
+
+    function getAttribute()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Gets the default value of the field
+     * The default value depends on the situation:
+     *    in Form: it can be assigned manually by the programmer
+     *    in Preview: it can be put from the value in HTTP_POST_VARS
+     *    in Show: it is the value stored in the database
+     *
+     * @return string/int    value of the default value of the field
+     * @access public
+     */
+
+    function getValue()
+    {
+        return $this->default;
+    }
+
+    /**
+     * Passes the value of the field as hidden
+     * (this is interesting for Preview)
+     *
+     * @see Preview
+     * @access public
+     */
+
+    function fieldHidden()
+    {
         htmlp_form_hidden($this->name, $this->default);
-   }
+    }
 
-   function _specifyNotNull()
-   {
-       if ($this->notNull) {
-           return ' <b>(*)</b>';
-       }
-   }
+    /**
+     * Specifies in the form visually if the field has to be filled out
+     *
+     * @return string       label notifying that the field has to be filled out
+     * @access private
+     */
 
-   function getIsTitle()
-   {
+    function _specifyNotNull()
+    {
+        if ($this->notNull) {
+            return ' <b>(*)</b>';
+        }
+    }
+
+    /**
+     * Returns if the field can be the title
+     * (has to be rewritten by the classes that can be Title)
+     *
+     * @return boolean       this class will always return 0; children have to rewrite it
+     * @access public
+     */
+
+    function getIsTitle()
+    {
         return 0;
-   }
+    }
 }
-
 ?>

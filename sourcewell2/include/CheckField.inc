@@ -1,5 +1,4 @@
 <?php
-
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 // +----------------------------------------------------------------------+
 // |        SourceWell 2 - The GPL Software Announcement System           |
@@ -13,20 +12,48 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: CheckField.inc,v 1.1 2002/03/08 17:11:00 grex Exp $
+// $Id: CheckField.inc,v 1.2 2002/03/09 01:43:59 grex Exp $
 
 /**
- * Requires table.inc and html.inc
- * Inherits from MultipleOptionField.inc
+ * Requires Table.inc and html.inc
+ */
+
+/**
+ * CheckField class
+ * This class represents an array of check buttons
+ *
+ * @author Gregorio Robles <grex@scouts-es.org>
+ * @package Field
+ * @access public
  */
 
 class CheckField extends MultipleOptionField {
+
+    /**
+     * Constructor
+     *
+     * @param   string  $description     description of the field
+     * @param   string  $name            name of the field
+     * @param   string  $default         default value
+     * @param   string  $values          array (of strings) with the different possibilities
+     * @param   string  $notNull         if the field has to be filled out or not
+     * @access  public
+     */
 
     function CheckField($description, $name, $default = '', $values = '', $notNull = 0) 
     {
         /* Parent class constructor */
         $this->MultipleOptionField($description, $name, $default, $values, $notNull);
     }
+
+    /**
+     * Prints the form for this field (in table)
+     *
+     * TODO: the number of possibities in one row
+     *       could be an attribute of this class (@see RadioField)
+     *
+     * @access public
+     */
  
     function fieldForm()
     {
@@ -44,5 +71,4 @@ class CheckField extends MultipleOptionField {
         }
     }
 }
-
 ?>
