@@ -1,30 +1,41 @@
 <?php
+/* vim: set expandtab tabstop=4 shiftwidth=4: */
+// +----------------------------------------------------------------------+
+// |        SourceWell 2 - The GPL Software Announcement System           |
+// +----------------------------------------------------------------------+
+// |      Copyright (c) 2001-2002 BerliOS, FOKUS Fraunhofer Institut      |
+// +----------------------------------------------------------------------+
+// | This program is free software. You can redistribute it and/or modify |
+// | it under the terms of the GNU General Public License as published by |
+// | the Free Software Foundation; either version 2 or later of the GPL.  |
+// +----------------------------------------------------------------------+
+// | Authors: Gregorio Robles <grex@scouts-es.org>                        |
+// +----------------------------------------------------------------------+
+//
+// $Id: lib.inc,v 1.3 2002/04/21 22:06:46 grex Exp $
 
-######################################################################
-# Miscellaneous Library
-# ===================================================================
-#
-#
-# Copyright (c) 2001-2 by
-#                Gregorio Robles (grex@scouts-es.org),
-#                Lutz Henckel (lutz.henckel@fokus.gm.de) and
-#                Carlos Martín Ugalde (carlos@scouts-es.org)
-#
-# BerliOS: http://www.berlios.de
-#
-# This program is free software. You can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 or later of the GPL.
-######################################################################
+/**
+ * Miscellaneous Library
+ *
+ * FIXME and TODO: There's a lot of work to be done here
+ *       --> add functions
+ *       --> add documentation
+ *       --> refactor functions
+ */
 
-#
-# Returns time in timestamp format 
-# mktime (int hour, int minute, int second, int month, int day, int year [, int is_dst])
-#
-
-function mktimestamp($time) {
-#    $timestamp = mktime(substr($time,8,2),substr($time,10,2),substr($time,12,2),substr($time,4,2),substr($time,6,2),substr($time,0,4));
-    $timestamp = mktime(substr($time,11,2),substr($time,14,2),substr($time,17,2),substr($time,5,2),substr($time,8,2),substr($time,0,4),substr($time,19,3));
+/**
+ * Returns time in timestamp format 
+ *
+ * @param   int       $time          TODO
+ * @return  int                      Timestamp
+ *
+ * @access public
+ */
+function mktimestamp($time)
+{
+    $timestamp = mktime(substr($time,8,2),substr($time,10,2),
+                        substr($time,12,2),substr($time,4,2),
+                        substr($time,6,2),substr($time,0,4));
     return $timestamp;
 }
 
@@ -133,4 +144,32 @@ function _($string)
     return $string;
 }
 
+/**
+ * Our 'die' function
+ * Should be called when something anomalous happens
+ * It mails the sys admins with the error message
+ *
+ * @param   string    $error_message    Error message
+ * @global  object    $t                Translation object
+ * @access public
+ */
+function lib_die($error_message)
+{
+    global $t;
+    /* WISH: to do not have to include config.inc another time */
+    require('config.inc');
+    $be = new box('80%',$th_box_frame_color,$th_box_frame_width,
+                  $th_box_title_bgcolor,$th_box_title_font_color,
+                  $th_box_title_align,$th_box_body_bgcolor,
+                  $th_box_error_font_color,$th_box_body_align);
+
+    $be->box_full($t->translate('An error has ocurred'),
+		  $error_message
+		  .'<p>'
+		  .$t->translate('This error is being mailed to the system administrators.'));
+
+    /* Mails the sys admins */
+    include('monitorlib.inc');
+    mailuser('admin', 'An error has ocurred', $error_message);
+}
 ?>
