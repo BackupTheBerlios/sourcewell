@@ -66,25 +66,20 @@ if ($perm->have_perm("user_pending") || ($action == "review" && !$perm->have_per
       case "review":
 		if ($id == 0) {
 		  $operation = "INSERT";
-          $where = "";
+          	  $where = "";
+                  $oldversion = 0;
 		} else {
 		  $operation = "UPDATE";
-          $where = "WHERE appid='$id'";
-
+          	  $where = "WHERE appid='$id'";
 		  $db->query("SELECT version FROM software WHERE appid='$id'");
-    	  if ($db->num_rows() > 0) {
+    	  	  if ($db->num_rows() > 0) {
 			$db->next_record();
-	    	$oldversion = $db->f("version");
-		  }
-
-		  if ($oldversion != $version) {
-			  // Insert new history
-			  $db->query("INSERT history SET appid='$id',user_his='$user',creation_his='$modification',version_his='$version'");
-			  // echo "<p>INSERT history SET appid='$id',user_his='$user',creation_his='$modification',version_his='$version'\n";
+	    		$oldversion = $db->f("version");
 		  }
 		}
-        $db->query("$operation software SET $set $where");
-	    // echo "<p>$operation software SET $set $where\n";
+
+        	$db->query("$operation software SET $set $where");
+	    	// echo "<p>$operation software SET $set $where\n";
 
 		if ($id == 0) {
 		  // Get new application index
@@ -97,6 +92,12 @@ if ($perm->have_perm("user_pending") || ($action == "review" && !$perm->have_per
 		  // Insert new counters
 		  $db->query("INSERT counter SET appid='$id'");
 		  // echo "<p>INSERT counter SET appid='$id'\n";
+		}
+
+                if ($oldversion != $version) {
+                  // Insert new history
+                  $db->query("INSERT history SET appid='$id',user_his='$user',creation_his='$modification',version_his='$version'");
+                  // echo "<p>INSERT history SET appid='$id',user_his='$user',creation_his='$modification',version_his='$version'\n";
 		}
 
 		// Select and show new/updated application with counters
