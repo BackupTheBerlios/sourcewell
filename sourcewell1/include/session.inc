@@ -2,10 +2,10 @@
 /*
  * Session Management for PHP3
  *
- * Copyright (c) 1998,1999 SH Online Dienst GmbH
+ * Copyright (c) 1998-2000 NetUSE AG
  *                    Boris Erdmann, Kristian Koehntopp
  *
- * $Id: session.inc,v 1.1 2002/10/08 11:48:36 helix Exp $
+ * $Id: session.inc,v 1.2 2003/04/16 11:54:50 helix Exp $
  *
  */ 
 
@@ -15,7 +15,7 @@ class Session {
   ## Define the parameters of your session by either overwriting
   ## these values or by subclassing session (recommended).
 
-  var $magic = "KaiserinAugusta";     ## Some string you should change.
+  var $magic = "";                    ## Some string you should change.
   var $mode = "cookie";               ## We propagate session IDs with cookies
   var $fallback_mode;                 ## If this doesn't work, fall back...
   var $lifetime = 0;                  ## 0 = do session cookies, else minutes
@@ -30,10 +30,7 @@ class Session {
   var $secure_auto_init = 1;          ## Set to 0 only, if all pages call
                                       ## page_close() guaranteed.
 
-  var $allowcache = "private";        ## Set this to 'private' to allow private
-                                      ## caching; set this to 'public' to allow
-                                      ## public caching; set this to 'no' to
-                                      ## never cache the page.
+  var $allowcache = "no";             ## "passive", "no", "private", "public"
   var $allowcache_expire = 1440;      ## If you allowcache, data expires in this
                                       ## many minutes.
   var $that_class = "";               ## Name of data storage container
@@ -120,7 +117,7 @@ class Session {
           SetCookie($this->name, $id, 0, "/", $this->cookie_domain);
         }
         if ( 0 < $this->lifetime ) {
-          SetCookie($this->name, $id, time()+$this->lifetime*60, "/", $this->$cookie_domain);
+          SetCookie($this->name, $id, time()+$this->lifetime*60, "/", $this->cookie_domain);
         }
       break;
       case "get":
@@ -218,12 +215,6 @@ class Session {
     global $PHP_SELF;
     global $QUERY_STRING;
 
-			// fix no.1: Gregorio Robles <grex@scouts-es.org>
-			// We want to start always with a "clean"
-			// query url string!!!!
-    $QUERY_STRING = "";
-			// end fix
-
     if ((isset($QUERY_STRING) && ("" != $QUERY_STRING))
      || ($this->mode == "get")) {
       $sep_char = "&";
@@ -233,14 +224,6 @@ class Session {
 
     $qstring = "";
     while (list($k, $v) = each($qarray)) {
-
-				// Fix no. 2 for SourceWell
-				// when iter from show_more function
-				// then do not print a question mark
-      if ($k == "iter") $sep_char = "&";
-      $v = ereg_replace("%20", " ", $v); 
-				// end fix no. 2 Grex
-
       $qstring .= $sep_char . urlencode($k) . "=" . urlencode($v);
       $sep_char = "&";
     }
@@ -351,9 +334,9 @@ class Session {
   ##
   ## Destroy all session data older than this
   ##
-  function gc() {
-      $this->that->ac_gc($this->gc_time, $this->name);
-  }
+  #function gc() {
+  #    $this->that->ac_gc($this->gc_time, $this->name);
+  #}
 
   ##
   ## Variable precedence functions
@@ -407,6 +390,9 @@ class Session {
         $this->mode = $this->fallback_mode;
       } else {
         header("Status: 302 Moved Temporarily");
+	if(!isset($sid)){ 
+	  $sid='';
+	}
         $this->get_id($sid);
 	$this->mode = $this->fallback_mode;
         if( isset($HTTPS) && $HTTPS == 'on' ){
@@ -434,6 +420,13 @@ class Session {
     # see http://msdn.microsoft.com/workshop/author/perf/perftips.asp#Use%20Cache-Control%20Extensions
     # for details
     switch ($this->allowcache) {
+
+      case "passive":
+        $mod_gmt = gmdate("D, d M Y H:i:s", getlastmod()) . " GMT";                             
+        header("Last-Modified: " . $mod_gmt);
+        # possibly ie5 needs the pre-check line. This needs testing.
+        header("Cache-Control: post-check=0, pre-check=0");
+      break;
 
       case "public":
         $exp_gmt = gmdate("D, d M Y H:i:s", time() + $this->allowcache_expire * 60) . " GMT";
