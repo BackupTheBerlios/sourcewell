@@ -12,7 +12,7 @@
 // | Authors: Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
 // +----------------------------------------------------------------------+
 //
-// $Id: Navigation.inc,v 1.15 2002/05/09 22:25:46 grex Exp $
+// $Id: Navigation.inc,v 1.16 2002/05/10 18:45:10 grex Exp $
 
 /**
  * Class Navigation: a class for links in the navigation bar
@@ -98,7 +98,7 @@ class Navigation {
 	$this->statistics = 0;
 	$this->where = '';
 	$this->additionalBR = 0;
-	$this->requiredAuth = 0;
+	$this->requiredAuth = 'initialization';
     }
 
     function setHttpGetArray($array) {
@@ -132,7 +132,7 @@ class Navigation {
 
         if (isset($auth) && !$this->requiredAuth) {
 	    return 0;
-	} elseif (!isset($auth) && $this->requiredAuth) {
+	} elseif (!isset($auth) && $this->requiredAuth == 1) {
   	    return 0;
 	} elseif ($this->permisions) {
             /* Should not be ==... instead regexp */
