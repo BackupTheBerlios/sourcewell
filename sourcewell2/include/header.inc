@@ -12,7 +12,7 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: header.inc,v 1.22 2002/05/14 15:45:45 grex Exp $
+// $Id: header.inc,v 1.23 2002/05/14 15:46:17 grex Exp $
 
 /**
  * TODO: global explanation of this file
@@ -110,6 +110,7 @@ if (isset($auth) && !empty($auth->auth["perm"])  && !($logout)) {
 } else {
     echo "<font color=\"".$config_nav_bgcolor."\"><b>"._o("Not Logged in")."</b></font>";
 }
+echo ' &nbsp; ';
 ?>
     </td>
   </tr>
