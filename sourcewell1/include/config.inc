@@ -284,6 +284,6 @@ $hash_secret = "Jabberwocky...";
 #
 ######################################################################
 
-$SourceWell_Version = "1.1.1";
+$SourceWell_Version = "1.1.2";
 
 ?>

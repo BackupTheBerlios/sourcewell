@@ -27,8 +27,8 @@ require("./include/header.inc");
 
 <P><H2>SourceWell</H2>
 
-<P><b>Latest Stable Version: 1.1.1</B>
-<br><b>BerliOS SourceWell (<a href="http://sourcewell.berlios.de">http://sourcewell.berlios.de</a>): 1.1.1</b>
+<P><b>Latest Stable Version: 1.1.2</B>
+<br><b>BerliOS SourceWell (<a href="http://sourcewell.berlios.de">http://sourcewell.berlios.de</a>): 1.1.2</b>
 
 <p><b>Demo site</b>: <a href="http://sourcewell.berlios.de">BerliOS SourceWell</a> with <b>more than 2000 applications</b>!
 
