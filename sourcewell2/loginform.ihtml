@@ -13,11 +13,11 @@
 // |          Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
 // +----------------------------------------------------------------------+
 //
-// $Id: loginform.ihtml,v 1.10 2002/05/10 18:38:56 grex Exp $
+// $Id: loginform.ihtml,v 1.11 2002/05/10 18:39:21 grex Exp $
 
 $login = 1;
 global $la;
-global $username
+global $username;
 require('config.inc');
 require('start.inc');
 
