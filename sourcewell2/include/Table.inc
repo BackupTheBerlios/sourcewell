@@ -1,20 +1,20 @@
 <?php
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 // +----------------------------------------------------------------------+
-// |        SourceWell 2 - The GPL Software Announcement System           |
+// |        SourceWell 2 - The GPL Software Announcement System           |
 // +----------------------------------------------------------------------+
-// |      Copyright (c) 2001-2002 BerliOS, FOKUS Fraunhofer Institut      |
+// |      Copyright (c) 2001-2002 BerliOS, FOKUS Fraunhofer Institut      |
 // +----------------------------------------------------------------------+
-// | This program is free software. You can redistribute it and/or modify |
-// | it under the terms of the GNU General Public License as published by |
-// | the Free Software Foundation; either version 2 or later of the GPL.  |
+// | This program is free software. You can redistribute it and/or modify |
+// | it under the terms of the GNU General Public License as published by |
+// | the Free Software Foundation; either version 2 or later of the GPL.  |
 // +----------------------------------------------------------------------+
-// | Authors: Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
-// |          Gregorio Robles <grex@scouts-es.org>                        |
-// |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
+// | Authors: Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
+// |          Gregorio Robles <grex@scouts-es.org>                        |
+// |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: Table.inc,v 1.4 2002/03/10 01:30:20 grex Exp $
+// $Id: Table.inc,v 1.5 2002/03/18 11:02:43 grex Exp $
 
 /**
  * Class Table: a class for HTML Tables
@@ -66,53 +66,53 @@
 class Table {
 
    /**
-     * Width of the table (IE has problems with 100% widths!) 
-     * @var  string
-     */
+     * Width of the table (IE has problems with 100% widths!) 
+     * @var  string
+     */
     var $table_width;
    /**
-     * 
-     * @var  string
-     */
+     * 
+     * @var  string
+     */
     var $table_filling;
    /**
-     * Background color of the Title
-     * @var  string
-     */
+     * Background color of the Title
+     * @var  string
+     */
     var $table_title_bgcolor;
    /**
-     * Font Color of the Title
-     * @var  string
-     */
+     * Font Color of the Title
+     * @var  string
+     */
     var $table_title_font_color;
    /**
-     * Align of the Title
-     * @var  string
-     */
+     * Align of the Title
+     * @var  string
+     */
     var $table_title_align;
    /**
-     * Background color of the Body
-     * @var  string
-     */
+     * Background color of the Body
+     * @var  string
+     */
     var $table_body_bgcolor;
    /**
-     * Font color of the body
-     * @var  string
-     */
+     * Font color of the body
+     * @var  string
+     */
     var $table_body_font_color;
    /**
-     * Align of the Body
-     * @var  string
-     */
+     * Align of the Body
+     * @var  string
+     */
     var $table_body_align;
 
-    /**
-     * Constructor
-     *
-     * @param   string  $table_type      can be 'general' or 'error'
-     * @param   string  $table_width     can be xx% or in pixels
-     * @access  public
-     */
+    /**
+     * Constructor
+     *
+     * @param   string  $table_type      can be 'general' or 'error'
+     * @param   string  $table_width     can be xx% or in pixels
+     * @access  public
+     */
 
     function Table($table_type ='general', $table_width='98%')
     {
@@ -162,8 +162,8 @@ class Table {
     /**
      * Prints the beginning tags for a table
      *
-     * @param    string       $summary   table summary as specified in HTML 4
-     * @access public
+     * @param    string       $summary   table summary as specified in HTML 4
+     * @access public
      */
   
     function table_begin($summary = '')
@@ -175,7 +175,7 @@ class Table {
     /**
      * Prints the end tags for a table
      *
-     * @access public
+     * @access public
      */
 
     function table_end()
@@ -188,7 +188,7 @@ class Table {
     /**
      * Prints the beginning tags for the table title
      *
-     * @access public
+     * @access public
      */
 
     function table_title_begin()
@@ -201,7 +201,7 @@ class Table {
     /**
      * Prints the end tags for the table title
      *
-     * @access public
+     * @access public
      */
 
     function table_title_end()
@@ -219,7 +219,7 @@ class Table {
      *       table_title_end()
      *
      * @param    string      $title     Text that will be the title
-     * @access public
+     * @access public
      */
 
     function table_title($title = '&nbsp;')
@@ -233,7 +233,7 @@ class Table {
      * Prints the beginning tags for the table body
      *
      * @param      string      $valign      Vertical align of the body
-     * @access public
+     * @access public
      */
 
     function table_body_begin($valign = 'top')
@@ -246,7 +246,7 @@ class Table {
     /**
      * Prints the end tags for the table body
      *
-     * @access public
+     * @access public
      */
 
     function table_body_end()
@@ -265,7 +265,7 @@ class Table {
      *
      * @param    string      $text     Text that will be in the body
      * @param    string      $valign   Vertical align of the body
-     * @access public
+     * @access public
      */
 
     function table_body($text = '&nbsp;', $valign = 'top')
@@ -285,7 +285,7 @@ class Table {
      * @param    string      $text     Text that will be in the body
      * @param    string      $valign   Vertical align of the body
      * @param    string      $summary  table summary as specified in HTML 4
-     * @access public
+     * @access public
      */
 
     function table_full($title = '&nbsp;', $text ='&nbps;', $valign = 'top', $summary ='')
@@ -299,7 +299,7 @@ class Table {
     /**
      * Prints the beginning tags for starting row(s) of columns
      *
-     * @access public
+     * @access public
      */
 
     function table_columns_begin()
@@ -313,7 +313,7 @@ class Table {
     /**
      * Prints the ending tags for ending row(s) of columns
      *
-     * @access public
+     * @access public
      */
 
     function table_columns_end()
@@ -333,7 +333,7 @@ class Table {
      * @param    string      $width     Column width (best in %)
      * @param    string      $bgcolor   Background color
      * @param    string      $align     Text align
-     * @access public
+     * @access public
      */
 
     function table_column_start($width = '100%', $bgcolor = '', $align = 'center')
@@ -345,7 +345,7 @@ class Table {
     /**
      * Prints the ending tags for a single columns
      *
-     * @access public
+     * @access public
      */
 
     function table_column_finish()
@@ -369,7 +369,7 @@ class Table {
      * @param    string      $width     Column width (best in %)
      * @param    string      $bgcolor   Background color
      * @param    string      $align     Text align
-     * @access public
+     * @access public
      */
 
     function table_column($text = '&nbsp;', $width = '100%', $bgcolor = '', $align = 'center')
@@ -389,7 +389,7 @@ class Table {
      * Column7  Column8
      * EndColumns
      *
-     * @access public
+     * @access public
      */
 
     function table_nextRowWithColumns()
@@ -411,7 +411,7 @@ class Table {
      * @param    string      $width                Column width (best in %)
      * @param    string      $bgcolor              Background color
      * @param    string      $align                Text align
-     * @access public
+     * @access public
      */
 
     function table_colspan ($text = '&nbsp;', $numberOfColumns ='2', $bgcolor = '', $align = 'center')
