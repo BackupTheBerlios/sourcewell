@@ -2,7 +2,7 @@
 include('start.inc');
 lib_include('Field');
 lib_include('TextField');
-lib_include('Table');
+include('Table.inc');
 
 $table = new Table();
 
