@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: start.inc,v 1.30 2002/05/09 14:01:15 grex Exp $
+// $Id: start.inc,v 1.31 2002/05/09 14:06:36 grex Exp $
 
 if (!isset($login)) {
     page_open(array('sess' => 'SourceWell_Session'));
@@ -355,13 +355,12 @@ while (list(, $value) = each($adm_bar_array)) {
   if (($config_perm_configure == "all") || (isset($perm) && $perm->have_perm($config_perm_configure))  && !($logout)) {
     echo "<br><a href=\"".$sess->url("configure.php3")."\" class=\"menus\">"._("Configure")."</a>\n";
   }
-*/
 ?>
 </td>
 </tr>
 </table>
 <?php
-}
+}											       */
 ?>
 <!-- end Admin menu -->
 <!-- Search menu -->
