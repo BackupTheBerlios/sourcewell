@@ -166,8 +166,8 @@ $ml_replyaddr = "noreply@mail.berlios.de";
 ######################################################################
 
 $ml_list = "1";
-$ml_listurl = "http://lists.berlios.de/mailman/listinfo/sourcewell-news";
-$ml_weeklylisturl =  "http://lists.berlios.de/mailman/listinfo/sourcewell-weeklynews";
+$ml_listurl = "https://lists.berlios.de/mailman/listinfo/sourcewell-news";
+$ml_weeklylisturl =  "https://lists.berlios.de/mailman/listinfo/sourcewell-weeklynews";
 $ml_newstoaddr = "sourcewell-news@lists.berlios.de";
 $ml_newsreqaddr = "sourcewell-news-request@lists.berlios.de";
 $ml_weeklynewstoaddr = "sourcewell-weeklynews@lists.berlios.de";
