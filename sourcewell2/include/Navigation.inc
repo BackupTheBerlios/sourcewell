@@ -12,7 +12,7 @@
 // | Authors: Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
 // +----------------------------------------------------------------------+
 //
-// $Id: Navigation.inc,v 1.13 2002/05/09 17:39:20 grex Exp $
+// $Id: Navigation.inc,v 1.14 2002/05/09 22:23:40 grex Exp $
 
 /**
  * Class Navigation: a class for links in the navigation bar
@@ -76,6 +76,11 @@ class Navigation {
      * @var  boolean
      */
     var $requiredAuth;
+   /**
+     * 
+     * @var  string
+     */
+    var $extension = '.php';
 
     /**
      * Constructor
@@ -87,7 +92,7 @@ class Navigation {
     function Navigation($string, $link)
     {
         $this->string = $string;
-	$this->link = $link;
+	$this->link = $link.$extension;
 	$this->httpGetArray = '';
 	$this->permisions = '';
 	$this->statistics = 0;
