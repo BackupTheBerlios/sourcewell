@@ -12,7 +12,7 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: footer.inc,v 1.7 2002/05/09 20:43:00 grex Exp $
+// $Id: footer.inc,v 1.8 2002/05/09 20:44:44 grex Exp $
 
 /* Configuration parameters are set as global */
 /* their values can be found at config.inc */
@@ -22,6 +22,8 @@ global $config_org_url;
 global $config_org_name;
 global $config_sys_url;
 global $config_nav_bgcolor;
+
+global $PHP_SELF;
 
 /**
  * WISH: here we could have some functions that
