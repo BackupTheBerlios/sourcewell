@@ -20,7 +20,7 @@
 
 require "./include/prepend.php3";
 
-header("Content-Type: text/plain");
+header("Content-Type: text/xml");
 
 // Disabling cache
 header("Cache-Control: no-cache, must-revalidate");     // HTTP/1.1
@@ -42,7 +42,7 @@ echo "    <language>en-us</language>\n";
 
 echo "  <image>\n";
 echo "    <title>".$sys_name."</title>\n";
-echo "    <url>".$sys_url.$sys_logo_image."</url>\n";
+echo "    <url>".$sys_logo_image."</url>\n";
 echo "    <link>".$sys_url."</link>\n";
 echo "    <description>".$sys_name." - ".$sys_title."</description>\n";
 echo "    <width>66</width>\n";
