@@ -1,8 +1,33 @@
 CHANGELOG for SourceWell
 http://sourcewell.berlios.de/html
 
+29-11-2001 Gregorio Robles <grex@scouts-es.org>
+
+major changes in many files looking forward to the new architecture:
+almost all files have been adapted to the new html.inc library which abstracts the PHP and PHPLib from the HTML
+the search algorithm has been enhanced
+the sql strings have been grouped in one single file
+the use of columns has been added into the box.inc library
+new library for apps and faqs
+
+fixes:
+security fix by introducing a temporary table in the database with pending apps
+memory fix for translations
+
+05-09-2001 Lutz Henckel <lutz.henckel@fokuks.gmd.de>
+
+developers.php3 fix missing email addresses for unknown authors
+appbydev.php3 add additional email parameter to distinguish same users
+include/German-lang.inc add missing phrases for newsletter subscription
+include/Spanish-lang.inc add missing phrases for newsletter subscription
+include/French-lang.inc add missing phrases for newsletter subscription
+
 18-07-2001 Lutz Henckel <lutz.henckel@fokuks.gmd.de>
 
+sitebar.php3 add new tab for Mozilla/Netscape 6 feature
+include/menubar.inc add tab to Mozilla/Netscape 6 feature
+include/header.inc add tab to Mozilla/Netscape 6 feature
+include/lang-translate.inc correct phrase
 include/footer.inc make System Credits link relatively
 update.php3 bug fixed which sets different modification dates in software and history tables due to update reload
 include/lib.inc bug fixed which sets different modification dates in software and history tables due to update reload
