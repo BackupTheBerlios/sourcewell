@@ -1,0 +1,91 @@
+CHANGELOG for SourceWell
+
+03-04-2001 SourceWell Version 1.0
+
+doc/documentation.html updated with the changes
+backend.php3 DB-connection problem with PHPLib solved
+include/statslib.php3 Domaines list completed with 258 domaines!
+include/config.inc propper statistical configuration for new installed systems
+stats.php3 fix "Applications by Sections and Developer's Email
+		   Domain" does not show anything when there are no apps in a section
+include/statslib.inc bug fix: function stats_display_alt graphic bar smaller
+include/German-faq.inc FAQ Translation into German
+include/Spanish-faq.inc FAQ Translation into Spanish
+include/English-faq.inc Translating-FAQ added
+sql/sw.sql SQL example entry changed
+
+02-04-2001 SourceWell Version 1.0pre4
+
+doc/documentation.html updated with the changes
+include/statslib.inc minor bug fixes in function stats_display_alt
+doc/INSTALL new file with a fast installation guide
+include/config.inc db_Password only in local.inc
+include/local.inc new instructions included
+comment.php3 minor bug fixed
+admcomment.php3 minor bug fixed
+
+01-04-2001 SourceWell Version 1.0pre3
+
+doc/documentation.html updated with the changes
+include/statslib.inc Division by zero (line 128 and 131)
+stats.php3 Division by zero (line 885)
+inscat.php3 PHPLib DB-connection 
+admsec.php3 PHPLib DB-connection 
+apppend.php3 PHPLib DB-connection 
+appsearch.php3 PHPLib DB-connection 
+cmtins.php3 PHPLib DB-connection 
+cmtapp.php3 PHPLib DB-connection 
+admdate.php3 PHPLib DB-connection 
+insapp.php3 PHPLib DB-connection 
+nlsend.php3 PHPLib DB-connection 
+remindme.php3 PHPLib DB-connection 
+redirect.php3 PHPLib DB-connection 
+nladm.php3 PHPLib DB-connection 
+update.php3 PHPLib DB-connection 
+updapp.php3 PHPLib BD-connection 
+stats.php3 PHPLib DB-connection 
+
+30-03-2001 SourceWell Version 1.0pre2
+
+appmod.php3 PHPLib DB-connection
+admcomment.php3 PHPLib DB-connection
+admlicens.php3 PHPLib DB-connection
+inssec.php3 PHPLib DB-connection
+insform.php3 PHPLib DB-connection
+insert.php3 PHPLib DB-connection
+inslic.php3 PHPLib DB-connection
+inscat.php3 PHPLib DB-connection
+insapp.php3 PHPLib DB-connection
+verify.php3 PHPLib DB-connection
+appbyuser.php3 PHPLib DB-connection
+appbylic.php3 PHPLib DB-connection
+appbycat.php3 PHPLib DB-connection
+appbydev.php3 PHPLib DB-connection
+appbyid.php3 PHPLib DB-connection
+
+29-03-2001 SourceWell Version 1.0pre1
+
+doc/documentation.html new file with SourceWell's documentation
+include/lang-translate.inc new file with the default translation entries
+doc/CHANGELOG new file with the changelog (this file)
+doc/LICENSE new file with the GNU General Public License
+recentnews.php3 deleted (deprecated)
+appbydat.php3 deleted (deprecated)
+appdel.php3 deleted (deprecated)
+appmod.php3 deleted (deprecated)
+include/Italian-lang.inc deleted  (empty)
+stats2.php3 deleted  (empty)
+include/statslib.inc Domain listing added
+include/config.inc Domain listing deleted
+include/lib.inc Function themesidebox($title,$content) deleted (not
+finished yet)
+linkchecker.php3 deleted (not finished yet)
+include/lib.inc Function headline() deleted (not finished yet)
+include/statslib.inc Function stats_subtitle($message) deleted (deprecated)
+include/statslib.inc Function stats_subtitle_alt() renamed to stats_subtitle()
+stats.php3 stats_subtitle_alt() updated to stats_subtitle()
+include/statslib.inc Function stats_type($message,$type) deleted (deprecated)
+
+15-03-2001 SourceWell Version 0.9
+
+The changelogs until here are not registered.
