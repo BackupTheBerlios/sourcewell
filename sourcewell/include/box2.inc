@@ -47,6 +47,18 @@ class box {
 				$this->box_body_align = $config_box_general_body_align;
 				break;
 
+			case "alternative":
+				include("config2.inc");
+				$this->box_frame_color = $config_box_alternative_frame_color;
+				$this->box_frame_width = $config_box_alternative_frame_width;
+				$this->box_title_bgcolor = $config_box_alternative_title_color_fondo;
+				$this->box_title_font_color = $config_box_alternative_title_font_color;
+				$this->box_title_align = $config_box_alternative_title_align;
+				$this->box_body_bgcolor = $config_box_alternative_body_color_fondo;
+				$this->box_body_font_color = $config_box_alternative_body_font_color;
+				$this->box_body_align = $config_box_alternative_body_align;
+				break;
+
 			case "error":
 				include("config2.inc");
 				$this->box_frame_color = $config_box_error_frame_color;

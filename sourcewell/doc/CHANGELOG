@@ -3,6 +3,7 @@ http://sourcewell.berlios.de/html
 
 26-12-2001 Gregorio Robles <grex@scouts-es.org> ------------- SourceWell 1.0.13
 
+* include/box2.inc: new box type: alternative
 * include/config.inc and include/config2.inc: Version update for SourceWell 1.0.13
 * include/app2.inc: new function _app_changesBetweenSoftwareAndTemp() that allows easy reviewing for editors
 * include/app2.inc: comments on apps are now shown
