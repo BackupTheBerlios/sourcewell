@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: config.inc,v 1.33 2002/05/09 14:35:46 grex Exp $
+// $Id: config.inc,v 1.34 2002/05/09 14:47:36 grex Exp $
 
 /**
  * Directory configuration
@@ -309,36 +309,36 @@ $nav_bar_array[] = new Navigation('Statistics', 'stats.php3');
 
 /* Administration options */
 $temp = new Navigation('Users', 'admuser.php3');
-//$temp->setPermisions('admin');
+$temp->setPermisions('admin');
 $temp->setStatistics('auth_user');
-$nav_bar_array[] = $temp;
+$adm_bar_array[] = $temp;
 $temp = new Navigation('Sections', 'admsec.php3');
 $temp->setPermisions('admin');
 /* TODO: has to be refined */
 $temp->setStatistics('categories');
-$nav_bar_array[] = $temp;
+$adm_bar_array[] = $temp;
 $temp = new Navigation('Categories', 'admcat.php3');
 $temp->setPermisions('admin');
 $temp->setStatistics('categories');
-$nav_bar_array[] = $temp;
+$adm_bar_array[] = $temp;
 $temp = new Navigation('Licenses', 'admlicens.php3');
 $temp->setStatistics('licenses');
 $temp->setPermisions('admin');
-$nav_bar_array[] = $temp;
+$adm_bar_array[] = $temp;
 $temp = new Navigation('Comments', 'admcomments.php3');
 $temp->setStatistics('comments');
 $temp->setPermisions('admin');
-$nav_bar_array[] = $temp;
+$adm_bar_array[] = $temp;
 $temp = new Navigation('Q&A', 'admfaq.php3');
 $temp->setStatistics('faq');
 $temp->setPermisions('admin');
-$nav_bar_array[] = $temp;
+$adm_bar_array[] = $temp;
 $temp = new Navigation('Check Date', 'admdate.php3');
 $temp->setPermisions('admin');
-$nav_bar_array[] = $temp;
+$adm_bar_array[] = $temp;
 $temp = new Navigation('Daily Newsletter', '');
 $temp->setPermisions('admin');
-$nav_bar_array[] = $temp;
+$adm_bar_array[] = $temp;
 $temp = new Navigation('Weekly Newsletter', '');
 
 /**

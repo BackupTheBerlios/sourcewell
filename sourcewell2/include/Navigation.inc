@@ -12,7 +12,7 @@
 // | Authors: Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
 // +----------------------------------------------------------------------+
 //
-// $Id: Navigation.inc,v 1.7 2002/05/09 14:37:16 grex Exp $
+// $Id: Navigation.inc,v 1.8 2002/05/09 14:47:36 grex Exp $
 
 /**
  * Class Navigation: a class for links in the navigation bar
@@ -122,7 +122,7 @@ class Navigation {
 	    $return .= '<br>';
             $return .= "\n";
         }
-        print $return;
+        return $return;
     }
 }
 ?>
