@@ -15,7 +15,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: config.inc,v 1.15 2002/03/18 11:22:47 grex Exp $
+// $Id: config.inc,v 1.16 2002/04/21 21:49:04 grex Exp $
 
 /**
  * General System Configuration
@@ -187,72 +187,82 @@ $config_path_FieldClasses = 'include/';
 $config_path_Classes = 'include/';
 $config_path_translations = 'include/';
 $config_path_design = 'include/';
-
 $config_path_images = 'images/';
 
-/*
- * Include directories
+/**
+ * This function enables to add included files with some intelligence
+ * given a file to include, it includes the correct file
  *
- * $class    string     Name of the class or library that should be included
+ * @param  string    $include      Library/class to be included
+ *                                 (without extension)
  *
- * The $class parameter does not need to have the file extension (.inc) or (.inc.php)
- *
- * if you want to include Table.inc, just call
- * lib_include('Table');
+ * @global boolean   $_FIELD_CLASS_INCLUDED    If the parent class has already been included
+ * @global string    $_INC_PATH                Path to the include directory
+ * @access public
  */
 
-/*
-function lib_include($class)
+function config_inc($include)
 {
-    switch($class) {
+    global $_FIELD_CLASS_INCLUDED, $_INC_PATH;
+
+    /* default extensions */
+    $class_extension = '.inc';
+    $library_extension = '.inc';
+    $include_extension = '.inc';
+
+    /* let's work a little less */
+    /* we group the different classes together */
+    $include_switch = $include;
+
+    /* if it contains Field, then this class belongs to the Field class */
+    if (ereg('Field', $include)) {
+        if (!$_FIELD_CLASS_INCLUDED) {
+            /* we only add the parent class once */
+            include($_INC_PATH.'Field/Field'.$class_extension);
+            $_FIELD_CLASS_INCLUDED = 1;
+        }
+        $include_switch = 'Field';
+    }
+    switch($include_switch) {
     case 'Field':
-    case 'TextField':
-    case 'CheckField':
-    case 'HiddenField':
-    case 'MultipleOptionField':
-    case 'PasswordField':
-    case 'RadioField':
-    case 'SelectField':
-    case 'TextAreaField':
-    case 'URLField':
-      //    case ereg('Field',$class):
-      //    case ereg('Show',$class):
-    case 'Preview':
-    case 'Insertion':
-    case 'Show':
-    case 'Summary':
-    case 'TabularShow':
-    case 'FormShow':
-    case 'Update':
-       include($config_path_Classes.$class.$config_path_extension);
-       break;
+        include($_INC_PATH.$include.$class_extension);
+        break;
+    case 'Session':
+        include($_INC_PATH.$include.$class_extension);
+        break;
     case 'Table':
-      include($config_path_TableClass.$class.$config_path_extension);
-    case 'lib':
-        include($config_path_lib.$class.$config_path_extension);
+        include($_INC_PATH.$include.$class_extension);
         break;
     case 'html':
-        include($config_path_html.$class.$config_path_extension);
+        include($_INC_PATH.$include.$library_extension);
         break;
+    case 'FormShow':
+    case 'TabularShow':
+    case 'Summary':
+        /* Show parent class included */
+        include($_INC_PATH.'/Show'.$class_extension);
+        /* there's no break here! ;-) */
+    case 'Comment':
+    case 'Form':
+    case 'Insertion':
+    case 'Update':
+    case 'Preview':
+        include($_INC_PATH..$include.$class_extension);
+        break;
+    case 'lib':
     case 'security':
-        include($config_path_security.$class.$config_path_extension);
+        include($_INC_PATH..$include.$library_extension);
         break;
-    case 'header':
-    case 'footer':
-    case 'menubar':
-    case 'top_strip':
-    case 'top_title':
-        include($config_path_design.$class.$config_path_extension);
-        break;
-    case 'translation':
-    case 'lang':
-        include($config_path_translations.$class.$config_path_extension);
+    case 'start':
+    case 'end':
+    case 'navigation':
+    case 'images':
+        include($_INC_PATH.$include.$include_extension);
         break;
     default:
-      die('error. See configuration file');
+        lib_die('Error. Non existing file included at config_include in config.inc');
     }
 }
-*/
 
 /**
  * PHPLIB
