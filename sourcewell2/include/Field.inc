@@ -12,7 +12,7 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: Field.inc,v 1.5 2002/03/18 11:09:44 grex Exp $
+// $Id: Field.inc,v 1.6 2002/03/18 11:10:36 grex Exp $
 
 /**
  * Requires Table.inc, html.inc and config.inc
@@ -145,7 +145,7 @@ class Field {
     {
         global $$config_database_variable;
         if ($config_PHPLib_installed) {
-            return $$$config_database_variable->f($this->name);
+            return $$config_database_variable->f($this->name);
 	} else {
 	  // TODO: with mysql or something like that
 	}
