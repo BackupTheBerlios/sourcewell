@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: config.inc,v 1.49 2002/05/10 18:20:32 grex Exp $
+// $Id: config.inc,v 1.50 2002/05/10 18:32:45 grex Exp $
 
 /**
  * Directory configuration
@@ -327,7 +327,7 @@ $temp->additionalBR();
 $config_nav_bar_array[] = $temp;
 $config_nav_bar_array[] = new Navigation('Statistics', 'stats');
 $config_nav_bar_array[] = new Navigation('Newsletter', 'newsletter');
-$config_nav_bar_array[] = new Navigation('RDF Backend', 'backend');
+$config_nav_bar_array[] = new Navigation('RDF Backend', 'rdf');
 
 
 /* Administration options */
