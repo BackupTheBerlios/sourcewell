@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: config.inc,v 1.29 2002/05/07 22:07:08 grex Exp $
+// $Id: config.inc,v 1.30 2002/05/09 14:01:15 grex Exp $
 
 /**
  * Directory configuration
@@ -262,6 +262,46 @@ $config_database_name      = 'sourcewell2';
 $config_database_user      = 'operator';
 $config_database_password  = 'password';
 $config_database_variable  = '_DB_';
+
+/**
+ * Navigation bar links
+ *
+ * TODO: explain how this can be configured 
+ *
+ * for further information see Navigation.inc for the Navigation class
+ */
+
+/* Normal navigation bar */
+$nav_bar_array[] = new Navigation('Recent Apps', 'index.php3');
+$nav_bar_array[] = new Navigation('Q&A', 'faq.php3');
+$nav_bar_array[] = new Navigation('Login', 'login.php3');
+$nav_bar_array[] = new Navigation('Logout', 'logout.php3');
+$nav_bar_array[] = new Navigation('New User', 'register.php3');
+$nav_bar_array[] = new Navigation('Forgot Password?', 'remind.php3');
+$nav_bar_array[] = new Navigation('Change User', 'chguser.php3');
+$nav_bar_array[] = new Navigation('Users', 'users.php3');
+$nav_bar_array[] = new Navigation('Apps Index', 'categories.php3');
+$nav_bar_array[] = new Navigation('New App', 'app_edi.php3');
+$nav_bar_array[] = new Navigation('Update Apps', 'appbyuser.php3');
+$nav_bar_array[] = new Navigation('Pending Apps', 'admapp.php3');
+$nav_bar_array[] = new Navigation('Deleted Apps', 'admapp.php3');
+$nav_bar_array[] = new Navigation('Modified Apps', 'admapp.php3');
+$nav_bar_array[] = new Navigation('Developers', 'developers.php3');
+$nav_bar_array[] = new Navigation('Licenses', 'licenses.php3');
+$nav_bar_array[] = new Navigation('Newsletter', 'newsletter.php3');
+$nav_bar_array[] = new Navigation('Backend', 'backend.php3');
+$nav_bar_array[] = new Navigation('Statistics', 'stats.php3');
+
+/* Administration options */
+$adm_bar_array[] = new Navigation('Users', 'admuser.php3');
+$adm_bar_array[] = new Navigation('Sections', 'admsec.php3');
+$adm_bar_array[] = new Navigation('Categories', 'admcat.php3');
+$adm_bar_array[] = new Navigation('Licenses', 'admlicens.php3');
+$adm_bar_array[] = new Navigation('Comments', 'admcomments.php3');
+$adm_bar_array[] = new Navigation('Q&A', 'admfaq.php3');
+$adm_bar_array[] = new Navigation('Check Date', 'admdate.php3');
+$adm_bar_array[] = new Navigation('Daily Newsletter', '');
+$adm_bar_array[] = new Navigation('Weekly Newsletter', '');
 
 /**
  * PHPLIB
