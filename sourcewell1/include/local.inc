@@ -5,7 +5,7 @@
  * Copyright (c) 1998-2000 NetUSE AG
  *                    Boris Erdmann, Kristian Koehntopp
  *
- * $Id: local.inc,v 1.2 2002/10/08 14:23:50 helix Exp $
+ * $Id: local.inc,v 1.3 2003/03/03 13:14:29 helix Exp $
  *
  */ 
 
@@ -20,23 +20,30 @@
 #
 ######################################################################
 
-class DB_SourceWell extends DB_Sql {
-  var $Host     = "localhost";
-  var $Database = "sourcewell";
-  var $User     = "sourcewell";
-  var $Password = "password";
+if ( file_exists( 'local_database.inc' ) ) {
+  /** defines the DB_SourceWell class **/
+  include( 'local_database.inc' );
+} else if ( file_exists( 'include/local_database.inc' ) ) {
+  include( 'include/local_database.inc' );
+} else {
+  class DB_SourceWell extends DB_Sql {
+    var $Host     = "localhost";
+    var $Database = "sourcewell";
+    var $User     = "sourcewell";
+    var $Password = "password";
+  }
 }
 
 /*********************************************************************/
 /* If you've finished configuring the Database, you can login as an  */
 /* administrator. To do so, just launch your web browser pointing to */
-/* http://yourdomain.com/login.php and login as the default admin    */
+/* http://yourdomain.com/login.php and login as the default admin   */
 /* with user,editor,admin permissions.                               */
 /*                                                                   */
 /* At the prompt use the following ID to login (case sensitive):     */
 /*                                                                   */
-/*         Username: admin                                           */
-/*         Password: admin                                           */
+/*         Username: oldfish                                         */
+/*         Password: oldfish                                         */
 /*                                                                   */
 /* Vert important:                                                   */
 /* Be sure of inmediately changing the login & password by clicking  */
