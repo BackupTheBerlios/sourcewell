@@ -68,7 +68,7 @@ if (($config_perm_admcat != "all") && (!isset($perm) || !$perm->have_perm($confi
   $bs->box_strip($t->translate("Rename a Category"));
   echo "<form action=\"".$sess->url("inscat.php")."\" method=\"POST\">\n";
   echo "<table border=0 cellspacing=0 cellpadding=3 width=100%>\n";
-  echo "<tr><td align=right width=30%>".$t->translate("Category").":</td><td width=70%>\n";
+  echo "<tr><td align=right width=30%>".$t->translate("Section")."/".$t->translate("Category").":</td><td width=70%>\n";
   echo "<select name=\"sec_and_cat\">\n";
   seccat("Console/Backup");     // We select the first one to avoid having a blank line
   echo "</select></td></tr>\n";
