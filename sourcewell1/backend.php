@@ -36,14 +36,14 @@ echo "<rss version=\"0.91\">\n";
 
 echo "  <channel>\n";
 echo "    <title>".$sys_name."</title>\n";
-echo "    <link>".$sys_url."</link>\n";
+echo "    <link>http:".$sys_url."</link>\n";
 echo "    <description>".$sys_name." - ".$sys_title."</description>\n";
 echo "    <language>en-us</language>\n";
 
 echo "  <image>\n";
 echo "    <title>".$sys_name."</title>\n";
-echo "    <url>".$sys_logo_image."</url>\n";
-echo "    <link>".$sys_url."</link>\n";
+echo "    <url>http:".$sys_logo_small_image."</url>\n";
+echo "    <link>http:".$sys_url."</link>\n";
 echo "    <description>".$sys_name." - ".$sys_title."</description>\n";
 echo "    <width>66</width>\n";
 echo "    <height>73</height>\n";
@@ -55,7 +55,7 @@ $i=0;
 while($db->next_record()) {
   echo "  <item>\n";
   echo "    <title>".htmlspecialchars($db->f("name"))." ".$db->f("version")."</title>\n";
-  echo "    <link>".$sys_url."appbyid.php?id=".$db->f("appid")."</link>\n";
+  echo "    <link>http:".$sys_url."appbyid.php?id=".$db->f("appid")."</link>\n";
 //  echo "    <description>".wrap($db->f("description"))."</description>\n";
   echo "  </item>\n";
   $i++;
