@@ -1,5 +1,4 @@
 <?php
-
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 // +----------------------------------------------------------------------+
 // |        SourceWell 2 - The GPL Software Announcement System           |
@@ -13,21 +12,40 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: Summary.inc,v 1.1 2002/03/08 17:11:03 grex Exp $
+// $Id: Summary.inc,v 1.2 2002/03/09 15:10:29 grex Exp $
 
 /**
  * Requires table.inc, html.inc and lib.inc
  * Uses PHPLib's database abstraction layer
  */
 
-/* 
+/**
+ * Summary class
  * This class shows only certain fields from the database
  * this fields are: name, description, user and creation
- */ 
+ *
+ * @author Gregorio Robles <grex@scouts-es.org>
+ * @access public
+ * @see Field, Show
+ */
 
 class Summary extends Show {
 
-    var $fields;            // array with the fields that are going to be shown
+    /**
+     * Array with all the Field objects to be shown
+     * @var  array
+     */
+    var $fields;
+
+    /**
+     * Constructor
+     *
+     * @param   string  $table        database table from which to extract the data
+     * @param   string  $order        Contents are shown following this order
+     *                                ordered by {date, interest, alphabetically}
+     * @param   string  $order_value  additional info if $order requires it
+     * @access  public
+     */
 
     function Summary($table, $order = 'creation', $order_value ='') {
 
@@ -35,9 +53,8 @@ class Summary extends Show {
         $this->Show($table);
 
         $this->setLimit(10); 
-          // Ordenado según {fecha, interés, alfabéticamente}
         $this->setOrder('creacion DESC');
-	 // Especifica pormenorizadamente el orden --> conditions!
+	 // conditions conditions to fulfill order
 	//        $this->addCondition('','');
 
         $name = new TextField('Name', 'name');
@@ -49,6 +66,13 @@ class Summary extends Show {
 	$this->fields[] = $description;
 
     }
+
+    /**
+     * Rewrites the printShow() method from the Show Class 
+     *
+     * @access public
+     * @see Show, PHPLib, Table
+     */
 
     function printShow() {
         global $db, $table;
@@ -84,5 +108,4 @@ class Summary extends Show {
 	}
     }
 }
-
 ?>

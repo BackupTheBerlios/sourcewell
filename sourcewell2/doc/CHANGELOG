@@ -2,6 +2,13 @@ SourceWell 2 - The GPL Software Announcement System from BerliOS
 
 2002-03-09  Gregorio Robles <grex@scouts-es.org>
 
+	* include/html.inc: changes in the html(p)_image function so that
+	  an alternate text is always given (as specified in HTML 4)
+
+        * include/Show.inc
+	* include/Counter.inc
+ 	* include/Summary.inc:
+	* include/html.inc:
 	* include/Table.inc: documented these classes following the PHPDoc
  	  (http://www.phpdoc.de) conventions
 

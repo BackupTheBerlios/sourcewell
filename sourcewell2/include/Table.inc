@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: Table.inc,v 1.2 2002/03/09 13:04:40 grex Exp $
+// $Id: Table.inc,v 1.3 2002/03/09 15:10:29 grex Exp $
 
 /**
  * Class Table: a class for HTML Tables
@@ -24,22 +24,32 @@
  *
  * With this class, you should be able of doing something like this:
  *
- * __________________________________________________
+ * +------------------------------------------------+
  * | Title                                          |
- * --------------------------------------------------
+ * +------------------------------------------------+
  * | Body                                           |
  * |                                                |
- * | ---------------------------------------------- |
- * | |  Column     ||  Column      ||  Column     | |
- * | |-------------||--------------||-------------| |
- * | |  Column     ||  Column      ||  Column     | |
- * | |-------------||--------------||-------------| |
- * | |  Spanned column             ||  Column     | |
- * | ---------------------------------------------- |
- * -------------------------------------------------
+ * |                                                |
+ * +------------------------------------------------+
  *
- * where Title, Body, Column and Spanned Column are contents
- * (in string format) you may want to fille out
+ * or even like this:
+ *
+ * +------------------------------------------------+
+ * | Title                                          |
+ * +------------------------------------------------+
+ * | Body                                           |
+ * |                                                |
+ * | +--------------------------------------------+ |
+ * | |  Column     ||  Column      ||  Column     | |
+ * | |-------------++--------------++-------------| |
+ * | |  Column     ||  Column      ||  Column     | |
+ * | |-------------++--------------++-------------| |
+ * | |  Spanned column             ||  Column     | |
+ * | +--------------------------------------------+ |
+ * +------------------------------------------------+
+ *
+ * Title, Body, Column and Spanned Column are contents
+ * (in string format) you may want to put in there
  *
  * This class handles primarily visual aspects of the table,
  * while it provides an interface to introduce its contents

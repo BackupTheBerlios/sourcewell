@@ -1,5 +1,4 @@
 <?php
-
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 // +----------------------------------------------------------------------+
 // |        SourceWell 2 - The GPL Software Announcement System           |
@@ -13,21 +12,51 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: Counter.inc,v 1.1 2002/03/08 17:10:59 grex Exp $
+// $Id: Counter.inc,v 1.2 2002/03/09 15:10:29 grex Exp $
 
 /**
  * Uses PHPLib's database abstraction class
  */
 
 /**
+ * Class Counter
  * Counts the number of accesses to a certain content
+ *
+ * It needs a database backend with two tables
+ *     * counter (which will have the different types of things to count)
+ *     * check_counter (which will contain the IP addresses of the visitors)
+ * 
+ * @author Gregorio Robles <grex@scouts-es.org>
+ * @access public
+ * @see PHPLib
+ */
  */
 
 class Counter {
 
+    /**
+     * Identifier of the content to count
+     * @var  id
+     */
     var $id;
+    /**
+     * Type of the content to count
+     * @var  string
+     */
     var $type;
+    /**
+     * IP address of the visitor
+     * @var  string
+     */
     var $ipAddress;
+
+    /**
+     * Constructor
+     *
+     * @param   int     $id           Identifier of the content to count
+     * @param   string  $type         Type of the content to count
+     * @access  public
+     */
 
     function Counter($id, $type='')
     {
@@ -39,8 +68,14 @@ class Counter {
         if ($this->_counterCheck()) {
   	    $this->_counterAdd();
         }
-
     }
+
+    /**
+     * Deletes older entries than today in the check_counter table
+     *
+     * @access  private
+     * @see PHPLib
+     */
 
     function _counterDeleteOlder()
     {
@@ -49,6 +84,13 @@ class Counter {
         $today = date("Y-m-d");
         $db->query("DELETE FROM comprobar_contador WHERE DATE_FORMAT(creation_cnt,'%Y-%m-%d') != '$today'");
     }
+
+    /**
+     * Checks if that visitor has not visited that content already
+     *
+     * @access  private
+     * @see PHPLib
+     */
 
     function _counterCheck()
     {
@@ -60,11 +102,17 @@ class Counter {
         if ($db->num_rows() > 0) {
 	    return 0;
         } else {
-	  /* FIXME: supongo que faltara meter creacion_cnt */
-	  $db->query("INSERT INTO comprobar_contador (id, cnt_tipo, direccion_ip, creacion_cnt) VALUES ('".$this->id."', '".$this->type."','".$this->ipAddress."','".date("d-m-Y H:i:s", time())."')");
+	  $db->query("INSERT INTO comprobar_contador (id, cnt_tipo, direccion_ip, creation_cnt) VALUES ('".$this->id."', '".$this->type."','".$this->ipAddress."','".date("d-m-Y H:i:s", time())."')");
   	    return 1;
         }
     }
+
+    /**
+     * Adds to its specific type on more visit
+     *
+     * @access  private
+     * @see PHPLib
+     */
 
     function _counterAdd()
     {
@@ -76,5 +124,4 @@ class Counter {
         $db->query("UPDATE contador SET ".$this->type."='$counter' WHERE id='".$this->id."'");
     }
 }
-
 ?>
