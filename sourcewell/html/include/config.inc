@@ -51,9 +51,9 @@ $sys_logo_heigth = "104";
 # org_logo_heigth  Height of the image of your Organisation
 ######################################################################
 
-$org_name = "GMD FOKUS";
-$org_url = "http://www.fokus.gmd.de/";
-$org_logo_image = "../images/logo_fokus.gif";
+$org_name = "FOKUS";
+$org_url = "http://www.fokus.fhg.de/";
+$org_logo_image = "../images/logo_fokus.png";
 $org_logo_alt = $org_name;
 $org_logo_width = "66";
 $org_logo_heigth = "73";
