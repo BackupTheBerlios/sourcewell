@@ -14,15 +14,15 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: start.inc,v 1.13 2002/04/21 21:49:42 grex Exp $
+// $Id: start.inc,v 1.14 2002/04/21 21:51:50 grex Exp $
 
 if (!isset($login)) {
-    page_open(array('sess' => 'Scouts_ES_Session'));
+    page_open(array('sess' => 'SourceWell_Session'));
     if (isset($auth) && !empty($auth->auth['perm'])) {
  	    page_close();
- 	    page_open(array('sess' => 'Scouts_ES_Session',
-  	                    'auth' => 'Scouts_ES_Auth',
-	                    'perm' => 'Scouts_ES_Perm'));
+ 	    page_open(array('sess' => 'SourceWell_Session',
+  	                    'auth' => 'SourceWell_Auth',
+	                    'perm' => 'SourceWell_Perm'));
     } elseif (isset($auth)) {
         $auth->logout();
     }

@@ -5,7 +5,7 @@
  * Copyright (c) 1998-2000 NetUSE AG
  *                    Boris Erdmann, Kristian Koehntopp
  *
- * $Id: local.inc,v 1.1 2002/04/21 21:51:50 grex Exp $
+ * $Id: local.inc,v 1.2 2002/04/21 21:53:51 grex Exp $
  *
  */ 
 
@@ -16,15 +16,15 @@
 # parameters that fit your database
 #
 # The default (and recommended) configuration is the one with
-# "sourcewell" as the database name. Do better not change it ;-)
+# 'sourcewell' as the database name. Do better not change it ;-)
 #
 ######################################################################
 
 class DB_SourceWell extends DB_Sql {
-  var $Host     = "localhost";
-  var $Database = "sourcewell";
-  var $User     = "operator";
-  var $Password = "password";
+  var $Host     = 'db.berlios.de';
+  var $Database = 'sourcewell';
+  var $User     = 'operator';
+  var $Password = 'password';
 }
 
 /*********************************************************************/
@@ -49,64 +49,64 @@ class DB_SourceWell extends DB_Sql {
 ######################################################################
 # SourceWell Advanced Database Configuration
 #
-# If you've chosen "sourcewell" as your database name, you don't
+# If you've chosen 'sourcewell' as your database name, you don't
 # need to worry about the rest of the file ;-)
 #
 # If you've chosen another database name, you'll have to change this
-# file and config.inc in the pint "Database Name Config".
+# file and config.inc in the pint 'Database Name Config'.
 ######################################################################
 
 class SourceWell_CT_Sql extends CT_Sql {
-  var $database_class = "DB_SourceWell";   ## Which database to connect...
-  var $database_table = "active_sessions"; ## and find our session data in this table.
+  var $database_class = 'DB_SourceWell';   ## Which database to connect...
+  var $database_table = 'active_sessions'; ## and find our session data in this table.
 }
 
 class SourceWell_Session extends Session {
-  var $classname = "SourceWell_Session";
+  var $classname = 'SourceWell_Session';
 
-  var $cookiename     = "";                ## defaults to classname
-  var $magic          = "Hocuspocus";      ## ID seed
-  var $mode           = "cookie";          ## We propagate session IDs with cookies
-#  var $mode = "get";
-  var $fallback_mode  = "get";
+  var $cookiename     = '';                ## defaults to classname
+  var $magic          = 'Hocuspocus';      ## ID seed
+  var $mode           = 'cookie';          ## We propagate session IDs with cookies
+#  var $mode = 'get';
+  var $fallback_mode  = 'get';
   var $lifetime       = 0;                 ## 0 = do session cookies, else minutes
-  var $that_class     = "SourceWell_CT_Sql"; ## name of data storage container
+  var $that_class     = 'SourceWell_CT_Sql'; ## name of data storage container
   var $gc_probability = 5;  
 }
 
 class SourceWell_User extends User {
-  var $classname = "SourceWell_User";
+  var $classname = 'SourceWell_User';
 
-  var $magic          = "Abracadabra";     ## ID seed
-  var $that_class     = "SourceWell_CT_Sql"; ## data storage container
+  var $magic          = 'Abracadabra';     ## ID seed
+  var $that_class     = 'SourceWell_CT_Sql'; ## data storage container
 }
 
 class SourceWell_Auth extends Auth {
-  var $classname      = "SourceWell_Auth";
+  var $classname      = 'SourceWell_Auth';
 
   var $lifetime       =  30;
 
-  var $database_class = "DB_SourceWell";
-  var $database_table = "auth_user";
+  var $database_class = 'DB_SourceWell';
+  var $database_table = 'auth_user';
   
   function auth_loginform() {
     global $sess;
     global $_PHPLIB;
 
-    include("loginform.ihtml");
+    include('loginform.ihtml');
   }
   
   function auth_validatelogin() {
     global $username, $password;
 
     if(isset($username)) {
-      $this->auth["uname"]=$username;        ## This provides access for "loginform.ihtml"
+      $this->auth['uname']=$username;        ## This provides access for 'loginform.ihtml'
     }
     
     
     $uid = false;
     
-    $this->db->query(sprintf("select user_id, perms ".
+    $this->db->query(sprintf('select user_id, perms '.
                              "        from %s ".
                              "       where username = '%s' ".
                              "         and password = '%s'",
@@ -115,27 +115,27 @@ class SourceWell_Auth extends Auth {
                           addslashes($password)));
 
     while($this->db->next_record()) {
-      $uid = $this->db->f("user_id");
-      $this->auth["perm"] = $this->db->f("perms");
+      $uid = $this->db->f('user_id');
+      $this->auth['perm'] = $this->db->f('perms');
     }
     return $uid;
   }
 }
 
 class SourceWell_Default_Auth extends SourceWell_Auth {
-  var $classname = "SourceWell_Default_Auth";
+  var $classname = 'SourceWell_Default_Auth';
   
   var $nobody    = true;
 }
 
 class SourceWell_Challenge_Auth extends Auth {
-  var $classname      = "SourceWell_Challenge_Auth";
+  var $classname      = 'SourceWell_Challenge_Auth';
 
   var $lifetime       =  1;
 
-  var $magic          = "Simsalabim";  ## Challenge seed
-  var $database_class = "DB_SourceWell";
-  var $database_table = "auth_user";
+  var $magic          = 'Simsalabim';  ## Challenge seed
+  var $database_class = 'DB_SourceWell';
+  var $database_table = 'auth_user';
 
   function auth_loginform() {
     global $sess;
@@ -143,16 +143,16 @@ class SourceWell_Challenge_Auth extends Auth {
     global $_PHPLIB;
     
     $challenge = md5(uniqid($this->magic));
-    $sess->register("challenge");
+    $sess->register('challenge');
     
-    include($_PHPLIB["libdir"] . "crloginform.ihtml");
+    include($_PHPLIB['libdir'] . 'crloginform.ihtml');
   }
   
   function auth_validatelogin() {
     global $username, $password, $challenge, $response;
 
     if(isset($username)) {
-      $this->auth["uname"]=$username;        ## This provides access for "loginform.ihtml"
+      $this->auth['uname']=$username;        ## This provides access for 'loginform.ihtml'
     }
     $this->db->query(sprintf("select user_id,perms,password ".
                 "from %s where username = '%s'",
@@ -160,18 +160,18 @@ class SourceWell_Challenge_Auth extends Auth {
                           addslashes($username)));
 
     while($this->db->next_record()) {
-      $uid   = $this->db->f("user_id");
-      $perm  = $this->db->f("perms");
-      $pass  = $this->db->f("password");
+      $uid   = $this->db->f('user_id');
+      $perm  = $this->db->f('perms');
+      $pass  = $this->db->f('password');
     }
     $exspected_response = md5("$username:$pass:$challenge");
 
     ## True when JS is disabled
-    if ($response == "") {
+    if ($response == '') {
       if ($password != $pass) {
         return false;
       } else {
-        $this->auth["perm"] = $perm;
+        $this->auth['perm'] = $perm;
         return $uid;
       }
     }
@@ -180,7 +180,7 @@ class SourceWell_Challenge_Auth extends Auth {
     if ($exspected_response != $response) {
       return false;
     } else {
-      $this->auth["perm"] = $perm;
+      $this->auth['perm'] = $perm;
       return $uid;
     }
   }
@@ -192,47 +192,47 @@ class SourceWell_Challenge_Auth extends Auth {
 ## Author: Jim Zajkowski <jim@jimz.com>
 
 class SourceWell_Challenge_Crypt_Auth extends Auth {
-  var $classname      = "SourceWell_Challenge_Crypt_Auth";
+  var $classname      = 'SourceWell_Challenge_Crypt_Auth';
 
   var $lifetime       =  1;
 
-  var $magic          = "Frobozzica";  ## Challenge seed
-  var $database_class = "DB_SourceWell";
-  var $database_table = "auth_user_md5";
+  var $magic          = 'Frobozzica';  ## Challenge seed
+  var $database_class = 'DB_SourceWell';
+  var $database_table = 'auth_user_md5';
 
   function auth_loginform() {
     global $sess;
     global $challenge;
     
     $challenge = md5(uniqid($this->magic));
-    $sess->register("challenge");
+    $sess->register('challenge');
     
-    include("crcloginform.ihtml");
+    include('crcloginform.ihtml');
   }
   
   function auth_validatelogin() {
     global $username, $password, $challenge, $response;
 
-    $this->auth["uname"]=$username;        ## This provides access for "loginform.ihtml"
+    $this->auth['uname']=$username;        ## This provides access for 'loginform.ihtml'
     
-    $this->db->query(sprintf("select user_id,perms,password ".
+    $this->db->query(sprintf('select user_id,perms,password '.
                 "from %s where username = '%s'",
                           $this->database_table,
                           addslashes($username)));
 
     while($this->db->next_record()) {
-      $uid   = $this->db->f("user_id");
-      $perm  = $this->db->f("perms");
-      $pass  = $this->db->f("password");   ## Password is stored as a md5 hash
+      $uid   = $this->db->f('user_id');
+      $perm  = $this->db->f('perms');
+      $pass  = $this->db->f('password');   ## Password is stored as a md5 hash
     }
     $exspected_response = md5("$username:$pass:$challenge");
 
     ## True when JS is disabled
-    if ($response == "") {
+    if ($response == '') {
       if (md5($password) != $pass) {       ## md5 hash for non-JavaScript browsers
         return false;
       } else {
-        $this->auth["perm"] = $perm;
+        $this->auth['perm'] = $perm;
         return $uid;
       }
     }
@@ -241,28 +241,28 @@ class SourceWell_Challenge_Crypt_Auth extends Auth {
     if ($exspected_response != $response) {
       return false;
     } else {
-      $this->auth["perm"] = $perm;
+      $this->auth['perm'] = $perm;
       return $uid;
     }
   }
 }
 
 class SourceWell_Perm extends Perm {
-  var $classname = "SourceWell_Perm";
+  var $classname = 'SourceWell_Perm';
   
   var $permissions = array(
-                            "user_pending" => 1,
-                            "anonymous" => 2,
-                            "user"       => 4,
-                            "editor"     => 8,
-                            "admin"      => 16
+                            'user_pending' => 1,
+                            'anonymous' => 2,
+                            'user'       => 4,
+                            'editor'     => 8,
+                            'admin'      => 16
                           );
 
   function perm_invalid($does_have, $must_have) {
     global $perm, $auth, $sess;
     global $_PHPLIB;
     
-    include($_PHPLIB["libdir"] . "perminvalid.ihtml");
+    include($_PHPLIB['libdir'] . 'perminvalid.ihtml');
   }
 }
 
