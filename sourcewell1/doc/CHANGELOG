@@ -1,6 +1,13 @@
 CHANGELOG for SourceWell
 http://sourcewell.berlios.de/html
 
+16-04-2003 Lutz Henckel <lutz.henckel@fokus.fraunhofer.de> -- SourceWell 1.1.0
+
+* include/session.inc: correct redeclare of gc function
+* include/menubar.inc: add new BerliOS logo
+* include/lang.inc: specify category as a constant calling setlocale function
+* include/lib.inc: show only active software components of the author in appfull* changed apps are stored in a temporary table
+
 26-12-2001 Gregorio Robles <grex@scouts-es.org> ------------- SourceWell 1.0.13
 
 * include/box2.inc: new box type: alternative
@@ -67,7 +74,7 @@ fixes:
 security fix by introducing a temporary table in the database with pending apps
 memory fix for translations
 
-05-09-2001 Lutz Henckel <lutz.henckel@fokuks.gmd.de>
+05-09-2001 Lutz Henckel <lutz.henckel@fokuks.fraunhofer.de>
 
 developers.php fix missing email addresses for unknown authors
 appbydev.php add additional email parameter to distinguish same users
@@ -75,7 +82,7 @@ include/German-lang.inc add missing phrases for newsletter subscription
 include/Spanish-lang.inc add missing phrases for newsletter subscription
 include/French-lang.inc add missing phrases for newsletter subscription
 
-18-07-2001 Lutz Henckel <lutz.henckel@fokuks.gmd.de>
+18-07-2001 Lutz Henckel <lutz.henckel@fokuks.fraunhofer.de>
 
 sitebar.php add new tab for Mozilla/Netscape 6 feature
 include/menubar.inc add tab to Mozilla/Netscape 6 feature
@@ -85,7 +92,7 @@ include/footer.inc make System Credits link relatively
 update.php bug fixed which sets different modification dates in software and history tables due to update reload
 include/lib.inc bug fixed which sets different modification dates in software and history tables due to update reload
 
-17-07-2001 Lutz Henckel <lutz.henckel@fokuks.gmd.de>
+17-07-2001 Lutz Henckel <lutz.henckel@fokuks.fraunhofer.de>
 
 nladm.php set box title with local time/date according to locale settings
 update.php bug fixed which sets multiple history entries due to update reload
@@ -95,13 +102,13 @@ include/Spanish-lang.inc added French language selection and missing phrase
 include/French-lang.inc added missing phrase
 html/translating.php added links to language files
 
-16-07-2001 Lutz Henckel <lutz.henckel@fokuks.gmd.de>
+16-07-2001 Lutz Henckel <lutz.henckel@fokuks.fraunhofer.de>
 
 faq.php missing box object for error message added
 include/menubar.inc calculate language dependent FAQ counter in administration menu
 include/German-lang.in add missing phrases
 
-13-07-2001 Lutz Henckel <lutz.henckel@fokuks.gmd.de>
+13-07-2001 Lutz Henckel <lutz.henckel@fokuks.fraunhofer.de>
 
 stats.php box title for rpm, deb and tgz bug fixed
 include/config.inc add frensh translation
@@ -113,7 +120,7 @@ include/French-lang.inc wrong distribution name fixed
 include/German-lang.inc wrong distribution name fixed
 html/translation.php add Frédéric Boiteux as contributor of frensh translation
 
-10-07-2001 Lutz Henckel <lutz.henckel@fokuks.gmd.de>
+10-07-2001 Lutz Henckel <lutz.henckel@fokuks.fraunhofer.de>
 
 updapp.php merge update and change function
 update.php merge update and change function
@@ -121,7 +128,7 @@ include/lib.inc merge update and change function
 include/menubar.inc counter bug fixed for Check Date
 html/include/header.inc wrong link to blank.gif fixed
 
-29-06-2001 Lutz Henckel <lutz.henckel@fokuks.gmd.de>
+29-06-2001 Lutz Henckel <lutz.henckel@fokuks.fraunhofer.de>
 
 box.inc minor html bug fixed
 
@@ -514,5 +521,5 @@ include/statslib.inc Function stats_type($message,$type) deleted (deprecated)
 
 The changes until here were not logged.
 
-	Lutz Henckel <lutz.henckel@fokus.gmd.de>
+	Lutz Henckel <lutz.henckel@fokus.fraunhofer.de>
 	Gregorio Robles <grex@scouts-es.org>

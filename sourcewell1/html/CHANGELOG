@@ -1,6 +1,13 @@
 CHANGELOG for SourceWell
 http://sourcewell.berlios.de/html
 
+16-04-2003 Lutz Henckel <lutz.henckel@fokus.fraunhofer.de> -- SourceWell 1.1.0
+
+* include/session.inc: correct redeclare of gc function
+* include/menubar.inc: add new BerliOS logo
+* include/lang.inc: specify category as a constant calling setlocale function
+* include/lib.inc: show only active software components of the author in appfull* changed apps are stored in a temporary table
+
 26-12-2001 Gregorio Robles <grex@scouts-es.org> ------------- SourceWell 1.0.13
 
 * include/box2.inc: new box type: alternative
@@ -13,10 +20,10 @@ http://sourcewell.berlios.de/html
 25-12-2001 Gregorio Robles <grex@scouts-es.org>
 
 * include/app2.inc: Description is not only trimmed, all the \r and \n are substituted by spaces. Superfluous spaces are removed
-* cmtins.php3: Edigtors are send an email for any comment submission
+* cmtins.php: Edigtors are send an email for any comment submission
 * include/app2.inc: bug fixed in version update; the correct user is now introduced
 * include/app2.inc: bug fix. history insertions only whith version changes
-* search.php3: minor improvements
+* search.php: minor improvements
 * include/search2.inc: minor improvements (shows the number of coincidences)
 
 24-12-2001 Gregorio Robles <grex@scouts-es.org>
@@ -27,8 +34,8 @@ http://sourcewell.berlios.de/html
 
 23-12-2001 Gregorio Robles <grex@scouts-es.org>
 
-* include/page_permision2.inc: Permision for app_version.php3 page set (editor)
-* app_version.php3: New automatic version update for download, rpm and debian packages
+* include/page_permision2.inc: Permision for app_version.php page set (editor)
+* app_version.php: New automatic version update for download, rpm and debian packages
 * include/app2.inc: Functionality for automatic version update (app_changeVersion() and app_changeVersionForm())
 
 21-12-2001 Gregorio Robles <grex@scouts-es.org> ------------- SourceWell 1.0.12
@@ -51,8 +58,8 @@ http://sourcewell.berlios.de/html
 
 15-12-2001 Gregorio Robles <grex@scouts-es.org> ------------- SourceWell 1.0.11
 
-* Bug fixed in stats.php3. Thanx go to Jörg Schilling
-* Major bug fixed in verify.php3. Users do not get an error message when they have registered ok.
+* Bug fixed in stats.php. Thanx go to Jörg Schilling
+* Major bug fixed in verify.php. Users do not get an error message when they have registered ok.
 
 29-11-2001 Gregorio Robles <grex@scouts-es.org> ------------- SourceWell 1.0.10
 
@@ -67,43 +74,43 @@ fixes:
 security fix by introducing a temporary table in the database with pending apps
 memory fix for translations
 
-05-09-2001 Lutz Henckel <lutz.henckel@fokuks.gmd.de>
+05-09-2001 Lutz Henckel <lutz.henckel@fokuks.fraunhofer.de>
 
-developers.php3 fix missing email addresses for unknown authors
-appbydev.php3 add additional email parameter to distinguish same users
+developers.php fix missing email addresses for unknown authors
+appbydev.php add additional email parameter to distinguish same users
 include/German-lang.inc add missing phrases for newsletter subscription
 include/Spanish-lang.inc add missing phrases for newsletter subscription
 include/French-lang.inc add missing phrases for newsletter subscription
 
-18-07-2001 Lutz Henckel <lutz.henckel@fokuks.gmd.de>
+18-07-2001 Lutz Henckel <lutz.henckel@fokuks.fraunhofer.de>
 
-sitebar.php3 add new tab for Mozilla/Netscape 6 feature
+sitebar.php add new tab for Mozilla/Netscape 6 feature
 include/menubar.inc add tab to Mozilla/Netscape 6 feature
 include/header.inc add tab to Mozilla/Netscape 6 feature
 include/lang-translate.inc correct phrase
 include/footer.inc make System Credits link relatively
-update.php3 bug fixed which sets different modification dates in software and history tables due to update reload
+update.php bug fixed which sets different modification dates in software and history tables due to update reload
 include/lib.inc bug fixed which sets different modification dates in software and history tables due to update reload
 
-17-07-2001 Lutz Henckel <lutz.henckel@fokuks.gmd.de>
+17-07-2001 Lutz Henckel <lutz.henckel@fokuks.fraunhofer.de>
 
-nladm.php3 set box title with local time/date according to locale settings
-update.php3 bug fixed which sets multiple history entries due to update reload
+nladm.php set box title with local time/date according to locale settings
+update.php bug fixed which sets multiple history entries due to update reload
 include/lib.inc bug fixed which sets multiple history entries due to update reload
 include/German-lang.inc added French language selection and missing phrase
 include/Spanish-lang.inc added French language selection and missing phrase
 include/French-lang.inc added missing phrase
-html/translating.php3 added links to language files
+html/translating.php added links to language files
 
-16-07-2001 Lutz Henckel <lutz.henckel@fokuks.gmd.de>
+16-07-2001 Lutz Henckel <lutz.henckel@fokuks.fraunhofer.de>
 
-faq.php3 missing box object for error message added
+faq.php missing box object for error message added
 include/menubar.inc calculate language dependent FAQ counter in administration menu
 include/German-lang.in add missing phrases
 
-13-07-2001 Lutz Henckel <lutz.henckel@fokuks.gmd.de>
+13-07-2001 Lutz Henckel <lutz.henckel@fokuks.fraunhofer.de>
 
-stats.php3 box title for rpm, deb and tgz bug fixed
+stats.php box title for rpm, deb and tgz bug fixed
 include/config.inc add frensh translation
 include/lang.inc add frensh translation
 include/translation.inc add frensh translation
@@ -111,17 +118,17 @@ include/lang-tranlate.inc wrong distribution name fixed
 include/French-lang.inc add frensh translation from Frédéric Boiteux
 include/French-lang.inc wrong distribution name fixed
 include/German-lang.inc wrong distribution name fixed
-html/translation.php3 add Frédéric Boiteux as contributor of frensh translation
+html/translation.php add Frédéric Boiteux as contributor of frensh translation
 
-10-07-2001 Lutz Henckel <lutz.henckel@fokuks.gmd.de>
+10-07-2001 Lutz Henckel <lutz.henckel@fokuks.fraunhofer.de>
 
-updapp.php3 merge update and change function
-update.php3 merge update and change function
+updapp.php merge update and change function
+update.php merge update and change function
 include/lib.inc merge update and change function
 include/menubar.inc counter bug fixed for Check Date
 html/include/header.inc wrong link to blank.gif fixed
 
-29-06-2001 Lutz Henckel <lutz.henckel@fokuks.gmd.de>
+29-06-2001 Lutz Henckel <lutz.henckel@fokuks.fraunhofer.de>
 
 box.inc minor html bug fixed
 
@@ -132,7 +139,7 @@ include/lib.inc small bug fixed
 
 22-05-2001 Gregorio Robles <grex@scouts-es.org>
 
-update.php3 minor bug fix (e-mail was sent empty)
+update.php minor bug fix (e-mail was sent empty)
 statslib.inc removed: bug fix... the real one is in include/statslib.inc
 
 21-05-2001 Gregorio Robles <grex@scouts-es.org>
@@ -145,38 +152,38 @@ lang-translate.inc generical translation file updated
 German-lang.inc German translation updated
 Spanish-lang.inc Spanish translation updated
 include/menubar.inc minor bug fix with the section count
-admuser.php3 translation update
+admuser.php translation update
 loginform.ihtml translation update
-inscat.php3 translation update
-inssec.php3 minor bug fixed solved (when entering a blank line as new section)
-inscat.php3 minor bug fix when deleting categories
-nladm.php3 translation update
+inscat.php translation update
+inssec.php minor bug fixed solved (when entering a blank line as new section)
+inscat.php minor bug fix when deleting categories
+nladm.php translation update
 
 19-05-2001 Gregorio Robles <grex@scouts-es.org>
 
-inssec.php3 translation update
-inscat.php3 translation update
-inslic.php3 translation update
-admcomment.php3 translation update
-comment.php3 translation update
-admdate.php3 translation update
-nladm.php3 translation update
-inssec.php3 minor bug fix when renaming an application
+inssec.php translation update
+inscat.php translation update
+inslic.php translation update
+admcomment.php translation update
+comment.php translation update
+admdate.php translation update
+nladm.php translation update
+inssec.php minor bug fix when renaming an application
 
 18-05-2001 Gregorio Robles <grex@scouts-es.org>
 
-stats.php3 internationalization fixes
-appsearch.php3 minor bug fixed
+stats.php internationalization fixes
+appsearch.php minor bug fixed
 
 17-05-2001 Gregorio Robles <grex@scouts-es.org>
 
 sql/mysql.sql FAQ in German and Spanish
-insfaq.php3 FAQ can now be translated into several languages
-admfaq.php3 FAQ can now be translated into several languages
-faq.php3 FAQ can now be translated into several languages
-index.php3 boxes at the right side
+insfaq.php FAQ can now be translated into several languages
+admfaq.php FAQ can now be translated into several languages
+faq.php FAQ can now be translated into several languages
+index.php boxes at the right side
 include/config.inc variable $config_show_numberofdays
-configure.php3 new variable $config_show_numberofdays
+configure.php new variable $config_show_numberofdays
 
 16-05-2001 Gregorio Robles <grex@scouts-es.org>
 
@@ -186,29 +193,29 @@ include/config.inc new variable config_perm_configure with configure permissions
 
 13-05-2001 Gregorio Robles <grex@scouts-es.org>
 
-configure.php3 Through the web SourceWell system configuration (alpha)
-intall.php3 Through the web MySQL database installation file (alpha)
+configure.php Through the web SourceWell system configuration (alpha)
+intall.php Through the web MySQL database installation file (alpha)
 
 12-05-2001 Gregorio Robles <grex@scouts-es.org>
 
-newsletter.php3 Displays data if Mailing Lists enabled and error if not
-nlsend.php3 Deleted! It was only a development temporary file!
-nladm.php3 Displays data if Mailing Lists enabled and error if not
+newsletter.php Displays data if Mailing Lists enabled and error if not
+nlsend.php Deleted! It was only a development temporary file!
+nladm.php Displays data if Mailing Lists enabled and error if not
 include/menubar.inc Mailing List links depend on config.inc
 include/config.inc Mailing Lists yes/no as an option
 
 10-05-2001 Gregorio Robles <grex@scouts-es.org>
 
 include/cmtlib.inc FAQ in different languages possible
-insfaq.php3 FAQ in different languages possible
-admfaq.php3 FAQ in different languages possible
+insfaq.php FAQ in different languages possible
+admfaq.php FAQ in different languages possible
 include/config.inc Default language for the FAQ can be selected from here
-faq.php3 FAQ in different languages possible
+faq.php FAQ in different languages possible
 sql/mysql.sql new field in faq table: language
-license.php3 minor fix (licenses are listed alphabetically)
-inssec.php3 minor bug fixed
+license.php minor fix (licenses are listed alphabetically)
+inssec.php minor bug fixed
 include/lib.inc minor fixes in function appday
-index.php3 minor fixes
+index.php minor fixes
 
 05-05-2001 Gregorio Robles <grex@scouts-es.org>
 
@@ -218,75 +225,75 @@ include/session.inc minor bug fixes in phplib for correcto session functioning
 
 include/config.inc updated for version 1.0.9
 doc/INSTALL updated with changes in version 1.0.9
-test.php3 minor fixes
-licenses.php3 minor bug fix with add_query (no previous urlencode needed)
-developers.php3 minor bug fix with add_query (no previous urlencode needed)
-categories.php3 database independency and bug fixes with add_query
-appsearch.php3 minor bug fixes with add_query (no previous urlencode needed)
-appbylic.php3 minor bug fixes with add_query (no previous urlencode needed)
-appbydev.php3 minor bug fix with add_query (no previous urlencode needed)
+test.php minor fixes
+licenses.php minor bug fix with add_query (no previous urlencode needed)
+developers.php minor bug fix with add_query (no previous urlencode needed)
+categories.php database independency and bug fixes with add_query
+appsearch.php minor bug fixes with add_query (no previous urlencode needed)
+appbylic.php minor bug fixes with add_query (no previous urlencode needed)
+appbydev.php minor bug fix with add_query (no previous urlencode needed)
 doc/AUTHORS new file with the names of the contributors to SourceWell
 
 03-05-2001 Gregorio Robles <grex@scouts-es.org>
 
-stats.php3 database independency and minor bug fixes to fit it to statslib.inc
+stats.php database independency and minor bug fixes to fit it to statslib.inc
 include/statslib.inc fixes in stats_display() to ensure sessions with cookies
 include/statslib.inc function stats_display_alt() renamed to stats_display()
 include/statslib.inc deprecated function stats_display() removed from file
 include/lib.inc minor bug fixes with add_query
-abbbycat.php3 minor bug fix with add_query (no previous urlencode needed)
+abbbycat.php minor bug fix with add_query (no previous urlencode needed)
 include/session.inc 2 fixes with function add_query in phplib
 loginform.ihtml small fix
 
 02-05-2001 Gregorio Robles <grex@scouts-es.org>
 
-test.php3 Test page added to view the correct functioning of SourceWell after installation or to get help on what is wrong
+test.php Test page added to view the correct functioning of SourceWell after installation or to get help on what is wrong
 
 26-04-2001 Gregorio Robles <grex@scouts-es.org>
 
 loginform.ihtml minor fix
-licenses.php3 fix: Sessions without cookies possible
+licenses.php fix: Sessions without cookies possible
 include/statslib.inc Link for Development and stable branch possible
 include/statslib.inc Statistics for development and stable branch joined
-stats.php3 Statistics for development and stable branch joined
+stats.php Statistics for development and stable branch joined
 
 25-04-2001 SourceWell 1.0.8 Gregorio Robles <grex@scouts-es.org>
 
-stats.php3 show_more() fixed --> bug: it doesn't work with cookies!!!
-appbyuser.php3 show_more() fixed --> bug: it doesn't work with cookies!!!
-appbydev.php3 show_more() fixed --> bug: it doesn't work with cookies!!!
-apppend.php3 show_more() fixed --> bug: it doesn't work with cookies!!!
-appdom.php3 show_more() fixed --> bug: it doesn't work with cookies!!!
-appsearch.php3 show_more() fixed --> bug: it doesn't work with cookies!!!
-appbylic.php3 show_more() fixed --> bug: it doesn't work with cookies!!!
-appbycat.php3 show_more() fixed --> bug: it doesn't work with cookies!!!
+stats.php show_more() fixed --> bug: it doesn't work with cookies!!!
+appbyuser.php show_more() fixed --> bug: it doesn't work with cookies!!!
+appbydev.php show_more() fixed --> bug: it doesn't work with cookies!!!
+apppend.php show_more() fixed --> bug: it doesn't work with cookies!!!
+appdom.php show_more() fixed --> bug: it doesn't work with cookies!!!
+appsearch.php show_more() fixed --> bug: it doesn't work with cookies!!!
+appbylic.php show_more() fixed --> bug: it doesn't work with cookies!!!
+appbycat.php show_more() fixed --> bug: it doesn't work with cookies!!!
 loginform.ihtml the login screen has been modified to announce the anonymous user
-admuser.php3 the anonymous user cannot have other permissions than anonymous
+admuser.php the anonymous user cannot have other permissions than anonymous
 include/config.inc updated and removed $db_name = "sourcewell"
-admuser.php3 there can be only one anonymous user in the system
-comment.php3 sessions without cookies
-developers.php3 sessions without cookies
-appbydev.php3 database independency and sessions without cookies 
-insform.php3 database independency and sessions without cookies
-insapp.php3 database independency and sessions without cookies
-verify.php3 database independency
-remindme.php3 database independency
+admuser.php there can be only one anonymous user in the system
+comment.php sessions without cookies
+developers.php sessions without cookies
+appbydev.php database independency and sessions without cookies 
+insform.php database independency and sessions without cookies
+insapp.php database independency and sessions without cookies
+verify.php database independency
+remindme.php database independency
 include/lib.inc minor bug fix in updform
-index.php3 minor fix
+index.php minor fix
 
 24-04-2001 Gregorio Robles <grex@scouts-es.org>
 
-appbyuser.php3 database independent and sessions without cookies
-appdom.php3 database independent and sessions without cookies
-apppend.php3 database independent and sessions without cookies 
-appsearch.php3 database independent
-index.php3 database independent
-insapp.php3 database independent
-update.php3 database independent
-cmtins.php3 database independent
-insert.php3 database independent
-update.php3 database independent and sessions without cookies
-appbyid.php3 database independent
+appbyuser.php database independent and sessions without cookies
+appdom.php database independent and sessions without cookies
+apppend.php database independent and sessions without cookies 
+appsearch.php database independent
+index.php database independent
+insapp.php database independent
+update.php database independent
+cmtins.php database independent
+insert.php database independent
+update.php database independent and sessions without cookies
+appbyid.php database independent
 include/lib.inc completely database independent and complete session handling without cookies
 
 23-04-2001 SourceWell 1.0.7 Gregorio Robles <grex@scouts-es.org>
@@ -295,52 +302,52 @@ doc/documentation.html updated
 include/config.inc updated
 include/lib.inc license(), seccat() and increasecnt() are now database independent
 include/lib.inc insform() supports sessions without cookies
-users.php3 sessions without cookies
-index.php3 sessions without cookies
+users.php sessions without cookies
+index.php sessions without cookies
 include/lib.inc appday database independent and sessions without cookies
-appbycat.php3 appcat database independent and sessions without cookies
-update.php3 sessions without cookies
-cmtapp.php3 database independency
+appbycat.php appcat database independent and sessions without cookies
+update.php sessions without cookies
+cmtapp.php database independency
 include/lib.inc appcat database independent and sessions without cookies
-appbylic.php3 database independency and sessions without cookies
+appbylic.php database independency and sessions without cookies
 
 22-04-2001 Gregorio Robles <grex@scouts-es.org>
 
-admdate.php3 sessions without cookies
-admlicens.php3 database independency and sessions without cookies
-inslicens.php3 sessions without cookies
-inssec.php3 database independency and sessions without cookies
-admcat.php3 database independency and sessions without cookies
-inssec.php3 database independency and sessions without cookies
-admsec.php3 database independency
-admsec.php3 sessions without cookies
-index.php3 minor fixes
+admdate.php sessions without cookies
+admlicens.php database independency and sessions without cookies
+inslicens.php sessions without cookies
+inssec.php database independency and sessions without cookies
+admcat.php database independency and sessions without cookies
+inssec.php database independency and sessions without cookies
+admsec.php database independency
+admsec.php sessions without cookies
+index.php minor fixes
 
 21-04-2001 Gregorio Robles <grex@scouts-es.org>
 
-admuser.php3 when deleting an user, all his contributions are posted as anonymous
+admuser.php when deleting an user, all his contributions are posted as anonymous
 admcomment sessions without cookies
-insfaq.php3 database independency for faq
-admfaq.php3 database independency for faq
-cmtins.php3 database independency for comments
-cmtapp.php3 database independency for comments
-appbyid.php3 database independency for comments
-comment.php3 database independency for comments
+insfaq.php database independency for faq
+admfaq.php database independency for faq
+cmtins.php database independency for comments
+cmtapp.php database independency for comments
+appbyid.php database independency for comments
+comment.php database independency for comments
 include/cmtlib.inc database independency for comments and faq
 
 20-04-2001 1.0.6 Gregorio Robles <grex@scouts-es.org>
 
 doc/documentation.html updated
 include/config.inc updated
-index.php3 minor bug fix: only today's Apps are sorted by Importance, Name and Urgency
+index.php minor bug fix: only today's Apps are sorted by Importance, Name and Urgency
 sql/sw.sql updated with one anonymous user as default
-chguser.php3 anonymous user can't change its password in chguser.php3
-include/menubar.inc anonymous user can't change its password in chguser.php3
+chguser.php anonymous user can't change its password in chguser.php
+include/menubar.inc anonymous user can't change its password in chguser.php
 include/local.inc Anonymous user added
 
 18-04-2001 Gregorio Robles <grex@scouts-es.org>
 
-stats.php3 minor bug fixes
+stats.php minor bug fixes
 include/statslib.inc minor bug fixes
 
 17-04-2001 SourceWell Version 1.0a = 1.0.5 Gregorio Robles <grex@scouts-es.org>
@@ -348,20 +355,20 @@ include/statslib.inc minor bug fixes
 sql/sw.sql updated
 doc/documentation.html updated
 html/* updated
-stats.php3 bug fix: sessions without cookies now possible
+stats.php bug fix: sessions without cookies now possible
 
 16-04-2001 Gregorio Robles <grex@scouts-es.org>
 
 include/menubar bug fix: sessions without cookies now possible
-appdom.php3 started database independency
+appdom.php started database independency
 include/menubar number of apps in daily/weekly newsletter is shown
 include/menubar database independency
 include/menubar number of apps that have incorrect date inputs is shown
-admdate.php3 database independency
-admcomment.php3 database independency
-admfaq.php3 database independency
-faq.php3 database independency
-backend.php3 database independency
+admdate.php database independency
+admcomment.php database independency
+admfaq.php database independency
+faq.php database independency
+backend.php database independency
 
 15-04-2001 Gregorio Robles <grex@scouts-es.org>
 
@@ -370,24 +377,24 @@ include/German-faq.inc removed. No more needed as FAQ is done through db
 include/Spanish-faq.inc removed. No more needed as FAQ is done through db
 include/lib.inc functions mailuser and nlmsg are db independent
 include/lib.inc sec($row) changed into sec($selected) and db independent
-users.php3 database independency
-licenses.php3 database independency
-developers.php3 database independency
-categories.php3 database independency
+users.php database independency
+licenses.php database independency
+developers.php database independency
+categories.php database independency
 include/statslib.inc database independency
-stats.php3 database independency through PHPLib completed
+stats.php database independency through PHPLib completed
 
 14-04-2001 Gregorio Robles <grex@scouts-es.org>
 
-stats.php3 started database independency through PHPLib
-admuser.php3 bug fix when changing user data
-stats.php3 minor fixes in several stats (faster and ordered execution now)
+stats.php started database independency through PHPLib
+admuser.php bug fix when changing user data
+stats.php minor fixes in several stats (faster and ordered execution now)
 include/Spanish-lang.inc Modification for a stats input
 include/German-lang.inc Modification for a stats input
-stats.php3 general stats added
+stats.php general stats added
 include/menubar.inc Counting in administration box
 include/cmtlib.inc also library for faq
-insfaq.php3 FAQ administration through web
+insfaq.php FAQ administration through web
 
 13-04-2001 Gregorio Robles <grex@scouts-es.org>
 
@@ -395,42 +402,42 @@ include/header.inc PHPLib DB-connection for all the pages
 include/menubar.inc removed PHPLib DB-connection to header.inc
 html/menubar.inc changed with new link to changelog
 html/CHANGELOG removed. Only one changelog file in doc/CHANGELOG
-nladm.php3: Permission configuration through config.inc
-inscat.php3: Permission configuration through config.inc
-admcat.php3 Permission configuration through config.inc
-inssec.php3: Permission configuration through config.inc
-admsec.php3 Permission configuration through config.inc
-comment.php3 Permission configuration through config.inc
-admcomment.php3 Permission configuration through config.inc
-inslic.php3 Permission configuration through config.inc
-admlicens.php3 Permission configuration through config.inc
-admuser.php3 Permission configuration through config.inc
-admdate.php3 Permission configuration through config.inc
-users.php3 Permission configuration through config.inc
-developers.php3 Permission configuration through config.inc
-appdom.php3 Permission configuration through config.inc
-apppend.php3 Permission configuration through config.inc
+nladm.php: Permission configuration through config.inc
+inscat.php: Permission configuration through config.inc
+admcat.php Permission configuration through config.inc
+inssec.php: Permission configuration through config.inc
+admsec.php Permission configuration through config.inc
+comment.php Permission configuration through config.inc
+admcomment.php Permission configuration through config.inc
+inslic.php Permission configuration through config.inc
+admlicens.php Permission configuration through config.inc
+admuser.php Permission configuration through config.inc
+admdate.php Permission configuration through config.inc
+users.php Permission configuration through config.inc
+developers.php Permission configuration through config.inc
+appdom.php Permission configuration through config.inc
+apppend.php Permission configuration through config.inc
 include/menubar.inc Permission configuration
 include/config.inc Permission configuration
 
 12-04-2001 Gregorio Robles <grex@scouts-es.org>
 
-admfaq.php3 through the web faq administration
-faq.php3 faq through a database
-stats.php3 Added number of inserted/modified apps today in general statistics
+admfaq.php through the web faq administration
+faq.php faq through a database
+stats.php Added number of inserted/modified apps today in general statistics
 include/menubar.inc System Credits removed
 include/footer.inc System Credits
-index.php3 last ten apps are shown
+index.php last ten apps are shown
 include/config.inc new configuration entries
 include/menubar.inc bug fix: PHPLib DB-connection
 
 03-04-2001 SourceWell Version 1.0 Gregorio Robles <grex@scouts-es.org>
 
 doc/documentation.html updated with the changes
-backend.php3 DB-connection problem with PHPLib solved
-include/statslib.php3 Domaines list completed with 258 domaines!
+backend.php DB-connection problem with PHPLib solved
+include/statslib.php Domaines list completed with 258 domaines!
 include/config.inc propper statistical configuration for new installed systems
-stats.php3 fix "Applications by Sections and Developer's Email
+stats.php fix "Applications by Sections and Developer's Email
 		   Domain" does not show anything when there are no apps in a section
 include/statslib.inc bug fix: function stats_display_alt graphic bar smaller
 include/German-faq.inc FAQ Translation into German
@@ -445,47 +452,47 @@ include/statslib.inc minor bug fixes in function stats_display_alt
 doc/INSTALL new file with a fast installation guide
 include/config.inc db_Password only in local.inc
 include/local.inc new instructions included
-comment.php3 minor bug fixed
-admcomment.php3 minor bug fixed
+comment.php minor bug fixed
+admcomment.php minor bug fixed
 
 01-04-2001 SourceWell Version 1.0pre3 Gregorio Robles <grex@scouts-es.org>
 
 doc/documentation.html updated with the changes
 include/statslib.inc Division by zero (line 128 and 131)
 stats.php3 Division by zero (line 885)
-inscat.php3 PHPLib DB-connection 
-admsec.php3 PHPLib DB-connection 
-apppend.php3 PHPLib DB-connection 
-appsearch.php3 PHPLib DB-connection 
-cmtins.php3 PHPLib DB-connection 
-cmtapp.php3 PHPLib DB-connection 
-admdate.php3 PHPLib DB-connection 
-insapp.php3 PHPLib DB-connection 
-nlsend.php3 PHPLib DB-connection 
-remindme.php3 PHPLib DB-connection 
-redirect.php3 PHPLib DB-connection 
-nladm.php3 PHPLib DB-connection 
-update.php3 PHPLib DB-connection 
-updapp.php3 PHPLib BD-connection 
-stats.php3 PHPLib DB-connection 
+inscat.php PHPLib DB-connection 
+admsec.php PHPLib DB-connection 
+apppend.php PHPLib DB-connection 
+appsearch.php PHPLib DB-connection 
+cmtins.php PHPLib DB-connection 
+cmtapp.php PHPLib DB-connection 
+admdate.php PHPLib DB-connection 
+insapp.php PHPLib DB-connection 
+nlsend.php PHPLib DB-connection 
+remindme.php PHPLib DB-connection 
+redirect.php PHPLib DB-connection 
+nladm.php PHPLib DB-connection 
+update.php PHPLib DB-connection 
+updapp.php PHPLib BD-connection 
+stats.php PHPLib DB-connection 
 
 30-03-2001 SourceWell Version 1.0pre2 Gregorio Robles <grex@scouts-es.org>
 
-appmod.php3 PHPLib DB-connection
-admcomment.php3 PHPLib DB-connection
-admlicens.php3 PHPLib DB-connection
-inssec.php3 PHPLib DB-connection
-insform.php3 PHPLib DB-connection
-insert.php3 PHPLib DB-connection
-inslic.php3 PHPLib DB-connection
-inscat.php3 PHPLib DB-connection
-insapp.php3 PHPLib DB-connection
-verify.php3 PHPLib DB-connection
-appbyuser.php3 PHPLib DB-connection
-appbylic.php3 PHPLib DB-connection
-appbycat.php3 PHPLib DB-connection
-appbydev.php3 PHPLib DB-connection
-appbyid.php3 PHPLib DB-connection
+appmod.php PHPLib DB-connection
+admcomment.php PHPLib DB-connection
+admlicens.php PHPLib DB-connection
+inssec.php PHPLib DB-connection
+insform.php PHPLib DB-connection
+insert.php PHPLib DB-connection
+inslic.php PHPLib DB-connection
+inscat.php PHPLib DB-connection
+insapp.php PHPLib DB-connection
+verify.php PHPLib DB-connection
+appbyuser.php PHPLib DB-connection
+appbylic.php PHPLib DB-connection
+appbycat.php PHPLib DB-connection
+appbydev.php PHPLib DB-connection
+appbyid.php PHPLib DB-connection
 
 29-03-2001 SourceWell Version 1.0pre1 Gregorio Robles <grex@scouts-es.org>
 
@@ -493,26 +500,26 @@ doc/documentation.html new file with SourceWell's documentation
 include/lang-translate.inc new file with the default translation entries
 doc/CHANGELOG new file with the changelog (this file)
 doc/LICENSE new file with the GNU General Public License
-recentnews.php3 deleted (deprecated)
-appbydat.php3 deleted (deprecated)
-appdel.php3 deleted (deprecated)
-appmod.php3 deleted (deprecated)
+recentnews.php deleted (deprecated)
+appbydat.php deleted (deprecated)
+appdel.php deleted (deprecated)
+appmod.php deleted (deprecated)
 include/Italian-lang.inc deleted  (empty)
-stats2.php3 deleted  (empty)
+stats2.php deleted  (empty)
 include/statslib.inc Domain listing added
 include/config.inc Domain listing deleted
 include/lib.inc Function themesidebox($title,$content) deleted (not
 finished yet)
-linkchecker.php3 deleted (not finished yet)
+linkchecker.php deleted (not finished yet)
 include/lib.inc Function headline() deleted (not finished yet)
 include/statslib.inc Function stats_subtitle($message) deleted (deprecated)
 include/statslib.inc Function stats_subtitle_alt() renamed to stats_subtitle()
-stats.php3 stats_subtitle_alt() updated to stats_subtitle()
+stats.php stats_subtitle_alt() updated to stats_subtitle()
 include/statslib.inc Function stats_type($message,$type) deleted (deprecated)
 
 15-03-2001 SourceWell Version 0.9
 
 The changes until here were not logged.
 
-	Lutz Henckel <lutz.henckel@fokus.gmd.de>
+	Lutz Henckel <lutz.henckel@fokus.fraunhofer.de>
 	Gregorio Robles <grex@scouts-es.org>
