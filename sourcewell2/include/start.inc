@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: start.inc,v 1.27 2002/05/07 21:44:15 grex Exp $
+// $Id: start.inc,v 1.28 2002/05/07 22:01:17 grex Exp $
 
 if (!isset($login)) {
     page_open(array('sess' => 'SourceWell_Session'));
@@ -74,7 +74,7 @@ $table_error = new Table('error', '80%');
 <td width="45%"><span class=maintitlebar>
 <?php
 $i = 0;
-while (list($title, $url) = each($ts_array)) {
+while (list($title, $url) = each($config_TopStripArray)) {
 	if ($i > 0)
 		echo "\n | ";
 	echo "<b><a href=\"$url\" class=\"maintitlebar\">"._("$title")."</a></b>";
@@ -392,7 +392,7 @@ while (is_array($HTTP_GET_VARS)
 ?>
 <select name="lang" size=1>
 <?php
-while (list(, $ln) = each($la_array)) {
+while (list(, $ln) = each($config_la_array)) {
     if ($la == $ln) {
 	$sel = 'selected';
     } else {
