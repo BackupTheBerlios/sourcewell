@@ -1,6 +1,12 @@
 CHANGELOG for SourceWell
 http://sourcewell.berlios.de/html
 
+04-01-2002 Lutz Henckel <lutz.henckel@fokus.fhg.de>
+
+* include/header.inc: correct doctype
+* include/header2.inc: correct doctype
+* include/config.inc: correct width/heigth of organisation logo
+
 26-12-2001 Gregorio Robles <grex@scouts-es.org> ------------- SourceWell 1.0.13
 
 * include/box2.inc: new box type: alternative
