@@ -12,7 +12,7 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: header.inc,v 1.10 2002/05/09 17:10:29 grex Exp $
+// $Id: header.inc,v 1.11 2002/05/09 17:13:16 grex Exp $
 
 /**
  * TODO: global explanation of this file
@@ -140,7 +140,7 @@ if (isset($auth) && !empty($auth->auth["perm"])  && !($logout)) {
       <center>
         <font size="+2" color="red">ALPHA ALPHA</font><br>
           This site is being beta tested, please send any and all
-        <a href="mailto:sourcewell-support@lists.berlios.de?subject=SourceWell Beta Feedback&cc=grex@scouts-es.org">feedback</a>!
+        <a href="mailto:sourcewell-support@lists.berlios.de">feedback</a>!
       </center>
     </td>
 
