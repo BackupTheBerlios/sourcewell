@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: start.inc,v 1.1 2002/03/15 21:56:18 grex Exp $
+// $Id: start.inc,v 1.2 2002/03/18 10:18:16 grex Exp $
 
 // Disabling cache
 header("Cache-Control: no-cache, must-revalidate");     // HTTP/1.1
@@ -29,6 +29,8 @@ lib_require('Translation');
 lib_require('Table');
 $t = new Translation($la);
 $$config_database_variable = new DB_SourceWell;
+
+/*
 ?>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
@@ -371,3 +373,7 @@ if (ereg('Gecko', '$HTTP_USER_AGENT') && $config_addNetscapePanel) {
 <td width="10"><img src="images/blank.gif" border=0 height=1 width=10></td>
 <td width="99%">
 <p>&nbsp;
+
+<?php
+*/
+?>
