@@ -15,7 +15,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: config.inc,v 1.17 2002/04/21 21:57:17 grex Exp $
+// $Id: config.inc,v 1.18 2002/04/21 21:58:00 grex Exp $
 
 /**
  * General System Configuration
@@ -251,7 +251,7 @@ function config_inc($include)
         break;
     case 'lib':
     case 'security':
-        include($_INC_PATH..$include.$library_extension);
+        include($_INC_PATH.$include.$library_extension);
         break;
     case 'start':
     case 'end':
