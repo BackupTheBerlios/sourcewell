@@ -1,0 +1,4 @@
+42 *  *  *  * /usr/bin/wget http://localhost/grex/doc/sourcewell/index_stat.php3?la=English -O /usr/share/doc/sourcewell/index_static_en.inc
+42 *  *  *  * /usr/bin/wget http://localhost/grex/doc/sourcewell/index_stat.php3?la=Spanish -O /usr/share/doc/sourcewell/index_static_es.inc
+42 *  *  *  * /usr/bin/wget http://localhost/grex/doc/sourcewell/index_stat.php3?la=German -O /usr/share/doc/sourcewell/index_static_de.inc
+42 *  *  *  * /usr/bin/wget http://localhost/grex/doc/sourcewell/index_stat.php3?la=French -O /usr/share/doc/sourcewell/index_static_fr.inc
