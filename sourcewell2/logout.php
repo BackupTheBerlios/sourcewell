@@ -13,7 +13,7 @@
 // |          Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
 // +----------------------------------------------------------------------+
 //
-// $Id: logout.php,v 1.3 2002/05/10 10:37:24 grex Exp $
+// $Id: logout.php,v 1.4 2002/05/10 10:38:30 grex Exp $
 
 /* TODO: has to be implemented */
 /* Special status for the logout page (menubar, etc.) */
@@ -30,6 +30,9 @@ $msg = _('You have been logged in as')
 
 $table->table_full(_('Logout'), $msg);
 
-$auth->logout();
+if (isset($auth)) {
+    $auth->logout();
+}
+
 config_inc('end');
 ?>
