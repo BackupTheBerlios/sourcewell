@@ -1,6 +1,6 @@
 <?php
 include('start.inc');
-lib_include('Field');
+include('Field.inc');
 include('TextField.inc');
 include('Table.inc');
 
