@@ -12,7 +12,7 @@
 // | Authors: Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
 // +----------------------------------------------------------------------+
 //
-// $Id: Navigation.inc,v 1.1 2002/05/09 14:01:15 grex Exp $
+// $Id: Navigation.inc,v 1.2 2002/05/09 14:04:37 grex Exp $
 
 /**
  * Class Navigation: a class for links in the navigation bar
@@ -113,7 +113,7 @@ class Navigation {
 	    $return = '    <br>';
 	    $return .= html_link($this->string, $this->link, $this->httpGetArray);
             if ($this->statistics) {
-  	        $return .= .' ['.$this->countStatistics().']';
+  	        $return .= ' ['.$this->countStatistics().']';
 	    }
             $return .= "\n";
         }
