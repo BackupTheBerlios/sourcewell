@@ -210,6 +210,8 @@ function app_preview() {
 	  	$bx->box_column ("left","60%","",html_form_submit("Submit","submit"));
 		htmlp_form_end();
 		$bx->box_columns_end();
+     	  	$bx->box_body_end();
+    		$bx->box_end();
 	} else {
 		$bx->box_next_row_of_columns();
 	  	$bx->box_column ("right","30%","","<b>"._("Application ID").":</b> ");
@@ -221,12 +223,15 @@ function app_preview() {
 		$bx->box_columns_end();
 
 		app_footer($appid);
+     	  	$bx->box_body_end();
+    		$bx->box_end();
 
-		// FIXME: show comments on this application!
+				// Shows the comments on this app
+                include("cmtlib.inc");
+
+                $query="SELECT * FROM comments,auth_user WHERE appid='$appid' AND auth_user.username=comments.user_cmt ORDER BY creation_cmt DESC";
+                cmtshow($query);
 	}
-
-    	$bx->box_body_end();
-    	$bx->box_end();
 }
 
 function app_previous_form() {
@@ -282,7 +287,7 @@ function app_form() {
 
   $bx->box_next_row_of_columns();
 
-  $bx->box_column ("right","40%","","<b>"._("Version")."</b> (16): ");
+  $bx->box_column ("right","40%","","<b>"._("Version")._app_changesBetweenSoftwareAndTemp ($appid, "version")."</b> (16): ");
   $bx->box_column ("left","60%","",html_input_text("version", 16, 16, $version)."&nbsp; (mandatory)");
 
   $bx->box_next_row_of_columns();
@@ -297,77 +302,77 @@ function app_form() {
   if(!isset($license) || empty($license)) {
       $license = "GPL";
   }
-  $bx->box_column ("right","40%","","<b>"._("License").":</b> ");
+  $bx->box_column ("right","40%","","<b>"._("License")._app_changesBetweenSoftwareAndTemp ($appid, "license").":</b> ");
   $bx->box_column ("left","60%","",_app_select_license($license));
 
   $bx->box_next_row_of_columns();
 
-  $bx->box_column ("right","40%","","<b>"._("Homepage")."</b> (255): ");
+  $bx->box_column ("right","40%","","<b>"._("Homepage")._app_changesBetweenSoftwareAndTemp ($appid, "homepage")."</b> (255): ");
   $bx->box_column ("left","60%","",html_input_text("homepage", 40, 255, $homepage));
 
   $bx->box_next_row_of_columns();
 
-  $bx->box_column ("right","40%","","<b>"._("Download")."</b> (255): ");
+  $bx->box_column ("right","40%","","<b>"._("Download")._app_changesBetweenSoftwareAndTemp ($appid, "download")."</b> (255): ");
   $bx->box_column ("left","60%","",html_input_text("download", 40, 255, $download));
 
   $bx->box_next_row_of_columns();
 
-  $bx->box_column ("right","40%","","<b>"._("Changelog")."</b> (255): ");
+  $bx->box_column ("right","40%","","<b>"._("Changelog")._app_changesBetweenSoftwareAndTemp ($appid, "changelog")."</b> (255): ");
   $bx->box_column ("left","60%","",html_input_text("changelog", 40, 255, $changelog));
 
   $bx->box_next_row_of_columns();
 
-  $bx->box_column ("right","40%","","<b>"._("Screenshots")."</b> (255): ");
+  $bx->box_column ("right","40%","","<b>"._("Screenshots")._app_changesBetweenSoftwareAndTemp ($appid, "screenshots")."</b> (255): ");
   $bx->box_column ("left","60%","",html_input_text("screenshots", 40, 255, $screenshots));
 
   $bx->box_next_row_of_columns();
 
-  $bx->box_column ("right","40%","","<b>"._("RPM Package")."</b> (255): ");
+  $bx->box_column ("right","40%","","<b>"._("RPM Package")._app_changesBetweenSoftwareAndTemp ($appid, "rpm")."</b> (255): ");
   $bx->box_column ("left","60%","",html_input_text("rpm", 40, 255, $rpm));
 
   $bx->box_next_row_of_columns();
 
-  $bx->box_column ("right","40%","","<b>"._("Debian Package")."</b> (255): ");
+  $bx->box_column ("right","40%","","<b>"._("Debian Package")._app_changesBetweenSoftwareAndTemp ($appid, "deb")."</b> (255): ");
   $bx->box_column ("left","60%","",html_input_text("deb", 40, 255, $deb));
 
   $bx->box_next_row_of_columns();
 
-  $bx->box_column ("right","40%","","<b>"._("Slackware Package")."</b> (255): ");
+  $bx->box_column ("right","40%","","<b>"._("Slackware Package")._app_changesBetweenSoftwareAndTemp ($appid, "tgz")."</b> (255): ");
   $bx->box_column ("left","60%","",html_input_text("tgz", 40, 255, $tgz));
 
   $bx->box_next_row_of_columns();
 
-  $bx->box_column ("right","40%","","<b>"._("Mailing List Archives")."</b> (255): ");
+  $bx->box_column ("right","40%","","<b>"._("Mailing List Archives")._app_changesBetweenSoftwareAndTemp ($appid, "mailarch")."</b> (255): ");
   $bx->box_column ("left","60%","",html_input_text("mailarch", 40, 255, $mailarch));
 
   $bx->box_next_row_of_columns();
 
-  $bx->box_column ("right","40%","","<b>"._("CVS Tree")."</b> (255): ");
+  $bx->box_column ("right","40%","","<b>"._("CVS Tree")._app_changesBetweenSoftwareAndTemp ($appid, "cvs")."</b> (255): ");
   $bx->box_column ("left","60%","",html_input_text("cvs", 40, 255, $cvs));
 
   $bx->box_next_row_of_columns();
 
-  $bx->box_column ("right","40%","","<b>"._("Description")."</b> (*): ");
+  $bx->box_column ("right","40%","","<b>"._("Description")._app_changesBetweenSoftwareAndTemp ($appid, "description")."</b> (*): ");
   $bx->box_column ("left","60%","",html_textarea("description",40,7,"virtual",255,$description));
 
   $bx->box_next_row_of_columns();
 
-  $bx->box_column ("right","40%","","<b>"._("Author")."</b> (64): ");
+  $bx->box_column ("right","40%","","<b>"._("Author")._app_changesBetweenSoftwareAndTemp ($appid, "developer")."</b> (64): ");
   $bx->box_column ("left","60%","",html_input_text("developer", 40, 64, $developer));
 
   $bx->box_next_row_of_columns();
 
-  $bx->box_column ("right","40%","","<b>"._("Author email")."</b> (128): ");
+  $bx->box_column ("right","40%","","<b>"._("Author email")._app_changesBetweenSoftwareAndTemp ($appid, "email")."</b> (128): ");
   $bx->box_column ("left","60%","",html_input_text("email", 40, 128, $email));
 
   $bx->box_next_row_of_columns();
 
-  $bx->box_column ("right","40%","","<b>"._("Depends on")."</b> (128): ");
+  $bx->box_column ("right","40%","","<b>"._("Depends on")._app_changesBetweenSoftwareAndTemp ($appid, "depend")."</b> (128): ");
   $bx->box_column ("left","60%","",html_input_text("depend", 40, 128, $depend));
 
   $bx->box_next_row_of_columns();
 
-  $bx->box_column ("right","40%","","<b>"._("Urgency")."</b> (255): ");
+  $bx->box_column ("right","40%","","<b>"._("Urgency")._app_changesBetweenSoftwareAndTemp ($appid, "urgency")."</b> (255): ");
   $bx->box_column ("left","60%","",_app_select_urgency($urgency));
 
   if (($update || $validation) && security_data_access("permision_for_validating_apps")) {
@@ -468,7 +473,11 @@ function app_insert() {
        	 mailuser("editor", "insert application", $msg);
        }
 
-       $bx->box_full(_("Application has been inserted successfully"), _("Application")." $name "._("is now on the queue for being reviewed by an editor."));
+       if ($perm->have_perm("editor")) {
+           $bx->box_full(_("Application has been inserted successfully"), _("As you are an editor, ")._("Application")." $name "._("does not have to be rewieved."));
+       } else {
+           $bx->box_full(_("Application has been inserted successfully"), _("Application")." $name "._("is now on the queue for being reviewed by an editor."));
+       }
     }
   }
 }
@@ -482,7 +491,7 @@ function app_modify($appid) {
 
   // FIXME: and from temp?
 
-  $db->query("SELECT user, version, modification, modification FROM temp WHERE appid='$appid'");
+  $db->query("SELECT user, version, modification FROM temp WHERE appid='$appid'");
   if ($db->num_rows() == 0) {
       $db->query("SELECT user, version, modification, modification FROM software WHERE appid='$appid'");
   }
@@ -499,14 +508,14 @@ function app_modify($appid) {
 	$db->query($GLOBALS[delete_app_from_temp]);
 
     	// New History
-	// If an editor is validating an app (reviewing or deleting it), then no new entry in history has to appear
+	// If an editor is validating an app (reviewing or deleting), then the history entry has to contain the name of the user updated it
 	// Only new history if the version number has changed!!!!
 
     	if (!isset($validation) && $version != $version_old) {
             $db->query("INSERT history SET appid='$appid',user_his='".$auth->auth["uname"]."',version_his='$version',creation_his=NOW()");
-        } elseif ($version == $version_old) {
+        } elseif ($version == $version_old && $auth->auth["uname"] != $user_old) {
     	        $db->query(insert_history($appid, $user_old, $version_old, $modification_old));
-        } else {
+        } elseif ($version != $version_old) {
     	        $db->query(insert_history($appid, $auth->auth["uname"], $version));
         }
 
@@ -531,8 +540,11 @@ function app_modify($appid) {
    }
 
 
-   $bx->box_full(_("Application has been modified successfully"), _("Application")." $name "._("is now on the queue for being reviewed by an editor."));
-
+   if ($perm->have_perm("editor")) {
+       $bx->box_full(_("Application has been modified successfully"), _("As you are an editor, ")._("Application")." $name "._("does not have to be rewieved."));
+   } else {
+       $bx->box_full(_("Application has been modified successfully"), _("Application")." $name "._("is now on the queue for being reviewed by an editor."));
+   }
 }
 
 function _app_announcements($appid) { 
@@ -592,6 +604,7 @@ function _app_trim_everything() {
   global $name, $type, $version, $homepage, $download, $changelog, $rpm, $deb, $tgz, $cvs, $screenshots, $mailarch, $developer, $description, $email, $depend;
 
     $name = trim($name);
+    $name = _app_replace_special_characters ($name);
     $type = trim($type);
     $version = trim($version);
     $homepage = trim($homepage);
@@ -604,9 +617,23 @@ function _app_trim_everything() {
     $screenshots = trim($screenshots);
     $mailarch = trim($mailarch);
     $developer = trim($developer);
+# description also needs a sort of internal trim
     $description = trim($description);
+    $description = _app_replace_special_characters ($description);
+    $description = ereg_replace("\n" , " ", $description);
+    $description = ereg_replace("\r" , " ", $description);
+    $description = ereg_replace(" +" , " ", $description);
     $email = trim($email);
     $depend = trim($depend);
+}
+
+function _app_replace_special_characters ($string)
+{
+    $string = ereg_replace("&", "&amp;", $string);
+    $string = ereg_replace("\"", "&quot;", $string);
+#    $string = ereg_replace("<"" , "&lt;", $string);
+#    $string = ereg_replace(">"" , "&gt;", $string);
+    return $string;
 }
 
 function _app_select_license($license) {
@@ -873,7 +900,7 @@ function app_ChangeVersion($appid, $old_version, $new_version)
     $deb = ereg_replace($old_version, $new_version, $db_local->f("deb"));
     $tgz = ereg_replace($old_version, $new_version, $db_local->f("tgz"));
 
-    $query = "UPDATE software SET version='$version', changelog='$changelog', homepage='$homepage', download='$download', rpm='$rpm', deb='$deb', tgz='$tgz' WHERE appid='$appid'";
+    $query = "UPDATE software SET version='$version', changelog='$changelog', homepage='$homepage', download='$download', rpm='$rpm', deb='$deb', tgz='$tgz', user='".$auth->auth["uname"]."' WHERE appid='$appid'";
     $db_local->query($query);
 
     if ($db_local->affected_rows() > 0) {
@@ -922,6 +949,32 @@ function app_ChangeVersionForm($appid)
     $bx->box_columns_end();
     $bx->box_body_end();
     $bx->box_end();
+}
+
+function _app_changesBetweenSoftwareAndTemp ($appid, $field)
+{
+
+    $db_local = new DB_SourceWell;
+
+    # Software Table
+    $db_local->query("SELECT $field FROM software WHERE appid='$appid'");
+    $db_local->next_record();
+    $old = $db_local->f($field);
+
+    # temp Table
+    $db_local->query("SELECT $field FROM temp WHERE appid='$appid'");
+    if ($db_local->num_rows() == 0) {
+        return ""; 
+    }
+    $db_local->next_record();
+    $new = $db_local->f($field);
+
+    if ($new == $old) {
+        return ""; 
+    } else {
+        return " <font color=\"red\">changed</font>";
+    }
+
 }
 
 ?>

@@ -36,13 +36,19 @@ if ($perm->have_perm("user_pending")) {
   $auth->logout();
 } else {
   if (isset($id)) {
-    $db = new DB_SourceWell;
 
 			// Insert new comment
     $tables = "comments";
     $set = "appid='$id',user_cmt='".$auth->auth["uname"]."',subject_cmt='$subject',text_cmt='$text',creation_cmt=NOW()";
-    if (!$result = mysql_db_query($db_name, "INSERT $tables SET $set")) {
-      mysql_die();
+    $db->query("INSERT $tables SET $set");
+
+    # sends email to system administrators
+
+    if ($GLOBALS["ml_notify"]) {
+         $msg = "New Comment to application with id $id by ".$auth->auth["uname"].".\n\n";
+         $msg .= "Subject".$subject."\n";
+         $msg .= "Body".$body;
+    	 mailuser("editor", "comment inserted", $msg);
     }
 
 		// Select and show new/updated application with comments
@@ -50,26 +56,11 @@ if ($perm->have_perm("user_pending")) {
     $tables = "software,counter,auth_user";
     $where = "software.appid='$id' AND software.appid=counter.appid AND software.user=auth_user.username";
     $group = "software.appid";
-    if (!$result = mysql_db_query($db_name, "SELECT $columns FROM $tables WHERE $where GROUP BY $group")) {
-      mysql_die();
-    } else {
-      if ($row = mysql_fetch_array($result)) {
-        appfull($row);
-        $columns = "*";
-        $tables = "comments,auth_user";
-        $where = "appid='$id' AND auth_user.username=comments.user_cmt";
-        $order = "creation_cmt DESC";
-        if (!$result = mysql_db_query($db_name, "SELECT $columns FROM $tables WHERE $where ORDER BY $order")) {
-          mysql_die();
-        } else {
-          while ($row = mysql_fetch_array($result)) {
-            cmtshow($row);
-          }
-        }
-      } else {
-        $be->box_full($t->translate("Error"), $t->translate("Application")." (ID: $id) ".$t->translate("does not exist"));
-      }
-    }
+    $query = "SELECT $columns FROM $tables WHERE $where GROUP BY $group";
+    appfull($query);
+				// we show the comments if available
+    $query = "SELECT * FROM comments,auth_user WHERE appid='$id' AND auth_user.username=comments.user_cmt ORDER BY creation_cmt DESC";
+    cmtshow($query);
   } else {
     $be->box_full($t->translate("Error"), $t->translate("No Application ID specified"));
   }

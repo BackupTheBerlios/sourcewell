@@ -43,11 +43,13 @@ function search_for_categories($search)
 
 function search_for_exact_match($search)
 {
-    global $db, $bx, $array_with_already;
+    global $db, $array_with_already;
+
+    $ba = new box("alternative","98%");
 
     $db->query("SELECT * FROM software,counter WHERE software.appid=counter.appid AND software.status='A' AND software.name='$search'");
     if ($db->num_rows() > 0) {
-        $bx->box_strip("<center><b>Exact match</b></center>");
+        $ba->box_strip("<center><b>Exact match</b></center>");
 
         while ($db->next_record()) {
             $array_with_already[] = $db->f("name");
@@ -123,19 +125,25 @@ function search_nothing_found($count)
 
 function _showIt($db, $message, $count, $search)
 {
-    global $array_with_already, $bx;
+    global $array_with_already;
+
+    $ba = new box("alternative","98%");
 
     $j = 0;
     while ($db->next_record() && $i < (10 - $count)) {
         if (!_inArray($array_with_already,$db->f("name"))) {
             if ($j==0) {
-                $bx->box_strip("<center><b>".$message."</b></center>");
+                $ba->box_strip("<center><b>".$message."</b></center>");
             }
             app_show_summary($db->f("appid"), $search);
             $array_with_already[] = $db->f("name");
             $i++;
             $j++;
         }
+    }
+    $more = -(10 - $count) + $db->num_rows();
+    if ($more > 0) {
+        $ba->box_strip("More <b>".$message."</b>: ".$more);
     }
     return $db->num_rows();
 }

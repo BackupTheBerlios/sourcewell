@@ -275,7 +275,7 @@ $hash_secret = "Jabberwocky...";
 #
 ######################################################################
 
-$SourceWell_Version = "1.1.2";
+$SourceWell_Version = "1.1.3";
 
 # general box
 $config_box_general_frame_color =$th_box_frame_color;
@@ -286,6 +286,16 @@ $config_box_general_title_align =$th_box_title_align;
 $config_box_general_body_color_fondo =$th_box_body_bgcolor;
 $config_box_general_body_font_color =$th_box_body_font_color;
 $config_box_general_body_align =$th_box_body_align;
+
+# alternative box
+$config_box_alternative_frame_color =$th_box_frame_color;
+$config_box_alternative_frame_width = $th_box_frame_width;
+$config_box_alternative_title_color_fondo = "#FFD43F";
+$config_box_alternative_title_font_color = $th_box_title_font_color;
+$config_box_alternative_title_align =$th_box_title_align;
+$config_box_alternative_body_color_fondo =$th_box_body_bgcolor;
+$config_box_alternative_body_font_color =$th_box_body_font_color;
+$config_box_alternative_body_align =$th_box_body_align;
 		
 # error box 
 $config_box_error_frame_color =$th_box_frame_color;

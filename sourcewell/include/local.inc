@@ -5,7 +5,7 @@
  * Copyright (c) 1998-2000 NetUSE AG
  *                    Boris Erdmann, Kristian Koehntopp
  *
- * $Id: local.inc,v 1.3 2001/12/21 12:21:55 grex Exp $
+ * $Id: local.inc,v 1.4 2001/12/26 21:40:24 grex Exp $
  *
  */ 
 

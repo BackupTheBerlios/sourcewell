@@ -375,7 +375,7 @@ fputs($fp, "<?php
  * Copyright (c) 1998-2000 NetUSE AG
  *                    Boris Erdmann, Kristian Koehntopp
  *
- * \$Id: install.php3,v 1.2 2001/12/21 12:26:27 grex Exp $
+ * \$Id: install.php3,v 1.3 2001/12/26 21:40:43 grex Exp $
  *
  */ 
 
