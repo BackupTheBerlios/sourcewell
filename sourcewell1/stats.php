@@ -207,8 +207,8 @@ if (isset($option)) {
       $db->next_record();
       echo "<td width=20% align=right>".$db->f("SUM(changelog_cnt)")."</td></tr>\n";
 
-    // Total number of redirected CVSs
-      echo "<tr><td width=70%>&nbsp;".$t->translate("Number of redirected CVSs")."</td>\n";
+    // Total number of redirected SCMs
+      echo "<tr><td width=70%>&nbsp;".$t->translate("Number of redirected SCMs")."</td>\n";
       $db->query("SELECT COUNT(cnt_type) FROM counter_check WHERE cnt_type='cvs_cnt'");
       $db->next_record();
       echo "<td width=20% align=right>".$db->f("COUNT(cnt_type)")."</td>\n";

@@ -111,7 +111,7 @@ function appfull($query) {
 
   $db_cvs = $db->f("cvs");
   if (!empty($db_cvs)) {
-    echo "<tr valign=top><td align=right><b>".$t->translate("CVS Tree").":</b></td><td><a href=\"redirect.php?id=".$db->f("appid")."&type=cvs_cnt&url=".urlencode($db->f("cvs"))."\" target=_blank>".$db->f("cvs")."</a> (".$db->f("cvs_cnt")." ".$t->translate("hits").")</td></tr>\n";
+    echo "<tr valign=top><td align=right><b>".$t->translate("SCM Tree").":</b></td><td><a href=\"redirect.php?id=".$db->f("appid")."&type=cvs_cnt&url=".urlencode($db->f("cvs"))."\" target=_blank>".$db->f("cvs")."</a> (".$db->f("cvs_cnt")." ".$t->translate("hits").")</td></tr>\n";
   }
 
   $db_screenshots = $db->f("screenshots");
@@ -248,7 +248,7 @@ function apppend($query) {
 
   $db_cvs = $db->f("cvs");
   if (!empty($db_cvs)) {
-    echo "<tr valign=top><td align=right><b>".$t->translate("CVS Tree").":</b></td><td><a href=\"redirect.php?id=".$db->f("appid")."&type=cvs_cnt&url=".urlencode($db->f("cvs"))."\" target=_blank>".$db->f("cvs")."</a> (".$db->f("cvs_cnt")." ".$t->translate("hits").")</td></tr>\n";
+    echo "<tr valign=top><td align=right><b>".$t->translate("SCM Tree").":</b></td><td><a href=\"redirect.php?id=".$db->f("appid")."&type=cvs_cnt&url=".urlencode($db->f("cvs"))."\" target=_blank>".$db->f("cvs")."</a> (".$db->f("cvs_cnt")." ".$t->translate("hits").")</td></tr>\n";
   }
 
   $db_screenshots = $db->f("screenshots");
@@ -528,7 +528,7 @@ function updform($query,$url) {
   echo "<tr><td align=right width=30%>".$t->translate("Red Hat Package")." (255):</td><td width=70%><input type=\"TEXT\" name=\"rpm\" size=40 maxlength=255 value=\"".$db->f("rpm")."\">&nbsp;[<a href=\"".$db->f("rpm")."\" target=\"_blank\">".$t->translate("Check")."</a>]</td></tr>\n";
   echo "<tr><td align=right width=30%>".$t->translate("Debian Package")." (255):</td><td width=70%><input type=\"TEXT\" name=\"deb\" size=40 maxlength=255 value=\"".$db->f("deb")."\">&nbsp;[<a href=\"".$db->f("deb")."\" target=\"_blank\">".$t->translate("Check")."</a>]</td></tr>\n";
   echo "<tr><td align=right width=30%>".$t->translate("Slackware Package")." (255):</td><td width=70%><input type=\"TEXT\" name=\"tgz\" size=40 maxlength=255 value=\"".$db->f("tgz")."\">&nbsp;[<a href=\"".$db->f("tgz")."\" target=\"_blank\">".$t->translate("Check")."</a>]</td></tr>\n";
-  echo "<tr><td align=right width=30%>".$t->translate("CVS Tree")." (255):</td><td width=70%><input type=\"TEXT\" name=\"cvs\" size=40 maxlength=255 value=\"".$db->f("cvs")."\">&nbsp;[<a href=\"".$db->f("cvs")."\" target=\"_blank\">".$t->translate("Check")."</a>]</td></tr>\n";
+  echo "<tr><td align=right width=30%>".$t->translate("SCM Tree")." (255):</td><td width=70%><input type=\"TEXT\" name=\"cvs\" size=40 maxlength=255 value=\"".$db->f("cvs")."\">&nbsp;[<a href=\"".$db->f("cvs")."\" target=\"_blank\">".$t->translate("Check")."</a>]</td></tr>\n";
   echo "<tr><td align=right width=30%>".$t->translate("Screenshots")." (255):</td><td width=70%><input type=\"TEXT\" name=\"screenshots\" size=40 maxlength=255 value=\"".$db->f("screenshots")."\">&nbsp;[<a href=\"".$db->f("screenshots")."\" target=\"_blank\">".$t->translate("Check")."</a>]</td></tr>\n";
   echo "<tr><td align=right width=30%>".$t->translate("Mailing List Archive")." (255):</td><td width=70%><input type=\"TEXT\" name=\"mailarch\" size=40 maxlength=255 value=\"".$db->f("mailarch")."\">&nbsp;[<a href=\"".$db->f("mailarch")."\" target=\"_blank\">".$t->translate("Check")."</a>]</td></tr>\n";
   echo "<tr><td align=right width=30%>".$t->translate("Description")." (*):</td><td width=70%><textarea cols=40 rows=7 name=\"description\" wrap=\"virtual\" maxlength=255>".$db->f("description")."</textarea></td></tr>\n";
@@ -639,7 +639,7 @@ function insform() {
   echo "<tr><td align=right width=30%>".$t->translate("Red Hat Package")." (255):</td><td width=70%><input type=\"TEXT\" name=\"rpm\" size=40 maxlength=255></td></tr>\n";
   echo "<tr><td align=right width=30%>".$t->translate("Debian Package")." (255):</td><td width=70%><input type=\"TEXT\" name=\"deb\" size=40 maxlength=255></td></tr>\n";
   echo "<tr><td align=right width=30%>".$t->translate("Slackware Package")." (255):</td><td width=70%><input type=\"TEXT\" name=\"tgz\" size=40 maxlength=255></td></tr>\n";
-  echo "<tr><td align=right width=30%>".$t->translate("CVS Tree")." (255):</td><td width=70%><input type=\"TEXT\" name=\"cvs\" size=40 maxlength=255></td></tr>\n";
+  echo "<tr><td align=right width=30%>".$t->translate("SCM Tree")." (255):</td><td width=70%><input type=\"TEXT\" name=\"cvs\" size=40 maxlength=255></td></tr>\n";
   echo "<tr><td align=right width=30%>".$t->translate("Screenshots")." (255):</td><td width=70%><input type=\"TEXT\" name=\"screenshots\" size=40 maxlength=255></td></tr>\n";
   echo "<tr><td align=right width=30%>".$t->translate("Mailing List Archive")." (255):</td><td width=70%><input type=\"TEXT\" name=\"mailarch\" size=40 maxlength=255></td></tr>\n";
   echo "<tr><td align=right width=30%>".$t->translate("Description")." (*):</td><td width=70%><textarea cols=40 rows=7 name=\"description\" wrap=\"virtual\" maxlength=255></textarea></td></tr>\n";
@@ -1004,7 +1004,7 @@ function nlmsg($period) {
       if (!empty($db_tgz))
 	$msg .= "tgz Package  : ".$db->f("tgz")."\n";
       if (!empty($db_cvs))
-	$msg .= "CVS Tree     : ".$db->f("cvs")."\n";
+	$msg .= "SCM Tree     : ".$db->f("cvs")."\n";
       if (!empty($db_screenshots))
 	$msg .= "Screenshots  : ".$db->f("screenshots")."\n";
       if (!empty($db_mailarch))

@@ -160,7 +160,7 @@ switch($phrase) {
      case "Red Hat Package": $tmp = ""; break;
      case "Debian Package": $tmp = ""; break;
      case "Slackware Package": $tmp = ""; break;
-     case "CVS Tree": $tmp = ""; break;
+     case "CVS/SVN Tree": $tmp = ""; break;
      case "Screenshots": $tmp = ""; break;
      case "Mailing List Archive": $tmp = ""; break;
      case "Description": $tmp = ""; break;
@@ -327,7 +327,7 @@ switch($phrase) {
 	 case "Number of redirected Homepages": $tmp = ""; break;
 	 case "Number of Downloads": $tmp = ""; break;
 	 case "Number of redirected Changelogs": $tmp = ""; break;
-	 case "Number of redirected CVSs": $tmp = ""; break;
+	 case "Number of redirected CVSs/SVNs": $tmp = ""; break;
 	 case "Number of redirected Screenshots": $tmp = ""; break;
 	 case "Number of redirected Mailing Lists Archives": $tmp = ""; break;
 	 case "SourceWell Version": $tmp = ""; break;

@@ -161,7 +161,7 @@ switch($phrase) {
      case "Red Hat Package": $tmp = "Red Hat Paket"; break;
      case "Debian Package": $tmp = "Debian Paket"; break;
      case "Slackware Package": $tmp = "Slackware Paket"; break;
-     case "CVS Tree": $tmp = "CVS Baum"; break;
+     case "SCM Tree": $tmp = "SCM Baum"; break;
      case "Screenshots": $tmp = "Screenshots"; break;
      case "Mailing List Archive": $tmp = "Mailing List Archiv"; break;
      case "Description": $tmp = "Beschreibung"; break;
@@ -331,7 +331,7 @@ switch($phrase) {
 	 case "Number of redirected Homepages": $tmp = "Anzahl der Zugriffe auf Homepages"; break;
 	 case "Number of Downloads": $tmp = "Anzahl der Zugriffe auf Downloads"; break;
 	 case "Number of redirected Changelogs": $tmp = "Anzahl der Zugriffe auf Changlogs"; break;
-	 case "Number of redirected CVSs": $tmp = "Anzahl der Zugriffe auf CVS-Verzeichnisse"; break;
+	 case "Number of redirected SCMs": $tmp = "Anzahl der Zugriffe auf SCM-Verzeichnisse"; break;
 	 case "Number of redirected Screenshots": $tmp = "Anzahl der Zugriffe auf Screenshots"; break;
 	 case "Number of redirected Mailing Lists Archives": $tmp = "Anzahl der Zugriffe auf Mailing-Lists-Archive"; break;
 	 case "$GLOBALS[sys_name] Version": $tmp = "$GLOBALS[sys_name] Version"; break;
