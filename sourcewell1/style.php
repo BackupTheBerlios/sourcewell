@@ -1,7 +1,7 @@
 <?php
 require("./include/config.inc");
 $fsn = "12px";
-$fss = "11px";
+$fss = "10px";
 $h1 = "16px";
 $h2 = "14px";
 $h3 = "12px";
@@ -11,7 +11,7 @@ $h6 = "8px";
 ?>
 BODY { background-color: #FFFFFF }
 
-OL,UL,P,BODY,TD,TR,TH,FORM,TEXTAREA,INPUT { font-family: <?php echo $th_font_family; ?>; font-size:<?php echo $fsn; ?>; color: <?php echo $th_font_color; ?> }
+OL,UL,P,BODY,TD,TR,TH,FORM,TEXTAREA,INPUT,SELECT { font-family: <?php echo $th_font_family; ?>; font-size:<?php echo $fsn; ?>; color: <?php echo $th_font_color; ?> }
 
 H1 { font-size: <?php echo $h1; ?>; font-family: <?php echo $th_font_family; ?> }
 H2 { font-size: <?php echo $h2; ?>; font-family: <?php echo $th_font_family; ?> }

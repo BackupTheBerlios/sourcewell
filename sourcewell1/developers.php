@@ -2,11 +2,11 @@
 
 ######################################################################
 # SourceWell: Software Announcement & Retrieval System
-# ================================================
+# ====================================================
 #
-# Copyright (c) 2001 by
-#                Lutz Henckel (lutz.henckel@fokus.gmd.de) and
-#                Gregorio Robles (grex@scouts-es.org)
+# Copyright (c) 2001-2004 by
+#     Lutz Henckel (lutz.henckel@fokus.fraunhofer.de) and
+#     Gregorio Robles (grex@scouts-es.org)
 #
 # BerliOS SourceWell: http://sourcewell.berlios.de
 # BerliOS - The OpenSource Mediator: http://www.berlios.de
@@ -41,6 +41,9 @@ if (($config_perm_developer != "all") && (!isset($perm) || !$perm->have_perm($co
   $be->box_full($t->translate("Error"), $t->translate("Access denied"));
 } else {
 
+  if (isset($find) && ! empty($find)) {
+	$by = "%".$find."%";
+  }
   if (!isset($by) || empty($by)) {
     $by = "";
   }
@@ -50,11 +53,14 @@ if (($config_perm_developer != "all") && (!isset($perm) || !$perm->have_perm($co
   $msg = "[ ";
 
   while (list(, $ltr) = each($alphabet)) {
-    $msg .= "<a href=\"".$sess->self_url().$sess->add_query(array("by" => $ltr."%"))."\">$ltr</a>&nbsp;| ";
+    $msg .= "<a href=\"".$sess->url("developers.php").$sess->add_query(array("by" => $ltr."%"))."\">$ltr</a>&nbsp;| ";
   }
 
-  $msg .= "<a href=\"".$sess->self_url().$sess->add_query(array("by" => "%"))."\">".$t->translate("All")."</a>&nbsp;| ";
-  $msg .= "<a href=\"".$sess->self_url().$sess->add_query(array("by" => ""))."\">".$t->translate("Unknown")."</a>&nbsp;]";
+  $msg .= "<a href=\"".$sess->url("developers.php").$sess->add_query(array("by" => "%"))."\">".$t->translate("All")."</a>&nbsp;| ";
+  $msg .= "<a href=\"".$sess->url("developers.php").$sess->add_query(array("by" => ""))."\">".$t->translate("Unknown")."</a>&nbsp;]";
+  $msg .= "<form action=\"".$sess->url("developers.php")."\">"
+	   ."<p>Search for <input TYPE=\"text\" SIZE=\"10\" NAME=\"find\" VALUE=\"".$find."\">"
+       ."&nbsp;<input TYPE=\"submit\" NAME= \"Find\" VALUE=\"Go\"></form>";
 
   $bs->box_strip($msg);
   $db->query("SELECT DISTINCT developer,email FROM software WHERE developer LIKE '$by' ORDER BY developer ASC");

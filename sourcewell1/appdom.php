@@ -2,11 +2,11 @@
 
 ######################################################################
 # SourceWell: Software Announcement & Retrieval System
-# ================================================
+# ====================================================
 #
-# Copyright (c) 2001 by
-#                Lutz Henckel (lutz.henckel@fokus.gmd.de) and
-#                Gregorio Robles (grex@scouts-es.org)
+# Copyright (c) 2001-2004 by
+#     Lutz Henckel (lutz.henckel@fokus.fraunhofer.de) and
+#     Gregorio Robles (grex@scouts-es.org)
 #
 # BerliOS SourceWell: http://sourcewell.berlios.de
 # BerliOS - The OpenSource Mediator: http://www.berlios.de
@@ -46,6 +46,28 @@ if (($config_perm_appdom != "all") && (!isset($perm) || !$perm->have_perm($confi
   if (!isset($iter)) $iter=0;
   $iter*=10;
 
+  if (isset($find) && ! empty($find)) {
+	$with = "%".$find."%";
+  }
+  if (!isset($with) || empty($with)) {
+    $with = "%";
+  }
+
+  $alphabet = array ("A","B","C","D","E","F","G","H","I","J","K","L",
+		"M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z");
+  $msg = "[ ";
+
+  while (list(, $ltr) = each($alphabet)) {
+    $msg .= "<a href=\"".$sess->url("appdom.php").$sess->add_query(array("with" => $ltr."%"))."\">$ltr</a>&nbsp;| ";
+  }
+
+  $msg .= "<a href=\"".$sess->url("appdom.php").$sess->add_query(array("with" => "%"))."\">".$t->translate("All")."</a>&nbsp;]";
+  $msg .= "<form action=\"".$sess->self_url()."\">"
+	   ."<p>Search for <input TYPE=\"text\" SIZE=\"10\" NAME=\"find\" VALUE=\"".$find."\">"
+       ."&nbsp;<input TYPE=\"submit\" NAME= \"Find\" VALUE=\"Go\"></form>";
+
+  $bs->box_strip($msg);
+
   switch ($action) {
     case "modify":
       $status = "M";
@@ -56,13 +78,14 @@ if (($config_perm_appdom != "all") && (!isset($perm) || !$perm->have_perm($confi
       break;
   }
 				// We need to know the total number of apps
-  $db->query("SELECT COUNT(*) FROM software,auth_user,counter WHERE software.user=auth_user.username AND software.appid=counter.appid AND software.status='$status' GROUP BY software.appid");
+  $query = "SELECT COUNT(*) FROM software,auth_user WHERE software.user=auth_user.username AND software.status='$status' AND name LIKE '$with'";
+  $db->query($query);
   $db->next_record();
   $numiter = ($db->f("COUNT(*)")/10);
 
   $columns = "*,SUM(app_cnt+homepage_cnt+download_cnt+changelog_cnt+rpm_cnt+deb_cnt+tgz_cnt+cvs_cnt+screenshots_cnt+mailarch_cnt) AS sum_cnt";
   $tables = "software,auth_user,counter";
-  $where = "software.user=auth_user.username AND software.appid=counter.appid AND software.status='$status' GROUP BY software.appid";
+  $where = "software.user=auth_user.username AND software.appid=counter.appid AND software.status='$status' AND name LIKE '$with' GROUP BY software.appid";
   switch ($by) {
     case "Importance":
       $order = "sum_cnt DESC";
@@ -80,15 +103,18 @@ if (($config_perm_appdom != "all") && (!isset($perm) || !$perm->have_perm($confi
       break;
   }
 
+  $limit = "$iter,10";
+
   $sort = $t->translate("sorted by").": "
-  ."<a href=\"".$sess->self_url().$sess->add_query(array("by" => "Date"))."\">".$t->translate("Date")."</a>"
-  ." | <a href=\"".$sess->self_url().$sess->add_query(array("by" => "Importance"))."\">".$t->translate("Importance")."</a>"
-  ." | <a href=\"".$sess->self_url().$sess->add_query(array("by" => "Urgency"))."\">".$t->translate("Urgency")."</a>"
-  ." | <a href=\"".$sess->self_url().$sess->add_query(array("by" => "Name"))."\">".$t->translate("Name")."</a>\n";
+  ."<a href=\"".$sess->url("appdom.php").$sess->add_query(array("action" => "$action","with" => "$with","find" => "$find","by" => "Date"))."\">".$t->translate("Date")."</a>"
+  ." | <a href=\"".$sess->url("appdom.php").$sess->add_query(array("action" => "$action","with" => "$with","find" => "$find","by" => "Importance"))."\">".$t->translate("Importance")."</a>"
+  ." | <a href=\"".$sess->url("appdom.php").$sess->add_query(array("action" => "$action","with" => "$with","find" => "$find","by" => "Urgency"))."\">".$t->translate("Urgency")."</a>"
+  ." | <a href=\"".$sess->url("appdom.php").$sess->add_query(array("action" => "$action","with" => "$with","find" => "$find","by" => "Name"))."\">".$t->translate("Name")."</a>\n";
 
   $bs->box_strip($sort);
 
-  $query = "SELECT $columns FROM $tables WHERE $where ORDER BY $order";
+  $query = "SELECT $columns FROM $tables WHERE $where ORDER BY $order LIMIT $limit";
+
   appupdate($query);
 
   $db->query($query);
@@ -107,9 +133,9 @@ if (($config_perm_appdom != "all") && (!isset($perm) || !$perm->have_perm($confi
   }
 
   if ($numiter > 1) {
-  $url = "appdom.php";
-  $urlquery = array("by" => $by);
-  show_more ($iter,$numiter,$url,$urlquery);
+    $url = "appdom.php";
+    $urlquery = array("with" => "$with","find" => "$find","by" => $by);
+    show_more ($iter,$numiter,$url,$urlquery);
   }
 }
 ?>

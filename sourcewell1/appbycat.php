@@ -2,11 +2,11 @@
 
 ######################################################################
 # SourceWell: Software Announcement & Retrieval System
-# ================================================
+# ====================================================
 #
-# Copyright (c) 2001 by
-#                Lutz Henckel (lutz.henckel@fokus.gmd.de) and
-#                Gregorio Robles (grex@scouts-es.org)
+# Copyright (c) 2001-2004 by
+#     Lutz Henckel (lutz.henckel@fokus.fraunhofer.de) and
+#     Gregorio Robles (grex@scouts-es.org)
 #
 # BerliOS SourceWell: http://sourcewell.berlios.de
 # BerliOS - The OpenSource Mediator: http://www.berlios.de
@@ -42,8 +42,32 @@ $be = new box("",$th_box_frame_color,$th_box_frame_width,$th_box_title_bgcolor,$
 if (!isset($iter)) $iter=0;
 $iter*=10;
 
+  if (isset($find) && ! empty($find)) {
+	$with = "%".$find."%";
+  }
+  if (!isset($with) || empty($with)) {
+    $with = "%";
+  }
+
+  $alphabet = array ("A","B","C","D","E","F","G","H","I","J","K","L",
+		"M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z");
+  $msg = "[ ";
+
+  while (list(, $ltr) = each($alphabet)) {
+    $msg .= "<a href=\"".$sess->url("appbycat.php").$sess->add_query(array("section" => $section, "category" => $category, "with" => $ltr."%"))."\">$ltr</a>&nbsp;| ";
+  }
+
+  $msg .= "<a href=\"".$sess->url("appbycat.php").$sess->add_query(array("section" => $section, "category" => $category, "with" => "%"))."\">".$t->translate("All")."</a>&nbsp;]";
+  $msg .= "<form action=\"".$sess->url("appbycat.php")."\">"
+	   ."<p>Search for <input TYPE=\"text\" SIZE=\"10\" NAME=\"find\" VALUE=\"".$find."\">"
+       ."<input TYPE=\"hidden\" NAME= \"section\" VALUE=\"$section\">"
+       ."<input TYPE=\"hidden\" NAME= \"category\" VALUE=\"$category\">"
+       ."&nbsp;<input TYPE=\"submit\" NAME= \"Find\" VALUE=\"Go\"></form>";
+
+  $bs->box_strip($msg);
+
 // We need to know the total number of apps inserted by the user
-$db->query("SELECT COUNT(*) FROM software WHERE section='$section' AND category='$category' AND status='A'");
+$db->query("SELECT COUNT(*) FROM software WHERE section='$section' AND category='$category' AND status='A' AND name LIKE '$with'");
 $db->next_record();
 $numiter = ($db->f("COUNT(*)")/10);
 
@@ -66,20 +90,20 @@ switch ($by) {
 
 $limit = "$iter,10";
 
-$query="SELECT *,SUM(app_cnt+homepage_cnt+download_cnt+changelog_cnt+rpm_cnt+deb_cnt+tgz_cnt+cvs_cnt+screenshots_cnt+mailarch_cnt) AS sum_cnt FROM software,counter WHERE section='$section' AND category='$category' AND status='A' AND software.appid=counter.appid GROUP BY software.appid ORDER BY $order LIMIT $limit";
+$query="SELECT *,SUM(app_cnt+homepage_cnt+download_cnt+changelog_cnt+rpm_cnt+deb_cnt+tgz_cnt+cvs_cnt+screenshots_cnt+mailarch_cnt) AS sum_cnt FROM software,counter WHERE section='$section' AND category='$category' AND status='A' AND software.appid=counter.appid AND name LIKE '$with' GROUP BY software.appid ORDER BY $order LIMIT $limit";
 
 $sort = $t->translate("sorted by").": "
-."<a href=\"".$sess->self_url().$sess->add_query(array("section" => $section, "category" => $category, "by" => "Date"))."\">".$t->translate("Date")."</a>"
-." | <a href=\"".$sess->self_url().$sess->add_query(array("section" => $section, "category" => $category, "by" => "Importance"))."\">".$t->translate("Importance")."</a>"
-." | <a href=\"".$sess->self_url().$sess->add_query(array("section" => $section, "category" => $category, "by" => "Urgency"))."\">".$t->translate("Urgency")."</a>"
-." | <a href=\"".$sess->self_url().$sess->add_query(array("section" => $section, "category" => $category, "by" => "Name"))."\">".$t->translate("Name")."</a>\n";
+."<a href=\"".$sess->self_url().$sess->add_query(array("section" => $section, "category" => $category, "with" => "$with", "find" => "$find", "by" => "Date"))."\">".$t->translate("Date")."</a>"
+." | <a href=\"".$sess->self_url().$sess->add_query(array("section" => $section, "category" => $category, "with" => "$with", "find" => "$find", "by" => "Importance"))."\">".$t->translate("Importance")."</a>"
+." | <a href=\"".$sess->self_url().$sess->add_query(array("section" => $section, "category" => $category, "with" => "$with", "find" => "$find", "by" => "Urgency"))."\">".$t->translate("Urgency")."</a>"
+." | <a href=\"".$sess->self_url().$sess->add_query(array("section" => $section, "category" => $category, "with" => "$with", "find" => "$find", "by" => "Name"))."\">".$t->translate("Name")."</a>\n";
 
 $bs->box_strip($sort);
 appcat($query,$section."/".$category,$iter+1);
 
 if ($numiter > 1) {
   $url = "appbycat.php";
-  $urlquery = array("section" => $section, "category" => $category, "by" => $by);
+  $urlquery = array("section" => $section, "category" => $category, "with" => "$with", "find" => "$find", "by" => $by);
   show_more ($iter,$numiter,$url,$urlquery);
 }
 ?>

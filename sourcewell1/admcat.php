@@ -2,24 +2,20 @@
 
 ######################################################################
 # SourceWell: Software Announcement & Retrieval System
-# ====================================================
+# ================================================
 #
-# Copyright (c) 2001-2003 by
-#                Lutz Henckel (lutz.henckel@fokus.gmd.de) and
+# Copyright (c) 2001-2004 by
+#                Lutz Henckel (lutz.henckel@fokus.fraunhofer.de) and
 #                Gregorio Robles (grex@scouts-es.org)
 #
 # BerliOS SourceWell: http://sourcewell.berlios.de
 # BerliOS - The OpenSource Mediator: http://www.berlios.de
 #
-# This file allows the administrator to insert, rename and
-# delete categories 
+# This file allows the administrator to insert, rename and delete categories 
 #
 # This program is free software. You can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 or later of the GPL.
-#
-# $Id: admcat.php,v 1.2 2003/02/28 11:03:39 helix Exp $
-#
 ######################################################################  
 
 require("./include/prepend.php3");

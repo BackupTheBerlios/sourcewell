@@ -2,11 +2,11 @@
 
 ######################################################################
 # SourceWell: Software Announcement & Retrieval System
-# ================================================
+# ====================================================
 #
-# Copyright (c) 2001 by
-#                Lutz Henckel (lutz.henckel@fokus.gmd.de) and
-#                Gregorio Robles (grex@scouts-es.org)
+# Copyright (c) 2001-2004 by
+#     Lutz Henckel (lutz.henckel@fokus.fraunhofer.de) and
+#     Gregorio Robles (grex@scouts-es.org)
 #
 # BerliOS SourceWell: http://sourcewell.berlios.de
 # BerliOS - The OpenSource Mediator: http://www.berlios.de
@@ -50,21 +50,46 @@ if (!isset($usr) || empty($usr)) {
 if (!isset($iter)) $iter=0;
 $iter*=10;
 
+  if (isset($find) && ! empty($find)) {
+	$with = "%".$find."%";
+  }
+  if (!isset($with) || empty($with)) {
+    $with = "%";
+  }
+
+  $alphabet = array ("A","B","C","D","E","F","G","H","I","J","K","L",
+		"M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z");
+  $msg = "[ ";
+
+  while (list(, $ltr) = each($alphabet)) {
+    $msg .= "<a href=\"".$sess->url("appbyuser.php").$sess->add_query(array("with" => $ltr."%"))."\">$ltr</a>&nbsp;| ";
+  }
+
+  $msg .= "<a href=\"".$sess->url("appbyuser.php").$sess->add_query(array("with" => "%"))."\">".$t->translate("All")."</a>&nbsp;]";
+  $msg .= "<form action=\"".$sess->self_url()."\">"
+	   ."<p>Search for <input TYPE=\"text\" SIZE=\"10\" NAME=\"find\" VALUE=\"".$find."\">"
+       ."<input TYPE=\"hidden\" NAME= \"usr\" VALUE=\"$usr\">"
+       ."&nbsp;<input TYPE=\"submit\" NAME= \"Find\" VALUE=\"Go\"></form>";
+
+  $bs->box_strip($msg);
+
 $columns = "COUNT(*)";
 $from = "software,auth_user,counter";
-$where = "software.user=auth_user.username AND software.user=\"$usr\" AND software.appid=counter.appid";
+$where = "software.user=auth_user.username AND software.user=\"$usr\" AND software.appid=counter.appid AND software.name LIKE '$with'";
 if (!isset($auth) || empty($auth->auth["perm"]) || !$perm->have_perm("editor")) {
   $where .= " AND software.status = 'A'";
 }
 
 // We need to know the total number of apps inserted by the user
-$db->query("SELECT $columns FROM $from WHERE $where");
+$query = "SELECT $columns FROM $from WHERE $where";
+// echo "<p>$query\n";
+$db->query($query);
 $db->next_record();
 $numiter = ($db->f("COUNT(*)")/10);
 
 $columns = "*,SUM(app_cnt+homepage_cnt+download_cnt+changelog_cnt+rpm_cnt+deb_cnt+tgz_cnt+cvs_cnt+screenshots_cnt+mailarch_cnt) AS sum_cnt";
 $tables = "software,auth_user,counter";
-$where = "software.user=auth_user.username AND software.user=\"$usr\" AND software.appid=counter.appid";
+$where = "software.user=auth_user.username AND software.user=\"$usr\" AND software.appid=counter.appid AND software.name LIKE '$with'";
 
 if (!isset($auth) || empty($auth->auth["perm"]) || !$perm->have_perm("editor")) {
   $where .= " AND software.status = 'A'";
@@ -91,10 +116,10 @@ switch ($by) {
 $limit = "$iter,10";
 
 $sort = $t->translate("sorted by").": "
-."<a href=\"".$sess->self_url().$sess->add_query(array("usr" => $usr, "by" => "Date"))."\">".$t->translate("Date")."</a>"
-." | <a href=\"".$sess->self_url().$sess->add_query(array("usr" => $usr, "by" => "Importance"))."\">".$t->translate("Importance")."</a>"
-." | <a href=\"".$sess->self_url().$sess->add_query(array("usr" => $usr, "by" => "Urgency"))."\">".$t->translate("Urgency")."</a>"
-." | <a href=\"".$sess->self_url().$sess->add_query(array("usr" => $usr, "by" => "Name"))."\">".$t->translate("Name")."</a>\n";
+."<a href=\"".$sess->url("appbyuser.php").$sess->add_query(array("with" => "$with","find" => "$find","by" => "Date"))."\">".$t->translate("Date")."</a>"
+." | <a href=\"".$sess->url("appbyuser.php").$sess->add_query(array("with" => "$with","find" => "$find","by" => "Importance"))."\">".$t->translate("Importance")."</a>"
+." | <a href=\"".$sess->url("appbyuser.php").$sess->add_query(array("with" => "$with","find" => "$find","by" => "Urgency"))."\">".$t->translate("Urgency")."</a>"
+." | <a href=\"".$sess->url("appbyuser.php").$sess->add_query(array("with" => "$with","find" => "$find","by" => "Name"))."\">".$t->translate("Name")."</a>\n";
 
 $bs->box_strip($sort);
 
@@ -109,7 +134,7 @@ if ($db->num_rows() < 1) {
 
 if ($numiter > 1) {
   $url = "appbyuser.php";
-  $urlquery = array("usr" => $usr, "by" => $by);
+  $urlquery = array("with" => "$with","find" => "$find","usr" => $usr, "by" => $by);
   show_more ($iter,$numiter,$url,$urlquery);
 }
 ?>

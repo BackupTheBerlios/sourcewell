@@ -1,13 +1,12 @@
 <?php
 
-
 ######################################################################
 # SourceWell: Software Announcement & Retrieval System
-# ================================================
+# ====================================================
 #
-# Copyright (c) 2001 by
-#                Lutz Henckel (lutz.henckel@fokus.gmd.de) and
-#                Gregorio Robles (grex@scouts-es.org)
+# Copyright (c) 2001-2004 by
+#     Lutz Henckel (lutz.henckel@fokus.fraunhofer.de) and
+#     Gregorio Robles (grex@scouts-es.org)
 #
 # BerliOS SourceWell: http://sourcewell.berlios.de
 # BerliOS - The OpenSource Mediator: http://www.berlios.de
@@ -46,12 +45,35 @@ if (($config_perm_apppend != "all") && (!isset($perm) || !$perm->have_perm($conf
   if (!isset($iter)) $iter=0;
   $iter*=10;
 
+  if (isset($find) && ! empty($find)) {
+	$with = "%".$find."%";
+  }
+  if (!isset($with) || empty($with)) {
+    $with = "%";
+  }
+
+  $alphabet = array ("A","B","C","D","E","F","G","H","I","J","K","L",
+		"M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z");
+  $msg = "[ ";
+
+  while (list(, $ltr) = each($alphabet)) {
+    $msg .= "<a href=\"".$sess->url("apppend.php").$sess->add_query(array("with" => $ltr."%"))."\">$ltr</a>&nbsp;| ";
+  }
+
+  $msg .= "<a href=\"".$sess->url("apppend.php").$sess->add_query(array("with" => "%"))."\">".$t->translate("All")."</a>&nbsp;]";
+  $msg .= "<form action=\"".$sess->self_url()."\">"
+	   ."<p>Search for <input TYPE=\"text\" SIZE=\"10\" NAME=\"find\" VALUE=\"".$find."\">"
+       ."&nbsp;<input TYPE=\"submit\" NAME= \"Find\" VALUE=\"Go\"></form>";
+
+  $bs->box_strip($msg);
+
   $columns = "COUNT(*)";
   $tables = "pending,auth_user";
-  $where = "pending.user=auth_user.username";
+  $where = "pending.user=auth_user.username AND name LIKE '$with'";
 
 // We need to know the total number of apps
-  $db->query("SELECT $columns FROM $tables WHERE $where");
+  $query = "SELECT $columns FROM $tables WHERE $where";
+  $db->query($query);
   $db->next_record();
   $numiter = ($db->f("COUNT(*)")/10);
 
@@ -59,6 +81,13 @@ if (($config_perm_apppend != "all") && (!isset($perm) || !$perm->have_perm($conf
   $order = "pending.modification DESC";
 
   $limit = "$iter,10";
+
+  $sort = $t->translate("sorted by").": "
+  ."<a href=\"".$sess->url("apppend.php").$sess->add_query(array("with" => "$with","find" => "$find","by" => "Date"))."\">".$t->translate("Date")."</a>"
+  ." | <a href=\"".$sess->url("apppend.php").$sess->add_query(array("with" => "$with","find" => "$find","by" => "Urgency"))."\">".$t->translate("Urgency")."</a>"
+  ." | <a href=\"".$sess->url("apppend.php").$sess->add_query(array("with" => "$with","find" => "$find","by" => "Name"))."\">".$t->translate("Name")."</a>\n";
+
+  $bs->box_strip($sort);
 
   $query = "SELECT $columns FROM $tables WHERE $where ORDER BY $order LIMIT $limit";
   appupdate($query);
@@ -70,7 +99,7 @@ if (($config_perm_apppend != "all") && (!isset($perm) || !$perm->have_perm($conf
   }
   if ($numiter > 1) {
     $url = "apppend.php";
-    $urlquery = array("by" => "Date");
+    $urlquery = array("with" => "$with","find" => "$find","by" => "Date");
     show_more ($iter,$numiter,$url,$urlquery);
   }
 }

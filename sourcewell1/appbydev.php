@@ -2,11 +2,11 @@
 
 ######################################################################
 # SourceWell: Software Announcement & Retrieval System
-# ================================================
+# ====================================================
 #
-# Copyright (c) 2001 by
-#                Lutz Henckel (lutz.henckel@fokus.gmd.de) and
-#                Gregorio Robles (grex@scouts-es.org)
+# Copyright (c) 2001-2004 by
+#     Lutz Henckel (lutz.henckel@fokus.fraunhofer.de) and
+#     Gregorio Robles (grex@scouts-es.org)
 #
 # BerliOS SourceWell: http://sourcewell.berlios.de
 # BerliOS - The OpenSource Mediator: http://www.berlios.de
@@ -45,15 +45,39 @@ $email =  rawurldecode($email);
 if (!isset($iter)) $iter=0;
 $iter*=10;
 
+  if (isset($find) && ! empty($find)) {
+	$with = "%".$find."%";
+  }
+  if (!isset($with) || empty($with)) {
+    $with = "%";
+  }
+
+  $alphabet = array ("A","B","C","D","E","F","G","H","I","J","K","L",
+		"M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z");
+  $msg = "[ ";
+
+  while (list(, $ltr) = each($alphabet)) {
+    $msg .= "<a href=\"".$sess->url("appbydev.php").$sess->add_query(array("developer" => $developer, "email" => $email, "with" => $ltr."%"))."\">$ltr</a>&nbsp;| ";
+  }
+
+  $msg .= "<a href=\"".$sess->url("appbydev.php").$sess->add_query(array("developer" => $developer, "email" => $email, "with" => "%"))."\">".$t->translate("All")."</a>&nbsp;]";
+  $msg .= "<form action=\"".$sess->url("appbydev.php")."\">"
+	   ."<p>Search for <input TYPE=\"text\" SIZE=\"10\" NAME=\"find\" VALUE=\"".$find."\">"
+       ."<input TYPE=\"hidden\" NAME= \"developer\" VALUE=\"$developer\">"
+       ."<input TYPE=\"hidden\" NAME= \"email\" VALUE=\"$email\">"
+       ."&nbsp;<input TYPE=\"submit\" NAME= \"Find\" VALUE=\"Go\"></form>";
+
+  $bs->box_strip($msg);
+
 // We need to know the total number of apps inserted for this developer
 
-$db->query("SELECT COUNT(*) FROM software WHERE developer='$developer' AND email='$email' AND status='A'");
+$db->query("SELECT COUNT(*) FROM software WHERE developer='$developer' AND email='$email' AND status='A' AND name LIKE '$with'");
 $db->next_record();
 $numiter = ($db->f("COUNT(*)")/10);
 
 $columns = "*,SUM(app_cnt+homepage_cnt+download_cnt+changelog_cnt+rpm_cnt+deb_cnt+tgz_cnt+cvs_cnt+screenshots_cnt+mailarch_cnt) AS sum_cnt";
 $tables = "software,counter";
-$where = "developer=\"$developer\" AND email=\"$email\" AND status=\"A\" AND software.appid=counter.appid GROUP BY software.appid";
+$where = "developer=\"$developer\" AND email=\"$email\" AND status=\"A\" AND software.appid=counter.appid AND name LIKE '$with' GROUP BY software.appid";
 
 switch ($by) {
   case "Importance":
@@ -75,10 +99,10 @@ switch ($by) {
 $limit = "$iter,10";
 
 $sort = $t->translate("sorted by").": "
-."<a href=\"".$sess->self_url().$sess->add_query(array("developer" => $developer, "email" => $email, "by" => "Date"))."\">".$t->translate("Date")."</a>"
-." | <a href=\"".$sess->self_url().$sess->add_query(array("developer" => $developer, "email" => $email, "by" => "Importance"))."\">".$t->translate("Importance")."</a>"
-." | <a href=\"".$sess->self_url().$sess->add_query(array("developer" => $developer, "email" => $email, "by" => "Urgency"))."\">".$t->translate("Urgency")."</a>"
-." | <a href=\"".$sess->self_url().$sess->add_query(array("developer" => $developer, "email" => $email, "by" => "Name"))."\">".$t->translate("Name")."</a>\n";
+."<a href=\"".$sess->url("appbydev.php").$sess->add_query(array("developer" => $developer, "email" => $email, "with" => "$with", "find" => "$find", "by" => "Date"))."\">".$t->translate("Date")."</a>"
+." | <a href=\"".$sess->url("appbydev.php").$sess->add_query(array("developer" => $developer, "email" => $email, "with" => "$with", "find" => "$find", "by" => "Importance"))."\">".$t->translate("Importance")."</a>"
+." | <a href=\"".$sess->url("appbydev.php").$sess->add_query(array("developer" => $developer, "email" => $email, "with" => "$with", "find" => "$find", "by" => "Urgency"))."\">".$t->translate("Urgency")."</a>"
+." | <a href=\"".$sess->url("appbydev.php").$sess->add_query(array("developer" => $developer, "email" => $email, "with" => "$with", "find" => "$find", "by" => "Name"))."\">".$t->translate("Name")."</a>\n";
 $bs->box_strip($sort);
 
 if (empty($developer)) {
@@ -93,7 +117,7 @@ appcat($query,$t->translate("Author").": ".stripslashes($devnam),$iter+1);
 
 if ($numiter > 1) {
   $url = "appbydev.php";
-  $urlquery = array("developer" => $developer, "email" => $email, "by" => $by);
+  $urlquery = array("developer" => $developer, "email" => $email, "with" => "$with", "find" => "$find", "by" => $by);
   show_more ($iter,$numiter,$url,$urlquery);
 }
 ?>

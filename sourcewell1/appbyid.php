@@ -4,8 +4,8 @@
 # SourceWell: Software Announcement & Retrieval System
 # ====================================================
 #
-# Copyright (c) 2001 by
-#                Lutz Henckel (lutz.henckel@fokus.gmd.de) and
+# Copyright (c) 2001-2004 by
+#                Lutz Henckel (lutz.henckel@fokus.fraunhofer.de) and
 #                Gregorio Robles (grex@scouts-es.org)
 #
 # BerliOS SourceWell: http://sourcewell.berlios.de
@@ -39,6 +39,9 @@ $be = new box("",$th_box_frame_color,$th_box_frame_width,$th_box_title_bgcolor,$
 <?php
 
 $query = "SELECT *,SUM(app_cnt+homepage_cnt+download_cnt+changelog_cnt+rpm_cnt+deb_cnt+tgz_cnt+cvs_cnt+screenshots_cnt+mailarch_cnt) AS sum_cnt FROM software,counter,auth_user WHERE software.appid='$id' AND software.appid=counter.appid AND software.user=auth_user.username GROUP BY software.appid";
+
+#$id=156;
+
 
 increasecnt($id,"app_cnt");
 

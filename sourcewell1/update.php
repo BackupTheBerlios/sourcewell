@@ -4,8 +4,8 @@
 # SourceWell: Software Announcement & Retrieval System
 # ================================================
 #
-# Copyright (c) 2001 by
-#                Lutz Henckel (lutz.henckel@fokus.gmd.de) and
+# Copyright (c) 2001-2004 by
+#                Lutz Henckel (lutz.henckel@fokus.fraunhofer.de) and
 #                Gregorio Robles (grex@scouts-es.org)
 #
 # BerliOS SourceWell: http://sourcewell.berlios.de
@@ -122,7 +122,7 @@ if ($perm->have_perm("user_pending") || ($action == "review" && !$perm->have_per
 		}
 	} else {
     	$db->query("$operation $tables SET $set $where");
-	// echo "<p>$operation $tables SET $set $where\n";
+	    // echo "<p>$operation $tables SET $set $where\n";
 	}
 
 	// Select and show new/updated application with comments
