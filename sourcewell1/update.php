@@ -102,9 +102,24 @@ if ($perm->have_perm("user_pending") || ($action == "review" && !$perm->have_per
 		$operation = "INSERT";
 		$where = "";
 	    break;
+      case "delete_version":
+		$operation = "UPDATE";
+	    break;
     }
-    $db->query("$operation $tables SET $set $where");
-	// echo "<p>$operation $tables SET $set $where\n";
+
+	if ($action == "delete_version") {
+		$db->query("SELECT idx_his FROM history WHERE appid='$id' ORDER BY creation_his DESC LIMIT 2");
+      	if ($db->next_record() && $db->num_rows() > 1) {
+			$db->query("DELETE FROM history WHERE idx_his='".$db->f("idx_his")."' LIMIT 1");
+			$db->query("SELECT * FROM history WHERE appid='$id' ORDER BY creation_his DESC LIMIT 1");
+      		if ($db->next_record()) {
+				$db->query("$operation software SET version='".$db->f("version_his")."', modification='".$db->f("creation_his")."' WHERE appid='$id'");
+			}
+		}
+	} else {
+    	$db->query("$operation $tables SET $set $where");
+		// echo "<p>$operation $tables SET $set $where\n";
+	}
 
 	// Select and show new/updated application with comments
     if ($operation == "UPDATE") {

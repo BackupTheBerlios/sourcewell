@@ -480,7 +480,8 @@ function appday($start) {
     $bx->box_body_begin();
 
     while($db->next_record()) {
-      echo "<span class=\"small\"><li><a href=\"".$sess->url("appbyid.php").$sess->add_query(array("id" => $db->f("appid")))."\">".$db->f("name")." ".$db->f("version")."</a></li></span>\n";
+	  echo "<div class=newsind>&#149;&nbsp;";
+      echo "<a href=\"".$sess->url("appbyid.php").$sess->add_query(array("id" => $db->f("appid")))."\">".$db->f("name")." ".$db->f("version")."</a></li></div>\n";
     }
     $bx->box_body_end();
     $bx->box_end();
@@ -580,6 +581,10 @@ function updform($query,$url) {
     } else {
       echo "<option value=\"delete\"";
       echo ">".$t->translate("Delete")."\n";
+      if ($db_status == 'A') {
+        echo "<option value=\"delete_version\"";
+        echo ">".$t->translate("Delete Version")."\n";
+      }
     }
     echo "</select></td></tr>\n";
     echo "<tr><td align=right width=30%>&nbsp;</td><td width=70%><input type=\"Submit\" value=\"".$t->translate("Go")."\"></td></tr>\n";
