@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: start.inc,v 1.40 2002/05/09 15:12:30 grex Exp $
+// $Id: start.inc,v 1.41 2002/05/09 15:16:11 grex Exp $
 
 if (!isset($login)) {
     page_open(array('sess' => 'SourceWell_Session'));
@@ -204,15 +204,15 @@ while (list(, $value) = each($adm_bar_array)) {
 <span class="titlebar"><font color="<?php echo $config_navstrip_font_color;?>"><?php echo _("Search"); ?></font></span></td>
 </tr>
 
-<tr ALIGN=RIGHT bgcolor="<?php echo $config_nav_bgcolor;?>">
-<td align=center>
+<tr align="right" bgcolor="<?php echo $config_nav_bgcolor;?>">
+<td align="center">
 <p>
-<form action="<?php $sess->purl("appsearch.php3"); ?>">
-<input type="text" size="10" name="search" value="">
 <?php
-echo "<p><input type=\"submit\" value=\""._("Search")."\">";
+htmlp_form_action('appsearch.php3');
+html_form_textField('search', '', $size = 10);
+htmlp_form_submit(_('Search'));
+htmlp_form_end();
 ?>
-</form>
 </td>
 </tr>
 </table>
