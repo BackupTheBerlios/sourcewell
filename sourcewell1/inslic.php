@@ -51,13 +51,13 @@ if (($config_perm_admlicens != "all") && (!isset($perm) || !$perm->have_perm($co
           $db->query("SELECT appid,modification FROM software WHERE license = '$license'");
 			// All the affected apps are treated as modified
 			// BUT they are assigned to the new license!!!!
+	  $affected_apps = $db->num_rows();
 	  while ($db->next_record()) {
             $modification = $db->f("modification");
             $appid = $db->f("appid");
             $db_rename = new DB_SourceWell;
             $db_rename->query("UPDATE software SET status='M',license='$new_license',modification='$modification' WHERE appid='$appid'");
           }
-          $affected_apps = $db->num_rows();
 
           $db->query("UPDATE licenses SET license='$new_license' WHERE license='$license'");
           if ($db->affected_rows() == 1) {
