@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: start.inc,v 1.45 2002/05/09 16:40:00 grex Exp $
+// $Id: start.inc,v 1.46 2002/05/09 22:49:07 grex Exp $
 
 if (!isset($login)) {
     page_open(array('sess' => 'SourceWell_Session'));
@@ -28,6 +28,10 @@ if (!isset($login)) {
     } else {
         /* TODO */
     }
+} else {
+    page_open(array('sess' => 'SourceWell_Session',
+                    'auth' => 'SourceWell_Auth',
+                    'perm' => 'SourceWell_Perm'));
 }
 
 // Disabling cache
