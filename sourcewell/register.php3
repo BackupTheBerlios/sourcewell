@@ -1,46 +1,28 @@
 <?php
 
 ######################################################################
-# SourceWell: Software Announcement & Retrieval System
-# ====================================================
+# SourceWell 2
+# ================================================
+#
+#
 #
 # Copyright (c) 2001 by
-#                Lutz Henckel (lutz.henckel@fokus.gmd.de) and
-#                Gregorio Robles (grex@scouts-es.org)
+#                Gregorio Robles (grex@scouts-es.org) and
+#                Lutz Henckel (lutz.henckel@fokus.gmd.de)
 #
 # BerliOS SourceWell: http://sourcewell.berlios.de
 # BerliOS - The OpenSource Mediator: http://www.berlios.de
 #
-# Registration form for users
-#
 # This program is free software. You can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 or later of the GPL.
-######################################################################  
+######################################################################
 
-page_open(array("sess" => "SourceWell_Session"));
-if (isset($auth) && !empty($auth->auth["perm"])) {
-  page_close();
-  page_open(array("sess" => "SourceWell_Session",
-                  "auth" => "SourceWell_Auth",
-                  "perm" => "SourceWell_Perm"));
-}
+require("header2.inc");
 
-require("header.inc");
+security_page_access("register");
 
-$bx = new box("",$th_box_frame_color,$th_box_frame_width,$th_box_title_bgcolor,$th_box_title_font_color,$th_box_title_align,$th_box_body_bgcolor,$th_box_body_font_color,$th_box_body_align);
-$be = new box("",$th_box_frame_color,$th_box_frame_width,$th_box_title_bgcolor,$th_box_title_font_color,$th_box_title_align,$th_box_body_bgcolor,$th_box_error_font_color,$th_box_body_align);
-?>
-
-<!-- content -->
-<?php
-
-###
-### Submit Handler
-###
-
-## Get a database connection
-$db = new DB_SourceWell;
+$bx = new box("general","");
 
 // Check if there was a submission
 $reg = 0;
@@ -108,43 +90,45 @@ while (is_array($HTTP_POST_VARS)
 if (!$reg) {
 	$bx->box_begin();
 	$bx->box_title($t->translate("Register as a new User"));
-	$bx->box_body_begin()
-?>
-<table border=0 cellspacing=0 cellpadding=3>
-<tr>
-<form method="post" action="<?php $sess->pself_url() ?>">
-<td align=right><?php echo $t->translate("Username") ?>:</td><td><input type="text" name="username" size=20 maxlength=32 value=""></td>
-</tr>
-<tr valign=middle align=left>
-<td align=right><?php echo $t->translate("Password") ?>:</td><td><input type="password" name="password" size=20 maxlength=32 value=""></td>
-</tr>
-<tr valign=middle align=left>
-<td align=right><?php echo $t->translate("Confirm Password") ?>:</td><td><input type="password" name="cpassword" size=20 maxlength=32 value=""></td>
-</tr>
-<tr valign=middle align=left>
-<td align=right><?php echo $t->translate("Realname") ?>:</td><td><input type="text" name="realname" size=20 maxlength=64 value=""></td>
-</tr>
-<tr valign=middle align=left>
-<td align=right><?php echo $t->translate("E-Mail") ?>:</td><td><input type="text" name="email_usr" size=20 maxlength=128 value=""></td>
-</tr>
-<tr valign=middle align=left>
-<td></td>
-<td>
-<?php
-echo "<input type=\"submit\" name=\"register\" value=\"".$t->translate("Register")."\">";
-?>
-</td>
-</tr>
-</form>
-</table>
-<?php
+	$bx->box_body_begin();
+	$bx->box_columns_begin(2);
+
+	htmlp_form_action("PHP_SELF",array());
+
+	$bx->box_column("right","40%","","<b>".$t->translate("Username").":</b> ");
+	$bx->box_column("left","60%","",html_input_text("username",20,32,""));
+
+	$bx->box_next_row_of_columns();
+
+	$bx->box_column("right","40%","","<b>".$t->translate("Password").":</b> ");
+	$bx->box_column("left","60%","",html_input_password("password",20,32,""));
+
+	$bx->box_next_row_of_columns();
+
+	$bx->box_column("right","40%","","<b>".$t->translate("Confirm Password").":</b> ");
+	$bx->box_column("left","60%","",html_input_password("cpassword",20,32,""));
+
+	$bx->box_next_row_of_columns();
+
+	$bx->box_column("right","40%","","<b>".$t->translate("Real name").":</b> ");
+	$bx->box_column("left","60%","",html_input_text("realname",20,64,""));
+
+	$bx->box_next_row_of_columns();
+
+	$bx->box_column("right","40%","","<b>".$t->translate("E-Mail").":</b> ");
+	$bx->box_column("left","60%","",html_input_text("email_usr",20,128,""));
+
+	$bx->box_next_row_of_columns();
+
+	$bx->box_column("right","40%","","");
+	$bx->box_column("left","60%","",html_form_submit($t->translate("Register"),"register"));
+
+	htmlp_form_end();
+
+	$bx->box_columns_end();
 	$bx->box_body_end();
 	$bx->box_end();
 }
-?>
-<!-- end content -->
 
-<?php
-require("footer.inc");
-page_close();
+require("footer2.inc");
 ?>
