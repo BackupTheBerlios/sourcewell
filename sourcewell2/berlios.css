@@ -1,31 +1,49 @@
 <?php
-	require("config.inc");
-	$ua = "$HTTP_USER_AGENT";
-	$fsn = "10pt";
-	$h1 = "14pt";
-	$h2 = "12pt";
-	$h3 = "10pt";
-	$h4 = "9pt";
-	$h5 = "8pt";
-	$h6 = "8pt";
-	if (ereg("X11", "$ua")) {
-		$fsn = "12pt";
-        $h1 = "16pt";
-        $h2 = "14pt";
-        $h3 = "12pt";
-        $h4 = "10pt";
-        $h5 = "8pt";
-        $h6 = "6pt";
-	}
-	if (ereg("Gecko", "$ua")) {
-		$fsn = "10pt";
-        $h1 = "14pt";
-        $h2 = "12pt";
-        $h3 = "10pt";
-        $h4 = "9pt";
-        $h5 = "8pt";
-        $h6 = "8pt";
-	}
+/* vim: set expandtab tabstop=4 shiftwidth=4: */
+// +----------------------------------------------------------------------+
+// |        SourceWell 2 - The GPL Software Announcement System           |
+// +----------------------------------------------------------------------+
+// |      Copyright (c) 2001-2002 BerliOS, FOKUS Fraunhofer Institut      |
+// +----------------------------------------------------------------------+
+// | This program is free software. You can redistribute it and/or modify |
+// | it under the terms of the GNU General Public License as published by |
+// | the Free Software Foundation; either version 2 or later of the GPL.  |
+// +----------------------------------------------------------------------+
+// | Authors: Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
+// |          Gregorio Robles <grex@scouts-es.org>                        |
+// +----------------------------------------------------------------------+
+//
+// $Id: berlios.css,v 1.2 2002/05/09 20:26:19 grex Exp $
+
+require('config.inc');
+
+$ua = "$HTTP_USER_AGENT";
+$fsn = '10pt';
+$h1 = '14pt';
+$h2 = '12pt';
+$h3 = '10pt';
+$h4 = '9pt';
+$h5 = '8pt';
+$h6 = '8pt';
+
+if (ereg('X11', "$ua")) {
+    $fsn = '12pt';
+    $h1 = '16pt';
+    $h2 = '14pt';
+    $h3 = '12pt';
+    $h4 = '10pt';
+    $h5 = '8pt';
+    $h6 = '6pt';
+}
+if (ereg('Gecko', "$ua")) {
+    $fsn = '10pt';
+    $h1 = '14pt';
+    $h2 = '12pt';
+    $h3 = '10pt';
+    $h4 = '9pt';
+    $h5 = '8pt';
+    $h6 = '8pt';
+}
 ?>
 BODY { background-color: #FFFFFF }
 
