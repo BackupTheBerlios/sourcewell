@@ -5,7 +5,7 @@
  * Copyright (c) 1998-2000 NetUSE AG
  *                    Boris Erdmann, Kristian Koehntopp
  *
- * $Id: local.inc,v 1.1 2002/10/08 11:48:36 helix Exp $
+ * $Id: local.inc,v 1.2 2002/10/08 14:23:50 helix Exp $
  *
  */ 
 
@@ -30,13 +30,13 @@ class DB_SourceWell extends DB_Sql {
 /*********************************************************************/
 /* If you've finished configuring the Database, you can login as an  */
 /* administrator. To do so, just launch your web browser pointing to */
-/* http://yourdomain.com/login.php and login as the default admin   */
+/* http://yourdomain.com/login.php and login as the default admin    */
 /* with user,editor,admin permissions.                               */
 /*                                                                   */
 /* At the prompt use the following ID to login (case sensitive):     */
 /*                                                                   */
-/*         Username: oldfish                                         */
-/*         Password: oldfish                                         */
+/*         Username: admin                                           */
+/*         Password: admin                                           */
 /*                                                                   */
 /* Vert important:                                                   */
 /* Be sure of inmediately changing the login & password by clicking  */
