@@ -12,7 +12,7 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: footer.inc,v 1.17 2002/05/10 10:59:46 grex Exp $
+// $Id: footer.inc,v 1.18 2002/05/10 11:00:51 grex Exp $
 
 /* Configuration parameters are set as global */
 /* their values can be found at config.inc */
@@ -38,7 +38,7 @@ $php_self = eregi_replace('^/[^/]*/', '', $PHP_SELF);
 <br>
   <p align="right">
 
-    <a href="http://validator.w3.org/check?uri=<?php echo $config_sys_url.$php_self;?>&charset=%28detect+automatically%29&doctype=Inline">
+    <a href="http://validator.w3.org/check?uri=<?php echo $config_sys_url.$php_self;?>">
 <!--
     <a href="http://validator.w3.org/check/referer">
 -->
