@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: start.inc,v 1.26 2002/05/07 21:37:45 grex Exp $
+// $Id: start.inc,v 1.27 2002/05/07 21:44:15 grex Exp $
 
 if (!isset($login)) {
     page_open(array('sess' => 'SourceWell_Session'));
@@ -120,7 +120,7 @@ vspace="5" hspace="5" alt="<?php echo $config_sys_logo_alt;?>"></a>
 <!-- beta string -->
 <td align="center" valign="middle">
 <center>
-<font size="+2" color="red">BETA BETA BETA</font><br>
+<font size="+2" color="red">ALPHA ALPHA</font><br>
 <?php echo _("This site is being beta tested"); ?>, 
 <?php echo _("please send any and all"); ?>
  <a href="mailto:sourcewell-support@lists.berlios.de?subject=SourceWell Beta Feedback&cc=grex@scouts-es.org"

@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: Table.inc,v 1.9 2002/05/07 14:47:00 grex Exp $
+// $Id: Table.inc,v 1.10 2002/05/07 21:44:15 grex Exp $
 
 /**
  * Class Table: a class for HTML Tables
@@ -61,6 +61,7 @@
  * @package HTML
  * @access public
  * @see HTML
+ * TODO: language configurability -> class variable and translation function
  */
 
 class Table {
