@@ -13,7 +13,7 @@
 // |          Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
 // +----------------------------------------------------------------------+
 //
-// $Id: changeuser.php,v 1.1 2002/05/10 11:16:13 grex Exp $
+// $Id: changeuser.php,v 1.2 2002/05/10 11:17:48 grex Exp $
 
 require('start.inc');
 /* TODO: add monitoring class / library */
@@ -78,7 +78,7 @@ $table->table_body_begin();
 htmlp_form_action();
 $table->table_columns_begin();
 
-$db->query("SELECT * FROM auth_user WHRE username='".$auth->auth["uname"]."'");
+$db->query("SELECT * FROM auth_user WHERE username='".$auth->auth["uname"]."'");
 $db->next_record();
 
 $table->table_column('<b>'._('Username').':</b>', '50%', '', 'right');
