@@ -8,7 +8,7 @@ include('Form.inc');
 include('Preview.inc');
 include('Table.inc');
 
-//$table = new Table();
+$table = new Table();
 
 $name = new TextField('Name', 'name','',1);
 $name->setIsTitle();
