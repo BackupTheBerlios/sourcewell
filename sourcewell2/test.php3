@@ -1,7 +1,7 @@
 <?php
 include('start.inc');
 lib_include('Field');
-lib_include('TextField');
+include('TextField');
 include('Table.inc');
 
 //$table = new Table();
