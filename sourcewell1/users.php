@@ -5,8 +5,8 @@
 # ================================================
 #
 # Copyright (c) 2001-2004 by
-#                Lutz Henckel (lutz.henckel@fokus.fraunhofer.de) and
-#                Gregorio Robles (grex@scouts-es.org)
+#     Lutz Henckel (lutz.henckel@fokus.fraunhofer.de) and
+#     Gregorio Robles (grex@scouts-es.org)
 #
 # BerliOS SourceWell: http://sourcewell.berlios.de
 # BerliOS - The OpenSource Mediator: http://www.berlios.de
@@ -41,6 +41,9 @@ if (($config_perm_users != "all") && (!isset($perm) || !$perm->have_perm($config
   $be->box_full($t->translate("Error"), $t->translate("Access denied"));
 } else {
 
+  if (isset($find) && ! empty($find)) {
+	$by = "%".$find."%";
+  }
   if (!isset($by) || empty($by)) {
     $by = "A%";
   }
@@ -50,10 +53,13 @@ if (($config_perm_users != "all") && (!isset($perm) || !$perm->have_perm($config
   $msg = "[ ";
 
   while (list(, $ltr) = each($alphabet)) {
-    $msg .= "<a href=\"".$sess->self_url().$sess->add_query(array("by" => $ltr."%"))."\">$ltr</a> | ";
+    $msg .= "<a href=\"".$sess->url("users.php").$sess->add_query(array("by" => $ltr."%"))."\">$ltr</a> | ";
   }
 
-  $msg .= "<a href=\"".$sess->self_url().$sess->add_query(array("by" => "%"))."\">".$t->translate("All")."</a> ]";
+  $msg .= "<a href=\"".$sess->url("users.php").$sess->add_query(array("by" => "%"))."\">".$t->translate("All")."</a> ]";
+  $msg .= "<form action=\"".$sess->url("users.php")."\">"
+	   ."<p>Search for <input TYPE=\"text\" SIZE=\"10\" NAME=\"find\" VALUE=\"".$find."\">"
+       ."&nbsp;<input TYPE=\"submit\" NAME= \"Find\" VALUE=\"Go\"></form>";
 
   $bs->box_strip($msg);
   $db->query("SELECT * FROM auth_user WHERE username LIKE '$by' ORDER BY username ASC");
