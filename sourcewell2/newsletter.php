@@ -13,7 +13,7 @@
 // |          Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
 // +----------------------------------------------------------------------+
 //
-// $Id: newsletter.php,v 1.6 2002/05/10 18:26:13 grex Exp $
+// $Id: newsletter.php,v 1.7 2002/05/10 18:29:01 grex Exp $
 
 require('start.inc');
 
@@ -29,28 +29,33 @@ if (!$config_ml_list) {
             $email_usr = trim($email_usr);
             $password = trim($password);
             $cpassword = trim($cpassword);
-            if (empty($email_usr) || empty($password)  || empty($cpassword)) { // Do we have all necessary data?
+            if (empty($email_usr) || empty($password)  || empty($cpassword)) {
+  	        /* Do we have all necessary data? */
                 $table_error->table_full(_('Error'), _('Please enter').' <b>'._('Username').'</b>, <b>'._('Password').'</b> '._('and').' <b>'._('E-Mail').'</b>!');
                 break;
             }
 
-            if (strcmp($password,$cpassword)) { // password are identical?
+            if (strcmp($password, $cpassword)) { // password are identical?
                 $table_error->table_full(_('Error'), _('The passwords are not identical').'. '._('Please try again').'!');
                 break;
             }
-					  // send mail
+					
+            /* Everything seems to be correct: *
+	     * it's time to send a subscribing e-mail to the list manager */
+
             $message = '';
             if ($period == 'daily') {		// Daily Newsletter
-	        mail($config_ml_dailyNewsreqaddr,"subscribe $password",$message,"From: $email_usr\nReply-To: $email_usr\nX-Mailer: PHP");
+	        mail($config_ml_dailyNewsreqaddr, "subscribe $password",
+                     $message, "From: $email_usr\nReply-To: $email_usr\nX-Mailer: PHP");
 	        $msg = _('Congratulations').'! '
-	              ._('You have subscribed to').' '.$sys_name.' '._('daily Newsletter').'.'.'<p>'
+	              ._('You have subscribed to').' '.$config_sys_name.' '._('daily Newsletter').'.'.'<p>'
                       ._('You are now being sent a confirmation email to verify your email address').'.';
 	        $table->table_full(_('Subscribe daily Newsletter'), $msg);
             } else { // Weekly Newsletter
-	        mail($config_ml_weeklyNewsReqAddr, 'subscribe $password',
+	        mail($config_ml_weeklyNewsReqAddr, "subscribe $password",
                      $message, "From: $email_usr\nReply-To: $email_usr\nX-Mailer: PHP");
 	        $msg = _('Congratulations').'! '
-	               ._('You have subscribed to').' '.$sys_name.' '._('weekly Newsletter').'.'
+	               ._('You have subscribed to').' '.$config_sys_name.' '._('weekly Newsletter').'.'
 	               .'<p>'._('You are now being sent a confirmation email to verify your email address').'.';
 	        $table->table_full(_('Subscribe weekly Newsletter'), $msg);
             }
