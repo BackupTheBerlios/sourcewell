@@ -27,8 +27,9 @@ require("header.inc");
 
 <P><H2>SourceWell</H2>
 
-<P><B>Latest Version: 1.0.10 (Development)
+<P><B>Latest Version: 1.0.11 (Development)
 <BR>Latest Stable Version: 1.0</B>
+<BR><b>BerliOS SourceWell (<a href="http://sourcewell.berlios.de">http://sourcewell.berlios.de</a>): 1.0.9 with some security fixes from 1.0.10 and 1.0.11</b>
 
 <P>SourceWell is a highly configurable, well documented software announcement and retrieval system entirely writen in PHP3 and database independent. It includes user authentication and autherization system (anonymous/user/editor/admin), sessions with and without cookies, high configurability, multilangual support, ease of administration, RDF-type document backend, advanced statistics, announcing mailing lists, application indexing by sections, installation support  and many other useful features.
 
@@ -37,7 +38,7 @@ require("header.inc");
 <P>You can see a fully working example of the SourceWell system at BerliOS
 SourceWell by visiting <A HREF="http://sourcewell.berlios.de">http://sourcewell.berlios.de</A>. A close look at it will show you what
 you can do with SourceWell. BerliOS SourceWell has at this moment more
-than 850 applications inserted and has been the main reason why we have
+than 1700 applications inserted and has been the main reason why we have
 made this software.
 
 <P>BerliOS SourceWell is part of the BerliOS project at GMD FOKUS. Please, have

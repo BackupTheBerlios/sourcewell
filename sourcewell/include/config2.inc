@@ -275,7 +275,7 @@ $hash_secret = "Jabberwocky...";
 #
 ######################################################################
 
-$SourceWell_Version = "1.1.0beta";
+$SourceWell_Version = "1.0.11beta";
 
 # general box
 $config_box_general_frame_color =$th_box_frame_color;

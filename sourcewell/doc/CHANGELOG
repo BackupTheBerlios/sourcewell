@@ -1,6 +1,11 @@
 CHANGELOG for SourceWell
 http://sourcewell.berlios.de/html
 
+15-12-2001 Gregorio Robles <grex@scouts-es.org>
+
+bugs fixed in stats.php3. Thanx go to Jörg Schilling
+Major bug fixed in verify.php3. Users do not get an error message when they have registered ok.
+
 29-11-2001 Gregorio Robles <grex@scouts-es.org>
 
 major changes in many files looking forward to the new architecture:
