@@ -15,7 +15,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: config.inc,v 1.11 2002/03/18 10:46:36 grex Exp $
+// $Id: config.inc,v 1.12 2002/03/18 10:50:09 grex Exp $
 
 /**
  * General System Configuration
@@ -206,9 +206,23 @@ function lib_include($class)
     switch($class) {
     case 'Field':
     case 'TextField':
-    case ereg('Field',$class):
-    case ereg('Show',$class):
+    case 'CheckField':
+    case 'HiddenField':
+    case 'MultipleOptionField':
+    case 'PasswordField':
+    case 'RadioField':
+    case 'SelectField':
+    case 'TextAreaField':
+    case 'URLField':
+      //    case ereg('Field',$class):
+      //    case ereg('Show',$class):
     case 'Preview':
+    case 'Insertion':
+    case 'Show':
+    case 'Summary':
+    case 'TabularShow':
+    case 'FormShow':
+    case 'Update':
        print 'include: '.$GLOBALS['config_path_Classes'].$class.$GLOBALS['config_path_extension'];
        include($config_path_Classes.$class.$config_path_extension);
        break;
