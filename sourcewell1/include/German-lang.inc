@@ -4,15 +4,15 @@
 # SourceWell: Software Announcement & Retrieval System
 # ================================================
 #
-# Copyright (c) 2001 by
-#                Lutz Henckel (lutz.henckel@fokus.gmd.de) and
+# Copyright (c) 2001-2004 by
+#                Lutz Henckel (lutz.henckel@fokus.fraunhofer.de) and
 #                Gregorio Robles (grex@scouts-es.org)
 #
 # BerliOS SourceWell: http://sourcewell.berlios.de
 # BerliOS - The OpenSource Mediator: http://www.berlios.de
 #
 # File with the main German translation
-# translated by Lutz Henckel <lutz.henckel@fokus.gmd.de>
+# translated by Lutz Henckel <lutz.henckel@fokus.fraunhofer.de>
 #
 # This program is free software. You can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by

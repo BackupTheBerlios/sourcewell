@@ -46,7 +46,11 @@ if (($config_perm_users == "all") || (isset($perm) && $perm->have_perm($config_p
 <?php
 
 echo "<br><a href=\"".$sess->url("insform.php")."\" class=\"menus\">".$t->translate("New Apps")."</a>\n";
-echo "<br><a href=\"".$sess->url("appbyuser.php")."\" class=\"menus\">".$t->translate("Update Apps")."</a>\n";
+if (($config_perm_users == "all") || (isset($perm) && $perm->have_perm($config_perm_users))  && !($logout)) {
+  $db->query("SELECT COUNT(*) FROM software WHERE user='".$auth->auth["uname"]."'");
+  $db->next_record();
+  echo "<br><a href=\"".$sess->url("appbyuser.php")."\" class=\"menus\">".$t->translate("Update Apps")." [".$db->f("COUNT(*)")."]</a>\n";
+}
 
 if (($config_perm_apppend == "all") || (isset($perm) && $perm->have_perm($config_perm_apppend))  && !($logout)) {
   $db->query("SELECT COUNT(*) FROM pending");
@@ -198,7 +202,7 @@ if (
 <tr ALIGN=RIGHT BGCOLOR="<?php echo $th_nav_bgcolor;?>">
 <td align=center>
 <p>
-<form action="<?php $sess->purl("appsearch.php"); ?>">
+<form action="<?php $sess->purl("appsearch.php")?>">
 <input TYPE="text" SIZE="10" NAME="search" VALUE="">
 <?php
 echo "<p><input TYPE=\"submit\" NAME=\"Search\" VALUE=\"".$t->translate("Search")."\">";
@@ -218,7 +222,7 @@ echo "<p><input TYPE=\"submit\" NAME=\"Search\" VALUE=\"".$t->translate("Search"
 <tr ALIGN=RIGHT BGCOLOR="<?php echo $th_nav_bgcolor;?>">
 <td align=center>
 <p>
-<form action="<?php $sess->pself_url()?>">
+<form action="<?php echo $sess->url("index.php")?>">
 <?php
 while (is_array($HTTP_GET_VARS) 
 		&& list($key, $val) = each($HTTP_GET_VARS)) {
@@ -250,7 +254,7 @@ echo "<p><input TYPE=\"submit\" NAME=\"go\" VALUE=\"".$t->translate("Go")."\">";
 if (ereg("Gecko", "$HTTP_USER_AGENT")) {
 	echo "<p align=center><a href=\"javascript:addNetscapePanel();\"><img SRC=\"images/add-button.gif\" BORDER=0 height=45 width=100></a>\n";
 }
-echo "<p align=\"center\"><a href=\"http://developer.berlios.de\">
-<img src=\"http://developer.berlios.de/bslogo.php?group_id=23&type=1\" width=\"124\" height=\"32\" border=\"0\" hspace=\"3\" vspace=\"3\" alt=\"BerliOS Logo\"><br>Developer</a>\n";
+echo "<p align=\"center\"><a href=\"http://developer.berlios.de\" title=\"BerliOS Developer\">
+<img src=\"http://developer.berlios.de/bslogo.php?group_id=23&type=1\" width=\"124px\" height=\"32px\" border=\"0\" hspace=\"3\" vspace=\"3\" alt=\"BerliOS Logo\"><br>Developer</a>\n";
 ?>
 <!-- end Language menu -->

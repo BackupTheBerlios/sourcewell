@@ -5,7 +5,7 @@
  * Copyright (c) 1998-2000 NetUSE AG
  *                    Boris Erdmann, Kristian Koehntopp
  *
- * $Id: local.inc,v 1.3 2003/03/03 13:14:29 helix Exp $
+ * $Id: local.inc,v 1.4 2004/05/11 10:50:26 helix Exp $
  *
  */ 
 
@@ -91,7 +91,7 @@ class SourceWell_User extends User {
 class SourceWell_Auth extends Auth {
   var $classname      = "SourceWell_Auth";
 
-  var $lifetime       =  15;
+  var $lifetime       =  30;
 
   var $database_class = "DB_SourceWell";
   var $database_table = "auth_user";

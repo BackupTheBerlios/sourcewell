@@ -4,9 +4,9 @@
 # SourceWell: Software Announcement & Retrieval System
 # ====================================================
 #
-# Copyright (c) 2001-2003 by
-#                Lutz Henckel (lutz.henckel@fokus.fraunhofer.de) and
-#                Gregorio Robles (grex@scouts-es.org)
+# Copyright (c) 2001-2004 by
+#     Lutz Henckel (lutz.henckel@fokus.fraunhofer.de) and
+#     Gregorio Robles (grex@scouts-es.org)
 #
 # BerliOS SourceWell: http://sourcewell.berlios.de
 # BerliOS - The OpenSource Mediator: http://www.berlios.de
@@ -131,7 +131,7 @@ $th_strip_body_font_color = "";
 #
 ######################################################################
 
-$config_show_appsperpage = "15";
+$config_show_appsperpage = "10";
 $config_show_numberofdays = 6; 
 
 ######################################################################
@@ -147,8 +147,8 @@ $config_show_numberofdays = 6;
 ######################################################################
 
 $ml_notify = "1";
-$ml_fromaddr = "noreply@mail.berlios.de";
-$ml_replyaddr = "noreply@mail.berlios.de";
+$ml_fromaddr = "noreply@berlios.de";
+$ml_replyaddr = "noreply@berlios.de";
 
 ######################################################################
 # Newsletter Configuration
@@ -174,8 +174,8 @@ $ml_newsreqaddr = "sourcewell-news-request@lists.berlios.de";
 $ml_weeklynewstoaddr = "sourcewell-weeklynews@lists.berlios.de";
 $ml_weeklynewsreqaddr = "sourcewell-weeklynews-request@lists.berlios.de";
 $ml_newsadmaddr = "sourcewell-admin@lists.berlios.de";
-$ml_newsfromaddr = "sourcewell-admin@lists.berlios.de";
-$ml_newsreplyaddr = "sourcewell-admin@lists.berlios.de";
+$ml_newsfromaddr = "sourcewell-crew@berlios.de";
+$ml_newsreplyaddr = "noreply@berlios.de";
 
 ######################################################################
 # Languages
@@ -284,6 +284,6 @@ $hash_secret = "Jabberwocky...";
 #
 ######################################################################
 
-$SourceWell_Version = "1.1.2";
+$SourceWell_Version = "1.1.3";
 
 ?>

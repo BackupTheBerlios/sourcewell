@@ -4,8 +4,8 @@
 # SourceWell: Software Announcement & Retrieval System
 # ===================================================================
 #
-# Copyright (c) 2001 by
-#                Lutz Henckel (lutz.henckel@fokus.gmd.de) and
+# Copyright (c) 2001-2004 by
+#                Lutz Henckel (lutz.henckel@fokus.fraunhofer.de) and
 #                Gregorio Robles (grex@scouts-es.org)
 #
 # BerliOS SourceWell: http://sourcewell.berlios.de
@@ -304,6 +304,10 @@ function apppend($query) {
   }
 
   echo "</table>\n";
+  $bx->box_body_end();
+  $bx->box_title_begin();
+  echo "<b><a href=\"".$sess->url("revapp.php").$sess->add_query(array("idx" => $db->f("idx")))."\" class=\"small\"><img src=\"images/recycled.png\" border=0 alt=\"".$t->translate("Update")."\">&nbsp;".$t->translate("Update")."</a>\n";
+  $bx->box_title_end();
   $bx->box_end();
 }
 
@@ -374,19 +378,19 @@ function appupdate($query) {
     $db_status = $db->f("status");
     switch ($db_status) {
       case 'P':
-        echo "<td width=40%><a href=\"".$sess->url("revapp.php").$sess->add_query(array("idx" => $db->f("idx")))."\"><img src=\"images/recycled.png\" border=0 alt=\"".$t->translate("Review")."\"></a></td>\n";
+        echo "<td width=40%><b><a href=\"".$sess->url("revapp.php").$sess->add_query(array("idx" => $db->f("idx")))."\"<img src=\"images/recycled.png\" border=0 alt=\"".$t->translate("Review")."\">&nbsp;Review</a></b></td>\n";
         echo "<td width=60% align=right border=0><b>".$t->translate("Waiting for Review by an Editor")."</b>\n";
         break;
       case 'D':
-        echo "<td width=40%><a href=\"".$sess->url("updapp.php").$sess->add_query(array("id" => $db->f("appid")))."\"><img src=\"images/recycled.png\" border=0 alt=\"".$t->translate("Review")."\"></a></td>\n";
+        echo "<td width=40%><b><a href=\"".$sess->url("updapp.php").$sess->add_query(array("id" => $db->f("appid")))."\"><img src=\"images/recycled.png\" border=0 alt=\"".$t->translate("Update")."\">&nbsp;Update</a></b></td>\n";
         echo "<td width=60% align=right border=0><b>".$t->translate("Is deleted")."</b>\n";
         break;
       case 'M':
-        echo "<td width=40%><a href=\"".$sess->url("updapp.php").$sess->add_query(array("id" => $db->f("appid")))."\"><img src=\"images/recycled.png\" border=0 alt=\"".$t->translate("Review")."\"></a></td>\n";
+        echo "<td width=40%><b><a href=\"".$sess->url("updapp.php").$sess->add_query(array("id" => $db->f("appid")))."\"><img src=\"images/recycled.png\" border=0 alt=\"".$t->translate("Review")."\">&nbsp;Update</a></b></td>\n";
         echo "<td width=60% align=right border=0><b>".$t->translate("Is modified")."</b>\n";
         break;
       default:
-        echo "<td width=100%><a href=\"".$sess->url("updapp.php").$sess->add_query(array("id" => $db->f("appid")))."\"><img src=\"images/recycled.png\" border=0 alt=\"".$t->translate("Update")."\"></a>\n";
+        echo "<td width=100%><b><a href=\"".$sess->url("updapp.php").$sess->add_query(array("id" => $db->f("appid")))."\"><img src=\"images/recycled.png\" border=0 alt=\"".$t->translate("Update")."\">&nbsp;Update</a></b>\n";
         break;
     }
     echo "</td></tr></table>\n";

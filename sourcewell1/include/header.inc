@@ -4,8 +4,8 @@
 # SourceWell: Software Announcement & Retrieval System
 # ================================================
 #
-# Copyright (c) 2001 by
-#                Lutz Henckel (lutz.henckel@fokus.gmd.de) and
+# Copyright (c) 2001-2004 by
+#                Lutz Henckel (lutz.henckel@fokus.fraunhofer.de) and
 #                Gregorio Robles (grex@scouts-es.org)
 #
 # BerliOS SourceWell: http://sourcewell.berlios.de
@@ -77,8 +77,8 @@ require("menubar.inc");
 <td WIDTH="99%">
 <br>
 <?php
-if ( file_exists("./include/adsense.php") ) {
-        include("./include/adsense.php");
+if ( file_exists("/usr/local/httpd/include/adsense.php") ) {
+        include("/usr/local/httpd/include/adsense.php");
 }
 ?>
 <br>

@@ -5,7 +5,7 @@
  * Copyright (c) 1998-2000 NetUSE AG
  *                    Boris Erdmann, Kristian Koehntopp
  *
- * $Id: session.inc,v 1.3 2003/04/22 10:59:46 helix Exp $
+ * $Id: session.inc,v 1.4 2004/05/11 10:50:26 helix Exp $
  *
  */ 
 
