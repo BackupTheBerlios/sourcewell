@@ -12,7 +12,7 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: footer.inc,v 1.10 2002/05/09 20:48:39 grex Exp $
+// $Id: footer.inc,v 1.11 2002/05/09 20:49:18 grex Exp $
 
 /* Configuration parameters are set as global */
 /* their values can be found at config.inc */
@@ -27,7 +27,7 @@ global $config_nav_bgcolor;
 
 global $PHP_SELF;
 print $PHP_SELF;
-$php_self = eregi_replace('^[^/]*/', '', $PHP_SELF);
+$php_self = eregi_replace('^[^/].*/', '', $PHP_SELF);
 print $php_self;
 
 /**
