@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: start.inc,v 1.33 2002/05/09 14:24:11 grex Exp $
+// $Id: start.inc,v 1.34 2002/05/09 14:47:36 grex Exp $
 
 if (!isset($login)) {
     page_open(array('sess' => 'SourceWell_Session'));
@@ -173,27 +173,31 @@ while (list(, $value) = each($nav_bar_array)) {
 </tr>
 </table>
 <!-- end BerliOS menu -->
-<!-- Admin menu -->
 
-<table border="0" cellspacing="0" cellpadding="3" width="100%">
-<tr bgcolor="<?php echo $config_navstrip_bgcolor;?>">
-<td ALIGN=CENTER><img src="http://www.berlios.de/images/blank.gif" height="1" width="135" border=0><br>
-<span class="titlebar"><font color="<?php echo $config_navstrip_font_color;?>"><?php echo _("Administration"); ?></font></span></td>
-</tr>
+/* Administration Menu */
 
-<tr ALIGN=RIGHT bgcolor="<?php echo $config_nav_bgcolor;?>">
-<td>
-<?php
-
+$links = '';
 while (list(, $value) = each($adm_bar_array)) {
     // Polimorfism
-    $value->render();
+    $links .= $value->render();
+    if ($links) {
+        print "<!-- Admin menu -->\n";
+	print "<table border=\"0\" cellspacing=\"0\" cellpadding=\"3\" width=\"100%\">\n";
+	print "<tr bgcolor=\"<?php echo $config_navstrip_bgcolor;?>\">\n";
+	print "<td align=\"center\"><img src=\"http://www.berlios.de/images/blank.gif\" height=\"1\" width=\"135\" border=0><br>\n";
+	print "<span class=\"titlebar\"><font color=\"$config_navstrip_font_color\">"._('Administration')."</font></span></td>\n";
+	print "</tr>\n";
+        print "<tr ALIGN=RIGHT bgcolor=\"$config_nav_bgcolor\">\n";
+        print "<td>\n";
+        print $links;
+        print "</td>\n";
+	print "</tr>\n";
+	print "</table>\n";
+	print "<!-- end Admin menu -->\n";
+    }
 }
 ?>
-</td>
-</tr>
-</table>
-<!-- end Admin menu -->
+
 <!-- Search menu -->
 <table border=0 cellspacing=0 cellpadding=3 width="100%">
 <tr bgcolor="<?php echo $config_navstrip_bgcolor;?>">
