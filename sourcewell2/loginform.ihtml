@@ -13,7 +13,7 @@
 // |          Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
 // +----------------------------------------------------------------------+
 //
-// $Id: loginform.ihtml,v 1.1 2002/05/09 22:22:24 grex Exp $
+// $Id: loginform.ihtml,v 1.2 2002/05/09 22:27:27 grex Exp $
 
 global $la;
 global $username;
@@ -31,7 +31,7 @@ if (isset($username)) {
 }
 
 $table->table_begin();
-$table->table_title(_("$sys_name Login"));
+$table->table_title(_("$config_sys_name Login"));
 $table->table_body_begin();
 htmlp_form_action();
 $table->table_columns_begin();
