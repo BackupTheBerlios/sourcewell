@@ -179,7 +179,8 @@ function appfull($query) {
       $i += 1;
     }
 
-    $db2->query("SELECT * FROM software WHERE developer=\"".$db->f("developer")."\" AND appid != \"".$db->f("appid")."\" AND status=\"A\"");
+    $db2->query("SELECT * FROM software WHERE developer='".addslashes($db->f("developer"))."' AND appid!='".$db->f("appid")."' AND status='A'");
+
     $i = 0;
     while ($db2->next_record()) {
       if ($i == 0) {
@@ -481,7 +482,7 @@ function appday($start) {
 
     while($db->next_record()) {
 	  echo "<div class=newsind>&#149;&nbsp;";
-      echo "<a href=\"".$sess->url("appbyid.php").$sess->add_query(array("id" => $db->f("appid")))."\">".$db->f("name")." ".$db->f("version")."</a></li></div>\n";
+      echo "<a href=\"".$sess->url("appbyid.php").$sess->add_query(array("id" => $db->f("appid")))."\">".$db->f("name")." ".$db->f("version")."</a></div>\n";
     }
     $bx->box_body_end();
     $bx->box_end();
@@ -504,11 +505,11 @@ function updform($query,$url) {
   echo "<form action=\"".$sess->url("$url")."\" method=\"POST\">\n";
   echo "<table border=0 align=center cellspacing=0 cellpadding=3 width=100%>\n";
   echo "<tr><td align=right width=30%>".$t->translate("Application Name")." (128):</td><td width=70%><b>".$db->f("name")."</b></td></tr>\n";
-  echo "<input type=\"hidden\" name=\"name\" value=\"".$db->f("name")."\">\n";
+  echo "<input type=\"hidden\" name=\"name\" value=\"".htmlentities($db->f("name"),ENT_COMPAT)."\">\n";
   echo "<tr><td align=right width=30%>".$t->translate("Type").":</td><td width=70%>\n";
   echo typestr($db->f("type"))."</td></tr>\n";
   echo "<input type=\"hidden\" name=\"type\" value=\"".$db->f("type")."\">\n";
-  echo "<tr><td align=right width=30%>".$t->translate("Version")." (64):</td><td width=70%><input type=\"TEXT\" name=\"version\" size=40 maxlength=64 value=\"".$db->f("version")."\"></td></tr>\n";
+  echo "<tr><td align=right width=30%>".$t->translate("Version")." (64):</td><td width=70%><input type=\"TEXT\" name=\"version\" size=40 maxlength=64 value=\"".htmlentities($db->f("version"),ENT_COMPAT)."\"></td></tr>\n";
   echo "<tr><td align=right width=30%>".$t->translate("Section/Category").":</td><td width=70%>\n";
   echo "<select name=\"seccat\">\n";
   seccat($db->f("section"),$db->f("category"));
@@ -527,7 +528,7 @@ function updform($query,$url) {
   echo "<tr><td align=right width=30%>".$t->translate("Screenshots")." (255):</td><td width=70%><input type=\"TEXT\" name=\"screenshots\" size=40 maxlength=255 value=\"".$db->f("screenshots")."\">&nbsp;[<a href=\"".$db->f("screenshots")."\" target=\"_blank\">".$t->translate("Check")."</a>]</td></tr>\n";
   echo "<tr><td align=right width=30%>".$t->translate("Mailing List Archive")." (255):</td><td width=70%><input type=\"TEXT\" name=\"mailarch\" size=40 maxlength=255 value=\"".$db->f("mailarch")."\">&nbsp;[<a href=\"".$db->f("mailarch")."\" target=\"_blank\">".$t->translate("Check")."</a>]</td></tr>\n";
   echo "<tr><td align=right width=30%>".$t->translate("Description")." (*):</td><td width=70%><textarea cols=40 rows=7 name=\"description\" wrap=\"virtual\" maxlength=255>".$db->f("description")."</textarea></td></tr>\n";
-  echo "<tr><td align=right width=30%>".$t->translate("Author")." (64):</td><td width=70%><input type=\"TEXT\" name=\"developer\" size=40 maxlength=64 value=\"".$db->f("developer")."\"></td></tr>\n";
+  echo "<tr><td align=right width=30%>".$t->translate("Author")." (64):</td><td width=70%><input type=\"TEXT\" name=\"developer\" size=40 maxlength=64 value=\"".htmlentities($db->f("developer"),ENT_COMPAT)."\"></td></tr>\n";
   echo "<tr><td align=right width=30%>".$t->translate("E-Mail")." (128):</td><td width=70%><input type=\"TEXT\" name=\"email\" size=40 maxlength=128 value=\"".$db->f("email")."\">&nbsp;[<a href=\"mailto:".$db->f("email")."\" target=\"_blank\">".$t->translate("Check")."</a>]</td></tr>\n";
   echo "<tr><td align=right width=30%>".$t->translate("Depends on")." (128):</td><td width=70%><input type=\"TEXT\" name=\"depend\" size=40 maxlength=128 value=\"".$db->f("depend")."\"></td></tr>\n";
   echo "<tr><td align=right width=30%>".$t->translate("Urgency").":</td><td width=70%>\n";
@@ -613,9 +614,9 @@ function insform() {
   $bx->box_title($t->translate("Insert Application"));
   $bx->box_body_begin();
   echo "<table border=0 align=center cellspacing=0 cellpadding=3>\n";
-  echo "<tr><td align=right width=30%>".$t->translate("Application Name")." (128):</td><td width=70%><b>".$GLOBALS["name"]."</b></td></tr>\n";
+  echo "<tr><td align=right width=30%>".$t->translate("Application Name")." (128):</td><td width=70%><b>".stripslashes($GLOBALS["name"])."</b></td></tr>\n";
   echo "<form action=\"".$sess->url("insert.php")."\" method=\"POST\">\n";
-  echo "<input type=\"hidden\" name=\"name\" value=\"".$GLOBALS["name"]."\">\n";
+  echo "<input type=\"hidden\" name=\"name\" value=\"".htmlentities(stripslashes($GLOBALS["name"]),ENT_COMPAT)."\">\n";
   echo "<tr><td align=right width=30%>".$t->translate("Type").":</td><td width=70%>\n";
   echo typestr($GLOBALS["type"])."</td></tr>\n";
   echo "<input type=\"hidden\" name=\"type\" value=\"".$GLOBALS["type"]."\">\n";
