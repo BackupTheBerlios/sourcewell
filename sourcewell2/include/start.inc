@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: start.inc,v 1.24 2002/05/07 21:28:36 grex Exp $
+// $Id: start.inc,v 1.25 2002/05/07 21:32:14 grex Exp $
 
 if (!isset($login)) {
     page_open(array('sess' => 'SourceWell_Session'));
@@ -151,10 +151,6 @@ width="<?php echo $org_logo_width;?>" align="RIGHT"></a>
 <table border=0 cellspacing=0 cellpadding=0 width="100%" >
 <tr valign="top" bgcolor="<?php echo $config_body_bgcolor;?>">
 <td bgcolor="<?php echo $config_nav_bgcolor;?>">
-
-<?php
-/*
-?>
 
 <!-- BerliOS menu -->
 <table border=0 cellspacing=0 cellpadding=3 width="100%">
@@ -425,7 +421,3 @@ if (ereg('Gecko', '$HTTP_USER_AGENT') && $config_addNetscapePanel) {
 <td width="10"><img src="images/blank.gif" border=0 height=1 width=10></td>
 <td width="99%">
 <p>&nbsp;
-
-<?php
-*/
-?>
