@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: start.inc,v 1.21 2002/04/21 22:39:34 grex Exp $
+// $Id: start.inc,v 1.22 2002/05/07 21:18:51 grex Exp $
 
 if (!isset($login)) {
     page_open(array('sess' => 'SourceWell_Session'));
@@ -53,8 +53,7 @@ $table = new Table();
 $table_error = new Table('error', '80%');
 
 ?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-                      "http://www.w3.org/tr/REC-html40/loose.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
@@ -64,33 +63,28 @@ $table_error = new Table('error', '80%');
    <meta name="KeyWords" content="<?php echo $config_meta_keywords;?>">
    <title><?php echo $config_sys_name;?> - <?php echo _($config_sys_title);?></title>
    <link rel="stylesheet" type="text/css" href="berlios.css">
+   <link rel="shortcut icon" href="berlios.ico">
 </head>
-<?php
-   /*
-?>
 <body bgcolor="<?php echo $th_body_bgcolor;?>">
 
 <!-- top strip -->
-<table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin: 0;" bgcolor="<?php echo $th_navstrip_bgcolor;?>">
+<table border="0" cellspacing="0" cellpadding="2" width="100%" 
+       bgcolor="<?php echo $th_navstrip_bgcolor;?>">
 <tr>
-<td width=45%>
-<span class=maintitlebar>
+<td width="45%"><span class=maintitlebar>
 <?php
 $i = 0;
-while (list($title, $url) = each($config_topStripArray)) {
+while (list($title, $url) = each($ts_array)) {
 	if ($i > 0)
 		echo "\n | ";
 	echo "<b><a href=\"$url\" class=\"maintitlebar\">".$t->translate("$title")."</a></b>";
 	$i++;
 };
-
-if ($config_PHPLib_installed) {
-    echo "\n</span></td><td width=55% align=right>\n";
-    if (isset($auth) && !empty($auth->auth["perm"])  && !($logout)) {
-        echo "<FONT COLOR=\"".$th_nav_bgcolor."\">".$t->translate("Logged in")." <b>".$auth->auth["uname"]."</b> (<b>".$auth->auth["perm"]."</b>) / ".$t->translate("Expires")." <b>".timestr_short($auth->auth["exp"])."</b></FONT>";
-    } else {
-        echo "<FONT COLOR=\"".$th_nav_bgcolor."\"><B>".$t->translate("Not Logged in")."</B></FONT>";
-    }
+echo "\n</span></td><td width=\"55%\" align=\"right\">\n";
+if (isset($auth) && !empty($auth->auth["perm"])  && !($logout)) {
+	echo "<FONT COLOR=\"".$th_nav_bgcolor."\">".$t->translate("Logged in")." <b>".$auth->auth["uname"]."</b> (<b>".$auth->auth["perm"]."</b>) / ".$t->translate("Expires")." <b>".timestr_short($auth->auth["exp"])."</b></FONT>";
+} else {
+	echo "<FONT COLOR=\"".$th_nav_bgcolor."\"><B>".$t->translate("Not Logged in")."</B></FONT>";
 }
 ?>
 
@@ -101,30 +95,66 @@ if ($config_PHPLib_installed) {
 <!-- end top strip -->
 
 <!-- top title -->
-<table border=0 cellspacing=0 cellpadding=0 width="100%" valign="center" >
-<tr VALIGN=TOP bgcolor="<?php echo $th_nav_bgcolor;?>">
-<td><a href="<?php echo $sys_url_title;?>"><img src="<?php echo $sys_logo_image;?>" border=0 height=<?php echo $sys_logo_heigth;?> width=<?php echo $sys_logo_width;?> ALT="<?php echo $sys_logo_alt;?>"></a></td>
-<td width="10"><img src="images/blank.gif" border=0 height=1 width=10></td>
-<td VALIGN="middle" width="99%"><font color="<?php echo $th_nav_font_color;?>"><b><font size=+1><?php echo $sys_name;?></font></b>
-<br><?php echo $t->translate($sys_title);?></font></td>
+
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+
+<tr valign="top" bgcolor="<?php echo $th_nav_bgcolor;?>">
+<td bgcolor="#FFFFFF">
+<a href="<?php echo $sys_url_title;?>">
+<img src="<?php echo $sys_logo_image;?>" border="0" 
+height="<?php echo $sys_logo_height;?>" width="<?php echo $sys_logo_width;?>"
+vspace="5" hspace="5" alt="<?php echo $sys_logo_alt;?>"></a>
+</td>
+
+<td width="10">
+<img src="images/blank.gif" border="0" height="1" width="10" alt="">
+</td>
+
+<td align="left" valign="middle" > <!-- removed att: width="99%" -->
+<p align="left">
+<font color="<?php echo $th_nav_font_color;?>">
+<b><font size="+1"><?php echo $sys_name;?></font></b>
+<br><?php echo $t->translate($sys_title);?></font></p>
+</td>
+
+<!-- beta string -->
+<td align="center" valign="middle">
+<center>
+<font size="+2" color="red">BETA BETA BETA</font><br>
+<?php echo $t->translate("This site is being beta tested"); ?>, 
+<?php echo $t->translate("please send any and all"); ?>
+ <a href="mailto:sourceagency-support@lists.berlios.de?subject=SourceAgency Beta Feedback&cc=grex@scouts-es.org&cc=lutz.henckel@fokus.fhg.de&cc=riessen@berlios.de"
+><?php echo $t->translate("feedback"); ?></a>!
+</center>
+</td>
 
 <!-- logo at right -->
-<td VALIGN="middle">
-<a href="<?php echo $org_url;?>" TARGET="_blank"><img src="<?php echo $config_org_logo_image;?>" ALT="<?php echo $config_org_logo_alt;?>" HSPACE=10 border=0 height=<?php echo $config_org_logo_heigth;?> width=<?php echo $config_org_logo_width;?> align=RIGHT></a></td>
+<td valign="middle">
+<a href="<?php echo $org_url;?>" target="_blank">
+<img src="<?php echo $org_logo_image;?>" alt="<?php echo $org_logo_alt;?>" 
+hspace="10" border="0" height="<?php echo $org_logo_height;?>" 
+width="<?php echo $org_logo_width;?>" align="RIGHT"></a>
+</td>
 </tr>
 <!-- end logo at right -->
 
 <tr>
-<td COLSPAN="4" bgcolor="<?php echo $th_navstrip_bgcolor;?>"><img src="images/blank.gif" height=2 width=2></td>
+<td colspan="5" bgcolor="<?php echo $th_navstrip_bgcolor;?>">
+<img src="images/blank.gif" height="1" width="1" alt="">
+</td>
 </tr>
+
 </table>
+
 <!-- end top title -->
 
-
 <table border=0 cellspacing=0 cellpadding=0 width="100%" >
-<tr valign=top bgcolor="<?php echo $th_body_bgcolor;?>">
+<tr valign="top" bgcolor="<?php echo $th_body_bgcolor;?>">
 <td bgcolor="<?php echo $th_nav_bgcolor;?>">
 
+<?php
+/*
+?>
 
 <!-- BerliOS menu -->
 <table border=0 cellspacing=0 cellpadding=3 width="100%">
