@@ -1,6 +1,39 @@
 CHANGELOG for SourceWell
 http://sourcewell.berlios.de/html
 
+16-01-202 Gregorio Robles <grex@scouts-es.org> ------------- SourceWell 1.0.14
+
+* licenses.php3: added a link to the license explanation page
+* licenses/explanation.html
+* sql/mysql-1.0.13-to-mysql-1.0.14.php3: minor changes so that everything fits best
+* sql/mysql-1.0.13-to-mysql-1.0.14.php3: minor changes so that everything fits best
+
+12-01-202 Gregorio Robles <grex@scouts-es.org>
+
+* sql/mysql-1.0.13-to-mysql-1.0.14.php3: script that allows to update the apps with the new license names while keeping the modification dates
+* sql/mysql.sql: new database contents with the new licenses (and some minor changes)
+* include/app2.inc: If no version update, no entry in the history table!!!!
+* licenses/*.html: license texts for 16 more licenses of software distribution conditions
+
+09-01-202 Gregorio Robles <grex@scouts-es.org>
+
+* sql/mysql-1.0.13-to-mysql-1.0.14.sql: sql script with the changes from SourceWell version 1.0.13 to 1.0.14 in the database structure
+* include/app2.inc: bug fixed. The select appid query in the insert function has been modified into a function call
+* include/sql2.inc: new function select_appid_from_name_and_type($name, $type)
+
+06-01-2002 Gregorio Robles <grex@scouts-es.org>
+
+* licenses.php3: new license page (SourceWell 2 architecture) with links to the license texts
+* stats.php3: updated license links
+* appbylic.php3: link to the license texts
+
+04-01-2002 Gregorio Robles <grex@scouts-es.org>
+
+* licenses/*.html: license texts for 37 licenses of software distribution conditions
+* include/html2.inc: the html_link function allows PHP_SELF to be passed
+* cmtins.php3: bugs fixed in the mail sent to editors
+* include/lib2.inc: two new functions is_not_set_or_empty() and is_set_and_not_empty() another time (they disappeared!)
+
 04-01-2002 Lutz Henckel <lutz.henckel@fokus.fhg.de>
 
 * include/header.inc: correct doctype
@@ -107,7 +140,7 @@ faq.php3 missing box object for error message added
 include/menubar.inc calculate language dependent FAQ counter in administration menu
 include/German-lang.in add missing phrases
 
-13-07-2001 Lutz Henckel <lutz.henckel@fokuks.gmd.de>
+13-07-2001 Lutz Henckel <lutz.henckel@fokus.gmd.de>
 
 stats.php3 box title for rpm, deb and tgz bug fixed
 include/config.inc add frensh translation
