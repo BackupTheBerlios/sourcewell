@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: config.inc,v 1.32 2002/05/09 14:30:53 grex Exp $
+// $Id: config.inc,v 1.33 2002/05/09 14:35:46 grex Exp $
 
 /**
  * Directory configuration
@@ -281,36 +281,65 @@ $nav_bar_array[] = new Navigation('Logout', 'logout.php3');
 $nav_bar_array[] = new Navigation('New User', 'register.php3');
 $nav_bar_array[] = new Navigation('Forgot Password?', 'remind.php3');
 $nav_bar_array[] = new Navigation('Change User', 'chguser.php3');
-$nav_bar_array[] = new Navigation('Users', 'users.php3');
+$temp = new Navigation('Users', 'users.php3');
+$temp->setPermisions('editor');
+$nav_bar_array[] = $temp;
 $nav_bar_array[] = new Navigation('Apps Index', 'categories.php3');
 $nav_bar_array[] = new Navigation('New App', 'app_edi.php3');
 $nav_bar_array[] = new Navigation('Update Apps', 'appbyuser.php3');
 $temp = new Navigation('Pending Apps', 'admapp.php3');
+$temp->setPermisions('editor');
 $temp->setStatistics('projects', $where = "status='P'");
 $nav_bar_array[] = $temp;
 $temp = new Navigation('Deleted Apps', 'admapp.php3');
 $temp->setPermisions('editor');
+$temp->setStatistics('projects', $where = "status='D'");
 $nav_bar_array[] = $temp;
 $temp = new Navigation('Modified Apps', 'admapp.php3');
 $temp->setPermisions('editor');
 $temp->setStatistics('projects', $where = "status='M'");
 $nav_bar_array[] = $temp;
-$nav_bar_array[] = new Navigation('Developers', 'developers.php3');
+$temp = new Navigation('Developers', 'developers.php3');
+$temp->setPermisions('editor');
+$nav_bar_array[] = $temp;
 $nav_bar_array[] = new Navigation('Licenses', 'licenses.php3');
 $nav_bar_array[] = new Navigation('Newsletter', 'newsletter.php3');
 $nav_bar_array[] = new Navigation('Backend', 'backend.php3');
 $nav_bar_array[] = new Navigation('Statistics', 'stats.php3');
 
 /* Administration options */
-$adm_bar_array[] = new Navigation('Users', 'admuser.php3');
-$adm_bar_array[] = new Navigation('Sections', 'admsec.php3');
-$adm_bar_array[] = new Navigation('Categories', 'admcat.php3');
-$adm_bar_array[] = new Navigation('Licenses', 'admlicens.php3');
-$adm_bar_array[] = new Navigation('Comments', 'admcomments.php3');
-$adm_bar_array[] = new Navigation('Q&A', 'admfaq.php3');
-$adm_bar_array[] = new Navigation('Check Date', 'admdate.php3');
-$adm_bar_array[] = new Navigation('Daily Newsletter', '');
-$adm_bar_array[] = new Navigation('Weekly Newsletter', '');
+$temp = new Navigation('Users', 'admuser.php3');
+//$temp->setPermisions('admin');
+$temp->setStatistics('auth_user');
+$nav_bar_array[] = $temp;
+$temp = new Navigation('Sections', 'admsec.php3');
+$temp->setPermisions('admin');
+/* TODO: has to be refined */
+$temp->setStatistics('categories');
+$nav_bar_array[] = $temp;
+$temp = new Navigation('Categories', 'admcat.php3');
+$temp->setPermisions('admin');
+$temp->setStatistics('categories');
+$nav_bar_array[] = $temp;
+$temp = new Navigation('Licenses', 'admlicens.php3');
+$temp->setStatistics('licenses');
+$temp->setPermisions('admin');
+$nav_bar_array[] = $temp;
+$temp = new Navigation('Comments', 'admcomments.php3');
+$temp->setStatistics('comments');
+$temp->setPermisions('admin');
+$nav_bar_array[] = $temp;
+$temp = new Navigation('Q&A', 'admfaq.php3');
+$temp->setStatistics('faq');
+$temp->setPermisions('admin');
+$nav_bar_array[] = $temp;
+$temp = new Navigation('Check Date', 'admdate.php3');
+$temp->setPermisions('admin');
+$nav_bar_array[] = $temp;
+$temp = new Navigation('Daily Newsletter', '');
+$temp->setPermisions('admin');
+$nav_bar_array[] = $temp;
+$temp = new Navigation('Weekly Newsletter', '');
 
 /**
  * PHPLIB
