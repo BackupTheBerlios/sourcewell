@@ -47,11 +47,11 @@ function insert_app_in_software($section,$category,$status) {
 
 $select_appid_by_name_and_type = "SELECT appid FROM software WHERE name='$name' AND type='$type'";
 
-function update_app_in_software($section,$category,$status) {
+function update_app_in_software($section,$category,$user,$status) {
 	global $auth;
 	global $name, $type, $version, $license, $homepage, $download, $changelog, $rpm, $deb, $tgz, $cvs, $screenshot, $mailarch, $developer, $description, $email, $depend, $urgency, $appid;
 
-	return "UPDATE software SET version='$version', license='$license', section='$section', category='$category', homepage='$homepage', download='$download', changelog='$changelog', rpm='$rpm', deb='$deb', tgz='$tgz', cvs='$cvs', screenshots='$screenshots', mailarch='$mailarch', developer='$developer', description='$description', email='$email', depend='$depend', urgency='$urgency', status='$status' WHERE appid='$appid'";
+	return "UPDATE software SET version='$version', license='$license', section='$section', category='$category', homepage='$homepage', download='$download', changelog='$changelog', rpm='$rpm', deb='$deb', tgz='$tgz', cvs='$cvs', screenshots='$screenshots', mailarch='$mailarch', developer='$developer', description='$description', email='$email', depend='$depend', urgency='$urgency', user='$user', status='$status' WHERE appid='$appid'";
 }
 
 function insert_app_in_temp($section,$category,$status) {

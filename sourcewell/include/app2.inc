@@ -495,7 +495,7 @@ function app_modify($appid) {
 	if ($validation == "review") $status = 'A';
 	elseif ($validation == "delete") $status = 'D';
 
-	$db->query(update_app_in_software($GLOBALS["section"],$GLOBALS["category"],$status));
+	$db->query(update_app_in_software($GLOBALS["section"],$GLOBALS["category"],$user_old,$status));
 	$db->query($GLOBALS[delete_app_from_temp]);
 
     	// New History
@@ -795,7 +795,7 @@ function app_show_summary($appid, $search = "xxxxx") {
 
 	$bx->box_begin();
         $bx->box_title_begin();
-        print "<b>".eregi_replace($search,"<font color=red><b>".$search."</b></font>",$db_local->f("name"))."<b>";
+        print "<b>"._app_colour_search($search,$db_local->f("name"))."<b>";
         if (isset($perm) && !empty($perm) && $perm->have_perm("editor")) {
             for ($i=0; $i< sizeof($array_types); $i++) {
                 print " (".html_link("app_mod.php3",array("appid" => $array_types[$i]["appid"]),$array_types[$i]["type"]." ".$array_types[$i]["version"]).")";
@@ -810,12 +810,17 @@ function app_show_summary($appid, $search = "xxxxx") {
 	echo "<b>by ".lib_nick($db_local->f("user"));
     	echo " - ".timestr(mktimestamp($db_local->f("modification")))."</b><p>\n";
 
-	print eregi_replace($search,"<font color=red><b>".$search."</b></font>",$db_local->f("description"));
+	print _app_colour_search($search,$db_local->f("description"));
 
 	app_footer($appid);
     	$bx->box_body_end();
     	$bx->box_end();
   }
+}
+
+function _app_colour_search($search,$string)
+{
+    return eregi_replace($search,"<font color=red><b>".$search."</b></font>",$string); 
 }
 
 function _app_types($name)
