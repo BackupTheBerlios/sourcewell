@@ -19,7 +19,8 @@
 # the Free Software Foundation; either version 2 or later of the GPL.
 ######################################################################
 
-switch($phrase) {
+function translate_real($phrase) {
+  switch($phrase) {
 
 // Top strip
      case "Home": $tmp = "P&aacute;gina Principal"; break;
@@ -67,10 +68,10 @@ switch($phrase) {
      case "Go": $tmp = "Cambiar"; break;
 
 // Languages
-	 case "English": $tmp = "Ingl&eacute;s"; break;
-	 case "German": $tmp = "Alem&aacute;n"; break;
+	 case "English": $tmp = "English"; break;
+	 case "German": $tmp = "Deutsch"; break;
 	 case "Spanish": $tmp = "Espa&ntilde;ol"; break;
-	 case "French": $tmp = "Franc&eacute;s"; break;
+	 case "French": $tmp = "Fran&ccedil;ais"; break;
 
 // sorted by
 	 case "sorted by": $tmp = "ordenado por"; break;
@@ -279,6 +280,8 @@ switch($phrase) {
 
 // Newsletter
      case "Subscribe Newsletter": $tmp = "Suscribirse a la Lista de Noticias"; break;
+     case "Subscribe daily Newsletter": $tmp = "Suscribirse a la Lista de Noticias Diaria"; break;
+     case "Subscribe weekly Newsletter": $tmp = "Suscribirse a la Lista de Noticias Semanal"; break;
      case "Subscribe": $tmp = "Suscribirse"; break;
      case "Send newsletter": $tmp = "Mandar Lista Noticias"; break;
      case "Newsletter was sent at ": $tmp = "La Lista de Noticias fue enviada a "; break;
@@ -321,7 +324,7 @@ switch($phrase) {
 	 case "Number of Licenses listed in $GLOBALS[sys_name]": $tmp = "N&uacute;mero de Licencias listadas en $GLOBALS[sys_name]"; break;
 	 case "Number of $GLOBALS[sys_name] Sections": $tmp = "N&uacute;mero de Secciones en $GLOBALS[sys_name]"; break;
 	 case "Number of $GLOBALS[sys_name] Categories": $tmp = "N&uacute;mero de Categor&iacute;as en $GLOBALS[sys_name]"; break;
-	 case "Number of Hits on Applications": $tmp = "N&uacute;mero total de &quot;Hits&quot; sobre Aplicaciones"; break;
+	 case "Number of Hits on Applications": $tmp = "N&uacute;mero de &quot;Hits&quot; sobre Aplicaciones"; break;
 	 case "Number of redirected Homepages": $tmp = "N&uacute;mero de P&aacute;ginas Principales redireccionadas"; break;
 	 case "Number of Downloads": $tmp = "N&uacute;mero de Descargas"; break;
 	 case "Number of redirected Changelogs": $tmp = "N&uacute;mero de Log de Cambios redireccionados"; break;
@@ -494,5 +497,7 @@ switch($phrase) {
 
 // If no translation available, keep the original phrase
      default: $tmp = "$phrase"; break;
+  }
+  return($tmp);
 }
 ?>

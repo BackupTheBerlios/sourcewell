@@ -19,7 +19,8 @@
 # the Free Software Foundation; either version 2 or later of the GPL.
 ######################################################################
 
-switch($phrase) {
+function translate_real($phrase) {
+  switch($phrase) {
 
 // Top strip
      case "Home": $tmp = "Heim"; break;
@@ -66,10 +67,10 @@ switch($phrase) {
      case "Go": $tmp = "Los"; break;
 
 // Languages
-	 case "English": $tmp = "Englisch"; break;
+	 case "English": $tmp = "English"; break;
 	 case "German": $tmp = "Deutsch"; break;
-	 case "Spanish": $tmp = "Spanisch"; break;
-	 case "French": $tmp = "Französisch"; break;
+	 case "Spanish": $tmp = "Espa&ntilde;ol"; break;
+	 case "French": $tmp = "Fran&ccedil;ais"; break;
 
 // sorted by
 	 case "sorted by": $tmp = "sortiert nach"; break;
@@ -282,6 +283,8 @@ switch($phrase) {
 
 // Newsletter
      case "Subscribe Newsletter": $tmp = "Newsletter abonnieren"; break;
+     case "Subscribe daily Newsletter": $tmp = "Täglichen Newsletter abonnieren"; break;
+     case "Subscribe weekly Newsletter": $tmp = "Wöchentlichen Newsletter abonnieren"; break;
      case "Subscribe": $tmp = "Abonnieren"; break;
      case "Send newsletter": $tmp = "Sende Newsletter"; break;
      case "Newsletter was sent at ": $tmp = "Newsletter wurde gesendet am "; break;
@@ -324,7 +327,7 @@ switch($phrase) {
 	 case "Number of Licenses listed in $GLOBALS[sys_name]": $tmp = "Anzahl der Lizenzen in $GLOBALS[sys_name]"; break;
 	 case "Number of $GLOBALS[sys_name] Sections": $tmp = "Anzahl der Sektionen in $GLOBALS[sys_name]"; break;
 	 case "Number of $GLOBALS[sys_name] Categories": $tmp = "Anzahl der Kategorien in $GLOBALS[sys_name]"; break;
-	 case "Number of Hits on Applications": $tmp = "Gesamtzahl der Zugriffe auf Anwendungen"; break;
+	 case "Number of Hits on Applications": $tmp = "Anzahl der Zugriffe auf Anwendungen"; break;
 	 case "Number of redirected Homepages": $tmp = "Anzahl der Zugriffe auf Homepages"; break;
 	 case "Number of Downloads": $tmp = "Anzahl der Zugriffe auf Downloads"; break;
 	 case "Number of redirected Changelogs": $tmp = "Anzahl der Zugriffe auf Changlogs"; break;
@@ -492,5 +495,7 @@ switch($phrase) {
 
 // If no translation available, keep the original phrase
      default: $tmp = "$phrase"; break;
+  }
+  return($tmp);
 }
 ?>

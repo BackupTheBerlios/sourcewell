@@ -7,6 +7,10 @@
      }
    
      function translate($phrase) {
+
+	$tmp = translate_real($phrase);
+/*
+// BUG: this includes the files for each string! => high memory cost!
       switch ($this->$tolang) {
       case "English":
 	    require("English-lang.inc");
@@ -24,6 +28,7 @@
 	    require("English-lang.inc");
         break;
       }
+*/
 	  return($tmp);
      }
  }

@@ -19,7 +19,8 @@
 # the Free Software Foundation; either version 2 or later of the GPL.
 ######################################################################
 
-switch($phrase) {
+function translate_real($phrase) {
+  switch($phrase) {
 
 // Top strip
      case "Home": $tmp = "Accueil"; break;
@@ -66,9 +67,9 @@ switch($phrase) {
      case "Go": $tmp = "Lancer"; break;
 
 // Languages
-	 case "English": $tmp = "Anglais"; break;
-	 case "German": $tmp = "Allemand"; break;
-	 case "Spanish": $tmp = "Espagnol"; break;
+	 case "English": $tmp = "English"; break;
+	 case "German": $tmp = "Deutsch"; break;
+	 case "Spanish": $tmp = "Espa&ntilde;ol"; break;
 	 case "French": $tmp = "Fran&ccedil;ais"; break;
 
 // sorted by
@@ -282,6 +283,8 @@ switch($phrase) {
 
 // Newsletter
      case "Subscribe Newsletter": $tmp = "S'abonner à la lettre d'info"; break;
+     case "Subscribe daily Newsletter": $tmp = "S'abonner à la lettre quotidienne"; break;
+     case "Subscribe weekly Newsletter": $tmp = "S'abonner à la lettre hebdomadaire"; break;
      case "Subscribe": $tmp = "S'abonner"; break;
      case "Send newsletter": $tmp = "Envoyer lettre"; break;
      case "Newsletter was sent at ": $tmp = "La lettre a été envoyé à "; break;
@@ -324,7 +327,7 @@ switch($phrase) {
 	 case "Number of Licenses listed in $GLOBALS[sys_name]": $tmp = "Nombre de licences listées dans $GLOBALS[sys_name]"; break;
 	 case "Number of $GLOBALS[sys_name] Sections": $tmp = "Nombre de sections $GLOBALS[sys_name]"; break;
 	 case "Number of $GLOBALS[sys_name] Categories": $tmp = "Nombre de catégories $GLOBALS[sys_name]"; break;
-	 case "Total Number of Hits on Applications": $tmp = "Nombre total de hits sur les applications"; break;
+	 case "Number of Hits on Applications": $tmp = "Nombre de hits sur les applications"; break;
 	 case "Number of redirected Homepages": $tmp = "Nombre de redirection vers page d'accueil"; break;
 	 case "Number of Downloads": $tmp = "Nombre de téléchargements"; break;
 	 case "Number of redirected Changelogs": $tmp = "Nombre de log de modification redirigé"; break;
@@ -500,5 +503,7 @@ switch($phrase) {
 // If no translation available, keep the original phrase
 // Please, translation of this is not needed!
      default: $tmp = "$phrase"; break;
+  }
+  return($tmp);
 }
 ?>

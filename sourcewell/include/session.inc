@@ -5,7 +5,7 @@
  * Copyright (c) 1998,1999 SH Online Dienst GmbH
  *                    Boris Erdmann, Kristian Koehntopp
  *
- * $Id: session.inc,v 1.2 2001/07/19 12:27:26 helix Exp $
+ * $Id: session.inc,v 1.3 2001/11/29 15:19:24 grex Exp $
  *
  */ 
 

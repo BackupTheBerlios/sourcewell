@@ -150,7 +150,7 @@ function appfull($query) {
   $db_urgency = $db->f("urgency");
   if ($db_urgency == 0)	$db_urgency = 2;
     echo "<tr valign=top><td align=right><b>".$t->translate("Urgency").":</b></td><td>".$t->translate(urgency($db_urgency))."</td></tr>\n";
-    echo "<tr><td align=right><b>".$t->translate("Application ID").":</b></td><td><a href=\"".$sess->url("appbyid.php3").$sess->add_query(array("id" => $db->f("appid")))."\">".$db->f("appid")."</a> (".$db->f("app_cnt")." ".$t->translate("hits").")</td></tr>\n";
+    echo "<tr><td align=right><b>".$t->translate("Application ID").":</b></td><td><a href=\"".$sess->url("app.php3").$sess->add_query(array("appid" => $db->f("appid")))."\">".$db->f("appid")."</a> (".$db->f("app_cnt")." ".$t->translate("hits").")</td></tr>\n";
 
     $db_status = $db->f("status");
     switch ($db_status) {
@@ -187,13 +187,13 @@ function appfull($query) {
       } else {
         echo "<br>";
       }
-      echo "<a href=\"".$sess->url("appbyid.php3").$sess->add_query(array("id" => $db2->f("appid")))."\">".$db2->f("name")." ".$db2->f("version")."</a> (".typestr($db2->f("type")).")\n";
+      echo "<a href=\"".$sess->url("app.php3").$sess->add_query(array("appid" => $db2->f("appid")))."\">".$db2->f("name")." ".$db2->f("version")."</a> (".typestr($db2->f("type")).")\n";
       $i++;
     }
     echo "</td></tr></table>\n";
     $bx->box_body_end();
     $bx->box_title_begin();
-    echo "<a href=\"".$sess->url("updapp.php3").$sess->add_query(array("id" => $db->f("appid")))."\"><img src=\"images/recycled.png\" border=0 alt=\"".$t->translate("Update")."\"></a>&nbsp;&nbsp;<a href=\"".$sess->url("cmtapp.php3").$sess->add_query(array("id" => $db->f("appid")))."\"><img src=\"images/txt.png\" border=0 alt=\"".$t->translate("Comment")."\"></a>\n";
+    echo "<a href=\"".$sess->url("app_mod.php3").$sess->add_query(array("appid" => $db->f("appid")))."\"><img src=\"images/recycled.png\" border=0 alt=\"".$t->translate("Update")."\"></a>&nbsp;&nbsp;<a href=\"".$sess->url("cmtapp.php3").$sess->add_query(array("id" => $db->f("appid")))."\"><img src=\"images/txt.png\" border=0 alt=\"".$t->translate("Comment")."\"></a>\n";
    $bx->box_title_end();
    $bx->box_end();
 }
@@ -214,7 +214,7 @@ function appcat($query,$title,$iter) {
   $i = $iter;
   $db->query($query);
   while($db->next_record()) {
-    echo "<tr><td align=right valign=top width=4%><b>$i</b></td><td width=96%><b><a href=\"".$sess->url("appbyid.php3").$sess->add_query(array("id" => $db->f("appid")))."\">".$db->f("name")." ".$db->f("version")."</a> (".typestr($db->f("type")).")</b>\n";
+    echo "<tr><td align=right valign=top width=4%><b>$i</b></td><td width=96%><b><a href=\"".$sess->url("app.php3").$sess->add_query(array("appid" => $db->f("appid")))."\">".$db->f("name")." ".$db->f("version")."</a> (".typestr($db->f("type")).")</b>\n";
     echo "<br>".$db->f("description")."\n";
     echo "<br><b>".$t->translate("Importance").":</b> ".$db->f("sum_cnt");
     $db_urgency = $db->f("urgency");
@@ -240,52 +240,44 @@ function appcat($query,$title,$iter) {
 
 function appdat($query) {
   global $bx,$db,$sess;
-  $db_local = new DB_SourceWell;
-  $db_local->query($query);
-  $db_num_rows = $db_local->num_rows();
-  while ($db_local->next_record()) {
-    $query = "SELECT *,SUM(app_cnt+homepage_cnt+download_cnt+changelog_cnt+rpm_cnt+deb_cnt+tgz_cnt+cvs_cnt+screenshots_cnt+mailarch_cnt) AS sum_cnt FROM software,counter WHERE software.appid = counter.appid AND software.appid='".$db_local->f("appid")."' GROUP BY software.appid";
-    appd($query);
+  $db->query($query);
+  while ($db->next_record()) {
+    appd();
     $bx->box_end();
   }
 }
 
 
-## appupdate($row):
+## appupdate($query):
 ##
 ## Display Application data and Update Link
 
 function appupdate($query) {
   global $perm, $bx, $t, $sess, $db;
 
-  $db_local = new DB_SourceWell;
-  $db_local->query($query);
-  $db_num_rows = $db_local->num_rows();
-  while ($db_local->next_record()) {
-    $query = "SELECT *, SUM(app_cnt+homepage_cnt+download_cnt+changelog_cnt+rpm_cnt+deb_cnt+tgz_cnt+cvs_cnt+screenshots_cnt+mailarch_cnt) AS sum_cnt FROM software,counter WHERE software.appid = counter.appid AND software.appid='".$db_local->f("appid")."' GROUP BY software.appid";
-    appd($query);
+  $db->query($query);
+  while ($db->next_record()) {
+    appd();
 
     $bx->box_title_begin();
     echo "<table width=100% border=0 cellspacing=0 cellpadding=3><tr valign=bottom>\n";
 
-    $db->query($query);
-    $db->next_record();
     $db_status = $db->f("status");
     switch ($db_status) {
       case 'P':
-        echo "<td width=40%><a href=\"".$sess->url("updapp.php3").$sess->add_query(array("id" => $db->f("appid")))."\"><img src=\"images/recycled.png\" border=0 alt=\"".$t->translate("Review")."\"></a></td>\n";
+        echo "<td width=40%><a href=\"".$sess->url("app_mod.php3").$sess->add_query(array("appid" => $db->f("appid")))."\"><img src=\"images/recycled.png\" border=0 alt=\"".$t->translate("Review")."\"></a></td>\n";
         echo "<td width=60% align=right border=0><b>".$t->translate("Waiting for Review by an Editor")."</b>\n";
         break;
       case 'D':
-        echo "<td width=40%><a href=\"".$sess->url("updapp.php3").$sess->add_query(array("id" => $db->f("appid")))."\"><img src=\"images/recycled.png\" border=0 alt=\"".$t->translate("Review")."\"></a></td>\n";
+        echo "<td width=40%><a href=\"".$sess->url("app_mod.php3").$sess->add_query(array("appid" => $db->f("appid")))."\"><img src=\"images/recycled.png\" border=0 alt=\"".$t->translate("Review")."\"></a></td>\n";
         echo "<td width=60% align=right border=0><b>".$t->translate("Is deleted")."</b>\n";
         break;
       case 'M':
-        echo "<td width=40%><a href=\"".$sess->url("updapp.php3").$sess->add_query(array("id" => $db->f("appid")))."\"><img src=\"images/recycled.png\" border=0 alt=\"".$t->translate("Review")."\"></a></td>\n";
+        echo "<td width=40%><a href=\"".$sess->url("app_mod.php3").$sess->add_query(array("appid" => $db->f("appid")))."\"><img src=\"images/recycled.png\" border=0 alt=\"".$t->translate("Review")."\"></a></td>\n";
         echo "<td width=60% align=right border=0><b>".$t->translate("Is modified")."</b>\n";
         break;
       default:
-        echo "<td width=100%><a href=\"".$sess->url("updapp.php3").$sess->add_query(array("id" => $db->f("appid")))."\"><img src=\"images/recycled.png\" border=0 alt=\"".$t->translate("Update")."\"></a>\n";
+        echo "<td width=100%><a href=\"".$sess->url("app_mod.php3").$sess->add_query(array("appid" => $db->f("appid")))."\"><img src=\"images/recycled.png\" border=0 alt=\"".$t->translate("Update")."\"></a>\n";
         break;
     }
     echo "</td></tr></table>\n";
@@ -295,20 +287,18 @@ function appupdate($query) {
 }
 
 
-## appd($query):
+## appd():
 ##
 ## Common support for functions appdat and appupdate
 
-function appd($query) {
+function appd() {
   global $bx,$t,$sess,$db;
 
-  $db->query($query);
-  $db->next_record();
   $bx->box_begin();
   $bx->box_title_begin();
   echo "<table border=0 cellspacing=0 cellpadding=0 width=100%>\n";
   echo "<tr valign=bottom>";
-  echo "<td width=30%><b><a href=\"".$sess->url("appbyid.php3").$sess->add_query(array("id" => $db->f("appid")))."\">".$db->f("name")." ".$db->f("version")."</a> (".typestr($db->f("type")).")</b></td>\n";
+  echo "<td width=30%><b><a href=\"".$sess->url("app.php3").$sess->add_query(array("appid" => $db->f("appid")))."\">".$db->f("name")." ".$db->f("version")."</a> (".typestr($db->f("type")).")</b></td>\n";
   echo "<td width=70% align=right>\n";
 
   $db_sum_cnt = $db->f("sum_cnt");
@@ -382,7 +372,7 @@ function appday($start) {
     $bx->box_body_begin();
 
     while($db->next_record()) {
-      echo "<li><a href=\"".$sess->url("appbyid.php3").$sess->add_query(array("id" => $db->f("appid")))."\">".$db->f("name")." ".$db->f("version")."</a></li>\n";
+      echo "<li><a href=\"".$sess->url("app.php3").$sess->add_query(array("appid" => $db->f("appid")))."\">".$db->f("name")." ".$db->f("version")."</a></li>\n";
     }
     $bx->box_body_end();
     $bx->box_end();
@@ -904,7 +894,7 @@ function nlmsg($period) {
 	$msg .= "Depens on    : ".$db->f("depend")."\n";
       $msg .= "\n";
     }
-    $msg .= $GLOBALS["sys_name"]."   : ".$GLOBALS["sys_url"]."appbyid.php3?id=".$db->f("appid")."\n";
+    $msg .= $GLOBALS["sys_name"]."   : ".$GLOBALS["sys_url"]."app.php3?appid=".$db->f("appid")."\n";
     $msg .= "\n               -----------------------------\n";
     $i++;
   }
@@ -937,10 +927,18 @@ function nlmsg($period) {
 }
 
 function mailuser($perms, $subj, $message) {
-  global $t, $db;
-  $db->query("SELECT email_usr FROM auth_user WHERE perms LIKE '%$perms%'");
-  while($db->next_record()) {
-    mail($db->f("email_usr"),"[".$GLOBALS["sys_name"]."] ".$subj,$message,"From: ".$GLOBALS["ml_fromaddr"]."\nReply-To: ".$GLOBALS["ml_replyaddr"]."\nX-Mailer: PHP");
+  global $t;
+
+  $db_local = new DB_SourceWell;
+  $db_local->query("SELECT email_usr FROM auth_user WHERE perms LIKE '%$perms%'");
+  while($db_local->next_record()) {
+    mail($db_local->f("email_usr"),"[".$GLOBALS["sys_name"]."] ".$subj,$message,"From: ".$GLOBALS["ml_fromaddr"]."\nReply-To: ".$GLOBALS["ml_replyaddr"]."\nX-Mailer: PHP");
   }
 }
+
+function _($phrase) {
+    $tmp = translate_real($phrase);
+    return($tmp);
+}
+
 ?>
