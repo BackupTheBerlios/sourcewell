@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: config.inc,v 1.48 2002/05/10 11:16:59 grex Exp $
+// $Id: config.inc,v 1.49 2002/05/10 18:20:32 grex Exp $
 
 /**
  * Directory configuration
@@ -436,17 +436,29 @@ $config_LeftColumnWidth = '33%';
 $config_RightColumnWidth = '67%';
 
 /**
- * E-mail advice
+ * E-mail advice - Monitoring
  * 
- * sys_name		System name
  * ml_notify		To be notified, ml_notify apps have to be inserted
  * ml_fromaddr		Email address in the From field
- * ml_replyaddr		Return Email address
  */
 
 $config_ml_notify = '1';
 $config_ml_fromAddr = 'noreply@berlios.de';
 $config_ml_replyAddr = 'noreply@berlios.de';
+
+/**
+ * Mailing list support
+ *
+ * ml_list boolean      if there should be mailing lists or not
+ * TODO: configuration should be easier!
+ * ml_replyaddr		Return Email address
+ * ml_*NewsReqAddr      Request Address for subscribing to a mailing list
+ *
+ */
+
+$config_ml_list = 1;
+$config_ml_DailyNewsReqAddr = '';
+$config_ml_weeklyNewsReqAddr = '';
 
 /**
  * SourceWell 2 Version

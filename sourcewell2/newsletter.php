@@ -13,7 +13,7 @@
 // |          Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
 // +----------------------------------------------------------------------+
 //
-// $Id: newsletter.php,v 1.3 2002/05/10 18:20:32 grex Exp $
+// $Id: newsletter.php,v 1.4 2002/05/10 18:22:50 grex Exp $
 
 require('start.inc');
 
@@ -68,24 +68,24 @@ if (!$config_ml_list) {
         htmlp_form_action();
         
         $table->table_column('<b>'._('E-Mail').':</b> ', '40%', '', 'right');
-        $table->table_column(html_form_textField('email_usr', 20, 128, '') ,'60%', '', 'left');
+        $table->table_column(html_form_textField('email_usr', '', 20, 128) ,'60%', '', 'left');
 
-        $table->table_nexRowWithColumns();
+        $table->table_nextRowWithColumns();
 
         $table->table_column('<b>'._('Password').':</b> ', '40%', '', 'right');
         $table->table_column(html_form_PassWordField('password', 20), '60%', '', 'left');
 
-        $table->table_nexRowWithColumns();
+        $table->table_nextRowWithColumns();
 
         $table->table_column('<b>'._('Confirm Password').':</b> ', '40%', '', 'right');
         $table->table_column(html_form_PassWordField('cpassword', 20), '60%', '', 'left');
 
-        $table->table_nexRowWithColumns();
+        $table->table_nextRowWithColumns();
 
         $table->table_column('<b>'._('Periodicity').':</b> ', '40%', '', 'right');
         $table->table_column(html_form_radioButton('period','daily','')._('daily').' &nbsp; &nbsp; '.html_form_RadioButton('period','weekly','yes')._('weekly'), '60%', '', 'left');
 
-        $table->table_nexRowWithColumns();
+        $table->table_nextRowWithColumns();
 
         $table->table_colspan(html_form_submit(_('Subscribe'), 'subscribe'), 2, '', 'center');
 
