@@ -12,7 +12,7 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: Form.inc,v 1.6 2002/05/09 17:07:03 grex Exp $
+// $Id: Form.inc,v 1.7 2002/05/09 17:10:29 grex Exp $
 
 /**
  * Requires table.inc
@@ -227,8 +227,8 @@ class Form {
         global $table;
 
         $table->table_column_finish();
-        htmlp_form_end();
         $table->table_columns_end();
+        htmlp_form_end();
         $table->table_body_end();
         $table->table_end();
     }

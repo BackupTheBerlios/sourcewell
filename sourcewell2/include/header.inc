@@ -12,7 +12,7 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: header.inc,v 1.9 2002/05/09 17:07:03 grex Exp $
+// $Id: header.inc,v 1.10 2002/05/09 17:10:29 grex Exp $
 
 /**
  * TODO: global explanation of this file
@@ -247,7 +247,7 @@ htmlp_form_end();
 <!-- Language menu -->
 <table border="0" cellspacing="0" cellpadding="3" width="100%">
   <tr bgcolor="<?php echo $config_navstrip_bgcolor;?>">
-    <td ALIGN=CENTER><img src="http://www.berlios.de/images/blank.gif" height="1" width="135" border=0><br>
+    <td ALIGN=CENTER><img src="http://www.berlios.de/images/blank.gif" height="1" width="135" border="0" alt=""><br>
       <span class="titlebar"><font color="<?php echo $config_navstrip_font_color;?>"><?php echo _("Language");?></font></span>
     </td>
   </tr>

@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: html.inc,v 1.10 2002/05/09 16:56:39 grex Exp $
+// $Id: html.inc,v 1.11 2002/05/09 17:11:49 grex Exp $
 
 /**
  * HTML library for PHP (and PHPLib)
@@ -433,7 +433,7 @@ function htmlp_form_radioButton($name, $value, $selected)
 
 function html_form_textArea($name, $value, $columns = 40, $rows =7)
 {
-    $output = "\n".'   <textarea name="'.$name.'" cols="'.$columns.'" rows="'.$rows.'" wrap="yes">'.$value.'</textarea>';
+    $output = "\n".'   <textarea name="'.$name.'" cols="'.$columns.'" rows="'.$rows.'">'.$value.'</textarea>';
     return($output);
 }
 

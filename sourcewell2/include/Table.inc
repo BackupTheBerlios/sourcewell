@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: Table.inc,v 1.10 2002/05/07 21:44:15 grex Exp $
+// $Id: Table.inc,v 1.11 2002/05/09 17:07:03 grex Exp $
 
 /**
  * Class Table: a class for HTML Tables
@@ -317,7 +317,7 @@ class Table {
     function table_columns_begin()
     {
         echo "\n<!-- Table with columns begins -->\n";
-        echo "<table style=\"border: 0; padding: $this->table_filling; width: $this->table_width; \" align=\"center\" valign=\"top\">\n";
+        echo "<table style=\"border: 0; padding: $this->table_filling; width: $this->table_width; \" align=\"center\">\n";
         echo "   <tr>\n";
     }
 

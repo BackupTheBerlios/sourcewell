@@ -12,7 +12,7 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: TextAreaField.inc,v 1.6 2002/05/09 17:01:59 grex Exp $
+// $Id: TextAreaField.inc,v 1.7 2002/05/09 17:11:49 grex Exp $
 
 /**
  * Requires Table.inc and html.inc
@@ -177,7 +177,7 @@ class TextAreaField extends Field {
             $table->table_nextRowWithColumns();
             return 1;
         } elseif ($this->notNull) {
-            $table->table_column('<b>'.$this->description.': <b>', '33%', '', 'right');
+            $table->table_column('<b>'.$this->description.': </b>', '33%', '', 'right');
             $table->table_column('<font color=red><b>Requires to be filled out</b></font>', '67%', '', 'left');
             $table->table_nextRowWithColumns();
             return 0;
