@@ -1,7 +1,7 @@
 <?php
 
 ######################################################################
-# SourceWell: Software Announcement & Retrieval System
+# SourceWell2: Software Announcement & Retrieval System
 # ================================================
 #
 # Copyright (c) 2001 by
@@ -18,169 +18,168 @@
 # the Free Software Foundation; either version 2 or later of the GPL.
 ######################################################################
 
-page_open(array("sess" => "SourceWell_Session",
-                "auth" => "SourceWell_Auth",
-                "perm" => "SourceWell_Perm"));
+require("header2.inc");
 
-require("header.inc");
+security_page_access("admuser");
 
-$bx = new box("",$th_box_frame_color,$th_box_frame_width,$th_box_title_bgcolor,$th_box_title_font_color,$th_box_title_align,$th_box_body_bgcolor,$th_box_body_font_color,$th_box_body_align);
-$be = new box("",$th_box_frame_color,$th_box_frame_width,$th_box_title_bgcolor,$th_box_title_font_color,$th_box_title_align,$th_box_body_bgcolor,$th_box_error_font_color,$th_box_body_align);
-?>
-
-<!-- content -->
-<?php
-if ($perm->have_perm("admin")) {
-
-###
-### Submit Handler
-###
-
-## Get a database connection
-$db = new DB_SourceWell;
+$bx = new box("general","96%");
 
 // Check if there was a submission
-while (is_array($HTTP_POST_VARS) 
-		  && list($key, $val) = each($HTTP_POST_VARS)) {
-	switch ($key) {
-		case "create": // Create a new user
-			if (empty($username) || empty($password) || empty($email_usr)) { // Do we have all necessary data?
-				$be->box_full($t->translate("Error"), $t->translate("Please enter")." <B>".$t->translate("Username")."</B>, <B>".$t->translate("Password")."</B> ".$t->translate("and")." <B>".$t->translate("E-Mail")."</B>!");
-				break;
-			}
+  while (is_array($HTTP_POST_VARS) && list($key, $val) = each($HTTP_POST_VARS)) {
+    switch ($key) {
+      case "create": // Create a new user
+	if (empty($username) || empty($password) || empty($email_usr)) { // Do we have all necessary data?
+	  $be->box_full($t->translate("Error"), $t->translate("Please enter")." <B>".$t->translate("Username")."</B>, <B>".$t->translate("Password")."</B> ".$t->translate("and")." <B>".$t->translate("E-Mail")."</B>!");
+	  break;
+	}
          /* Does the user already exist?
 	    NOTE: This should be a transaction, but it isn't... */
-			$db->query("select * from auth_user where username='$username'");
-			if ($db->nf()>0) {
-				$be->box_full($t->translate("Error"), $t->translate("User")." <B>$username</B> ".$t->translate("already exists").".");
-				break;
-			}
-			// Create a uid and insert the user...
-			$u_id=md5(uniqid($hash_secret));
-			$permlist = addslashes(implode($perms,","));
-			$modification_usr = "NOW()";
-			$creation_usr = "NOW()";
-			$query = "insert into auth_user values('$u_id','$username','$password','$realname','$email_usr',$modification_usr,$creation_usr,'$permlist')";
-			$db->query($query);
-			if ($db->affected_rows() == 0) {
-				$be->box_full($t->translate("Error"), "<b>".$t->translate("Database Access failed").":</b> $query");
-				break;
-			}
-			$bx->box_full($t->translate("User Creation"), $t->translate("User")." \"$username\" ".$t->translate("created").".<BR>");
-			break;
-
-		case "u_edit": // Change user parameters
-			if (empty($username) || empty($password) || empty($email_usr)) { // Do we have all necessary data?
-				$be->box_full($t->translate("Error"), $t->translate("Please enter")." <B>".$t->translate("Username")."</B>, <B>".$t->translate("Password")."</B> ".$t->translate("and")." <B>".$t->translate("E-Mail")."</B>!");
-				break;
-			}
-			// Update user information.
-			$permlist = addslashes(implode($perms,","));
-			$query = "update auth_user set username='$username', password='$password', realname='$realname', email_usr='$email_usr', modification_usr=NOW(), perms='$permlist' where user_id='$u_id'";
-			$db->query($query);
-			if ($db->affected_rows() == 0) {
-				$be->box_full($t->translate("Error"), $t->translate("User Change failed").":<br>$query");
-				break;
-			}
-			$bx->box_full($t->translate("User Change"), $t->translate("User")." <b>$username</b> ".$t->translate("is changed").".<br>");
-			break;
-
-		case "u_kill":
-			// Delete that user.
-			$query = "delete from auth_user where user_id='$u_id' and username='$username'";
-			$db->query($query);
-			if ($db->affected_rows() == 0) {
-				$be->box_full($t->translate("Error"), $t->translate("User Deletion failed").":<br>$query");
-				break;
-			}
-			$bx->box_full($t->translate("User Deletion"), $t->translate("User")." <b>$username</b> ".$t->translate("is deleted").".<BR>");
-			break;
-
-		default:
-			break;
+	$db->query("select * from auth_user where username='$username'");
+	if ($db->nf()>0) {
+	  $be->box_full($t->translate("Error"), $t->translate("User")." <B>$username</B> ".$t->translate("already exists").".");
+	  break;
 	}
-}
+
+         /* Does an anonymous user already exist?
+	    NOTE: This should also be a transaction, but it isn't... */
+	$db->query("select * from auth_user where perms='anonymous'");
+	if ($db->num_rows()>0 && ereg("anonymous",implode($perms,","))) {
+	  $be->box_full($t->translate("Error"), $t->translate("There can only be one anonymous user in the system").".");
+	  break;
+	}
+
+         /* Does the anonymous user have other permissions? */
+        if (ereg("anonymous",implode($perms,",")) && (ereg("user_pending",implode($perms,",")) || ereg("user",implode($perms,",")) || ereg("editor",implode($perms,",")) || ereg("admin",implode($perms,",")) || ereg("user_pending",implode($perms,",")))) {
+	  $be->box_full($t->translate("Error"), $t->translate("The anonymous permission is incompatible with another type of permission").".");
+	  break;
+	}
+			// Create a uid and insert the user...
+	$u_id=md5(uniqid($hash_secret));
+	$permlist = addslashes(implode($perms,","));
+	$modification_usr = "NOW()";
+	$creation_usr = "NOW()";
+	$query = "INSERT INTO auth_user VALUES('$u_id','$username','$password','$realname','$email_usr',$modification_usr,$creation_usr,'$permlist')";
+	$db->query($query);
+	if ($db->affected_rows() == 0) {
+	  $be->box_full($t->translate("Error"), "<b>".$t->translate("Database Access failed").":</b> $query");
+	  break;
+	}
+	$bx->box_full($t->translate("User Creation"), $t->translate("User")." \"$username\" ".$t->translate("created").".<BR>");
+	break;
+
+      case "u_edit": // Change user parameters
+	if (empty($username) || empty($password) || empty($email_usr)) { // Do we have all necessary data?
+	  $be->box_full($t->translate("Error"), $t->translate("Please enter")." <B>".$t->translate("Username")."</B>, <B>".$t->translate("Password")."</B> ".$t->translate("and")." <B>".$t->translate("E-Mail")."</B>!");
+	  break;
+	}
+			  // Handles all user contributions to the system
+			  // so that we don't loose them when changing username
+        if ($username != $old_username) {
+	  $query = "update software set user='$username',status='M' where user='$old_username'";
+	  $db->query($query);
+	  $query = "update history set user_his ='$username' where user_his='$old_username'";
+	  $db->query($query);
+	  $query = "update comments set user_cmt='$username' where user_cmt='$old_username'";
+	  $db->query($query);
+        }
+			// Update user information.
+	$permlist = addslashes(implode($perms,","));
+	$query = "update auth_user set username='$username', password='$password', realname='$realname', email_usr='$email_usr', modification_usr=NOW(), perms='$permlist' where user_id='$u_id'";
+	$db->query($query);
+	if ($db->affected_rows() == 0) {
+	  $be->box_full($t->translate("Error"), $t->translate("User Change failed").":<br>$query");
+	  break;
+	}
+	$bx->box_full($t->translate("User Change"), $t->translate("User")." <b>$username</b> ".$t->translate("is changed").".<br>");
+	break;
+
+      case "u_kill":
+			// we change the users contributions to anonymous
+			// if the anonymous user exists in the system
+        $db->query("SELECT username FROM auth_user WHERE perms='anonymous'");
+        $db->next_record();
+        $anonymous = $db->f("username");
+        $query = "UPDATE software SET user='$anonymous',status='M' WHERE user='$old_username'";
+        $db->query($query);
+        $query = "UPDATE history SET user_his ='$anonymous' WHERE user_his='$old_username'";
+	$db->query($query);
+	$query = "UPDATE comments SET user_cmt='$anonymous' WHERE user_cmt='$old_username'";
+	$db->query($query);
+
+			// Delete that user.
+	$query = "delete from auth_user where user_id='$u_id' and username='$username'";
+	$db->query($query);
+	if ($db->affected_rows() == 0) {
+	  $be->box_full($t->translate("Error"), $t->translate("User Deletion failed").":<br>$query");
+	  break;
+	}
+	$bx->box_full($t->translate("User Deletion"), $t->translate("User")." <b>$username</b> ".$t->translate("has been deleted"));
+	break;
+
+      default:
+	break;
+    }
+  }
 
 /* Output user administration forms, including all updated
 	information, if we come here after a submission...
 */
 
-?>
-<table border=0 cellspacing=0 cellpadding=0 bgcolor="<?php echo $th_box_frame_color;?>" align=center>
-<tr>
-<td>
-<table border=0 align="center" cellspacing=1 cellpadding=3>
- <tr bgcolor="<?php echo $th_box_title_bgcolor;?>" valign=top align=left>
-<?php
-echo "  <th>".$t->translate("Username")."</th>";
-echo "  <th>".$t->translate("Password")."</th>";
-echo "  <th>".$t->translate("Realname")."</th>";
-echo "  <th>".$t->translate("E-Mail")."</th>";
-echo "  <th>".$t->translate("Modification")."</th>";
-echo "  <th>".$t->translate("Creation")."</th>";
-echo "  <th>".$t->translate("Permission")."</th>";
-echo "  <th>".$t->translate("Action")."</th>";
-?>
- </tr>
- <!-- create a new user -->
- <form method="post" action="<?php $sess->pself_url() ?>">
- <tr bgcolor="<?php echo $th_box_body_bgcolor;?>" valign=middle align=left>
-  <td><input type="text" name="username" size=12 maxlength=32 value=""></td>
-  <td><input type="text" name="password" size=12 maxlength=32 value=""></td>
-  <td><input type="text" name="realname" size=12 maxlength=64 value=""></td>
-  <td><input type="text" name="email_usr" size=12 maxlength=128 value=""></td>
-  <td>&nbsp;</td>
-  <td>&nbsp;</td>
-  <td><?php print $perm->perm_sel("perms","user");?></td>
-<?php
-echo "  <td align=\"right\"><input type=\"submit\" name=\"create\" value=\"".$t->translate("Create User")."\"></td>\n";
-?>
- </tr>
- </form>
-<?php
-  ## Traverse the result set
-  $db->query("select * from auth_user order by username");
-  while ($db->next_record()) {
-?>
- <!-- existing user -->
- <form method="post" action="<?php $sess->pself_url() ?>">
- <tr bgcolor="<?php echo $th_box_body_bgcolor;?>" valign=middle align=left>
-  <td><input type="text" name="username" size=12 maxlength=32 value="<?php $db->p("username") ?>"></td>
-  <td><input type="text" name="password" size=12 maxlength=32 value="<?php $db->p("password") ?>"></td>
-  <td><input type="text" name="realname" size=12 maxlength=64 value="<?php $db->p("realname") ?>"></td>
-  <td><input type="text" name="email_usr" size=12 maxlength=32 value="<?php $db->p("email_usr") ?>"></td>
-<?php
-  $time = mktimestamp($db->f("modification_usr"));
-  echo "  <td>".timestr($time)."</td>\n";
-  $time = mktimestamp($db->f("creation_usr"));
-  echo "  <td>".timestr($time)."</td>\n";
-?>
-  <td><?php print $perm->perm_sel("perms", $db->f("perms")) ?></td>
-  <td align=right>
-   <input type="hidden" name="u_id" value="<?php echo $db->p("user_id"); ?>">
-<?php
-  echo "   <input type=\"submit\" name=\"u_kill\" value=\"".$t->translate("Delete")."\">\n";
-  echo "   <input type=\"submit\" name=\"u_edit\" value=\"".$t->translate("Change")."\">\n";
-?>
-  </td>
- </tr>
- </form>
-<?php
-  }
-?>
-</table>
-</td>
-</tr>
-</table>
-<?php
-  } else {
-	$be->box_full($t->translate("Error"), $t->translate("Access denied").".");
-  }
-?>
+$bx->box_begin();
+$bx->box_title($t->translate("User Administration"));
+$bx->box_body_begin();
+$bx->box_columns_begin(8);
 
-<!-- end content -->
+$bx->box_column("center","","",$t->translate("Username"));
+$bx->box_column("center","","",$t->translate("Password"));
+$bx->box_column("center","","",$t->translate("Realname"));
+$bx->box_column("center","","",$t->translate("E-Mail"));
+$bx->box_column("center","","",$t->translate("Modification"));
+$bx->box_column("center","","",$t->translate("Creation"));
+$bx->box_column("center","","",$t->translate("Permission"));
+$bx->box_column("center","","",$t->translate("Action"));
 
-<?php
-require("footer.inc");
-page_close();
+$bx->box_next_row_of_columns();
+
+// Create a new user
+
+htmlp_form_action("PHP_SELF",array(),"POST");
+
+$bx->box_column("center","","",html_input_text("username", 12, 32, ""));
+$bx->box_column("center","","",html_input_password("password", 12, 32, ""));
+$bx->box_column("center","","",html_input_text("realname", 12, 32, ""));
+$bx->box_column("center","","",html_input_text("email_usr", 12, 32, ""));
+$bx->box_column("center","","","");
+$bx->box_column("center","","","");
+$bx->box_column("center","","",$perm->perm_sel("perms","user"));
+$bx->box_column("center","","",html_form_submit($t->translate("Create User"),"create"));
+htmlp_form_end();
+
+// Traverse the result set
+$db->query("SELECT * FROM auth_user ORDER BY username");
+while ($db->next_record()) {
+
+    $bx->box_next_row_of_columns();
+
+    htmlp_form_action("PHP_SELF",array(),"POST");
+    htmlp_form_hidden("u_id",$db->f("user_id"));
+    htmlp_form_hidden("old_username",$db->f("username"));
+
+    $bx->box_column("center","","",html_input_text("username", 12, 32, $db->f("username")));
+    $bx->box_column("center","","",html_input_password("password", 12, 32, $db->f("password")));
+    $bx->box_column("center","","",html_input_text("realname", 12, 32, $db->f("realname")));
+    $bx->box_column("center","","",html_input_text("email_usr", 12, 32, $db->f("email_usr")));
+    $bx->box_column("center","","",timestr_short(mktimestamp($db->f("modification_usr"))));
+    $bx->box_column("center","","",timestr_short(mktimestamp($db->f("creation_usr"))));
+    $bx->box_column("center","","",$perm->perm_sel("perms",$db->f("perms")));
+    $bx->box_column("center","","",html_form_submit($t->translate("Delete"),"u_kill").html_form_submit($t->translate("Change"),"u_edit"));
+
+    htmlp_form_end();
+}
+
+$bx->box_columns_end();
+$bx->box_body_end();
+$bx->box_end();
+
+require("footer2.inc");
 ?>
