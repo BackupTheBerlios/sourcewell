@@ -35,31 +35,34 @@ $be = new box("",$th_box_frame_color,$th_box_frame_width,$th_box_title_bgcolor,$
 
 <!-- content -->
 <?php
-$db = new DB_SourceWell;
+
+$developer = rawurldecode($developer);
+$email =  rawurldecode($email);
 
 // $iter is a variable for printing the Top Statistics in steps of 10 apps
 if (!isset($iter)) $iter=0;
 $iter*=10;
 
-// We need to know the total number of apps inserted by the user
-$result = mysql_db_query($db_name,"SELECT COUNT(*) FROM software WHERE developer='$developer' AND status='A'");
-$row = mysql_fetch_row($result);
-$numiter = ($row[0]/10);
+// We need to know the total number of apps inserted for this developer
+
+$db->query("SELECT COUNT(*) FROM software WHERE developer='$developer' AND email='$email' AND status='A'");
+$db->next_record();
+$numiter = ($db->f("COUNT(*)")/10);
 
 $columns = "*,SUM(app_cnt+homepage_cnt+download_cnt+changelog_cnt+rpm_cnt+deb_cnt+tgz_cnt+cvs_cnt+screenshots_cnt+mailarch_cnt) AS sum_cnt";
 $tables = "software,counter";
-$where = "developer=\"$developer\" AND status=\"A\" AND software.appid=counter.appid GROUP BY software.appid";
+$where = "developer=\"$developer\" AND email=\"$email\" AND status=\"A\" AND software.appid=counter.appid GROUP BY software.appid";
 
 switch ($by) {
   case "Importance":
     $order = "sum_cnt DESC";
-    break;			
+    break;
   case "Urgency":
     $order = "software.urgency DESC";
-    break;			
+    break;
   case "Name":
     $order = "software.name ASC";
-    break;			
+    break;
   case "Date":
   default:
     $by = "Date";
@@ -68,32 +71,28 @@ switch ($by) {
 }
 
 $limit = "$iter,10";
-if (!$result = mysql_db_query($db_name,"SELECT $columns FROM $tables
-WHERE $where ORDER BY $order LIMIT $limit")) {
-  mysql_die();
+
+$sort = $t->translate("sorted by").": "
+."<a href=\"".$sess->self_url().$sess->add_query(array("developer" => $developer, "email" => $email, "by" => "Date"))."\">".$t->translate("Date")."</a>"
+." | <a href=\"".$sess->self_url().$sess->add_query(array("developer" => $developer, "email" => $email, "by" => "Importance"))."\">".$t->translate("Importance")."</a>"
+." | <a href=\"".$sess->self_url().$sess->add_query(array("developer" => $developer, "email" => $email, "by" => "Urgency"))."\">".$t->translate("Urgency")."</a>"
+." | <a href=\"".$sess->self_url().$sess->add_query(array("developer" => $developer, "email" => $email, "by" => "Name"))."\">".$t->translate("Name")."</a>\n";
+$bs->box_strip($sort);
+
+if (empty($developer)) {
+  $devnam = "Unknown";
 } else {
-  $sort = $t->translate("sorted by").": "
-  ."<a href=\"".basename($PHP_SELF)."?developer=".rawurlencode($developer)."&by=Date\">".$t->translate("Date")."</a>"
-  ." | <a href=\"".basename($PHP_SELF)."?developer=".rawurlencode($developer)."&by=Importance\">".$t->translate("Importance")."</a>"
-  ." | <a href=\"".basename($PHP_SELF)."?developer=".rawurlencode($developer)."&by=Urgency\">".$t->translate("Urgency")."</a>"
-  ." | <a href=\"".basename($PHP_SELF)."?developer=".rawurlencode($developer)."&by=Name\">".$t->translate("Name")."</a>\n";
-  $bs->box_strip($sort);
+  $devnam = $developer;
+}
 
-  if (empty($developer)) {
-    $devnam = "unknown";
-  } else {
-    $devnam = $developer;
-  }
+$query = "SELECT $columns FROM $tables WHERE $where ORDER BY $order LIMIT $limit";
 
-  appcat($result,$t->translate("Author").": ".stripslashes($devnam),$iter+1);
+appcat($query,$t->translate("Author").": ".stripslashes($devnam),$iter+1);
 
-  if ($numiter > 1) {
-    $url = "appbydev.php3?developer=".rawurlencode($developer)."&by=$by&";
-    show_more ($iter,$numiter,$url);
-  }
-
-mysql_free_result($result);
-
+if ($numiter > 1) {
+  $url = "appbydev.php3";
+  $urlquery = array("developer" => $developer, "email" => $email, "by" => $by);
+  show_more ($iter,$numiter,$url,$urlquery);
 }
 ?>
 <!-- end content -->

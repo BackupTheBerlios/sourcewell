@@ -18,13 +18,6 @@
 # the Free Software Foundation; either version 2 or later of the GPL.
 ###################################################################### 
 
-page_open(array("sess" => "SourceWell_Session"));
-if (isset($auth) && !empty($auth->auth["perm"])) {
-  page_close();
-  page_open(array("sess" => "SourceWell_Session",
-                  "auth" => "SourceWell_Auth",
-                  "perm" => "SourceWell_Perm"));
-}
 header("Content-Type: text/plain");
 
 // Disabling cache
@@ -55,28 +48,17 @@ echo "    <height>73</height>\n";
 echo "  </image>\n";
 
 $db = new DB_SourceWell;
-
-$columns = "*";
-$tables = "software, counter, auth_user";
-$where = "software.appid=counter.appid AND software.user=auth_user.username AND software.status='A'";
-$order = "software.modification DESC limit 10";
-
-if (!$result = mysql_db_query($db_name,"SELECT $columns FROM $tables WHERE $where ORDER BY $order")) {
-  mysql_die();
-}
-
-$i = 0;
-while (($row = mysql_fetch_array($result)) && $i < 10) {
+$db->query("SELECT * FROM software,counter,auth_user WHERE software.appid=counter.appid AND software.user=auth_user.username AND software.status='A' ORDER BY software.modification DESC limit 10");
+$i=0;
+while($db->next_record()) {
   echo "  <item>\n";
-  echo "    <title>".$row["name"]." ".$row["version"]."</title>\n";
-  echo "    <link>".$sys_url."appbyid.php3?id=".$row["appid"]."</link>\n";
-  echo "    <description>".wrap($row["description"])."</description>\n";
+  echo "    <title>".$db->f("name")." ".$db->f("version")."</title>\n";
+  echo "    <link>".$sys_url."appbyid.php3?id=".$db->f("appid")."</link>\n";
+  echo "    <description>".wrap($db->f("description"))."</description>\n";
   echo "  </item>\n";
-  $i += 1;
-}
-mysql_free_result($result);
+  $i++;
+} 
 
 echo "  </channel>\n";
 echo "</rss>\n";
-@page_close();
 ?>

@@ -25,10 +25,12 @@ page_open(array("sess" => "SourceWell_Session",
                 "perm" => "SourceWell_Perm"));
 
 require("header2.inc");
+require("app2.inc");
 
 security_page_access("login");
 
 $bx = new box("general","95%");
+$be = new box("error","75%");
 
 if ($perm->have_perm("user_pending")) {
   $be->box_full($t->translate("Error"), $t->translate("Access denied"));

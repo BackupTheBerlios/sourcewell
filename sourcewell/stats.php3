@@ -302,7 +302,7 @@ if (isset($option)) {
       $db->query($query_partial);
       $numiter = $db->num_rows()/10;
       $url = "stats.php3";
-      $urlquery = array("option" => "homepage");
+      $urlquery = array("option" => "apps");
       show_more ($iter,$numiter,$url,$urlquery);
       break;
 

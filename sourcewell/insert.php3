@@ -34,7 +34,6 @@ if ($perm->have_perm("user_pending")) {
 	$be->box_full($t->translate("Error"), $t->translate("Access denied"));
 	$auth->logout();
 } else {
-  $db = new DB_SourceWell;
 
   if (empty($name) || empty($version)) {
     $be->box_full($t->translate("Error"), $t->translate("Parameter missing"));
@@ -73,62 +72,43 @@ if ($perm->have_perm("user_pending")) {
     $category = trim(strtok("."));
     $columns = "*";
     $where = "name='$name' AND type='$type'";
-    if (!$result = mysql_db_query($db_name, "SELECT $columns FROM $tables WHERE $where")) {
-      mysql_die();
+ 
+    $db->query("SELECT $columns FROM $tables WHERE $where");
+    if ($db->num_rows() > 0) {
+      $be->box_full($t->translate("Error"), $t->translate("Application")." $name ".$t->translate("already exists"));
     } else {
-      if ($row = mysql_fetch_array($result)) {
-//				$be->box_full($t->translate("Error"), $t->translate("Application")." $name ".$t->translate("already exists"));
-      } else
-		
-        $set = "name='$name',type='$type',version='$version',section='$section',category='$category',license='$license',homepage='$homepage',download='$download',changelog='$changelog',rpm='$rpm',deb='$deb',tgz='$tgz',cvs='$cvs',screenshots='$screenshots',mailarch='$mailarch',developer='$developer',description='$description',modification=NOW(),creation=NOW(),email='$email',depend='$depend',user='".$auth->auth["uname"]."',urgency='$urgency',status='$status'";
+      $set = "name='$name',type='$type',version='$version',section='$section',category='$category',license='$license',homepage='$homepage',download='$download',changelog='$changelog',rpm='$rpm',deb='$deb',tgz='$tgz',cvs='$cvs',screenshots='$screenshots',mailarch='$mailarch',developer='$developer',description='$description',modification=NOW(),creation=NOW(),email='$email',depend='$depend',user='".$auth->auth["uname"]."',urgency='$urgency',status='$status'";
 
-      if (!$result = mysql_db_query($db_name, "INSERT $tables SET $set")) {
-	mysql_die();
-      } else {
+      $db->query("INSERT $tables SET $set");
+
 					// Get new application index
-
-        $columns = "*";
-        $where = "name='$name' AND type='$type'";
-        if (!$result = mysql_db_query($db_name, "SELECT $columns FROM $tables WHERE $where")) {
-          mysql_die();
-        } else {
-          if (!$row = mysql_fetch_array($result)) {
-            mysql_die();
-	  }
+      $columns = "*";
+      $where = "name='$name' AND type='$type'";
+      $db->query("SELECT $columns FROM $tables WHERE $where");
+      $db->next_record();
 
 					// Insert new history
-          $tables = "history";
-          $set = "appid='".$row["appid"]."',user_his='".$auth->auth["uname"]."',creation_his=NOW(),version_his='".$row["version"]."'";
-          if (!$result = mysql_db_query($db_name, "INSERT $tables SET $set")) {
-	    mysql_die();
-          }
+      $tables = "history";
+      $set = "appid='".$db->f("appid")."',user_his='".$auth->auth["uname"]."',creation_his='".$db->f("modification")."',version_his='".$db->f("version")."'";
+      $db->query("INSERT $tables SET $set");
 
 				// Insert new counters
-          $tables = "counter";
-	  $set = "appid=".$row["appid"];
-	  if (!$result = mysql_db_query($db_name, "INSERT $tables SET $set")) {
-            mysql_die();
-	  } else {
+      $tables = "counter";
+      $set = "appid=".$db->f("appid");
+      $db->query("INSERT $tables SET $set");
 
 				// Select and show new/updated application with counters
-	    $columns = "*,SUM(app_cnt+homepage_cnt+download_cnt+changelog_cnt+rpm_cnt+deb_cnt+tgz_cnt+cvs_cnt+screenshots_cnt+mailarch_cnt) AS sum_cnt";
-	    $tables = "software,counter,auth_user";
-	    $where = "software.appid=".$row["appid"]." AND software.appid=counter.appid AND software.user=auth_user.username";
-	    $group = "software.appid";
-	    if (!$result = mysql_db_query($db_name, "SELECT $columns FROM $tables WHERE $where GROUP BY $group")) {
-	      mysql_die();
-	    } else {
-	      if ($row = mysql_fetch_array($result)) {
-		appfull($row);
-		$id = $row["appid"];
-	      }
-	    }
-	    if ($ml_notify) {
-	      $msg = "insert application $name $version (".typestr($type).") by ".$auth->auth["uname"].".";
-	      mailuser("editor", "insert application", $msg);
-	    }
-	  }
-	}
+     $columns = "*,SUM(app_cnt+homepage_cnt+download_cnt+changelog_cnt+rpm_cnt+deb_cnt+tgz_cnt+cvs_cnt+screenshots_cnt+mailarch_cnt) AS sum_cnt";
+     $tables = "software,counter,auth_user";
+     $where = "software.appid=".$db->f("appid")." AND software.appid=counter.appid AND software.user=auth_user.username";
+     $group = "software.appid";
+
+     $query  = "SELECT $columns FROM $tables WHERE $where GROUP BY $group";
+     appfull($query);
+
+     if ($ml_notify) {
+        $msg = "insert application $name $version (".typestr($type).") by ".$auth->auth["uname"].".";
+	mailuser("editor", "insert application", $msg);
       }
     }
   }

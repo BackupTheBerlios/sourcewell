@@ -74,20 +74,18 @@ if (($config_perm_developer != "all") && (!isset($perm) || !$perm->have_perm($co
       $num = "[".sprintf("%03d",$db2->f("COUNT(*)"))."]";
       echo "<tr><td>".sprintf("%d",$i)."</td>\n";
       if (empty($developer)) {
-	echo "<td><a href=\"".$sess->url("appbydev.php3").$sess->add_query(array("developer" => ""))."\">$num</a></td>\n";
+	echo "<td><a href=\"".$sess->url("appbydev.php3").$sess->add_query(array("developer" => "", "email" => "$email"))."\">$num</a></td>\n";
 	echo "<td>".$t->translate("Unknown")."</td>\n";
-	echo "<td>&nbsp;</td>\n";
       } else {
-	echo "<td><a href=\"".$sess->url("appbydev.php3").$sess->add_query(array("developer" => $db->f("developer")))."\">$num</a></td>\n";
+	echo "<td><a href=\"".$sess->url("appbydev.php3").$sess->add_query(array("developer" => $db->f("developer"), "email" => "$email"))."\">$num</a></td>\n";
         echo "<td>".$db->f("developer")."</td>\n";
-        $email = $db->f("email");
-	if (!empty($email)) {
-	  echo "<td>&lt;<a href=\"mailto:".$email."\">".ereg_replace("@"," at ",htmlentities($email))."</a>&gt;</td>\n";
-	} else {
-	  echo "<td>&nbsp;</td>\n";
-	}
-        echo "</tr>\n";
       }
+      if (!empty($email)) {
+        echo "<td>&lt;<a href=\"mailto:".$email."\">".ereg_replace("@"," at ",htmlentities($email))."</a>&gt;</td>\n";
+      } else {
+        echo "<td>&nbsp;</td>\n";
+      }
+      echo "</tr>\n";
       $i++;
     }
   }
