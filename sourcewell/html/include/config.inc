@@ -55,8 +55,8 @@ $org_name = "FOKUS";
 $org_url = "http://www.fokus.fhg.de/";
 $org_logo_image = "../images/logo_fokus.png";
 $org_logo_alt = $org_name;
-$org_logo_width = "66";
-$org_logo_heigth = "73";
+$org_logo_width = "60";
+$org_logo_heigth = "60";
 
 ######################################################################
 # Top Strip
