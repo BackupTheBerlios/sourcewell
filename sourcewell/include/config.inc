@@ -53,7 +53,7 @@ $sys_logo_heigth = "104";
 
 $org_name = "GMD FOKUS";
 $org_url = "http://www.fokus.gmd.de/";
-$org_logo_image = "images/logo_fokus.gif";
+$org_logo_image = "images/logo_fokus.png";
 $org_logo_alt = $org_name;
 $org_logo_width = "66";
 $org_logo_heigth = "73";
