@@ -15,7 +15,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: config.inc,v 1.14 2002/03/18 10:59:10 grex Exp $
+// $Id: config.inc,v 1.15 2002/03/18 11:22:47 grex Exp $
 
 /**
  * General System Configuration
@@ -201,6 +201,7 @@ $config_path_images = 'images/';
  * lib_include('Table');
  */
 
+/*
 function lib_include($class)
 {
     switch($class) {
@@ -251,6 +252,7 @@ function lib_include($class)
       die('error. See configuration file');
     }
 }
+*/
 
 /**
  * PHPLIB

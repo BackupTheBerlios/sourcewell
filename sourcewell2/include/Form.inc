@@ -1,18 +1,18 @@
 <?php
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 // +----------------------------------------------------------------------+
-// |        SourceWell 2 - The GPL Software Announcement System           |
+// |        SourceWell 2 - The GPL Software Announcement System           |
 // +----------------------------------------------------------------------+
-// |      Copyright (c) 2001-2002 BerliOS, FOKUS Fraunhofer Institut      |
+// |      Copyright (c) 2001-2002 BerliOS, FOKUS Fraunhofer Institut      |
 // +----------------------------------------------------------------------+
-// | This program is free software. You can redistribute it and/or modify |
-// | it under the terms of the GNU General Public License as published by |
-// | the Free Software Foundation; either version 2 or later of the GPL.  |
+// | This program is free software. You can redistribute it and/or modify |
+// | it under the terms of the GNU General Public License as published by |
+// | the Free Software Foundation; either version 2 or later of the GPL.  |
 // +----------------------------------------------------------------------+
-// | Authors: Gregorio Robles <grex@scouts-es.org>                        |
+// | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: Form.inc,v 1.2 2002/03/10 01:30:20 grex Exp $
+// $Id: Form.inc,v 1.3 2002/03/18 11:20:47 grex Exp $
 
 /**
  * Requires table.inc
@@ -42,42 +42,42 @@
 
 class Form {
 
-    /**
-     * Header of the table with the form 
-     * @var  string
-     */
+    /**
+     * Header of the table with the form 
+     * @var  string
+     */
     var $title;
-    /**
-     * Target file where the form input will be processed
-     * @var  string
-     */
+    /**
+     * Target file where the form input will be processed
+     * @var  string
+     */
     var $target;
-    /**
-     * Label for the insertion button
+    /**
+     * Label for the insertion button
      * Should not be modified until you exactly know what you're doing!
-     * @var  string
-     */
+     * @var  string
+     */
     var $insertButton; 
-    /**
-     * Label for the preview button
-     * @var  string
-     */
+    /**
+     * Label for the preview button
+     * @var  string
+     */
     var $previewButton;
-    /**
-     * Status: 0 the first time (by default)
+    /**
+     * Status: 0 the first time (by default)
      *           or when a required (NotNull) field has to be filled out
      *         1 the second time (already previewed and required fields filled out)
-     * @var  boolean
-     */ 
+     * @var  boolean
+     */ 
     var $preview;
 
-    /**
-     * Constructor
-     *
-     * @param   string     $title      Header of the table with the form
+    /**
+     * Constructor
+     *
+     * @param   string     $title      Header of the table with the form
      * @param   string     $target     Target file where the form input will be processed 
-     * @access  public
-     */
+     * @access  public
+     */
 
     function Form ($title = 'Form', $target = 'PHP_SELF')
     {
@@ -90,9 +90,9 @@ class Form {
 
     /**
      * Get Preview Status
-     * 
+     * 
      * @returns    boolean     1 if the form can be submitted
-     * @access public
+     * @access public
      */
     function getPreview()
     {
@@ -101,9 +101,9 @@ class Form {
 
     /**
      * Set preview status
-     * 
+     * 
      * @params    boolean     1 if the form can be submitted
-     * @access public
+     * @access public
      */
 
     function setPreview($preview = '1')
@@ -113,9 +113,9 @@ class Form {
 
     /**
      * Get Preview Button Label
-     * 
+     * 
      * @returns    string      Preview Button Label
-     * @access public
+     * @access public
      */
 
     function getPreviewButton()
@@ -125,9 +125,9 @@ class Form {
 
     /**
      * Sets Preview Button Label
-     * 
+     * 
      * @param    string      Preview Button Label
-     * @access public
+     * @access public
      */
 
     function setPreviewButton($label = 'Preview')

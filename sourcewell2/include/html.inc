@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: html.inc,v 1.2 2002/03/09 15:10:29 grex Exp $
+// $Id: html.inc,v 1.3 2002/03/18 11:27:46 grex Exp $
 
 /**
  * HTML library for PHP (and PHPLib)
@@ -143,12 +143,15 @@ function html_form_action($target = 'PHP_SELF', $query = '')
 {
     global $sess;
 
+     $output = "\n".'<form action="test.php3" method="post">';
+
     /* 4 different cases
      * a) Target PHP_SELF and a given query
      * b) Target PHP_SELF, query not given
      * c) Other target, given query
      * d) Other target, query not given */
 
+     /*
     if ($target == 'PHP_SELF') {
         if (is_array($query)) {
            $output = "\n".'<form action="'.$sess->self_url().$sess->add_query($query).'" method="post">';
@@ -162,6 +165,7 @@ function html_form_action($target = 'PHP_SELF', $query = '')
            $output = "\n".'<form action="'.$sess->url($target).'" method="post">';
         }
     }         
+     */
     return($output);
 }
 

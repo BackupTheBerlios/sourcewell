@@ -1,18 +1,18 @@
 <?php
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 // +----------------------------------------------------------------------+
-// |        SourceWell 2 - The GPL Software Announcement System           |
+// |        SourceWell 2 - The GPL Software Announcement System           |
 // +----------------------------------------------------------------------+
-// |      Copyright (c) 2001-2002 BerliOS, FOKUS Fraunhofer Institut      |
+// |      Copyright (c) 2001-2002 BerliOS, FOKUS Fraunhofer Institut      |
 // +----------------------------------------------------------------------+
-// | This program is free software. You can redistribute it and/or modify |
-// | it under the terms of the GNU General Public License as published by |
-// | the Free Software Foundation; either version 2 or later of the GPL.  |
+// | This program is free software. You can redistribute it and/or modify |
+// | it under the terms of the GNU General Public License as published by |
+// | the Free Software Foundation; either version 2 or later of the GPL.  |
 // +----------------------------------------------------------------------+
-// | Authors: Gregorio Robles <grex@scouts-es.org>                        |
+// | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: SelectField.inc,v 1.2 2002/03/09 01:43:59 grex Exp $
+// $Id: SelectField.inc,v 1.3 2002/03/18 11:19:46 grex Exp $
 
 /**
  * Requires table.inc and html.inc
@@ -30,22 +30,22 @@
 
 class SelectField extends Field {
 
-    /**
-     * Array with values (usually in string format) that can be selected (the options)
-     * @var  array
-     */
+    /**
+     * Array with values (usually in string format) that can be selected (the options)
+     * @var  array
+     */
     var $values;
 
-    /**
-     * Constructor
-     *
-     * @param   string  $description     description of the field
-     * @param   string  $name            name of the field
-     * @param   string  $default         default value
+    /**
+     * Constructor
+     *
+     * @param   string  $description     description of the field
+     * @param   string  $name            name of the field
+     * @param   string  $default         default value
      * @param   string  $values          array (of strings) with the different possibilities
-     * @param   string  $notNull         if the field has to be filled out or not
-     * @access  public
-     */
+     * @param   string  $notNull         if the field has to be filled out or not
+     * @access  public
+     */
 
     function SelectField($description, $name, $default = '', $values = '', $notNull = 0)
     {
@@ -54,26 +54,26 @@ class SelectField extends Field {
         $this->values = $values;
     }
 
-    /**
-     * Adds a new option
-     *
+    /**
+     * Adds a new option
+     *
      * @param        string/int       $value       option to be added
-     * @access public
-     */
+     * @access public
+     */
 
     function addValue($value)
     {
         $this->values[] = $value;
     }
 
-    /**
-     * Checks if an option is in the array
-     *
+    /**
+     * Checks if an option is in the array
+     *
      * @param        string/int       $option       option to be found
      * @param        string/int       $array        array of options
      * @returns boolean
-     * @access private
-     */
+     * @access private
+     */
 
     function _inArray($option, $array)
     { 
@@ -85,14 +85,14 @@ class SelectField extends Field {
         return false;
     }
 
-    /**
-     * Checks if option is the default one
-     *
+    /**
+     * Checks if option is the default one
+     *
      * @param        string/int       $value       option to be found
      * @param        string/int       $default     default value
      * @returns boolean
-     * @access private
-     */
+     * @access private
+     */
 
     function _isValueTheDefaultOne($value, $default)
     {
@@ -103,11 +103,11 @@ class SelectField extends Field {
         }
     }
 
-    /**
-     * Prints the form for this field (in table)
-     *
-     * @access public
-     */
+    /**
+     * Prints the form for this field (in table)
+     *
+     * @access public
+     */
 
     function fieldForm()
     {

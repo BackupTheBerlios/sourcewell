@@ -1,18 +1,18 @@
 <?php
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 // +----------------------------------------------------------------------+
-// |        SourceWell 2 - The GPL Software Announcement System           |
+// |        SourceWell 2 - The GPL Software Announcement System           |
 // +----------------------------------------------------------------------+
-// |      Copyright (c) 2001-2002 BerliOS, FOKUS Fraunhofer Institut      |
+// |      Copyright (c) 2001-2002 BerliOS, FOKUS Fraunhofer Institut      |
 // +----------------------------------------------------------------------+
-// | This program is free software. You can redistribute it and/or modify |
-// | it under the terms of the GNU General Public License as published by |
-// | the Free Software Foundation; either version 2 or later of the GPL.  |
+// | This program is free software. You can redistribute it and/or modify |
+// | it under the terms of the GNU General Public License as published by |
+// | the Free Software Foundation; either version 2 or later of the GPL.  |
 // +----------------------------------------------------------------------+
-// | Authors: Gregorio Robles <grex@scouts-es.org>                        |
+// | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: TextAreaField.inc,v 1.2 2002/03/09 01:43:59 grex Exp $
+// $Id: TextAreaField.inc,v 1.3 2002/03/18 11:18:46 grex Exp $
 
 /**
  * Requires Table.inc and html.inc
@@ -28,37 +28,37 @@
 
 class TextAreaField extends Field {
 
-    /**
-     * Number of rows
-     * @var  int         default 7
-     */
+    /**
+     * Number of rows
+     * @var  int         default 7
+     */
     var $rows;
-    /**
-     * Number of columns
-     * @var  int         default 40
-     */
+    /**
+     * Number of columns
+     * @var  int         default 40
+     */
     var $columns;
-    /**
-     * How the content is shown
+    /**
+     * How the content is shown
      *
      *    type A: (description + content)        Type B: (only content)
      *    _________________________________      ___________________________
      *    | Description || Content.....   |      | Content.............    |
      *    ---------------------------------      ---------------------------
      *
-     * @var  char         default A
-     */
+     * @var  char         default A
+     */
     var $showType;
 
-    /**
-     * Constructor
-     *
-     * @param   string  $description     description of the field
-     * @param   string  $name            name of the field
-     * @param   string  $default         default value
-     * @param   string  $notNull         if the field has to be filled out or not
-     * @access  public
-     */
+    /**
+     * Constructor
+     *
+     * @param   string  $description     description of the field
+     * @param   string  $name            name of the field
+     * @param   string  $default         default value
+     * @param   string  $notNull         if the field has to be filled out or not
+     * @access  public
+     */
 
     function TextAreaField($description, $name, $default = '', $notNull = 0)
     {
@@ -69,83 +69,83 @@ class TextAreaField extends Field {
         $this->showType = 'A';
     }
 
-    /**
-     * Gets number of rows
-     *
-     * @return int        value of the rows attribute
-     * @access public
-     */
+    /**
+     * Gets number of rows
+     *
+     * @return int        value of the rows attribute
+     * @access public
+     */
 
     function getRows()
     {
         return $this->rows;
     }
 
-    /**
-     * Sets number of rows
-     *
+    /**
+     * Sets number of rows
+     *
      * @param    int          $number        number of rows
-     * @access public
-     */
+     * @access public
+     */
 
     function setRows($number)
     {
         $this->rows = $number;
     }
 
-    /**
-     * Gets number of columns
+    /**
+     * Gets number of columns
      *
-     * @return int        value of the columns attribute
-     * @access public
-     */
+     * @return int        value of the columns attribute
+     * @access public
+     */
 
     function getColumns()
     {
         return $this->columns;
     }
 
-    /**
-     * Sets number of columns
-     *
+    /**
+     * Sets number of columns
+     *
      * @param    int          $number        number of columns
-     * @access public
-     */
+     * @access public
+     */
 
     function setColumns($number)
     {
         $this->columns = $number;
     }
 
-    /**
-     * Gets how it will be displayed
+    /**
+     * Gets how it will be displayed
      *
-     * @return char        value of the showType attribute
-     * @access public
-     */
+     * @return char        value of the showType attribute
+     * @access public
+     */
 
     function getShowType()
     {
         return $this->showType;
     }
 
-    /**
-     * Sets how it will be displayed
-     *
+    /**
+     * Sets how it will be displayed
+     *
      * @param    char          $showType        'A' or 'B' type
-     * @access public
-     */
+     * @access public
+     */
 
     function setShowType ($showType)
     {
         $this->showType = $showType;
     }
 
-    /**
-     * Prints the form for this field (in table)
-     *
-     * @access public
-     */
+    /**
+     * Prints the form for this field (in table)
+     *
+     * @access public
+     */
 
     function fieldForm()
     {
@@ -159,8 +159,8 @@ class TextAreaField extends Field {
     /**
      * Shows the content of the field (in a table)
      *
-     * @return bolean       checks if fields labeled as NotNull are non-empty
-     * @access public
+     * @return bolean       checks if fields labeled as NotNull are non-empty
+     * @access public
      */
 
     function fieldShow()
