@@ -1,14 +1,28 @@
 CHANGELOG for SourceWell
 http://sourcewell.berlios.de/html
 
-18-12-2001 Gregorio Robles <grex@scouts-es.org>
+21-12-2001 Gregorio Robles <grex@scouts-es.org>
 
-* appsearch.php3: displays message when no app is encountered
+* In the insertion form: GPL as default license
+* In the insertion form: it is possible to enter an email as <email slash young at server dot com> and the transformation occurs automatically
+* trim is be performed before inserting it into the database
+* box columns: vtop
+* pending updates are not shown in the announcement (history) part
+* when validating, the editor is not introduced in history
+* big urls are ugly -> they have been cut when they have more then 60 characters
+* colour exact match in search
+* bug fix in search (apps appeared two times)
+* update only if version number changes!
+* Access denied should be changed to login window  -----------> just changed to a better error message
+* Information box after having inserted an app
+* Information box after having updated an app
+* Search (stable + version) (development + version)
+* when reviewing an updated application (the one that is copied from temp into the software table), the old user is the one that is inserted in the software database!
 
 15-12-2001 Gregorio Robles <grex@scouts-es.org>
 
-bugs fixed in stats.php3. Thanx go to Jörg Schilling
-Major bug fixed in verify.php3. Users do not get an error message when they have registered ok.
+* Bug fixed in stats.php3. Thanx go to Jörg Schilling
+* Major bug fixed in verify.php3. Users do not get an error message when they have registered ok.
 
 29-11-2001 Gregorio Robles <grex@scouts-es.org>
 
