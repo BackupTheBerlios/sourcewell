@@ -10,9 +10,10 @@
 // | the Free Software Foundation; either version 2 or later of the GPL.  |
 // +----------------------------------------------------------------------+
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
+// |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: TextField.inc,v 1.3 2002/03/18 11:17:05 grex Exp $
+// $Id: TextField.inc,v 1.4 2002/04/21 15:20:31 grex Exp $
 
 /**
  * Requires table.inc and html.inc
@@ -167,7 +168,7 @@ class TextField extends Field {
             return 1;
        } elseif ($this->notNull && !$this->default) {
             $table->table_column('<b>'.$this->description.': <b>', '33%', '', 'right');
-            $table->table_column('<font color=red><b>Requires to be filled out</b></font>', '67%','', 'left');
+            $table->table_column('<b style="color: red">Requires to be filled out</b>', '67%','', 'left');
             $table->table_nextRowWithColumns();
             return 0;
        } else {

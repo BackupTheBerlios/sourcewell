@@ -1,5 +1,26 @@
 SourceWell 2 - The GPL Software Announcement System from BerliOS
 
+2002-03-17  Gregorio Robles <grex@scouts-es.org>
+
+	* include/Insertion.inc: fake insertQuery() method
+
+	* include/html.inc: removed several typos
+
+	* include/TextAreaField: removed several typos
+
+	* include/html.inc: fake  html_form_action() function
+	  (without the PHPLib session class)
+
+	* include/Table.inc: removed blank characters that did are not x20
+
+	* include/config.inc: bugs in function lib_include() fixed
+
+	* include/lib.inc: fake _() function for translations
+
+	* include/config.inc: typo removed (there were several : instead of a ;)
+
+	* test.php3: Test file that will enable to test the different classes
+
 2002-03-15  Gregorio Robles <grex@scouts-es.org>
 
 	* include/config.inc: HTML meta information can be configured

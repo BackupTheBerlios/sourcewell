@@ -12,7 +12,7 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: Preview.inc,v 1.2 2002/03/18 11:20:47 grex Exp $
+// $Id: Preview.inc,v 1.3 2002/04/21 15:20:31 grex Exp $
 
 /**
  * Requires table.inc and lib.inc
@@ -65,7 +65,7 @@ class Preview {
         $table->table_begin('This table contains a form preview: '.$this->title);
         $table->table_title($this->preTitle.$this->title);
         $table->table_body_begin('top');
-        print "\tby <b>FIXME</b> - <b>".lib_date_long(time(), 1)."</b><br>&nbsp;\n";
+        print "\tby <b>".$auth->auth['uname']."</b> - <b>".lib_date_long(time(), 1)."</b><br>&nbsp;\n";
 
         $table->table_columns_begin();
         reset($objects);

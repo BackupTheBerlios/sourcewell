@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: Table.inc,v 1.5 2002/03/18 11:02:43 grex Exp $
+// $Id: Table.inc,v 1.6 2002/04/21 15:20:31 grex Exp $
 
 /**
  * Class Table: a class for HTML Tables
@@ -326,9 +326,6 @@ class Table {
     /**
      * Prints the beginning tags for starting a single columns
      * It is the same as calling (but in one function):
-     *       table_body_begin()
-     *       echo $text;
-     *       table_body_end()
      *
      * @param    string      $width     Column width (best in %)
      * @param    string      $bgcolor   Background color
@@ -363,7 +360,7 @@ class Table {
      *
      * Requires to work fine that you put it between:
      *       table_columns_begin()
-     *       table_column_end()
+     *       table_columns_end()
      *
      * @param    string      $text      Text in the column
      * @param    string      $width     Column width (best in %)
@@ -404,7 +401,7 @@ class Table {
      *
      * Requires to work fine that you put it between:
      *       table_columns_begin()
-     *       table_column_end()
+     *       table_columns_end()
      *
      * @param    string      $text                 Text in the column
      * @param    int         $numberOfColumns      number of columns being joined

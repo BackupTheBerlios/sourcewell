@@ -1,4 +1,13 @@
 <?php
+
+page_open(array('sess' => 'SourceAgency_Session'));
+if (isset($auth) && !empty($auth->auth['perm'])) {
+  page_close();
+  page_open(array('sess' => 'SourceAgency_Session',
+                  'auth' => 'SourceAgency_Auth',
+                  'perm' => 'SourceAgency_Perm'));
+}
+
 include('start.inc');
 include('Field.inc');
 include('TextField.inc');
@@ -40,4 +49,6 @@ if ($HTTP_POST_VARS['Insert']) {
     }
     $form->FormFields(&$fields);
 }
+
+@page_close();
 ?>

@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: Insertion.inc,v 1.3 2002/03/18 11:54:20 grex Exp $
+// $Id: Insertion.inc,v 1.4 2002/04/21 15:20:31 grex Exp $
 
 /**
  * method insertQuery() uses PHPLib classes!
@@ -78,9 +78,7 @@ class Insertion {
         while (is_array($this->values) && list(, $value_current) = each($this->values)) {
             $query .= "'".$value_current."', ";
         }
-        /* PHPLib dependence */
-	//        $value .= " user='".$auth->auth["uname"]."' ";
-        $query .= " 'FIXME', '".date("d-m-Y H:i:s", time())."') ";
+        $query .= " '".$auth->auth['uname']."', '".date("d-m-Y H:i:s", time())."') ";
 
         return $query;
     }
