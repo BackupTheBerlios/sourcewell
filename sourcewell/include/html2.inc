@@ -23,15 +23,19 @@
 function html_link($address, $query, $text) {
 	global $sess;
 
-	if (!isset($query) || empty($query)) $output = "<a href=\"".$sess->url($address)."\">".$text."</a>";
-	else $output = "<a href=\"".$sess->url($address).$sess->add_query($query)."\">".$text."</a>";
+	if (!isset($query) || empty($query)) $output = "<a href=\"".$sess->url($address)."\">".$text."</a>\n";
+	else $output = "<a href=\"".$sess->url($address).$sess->add_query($query)."\">".$text."</a>\n";
 
 	return($output);
 }
 
 function html_redirect($appid,$type,$url,$text) {
 
-  $return = "<a href=\"redirect.php3?id=".$appid."&type=".$type."&url=".$url."\" target=_blank>".$text."</a>";
+	// disables long URLs
+  if (strlen($text) > 60 && !ereg("<img src",$text)) {
+      $text = "http://...".substr($text,-55);
+  }
+  $return = "<a href=\"redirect.php3?id=".$appid."&type=".$type."&url=".$url."\" target=_blank>".$text."</a>\n";
 
   return($return);
 }
@@ -46,7 +50,7 @@ function html_anchor($name) {
 
 function html_image($file, $border, $width, $height, $alternate) {
 
-	$output = "<img src=\"images/".$file."\" border=\"".$border."\" width=\"".$width."\" height=\"".$height."\" alt=\"".$alternate."\">";
+	$output = "<img src=\"images/".$file."\" border=\"".$border."\" width=\"".$width."\" height=\"".$height."\" alt=\"".$alternate."\">\n";
 
 	return($output);
 }
@@ -54,16 +58,16 @@ function html_image($file, $border, $width, $height, $alternate) {
 function html_form_action($file, $query) {
 	global $sess;
 
-        if ($file == "PHP_SELF") $output = "<form action=\"".$sess->self_url().$sess->add_query($query)."\" method=\"POST\">";
+        if ($file == "PHP_SELF") $output = "<form action=\"".$sess->self_url().$sess->add_query($query)."\" method=\"POST\">\n";
 
-	else $output = "<form action=\"".$sess->url($file).$sess->add_query($query)."\" method=\"POST\">";
+	else $output = "<form action=\"".$sess->url($file).$sess->add_query($query)."\" method=\"POST\">\n";
 
 	return($output);
 }
 	
 function html_form_hidden($name, $value) {
 
-	$output = "<input type=\"hidden\" name=\"".$name."\" value=\"".$value."\">";
+	$output = "<input type=\"hidden\" name=\"".$name."\" value=\"".$value."\">\n";
 
 	return($output);
 }
@@ -93,21 +97,21 @@ function html_select_end() {
 
 function html_input_text($name, $size, $maxlength, $value) {
 
-	$output = "<input type=\"text\" name=\"".$name."\" size=\"".$size."\" maxlength=\"".$maxlength."\" value=\"".$value."\">";
+	$output = "<input type=\"text\" name=\"".$name."\" size=\"".$size."\" maxlength=\"".$maxlength."\" value=\"".$value."\">\n";
 
 	return($output);
 }
 
 function html_input_password($name, $size, $maxlength, $value) {
 
-	$output = "<input type=\"password\" name=\"".$name."\" size=\"".$size."\" maxlength=\"".$maxlength."\" value=\"".$value."\">";
+	$output = "<input type=\"password\" name=\"".$name."\" size=\"".$size."\" maxlength=\"".$maxlength."\" value=\"".$value."\">\n";
 
 	return($output);
 }
 
 function html_form_submit($value,$name) {
 
-	$output = "<input type=\"submit\" value=\"".$value."\" name=\"".$name."\">";
+	$output = "<input type=\"submit\" value=\"".$value."\" name=\"".$name."\">\n";
 
 	return($output);
 }
@@ -116,7 +120,7 @@ function html_checkbox($name,$value,$checked) {
 
 	$output = "<input type=\"checkbox\" name=\"".$name."\" value=\"".$value."\"";
 	if ($checked) $output .= " checked ";
-	$output .= ">";
+	$output .= ">\n";
 
 	return($output);
 
@@ -126,21 +130,21 @@ function html_radio($name,$value,$checked) {
 
 	$output = "<input type=\"radio\" name=\"".$name."\" value=\"".$value."\"";
 	if ($checked) $output .= " checked ";
-	$output .= ">";
+	$output .= ">\n";
 
 	return($output);
 }
 
 function html_textarea($name,$columns,$rows,$wrap,$maxlength,$value) {
 
-	$output = "<textarea cols=\"".$columns."\" rows=\"".$rows."\" name=\"".$name."\" wrap=\"".$wrap."\" maxlength=\"".$maxlength."\">".$value."</textarea>";
+	$output = "<textarea cols=\"".$columns."\" rows=\"".$rows."\" name=\"".$name."\" wrap=\"".$wrap."\" maxlength=\"".$maxlength."\">".$value."</textarea>\n";
 
 	return($output);
 }
 
 function html_form_end() {
 
-	$output = "</form>";
+	$output = "</form>\n";
 
 	return($output);
 }
