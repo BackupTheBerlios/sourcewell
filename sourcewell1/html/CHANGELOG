@@ -1,6 +1,14 @@
 CHANGELOG for SourceWell
 http://sourcewell.berlios.de/html
 
+22-04-2003 Lutz Henckel <lutz.henckel@fokus.fraunhofer.de> -- SourceWell 1.1.2
+
+* include/config.inc: new version number
+* include/session.inc: add missing patches for parameter passing
+* html/index.php: new version number
+* html/CHANGELOG: add recent changes
+* doc/CHANGELOG: add recent changes
+
 22-04-2003 Lutz Henckel <lutz.henckel@fokus.fraunhofer.de> -- SourceWell 1.1.1
 
 * include/config.inc: new version number
