@@ -12,7 +12,7 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: footer.inc,v 1.15 2002/05/09 20:53:22 grex Exp $
+// $Id: footer.inc,v 1.16 2002/05/09 21:57:57 grex Exp $
 
 /* Configuration parameters are set as global */
 /* their values can be found at config.inc */
@@ -33,16 +33,18 @@ $php_self = eregi_replace('^/[^/]*/', '', $PHP_SELF);
  * do some advertising of BerliOS
  */
 
+/* WISH: link + image should use the functions defined in html.inc */
 ?>
 <br>
   <p align="right">
+
     <a href="http://validator.w3.org/check/referer">
     <img border="0"
-         src="http://www.w3.org/Icons/valid-html40"
+         src="images/valid-html40.png"
          alt="Valid HTML 4.0!" height="31" width="88"></a>
     <a href="http://jigsaw.w3.org/css-validator/validator?uri=<?php echo $config_sys_url.$php_self;?>">
     <img style="border:0;width:88px;height:31px"
-         src="http://jigsaw.w3.org/css-validator/images/vcss"
+         src="images/vcss.png"
          alt="Valid CSS!"></a>
   </p>
 </td>
