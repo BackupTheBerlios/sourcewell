@@ -17,13 +17,13 @@
 # the Free Software Foundation; either version 2 or later of the GPL.
 ######################################################################
 
-$select_app_from_temp = "SELECT * FROM psoftware WHERE appid='$appid'";
+$select_app_from_temp = "SELECT * FROM temp WHERE appid='$appid'";
 
 $select_app_from_software = "SELECT * FROM software WHERE appid='$appid'";
 
 $select_apps_by_name_and_type = "SELECT * FROM software WHERE name='$name' AND type='$type'";
 
-$delete_app_from_temp = "DELETE FROM psoftware WHERE appid='$appid'";
+$delete_app_from_temp = "DELETE FROM temp WHERE appid='$appid'";
 
 $select_history = "SELECT * FROM history WHERE appid='$appid' ORDER BY creation_his DESC";
 
@@ -49,34 +49,41 @@ $select_appid_by_name_and_type = "SELECT appid FROM software WHERE name='$name' 
 
 function update_app_in_software($section,$category,$status) {
 	global $auth;
-	global $name, $type, $version, $license, $homepage, $download, $changelog, $rpm, $deb, $tgz, $cvs, $screenshot, $mailarch, $developer, $description, $email, $depend, $urgency, $status, $appid;
+	global $name, $type, $version, $license, $homepage, $download, $changelog, $rpm, $deb, $tgz, $cvs, $screenshot, $mailarch, $developer, $description, $email, $depend, $urgency, $appid;
 
 	return "UPDATE software SET version='$version', license='$license', section='$section', category='$category', homepage='$homepage', download='$download', changelog='$changelog', rpm='$rpm', deb='$deb', tgz='$tgz', cvs='$cvs', screenshots='$screenshots', mailarch='$mailarch', developer='$developer', description='$description', email='$email', depend='$depend', urgency='$urgency', status='$status' WHERE appid='$appid'";
 }
 
 function insert_app_in_temp($section,$category,$status) {
 	global $auth;
-	global $name, $type, $version, $license, $homepage, $download, $changelog, $rpm, $deb, $tgz, $cvs, $screenshot, $mailarch, $developer, $description, $email, $depend, $urgency, $status;
+	global $appid, $name, $type, $version, $license, $homepage, $download, $changelog, $rpm, $deb, $tgz, $cvs, $screenshot, $mailarch, $developer, $description, $email, $depend, $urgency;
 
-	return "INSERT INTO psoftware SET appid='$appid', name='$name', type='$type', version='$version', license='$license', section='$section', category='$category', homepage='$homepage', download='$download', changelog='$changelog', rpm='$rpm', deb='$deb', tgz='$tgz', cvs='$cvs', screenshots='$screenshots', mailarch='$mailarch', developer='$developer', description='$description', email='$email', depend='$depend', urgency='$urgency', user='".$auth->auth["uname"]."', status='$status'";
+	return "INSERT INTO temp SET appid='$appid', name='$name', type='$type', version='$version', license='$license', section='$section', category='$category', homepage='$homepage', download='$download', changelog='$changelog', rpm='$rpm', deb='$deb', tgz='$tgz', cvs='$cvs', screenshots='$screenshots', mailarch='$mailarch', developer='$developer', description='$description', email='$email', depend='$depend', urgency='$urgency', user='".$auth->auth["uname"]."', status='$status'";
 }
 
 function update_app_in_temp($section,$category,$status) {
 	global $auth;
-	global $name, $type, $version, $license, $homepage, $download, $changelog, $rpm, $deb, $tgz, $cvs, $screenshot, $mailarch, $developer, $description, $email, $depend, $urgency, $status, $appid;
+	global $name, $type, $version, $license, $homepage, $download, $changelog, $rpm, $deb, $tgz, $cvs, $screenshot, $mailarch, $developer, $description, $email, $depend, $urgency, $appid;
 
-	return "UPDATE psoftware SET type='$type', version='$version', license='$license', section='$section', category='$category', homepage='$homepage', download='$download', changelog='$changelog', rpm='$rpm', deb='$deb', tgz='$tgz', cvs='$cvs', screenshots='$screenshots', mailarch='$mailarch', developer='$developer', description='$description', email='$email', depend='$depend', urgency='$urgency', user='".$auth->auth["uname"]."', status='$status' WHERE appid='$appid'";
+	return "UPDATE temp SET type='$type', version='$version', license='$license', section='$section', category='$category', homepage='$homepage', download='$download', changelog='$changelog', rpm='$rpm', deb='$deb', tgz='$tgz', cvs='$cvs', screenshots='$screenshots', mailarch='$mailarch', developer='$developer', description='$description', email='$email', depend='$depend', urgency='$urgency', user='".$auth->auth["uname"]."', status='$status' WHERE appid='$appid'";
 }
 
-function insert_history($appid) {
-	global $auth;
-	global $version;
-
-	return "INSERT history SET appid='$appid',user_his='".$auth->auth["uname"]."',creation_his=NOW(),version_his='$version'";
+function insert_history($appid,$user,$version,$creation = "") {
+        if ($creation == "") {
+            $creation = "creation_his=NOW()";
+        } else {
+            $creation= "creation_his='$creation'";
+        }
+	return "INSERT history SET appid='$appid',user_his='".$user."', version_his='$version', ".$creation;
 }
 
 function insert_counter($appid) {
 	return "INSERT counter SET appid='$appid'";
+}
+
+function select_types_and_versions_for_an_app($name)
+{
+    return "SELECT type,version,appid FROM software WHERE name='$name' AND status='A'";
 }
 
 ?>
