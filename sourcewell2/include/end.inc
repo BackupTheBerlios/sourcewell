@@ -12,9 +12,17 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: end.inc,v 1.4 2002/05/07 21:51:29 grex Exp $
+// $Id: end.inc,v 1.5 2002/05/07 21:53:26 grex Exp $
 
+/* Configuration parameters are set as global */
+/* their values can be found at config.inc */
 global $config_navstrip_bgcolor;
+global $config_navstrip_font_color;
+global $config_org_url;
+global $config_org_name;
+global $config_sys_url;
+global $config_nav_bgcolor;
+
 ?>
 <br><p>
 </td>
