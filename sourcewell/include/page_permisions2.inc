@@ -24,6 +24,7 @@ $required_permision = array (
 	"app"		=>	"all",
 	"app_edi"	=> 	"anonymous",
 	"app_mod"	=>	"anonymous",
+        "app_version" => "user,editor",
 	"admapp"	=>	"user,editor",
 	"register"	=>	"all",
 	"login"		=>	"all",
