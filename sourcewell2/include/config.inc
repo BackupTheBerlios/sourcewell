@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: config.inc,v 1.40 2002/05/09 17:39:20 grex Exp $
+// $Id: config.inc,v 1.41 2002/05/09 17:42:28 grex Exp $
 
 /**
  * Directory configuration
@@ -288,9 +288,14 @@ $config_nav_bar_array[] = $temp;
 $temp = new Navigation('Logout', 'logout.php3');
 $temp->showIfAuth(1);
 $config_nav_bar_array[] = $temp;
-$config_nav_bar_array[] = new Navigation('New User', 'register.php3');
-$config_nav_bar_array[] = new Navigation('Forgot Password?', 'remind.php3');
+$temp = new Navigation('New User', 'register.php3');
+$temp->showIfAuth(0);
+$config_nav_bar_array[] = $temp;
+$temp = new Navigation('Forgot Password?', 'remind.php3');
+$temp->showIfAuth(0);
+$config_nav_bar_array[] = $temp;
 $temp = new Navigation('Change User', 'chguser.php3');
+$temp->showIfAuth(1);
 $temp->additionalBR();
 $config_nav_bar_array[] = $temp;
 $temp = new Navigation('Users', 'users.php3');
