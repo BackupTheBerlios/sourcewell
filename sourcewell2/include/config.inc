@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: config.inc,v 1.43 2002/05/09 17:55:03 grex Exp $
+// $Id: config.inc,v 1.44 2002/05/09 20:36:16 grex Exp $
 
 /**
  * Directory configuration
@@ -410,7 +410,7 @@ $config_la_array[] = 'Spanish';
 
 $config_table_general_filling = '3pt';
 $config_table_general_title_bgcolor = '#CCCCCC';
-$config_table_general_body_bgcolor = '';
+$config_table_general_body_bgcolor = '#FFFFFF';
 $config_table_general_title_align = 'left';
 $config_table_general_body_align = 'left';
 $config_table_general_title_font_color = '#000000';
