@@ -13,7 +13,7 @@
 // |          Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
 // +----------------------------------------------------------------------+
 //
-// $Id: changeuser.php,v 1.4 2002/05/10 18:59:20 grex Exp $
+// $Id: changeuser.php,v 1.5 2002/05/10 19:01:30 grex Exp $
 
 require('start.inc');
 /* TODO: add monitoring class / library */
@@ -117,7 +117,7 @@ $table->table_column(lib_date_long($db->f('modification_usr')), '50%', '', 'left
 $table->table_nextRowWithColumns();
 
 $table->table_column('<b>'._('Permisions').':</b>', '50%', '', 'right');
-$table->table_column($db->f('perm'), '50%', '', 'left');
+$table->table_column($db->f('perms'), '50%', '', 'left');
 
 $table->table_nextRowWithColumns();
 
