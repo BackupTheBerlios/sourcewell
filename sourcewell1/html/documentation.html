@@ -1,0 +1,1996 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta http-equiv="expires" content="0">
+   <META NAME="Author" CONTENT="Gregorio Robles & Lutz Henckel">
+   <META NAME="Description" CONTENT="Documentation for SourceWell 1.0.13">
+   <META NAME="KeyWords" CONTENT="BerliOS, SourceWEll, software, announcement,
+   linux, retrieval, GPL, GNU">
+   <title>SourceWell 1.0.13 Documentation</title>
+
+   <STYLE type="text/css">
+      P { font-size: 12pt;
+          text-align: justify;
+          margin-left: 2%;
+          margin-right: 2%;
+          text-indent: 10pt;
+        }
+	P.title { font-size: 28pt;
+		text-align: center;
+		font-weight: bold;
+		margin-left: 1%;
+		margin-right: 1%;
+		text-indent: 2pt;
+		color: black;
+	}
+	P.subtitle { font-size: 21pt;
+		font-weight: bold;
+		text-align: left;
+		margin-left: 1%;
+		margin-right: 1%;
+		text-indent: 25pt;
+		color: black;
+	}
+	P.subsubtitle { font-size: 17pt;   
+		font-weight: bold;
+		text-align: left;
+		margin-left: 1%;
+		margin-right: 1%;
+		text-indent: 25pt;
+		color: black;
+	}
+	P.subsubsubtitle { font-size: 15pt;
+			font-weight: bold;
+		text-align: left;
+		margin-left: 1%;
+		margin-right: 1%;
+		text-indent: 25pt;
+		color: black;
+	}
+	P.authors { font-size: 12pt;
+		text-align: right;
+		margin-left: 2%;
+		margin-right: 2%;
+		text-indent: 10pt;
+		color: black;
+	}
+        P.function { font-size: 12pt;
+                     text-align: left;
+  		     font-weight: bold;
+                     margin-left: 2%;
+                     margin-right: 2%;
+                     text-indent: 10pt;
+	             font-family: verdana;
+        }
+	P.index { font-size: 14pt;
+		text-align: left;
+		margin-left: 7%;
+		margin-right: 2%;
+		text-indent: 0pt;
+		color: black;
+	}
+      UL { margin-left: 3%;
+	   font-size: 12pt;
+           text-align: left;
+           margin-left: 3%;
+           margin-right: 2%;
+       }
+      OL { margin-left: 3%;
+	   font-size: 14pt;
+           text-align: left;
+           margin-left: 3%;
+           margin-right: 2%;
+       }
+	</STYLE>
+
+</head>
+<body bgcolor="#FFCC33" topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" marginheight="0" marginwidth="0">
+
+<BR>&nbsp;
+<P CLASS="title">SourceWell 1.0.13
+</P>
+
+<P Class="authors">Berlin - Madrid, December 27 2001<BR>
+Gregorio Robles &lt;<A
+HREF="mailto:grex@scouts-es.org">grex@scouts-es.org</a>&gt;<BR>
+Lutz Henckel  &lt;<A
+HREF="mailto:lutz.henckel@fokus.gmd.de">lutz.henckel@fokus.gmd.de</a>&gt;
+</P>
+
+<!-- This is the index table -->
+<!-- The first line is for x. -->
+<!-- The second one for x.x. -->
+<!-- The third one for x.x.x. -->
+<!--
+<CENTER><TABLE align=center width=100%>
+<TR><TD colspan=3><P CLASS="index"></P></TD></TR>
+<TR><TD width=5%>&nbsp;</TD><TD colspan=2><P CLASS="index"></TD></TR>
+<TR><TD width=5%>&nbsp;</TD><TD width=5%>&nbsp;</TD><TD><P CLASS="index"></TD></TR>
+</TABLE></CENTER>
+-->
+
+<CENTER><TABLE align=center width=100% cellspacing=0>
+<TR><TD colspan=3><P CLASS="index">0. <a href="#about">About this manual</a></P></TD></TR>
+
+<TR><TD colspan=3><P CLASS="index">1. <a href="#copyleft">Copyright</a></P></TD></TR>
+
+<TR><TD colspan=3><P CLASS="index">2. <a href="#introduction">Introduction</a></P></TD></TR>
+
+<TR><TD colspan=3><P CLASS="index">3. <a href="#installation">Installation</a></P></TD></TR>
+<TR><TD width=5%>&nbsp;</TD><TD colspan=2><P CLASS="index">3.1. <A
+HREF="#fast_installation">Fast installation</a></TD></TR>
+<TR><TD width=5%>&nbsp;</TD><TD colspan=2><P CLASS="index">3.2. <a href="#before_starting">Before starting</a></TD></TR>
+<TR><TD width=5%>&nbsp;</TD><TD width=5%>&nbsp;</TD><TD><P
+CLASS="index">3.2.1. <a href="#phplib">About PHPLib</a></TD></TR>
+<TR><TD width=5%>&nbsp;</TD><TD width=5%>&nbsp;</TD><TD><P
+CLASS="index">3.2.2. <a href="#database_installation">About the Database</a></TD></TR>
+<TR><TD width=5%>&nbsp;</TD><TD width=5%>&nbsp;</TD><TD><P
+CLASS="index">3.2.3. <a href="#mailman">About Mailman</a></TD></TR>
+<TR><TD width=5%>&nbsp;</TD><TD colspan=2><P CLASS="index">3.3. <A
+HREF="#obtaining_sourcewell">Obtaining SourceWell</a></TD></TR>
+<TR><TD width=5%>&nbsp;</TD><TD colspan=2><P CLASS="index">3.4. <a href="#file_extraction">File extraction</a></TD></TR>
+<TR><TD width=5%>&nbsp;</TD><TD colspan=2><P CLASS="index">3.5. <a href="#configuration_and_personalization">Configuration and
+    personalization</a></TD></TR>
+
+<TR><TD colspan=3><P CLASS="index">4. <A
+HREF="#functionality">Main Functionality</a></TD></TR>
+
+<TR><TD colspan=3><P CLASS="index">5. <a href="#international">International Support</a></P></TD></TR>
+<TR><TD width=5%>&nbsp;</TD><TD colspan=2><P CLASS="index">5.1. <A
+HREF="#normal_outputs">Main outputs</a></TD></TR>
+<TR><TD width=5%>&nbsp;</TD><TD colspan=2><P CLASS="index">5.2. <A
+HREF="#faq_file">Translation of the FAQ</a></TD></TR>
+<TR><TD width=5%>&nbsp;</TD><TD colspan=2><P CLASS="index">5.3. <a href="#contributors">Contributors</a></TD></TR>
+
+<TR><TD colspan=3><P CLASS="index">6. <A
+HREF="#statistics">Statistics</a></P></TD></TR>
+
+<TR><TD colspan=3><P CLASS="index">7. <a href="#files">Files listed and shortly
+explained</a></P></TD></TR>
+
+<TR><TD colspan=3><P CLASS="index">8. <a href="#database">SourceWell's
+database</a></P></TD></TR>
+<TR><TD width=5%>&nbsp;</TD><TD colspan=2><P CLASS="index">8.1. <A
+HREF="#active_sessions">Table active_sessions</a></TD></TR>
+<TR><TD width=5%>&nbsp;</TD><TD colspan=2><P CLASS="index">8.2. <a href="#auth_user">Table auth_user</a></TD></TR>
+<TR><TD width=5%>&nbsp;</TD><TD colspan=2><P CLASS="index">8.3. <A
+HREF="#categories">Table categories</a></TD></TR>
+<TR><TD width=5%>&nbsp;</TD><TD colspan=2><P CLASS="index">8.4. <A
+HREF="#comments">Table comments</a></TD></TR>
+<TR><TD width=5%>&nbsp;</TD><TD colspan=2><P CLASS="index">8.5. <A
+HREF="#counter">Table counter</a></TD></TR>
+<TR><TD width=5%>&nbsp;</TD><TD colspan=2><P CLASS="index">8.6. <A
+HREF="#counter_check">Table counter_check</a></TD></TR>
+<TR><TD width=5%>&nbsp;</TD><TD colspan=2><P CLASS="index">8.7. <A
+HREF="#table_faq">Table faq</a></TD></TR>
+<TR><TD width=5%>&nbsp;</TD><TD colspan=2><P CLASS="index">8.8. <A
+HREF="#history">Table history</a></TD></TR>
+<TR><TD width=5%>&nbsp;</TD><TD colspan=2><P CLASS="index">8.9. <A
+HREF="#licenses">Table licenses</a></TD></TR>
+<TR><TD width=5%>&nbsp;</TD><TD colspan=2><P CLASS="index">8.10. <A
+HREF="#software">Table software</a></TD></TR>
+
+<TR><TD colspan=3><P CLASS="index">9. <a href="#developers">For Developers</a></P></TD></TR>
+<TR><TD width=5%>&nbsp;</TD><TD colspan=2><P CLASS="index">9.1. <A
+HREF="#source_contribution">Source contribution</a></TD></TR>
+<TR><TD width=5%>&nbsp;</TD><TD colspan=2><P CLASS="index">9.2. <A
+HREF="#structure_of_a_page">Main structure of a page</a></TD></TR>
+<TR><TD width=5%>&nbsp;</TD><TD colspan=2><P CLASS="index">9.3. <A
+HREF="#sourcewell_functions">SourceWell Functions</a></TD></TR>
+<TR><TD width=5%>&nbsp;</TD><TD width=5%>&nbsp;</TD><TD><P CLASS="index">9.3.1
+<a href="#box">Functions in box.inc</a></TD></TR>
+<TR><TD width=5%>&nbsp;</TD><TD width=5%>&nbsp;</TD><TD><P CLASS="index">9.3.2 <a href="#cmtlib">Functions in cmtlib.inc</a></TD></TR>
+<TR><TD width=5%>&nbsp;</TD><TD width=5%>&nbsp;</TD><TD><P CLASS="index">9.3.3
+<a href="#lib">Functions in lib.inc</a></TD></TR>
+<TR><TD width=5%>&nbsp;</TD><TD width=5%>&nbsp;</TD><TD><P CLASS="index">9.3.4
+<a href="#statslib">Functions in statslib.inc</a></TD></TR>
+<TR><TD width=5%>&nbsp;</TD><TD width=5%>&nbsp;</TD><TD><P CLASS="index">9.3.5
+<a href="#translation">Functions in translation.inc</a></TD></TR>
+<TR><TD width=5%>&nbsp;</TD><TD colspan=2><P CLASS="index">9.4. <a href="#translations_for_developers">Supporting translations</a></TD></TR>
+
+<TR><TD colspan=3><P CLASS="index">10. <a href="#version_numbering">Version numbering policy</a></P></TD></TR>
+
+<TR><TD colspan=3><P CLASS="index">11. <a href="#faq">FAQ</a></P></TD></TR>
+
+<TR><TD colspan=3><P CLASS="index">12. <a href="#todo">TODO</a></P></TD></TR>
+
+<TR><TD colspan=3><P CLASS="index">13. <a href="#bugs">Known Bugs</a></P></TD></TR>
+
+<TR><TD colspan=3><P CLASS="index">14. <A
+HREF="#references">References</a></P></TD></TR>
+
+<TR><TD colspan=3><P CLASS="index">15. <a href="#authors">About the authors</a></P></TD></TR>
+
+</TABLE></CENTER>
+
+<P>&nbsp;
+<A NAME="about">
+<P CLASS="subtitle">0. About this manual
+
+<p>This documentation is not up-to-date. It should give more an idea of what SourceWell can than the current status of the project. If you have questions about the current SourceWell version, please contact with the authors.
+
+<P>This manual has been made with the idea of covering as many aspects of
+SourceWell as possible. If you are a user who's only aim is to install
+and use the SourceWell system, you may not have to read it
+as a whole as advanced features for developers are
+also explained.
+
+<p>SourceWell 1.0.13 is a development version. It is the first step towards the new architecture that will arise with SourceWell 2. There are no feature enhancements towards SourceWell's 1.0.9 version, but some bugs (one big security bug and another memory bug) were fixed. Backwards compatibility with SourceWell 1.0.9 has been mantained. We expect that SourceWell's development will acquire lots of new features with the new architecture.
+
+<P>&nbsp;
+<A NAME="copyleft">
+<P CLASS="subtitle">1. Copyright
+
+<P>SourceWell is distributed under the GNU General Public License 2.0 or later.
+Its authors are Lutz Henckel (<a href="mailto:lutz.henckel@fokus.gmd.de">lutz.henckel@fokus.gmd.de</a>) and Gregorio Robles (<a href="mailto:grex@scouts-es.org">grex@scouts-es.org</a>).
+
+<P>This program is free software; you can redistribute it and/or modify  it under the terms of the GNU General Public License as published by  the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+
+<P>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+<P>You should have received a copy of the GNU General Public License
+along with this program; if not, write to the
+<PRE>
+              Free Software Foundation, Inc.
+	      59 Temple Place, Suite 330
+	      Boston, MA
+	      02111-1307 USA
+</PRE>
+
+<P>&nbsp;
+<A NAME="introduction">
+<P CLASS="subtitle">2. Introduction
+
+<P>SourceWell is a highly configurable, well documented software announcement and retrieval system entirely writen in <a href="http://www.php.net/" target="_blank">PHP3</a> and database independent. It includes user authentication and autherization system (anonymous/user/editor/admin), sessions with and without cookies, high configurability, multilangual support, ease of administration, RDF-type document backend, several graphical statistics, announcing mailing lists, application indexing by sections, installation support and many other useful features.
+
+<P>SourceWell depends on the <a href="http://phplib.netuse.de/" target="_blank">PHPLib library</a> (version 7.2d). Only if you want to have diary and weekly mailing lists with the announcements, you should also have Mailman installed in your box.
+
+<P>You can see a fully working example of the SourceWell system at BerliOS
+SourceWell by visiting <a href="http://sourcewell.berlios.de" target="_blank">http://sourcewell.berlios.de</a>. A close look at it will show you what you can do with SourceWell. BerliOS SourceWell has at this moment more
+than 1750 applications inserted and has been the main reason for making this software.
+
+<P>BerliOS SourceWell is part of the BerliOS project at GMD FOKUS. Please, have
+a look at <a href="http://www.berlios.de" target="_blank">http://www.berlios.de</a> for further information. At this moment, BerliOS also has other services: <a href="http://developer.berlios.de/" target="_blank">BerliOS Developer</a> (a SourceForge clone), <a href="http://news.berlios.de" target="_blank">BerliOS News</a> (news about Open Source - in German) and <a href="http://sourcebiz.berlios.de" target="_blank">SourceBiz</a> (a directory with Open Source companies, services, products and solutions - in German).
+
+<P>You can always download the latest version of SourceWell at:
+<a href="http://developer.berlios.de/projects/sourcewell" target="_blank">http://developer.berlios.de/projects/sourcewell</a>
+
+<P>SourceWell Features:
+<UL>
+<LI>Different type of users (nonauthorized users, anonymous user, users, editors and administrators) with different functions
+<LI>Session management with and without cookies
+<LI>Database independent
+<LI>Advanced configurability from a single file
+<LI>Simple, intuitive use of the system
+<LI>Documentation for further development and/or adjustment
+<LI>Comments on applications
+<LI>Through-the-web reviewing and application administration for editors
+<LI>Through-the-web administration of applications, comments and licenses
+<LI>system FAQ and through-the-web administration of it
+<LI>Dynamic order of applications by date (default), importance, urgency or
+by alphabetical order
+<LI>"true" software counter for apps download, homepage redirections, etc.
+<LI>Multilingual support (to be improved next)
+<LI>Anonymous users can introduce apps and comments
+<LI>The administrator can easily administrate whether there are anonymous users allowed or not
+<LI>Dynamic permission configuration
+<LI>Stable and development branches for applications
+<LI>XML Backend (RDF-document format)
+<LI>Daily and Weekly automatic Newsletters
+<LI>Version history of the applications
+<LI>Links between apps from the same author
+<LI>"intelligent" application validation for editors
+<LI>EMail advice for editors when apps are inserted or updated
+<LI>EMail advice for administrators when new users register
+<LI>Graphical statistics (a lot of them!)
+<LI>Test page (very helpfull when installing the system and something goes wrong)
+<LI>Web browser independence
+<LI>Cache avoidance
+<li>Advanced search
+<li>Static web page generation
+<li>Intelligent Email insertion
+<li>Temporary table for pending applications (applications without reviewing)
+</UL>
+
+<P>&nbsp;
+<A NAME="installation">
+<P CLASS="subtitle">3. Installation
+
+<P>Important note about security:
+<UL>
+<LI>SourceWell's main directory and all its subdirectories are not protected in
+any way by us! Please make sure that you can put propperly <I>.htaccess</I>
+files in these directories (especially the include subdirectory). If someone
+is able to read the local.inc file in the include
+directory, operator (user name) and password for your database could be known and
+misused. For further information about <I>.htaccess</I> look at the Apache's documentation.
+</UL>
+
+<A NAME="fast_installation">
+<P CLASS="subsubtitle">3.1 Fast installation (for MySQL)
+
+<P>You need to have a webserver (we have tested the system with Apache), PHP3,
+PHPLib and MySQL installed in your system. Mailman is only needed if you want
+to use mailing lists.
+
+<UL>
+<LI>user$ mysql -h <I>host</I> -u <I>database_superuser</I> -p
+<BR>(insert <I>superuser_password</I>)
+<LI>mysql> USE mysql;
+<LI>mysql> INSERT INTO user VALUES ( '<I>host</I>', '<I>operator</I>',
+PASSWORD('<I>operator_password</I>'), 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'N', 'N', 'N', 'N', 'N', 'N', 'N');
+<LI>mysql> FLUSH PRIVILEGES;
+<LI>mysql> CREATE DATABASE sourcewell;
+<LI>mysql> exit;
+<LI>user$ tar -zxvf sourcewell-1.0.13.tar.gz
+<LI>user$ mysql -h <I>host</I> -u <I>operator</I> -p < sourcewell/sql/mysql.sql
+<BR>(insert the <I>operator_password</I>)
+<LI>user$ vi sourcewell/include/local.inc
+<BR>(insert the correct database parameters; please, keep <I>sourcewell</I>
+as the database name)
+<PRE>
+   var $Host     = "<I>host</I>";
+   var $Database = "sourcewell";
+   var $User     = "<I>operator</I>";
+   var $Password = "<I>password</I>";
+</PRE>
+</UL>
+
+<P>Ok, that's it. You've finished installing and configuring
+SourceWell. Start your browser and visit <I>
+http://yourserver/sourcewell/index.php</I>. If you get an error message or you have the impression that the system does not work correctly, have a look at this page <I>http://yourserver/sourcewell/test.php</I>. It will give you some hints on where SourceWell may be failing.
+
+<P>If everything looks ok, great! As you'll see in the index page, the SourceWell system comes with some inserted example applications and licenses. You can
+delete or modify them by entering as an administrator. To do so, login
+as the default administrator with user,editor,admin permissions. At the prompt use the following ID to login (case sensitive):
+<PRE>
+        Username: <I>oldfish</I>
+	Password: <I>oldfish</I>
+</PRE>
+
+<P>Very important: Be sure of inmediately changing the login and password by
+clicking on the <I>User Admin</I> link. You'll notice this is quite easy to do ;-)
+
+<P>If things do not work, maybe you'll have to read the whole
+installation chapter :-(.
+
+<p>Future versions of SourceWell will work with GNU gettext and we are looking forward to avoiding this large amount of memory.
+
+<A NAME="before_starting">
+<P CLASS="subsubtitle">3.2. Before starting
+
+<P>You've got to look if your web server is correctly configurated and running. That means that:
+
+<UL>
+<LI>The web server is capable of recognising and executing PHP3 scripts in user directories
+<LI>PHP is compliled to work with the MySQL database
+</UL>
+
+<P>Please, attend to the respective manuals and documentation for a propper installation.
+
+<A NAME="phplib">
+<P CLASS="subsubsubtitle">3.2.1. About PHPLib
+
+<P>For a correct functioning of SourceWell, PHPLib has to be installed. PHPLib
+is an usefull library which permits SourceWell to have sessions,
+authentication and in future versions database independence. PHPLib is
+published under the terms of the GNU Lesser General Public License
+(LGPL). For more information about PHPLib follow this link: <a href="http://phplib.netuse.de/" target="_blank">http://phplib.netuse.de/</a>.
+
+<P>SourceWell has been developed with the 7.2d version of PHPLib, which
+can be downlodaded from
+<a href="http://prdownloads.sourceforge.net/phplib/phplib-7.2d.tar.gz">http://prdownloads.sourceforge.net/phplib/phplib-7.2d.tar.gz</a>. As SourceWell strictly
+uses the API given by PHPLib, future versions of PHPLib should also
+work without problem. It is important to note that version 7.2c of the PHPLib library had a security bug that was fixed in the recommended version. So, if you have got this version installed in your box, please update as soon as possible.
+
+<P>Please read carefully the documentation provided for PHPLib for a
+successfull installation. The installation of PHPLib is sufficient;
+you don't need to know more about PHPLib and its functioning for
+using the SourceWell system.
+
+
+<P>BerliOS SourceWell entry for the PHPLib library: <a href="http://sourcewell.berlios.de/appbyid.php?id=350" target="_blank">http://sourcewell.berlios.de/appbyid.php?id=350</a>.
+
+<p>New versions of SourceWell provide a test script (test.php) which you can run in order to see if your installation is ok. If not, please follow the described instructions carefully.
+
+<A NAME="database_installation">
+<P CLASS="subsubsubtitle">3.2.2. About the Database
+
+<P>The next step is to install and configure the database
+system. SourceWell has been tested with MySQL, so that the following
+explanations are to be followed with that RDBMS. For other systems,
+the philosophy will be the same, but you will have to particularize
+the instructions.
+
+<P>You can download MySQL from:
+<a href="http://www.mysql.com/downloads" target="_blank">http://www.mysql.com/downloads</a>.
+
+
+<P>1. Install and configure the RDBMS
+
+<P>2. Create the user SourceWell needs:
+   <UL>
+   <LI>Login as MySQL's superuser (<I>host</I> should be <I>localhost</I> in
+   the default case)
+   <BR>user$ mysql -h <I>host</I> -u <I>database_superuser</I> -p
+   <BR>(insert <I>superuser_password</I>)
+   <LI>Choose the mysql database
+   <BR>(that's where the database users and their privileges are)
+   <BR>mysql> USE mysql;
+   <LI>Insert an operator user for sourcewell, its password and its privileges
+   <BR>mysql> INSERT INTO user VALUES ( '<I>host</I>', '<I>operator</I>',
+PASSWORD('<I>operator_password</I>'), 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'N', 'N', 'N', 'N', 'N', 'N', 'N');
+   <LI>"Commit" the changes
+   <BR>mysql> FLUSH PRIVILEGES;
+   </UL>
+
+<P>3. Create the data base:
+   <UL>
+   <LI>Create the data base (with sourcewell as its name; see note below)
+   <BR>mysql> CREATE DATABASE sourcewell;
+   <LI>Exit MySQL
+   <BR>mysql> exit;
+   </UL>
+
+<P>Note: It is important for having a simple configuration of the system to name this database
+"sourcewell". A different database name would imply editing and modifying many
+of the
+default configuration parameters in the local.inc file, which is not recommended.
+
+
+<P>BerliOS SourceWell entry for the MySQL database: <a href="http://sourcewell.berlios.de/appbyid.php?id=76" target="_blank">http://sourcewell.berlios.de/appbyid.php?id=76</a>.
+
+<A NAME="mailman">
+<P CLASS="subsubsubtitle">3.2.3. About Mailman
+
+<P>Only if you want to have diary and weekly mailing lists with the announcements, you should also have Mailman installed in your box. You can find more information about Mailman in its official GNU homepage: <a href="http://www.gnu.org/software/mailman/mailman.html" target="_blank">http://www.gnu.org/software/mailman/mailman.html</a>.
+
+<P>BerliOS SourceWell entry for the Mailman software: <a href="http://sourcewell.berlios.de/appbyid.php?id=106" target="_blank">http://sourcewell.berlios.de/appbyid.php?id=106</a>.
+
+<A NAME="obtaining_sourcewell">
+<P CLASS="subsubtitle">3.3. Obtaining SourceWell
+
+<P>You can get the latest version of SourceWell at:
+<a href="http://developer.berlios.de/projects/sourcewell" target="_blank">http://developer.berlios.de/projects/sourcewell</a>
+
+<P>BerliOS SourceWell entry for SourceWell (stable branch): <a href="http://sourcewell.berlios.de/appbyid.php?id=792" target="_blank">http://sourcewell.berlios.de/appbyid.php?id=792</a>.
+<br>BerliOS SourceWell entry for SourceWell (development branch): <a href="http://sourcewell.berlios.de/appbyid.php?id=508" target="_blank">http://sourcewell.berlios.de/appbyid.php?id=508</a>.
+
+
+<A NAME="file_extraction">
+<P CLASS="subsubtitle">3.4. File extraction
+
+<P>Due to security reasons you should not install or execute SourceWell
+as root. It's not even necessary.
+
+<P>The installation process is as following:
+
+<OL>
+<LI>choose the parent directory where you want sourcewell to be and cd into it
+<LI>verify that the user public_html exists and is accesible from the
+web
+<LI>uncompress SourceWell in the parent directory
+<BR>user$ tar -zvxf sourcewell-1.0.13.tar.gz
+<LI>List the content of the directories. You should have a directory
+sourcewell with five subdirectories. Read chapter 7 of this documentation for further information
+about the files.
+<BR>user$ ls -R
+<LI>create the database structures in the database
+<BR>user$ mysql -h <I>host</I> -u <I>operator</I> -p < sourcewell/sql/mysql.sql
+<BR>(insert the <I>operator_password</I>)
+</OL>
+
+<A NAME="configuration_and_personalization">
+<P CLASS="subsubtitle">3.5. Configuration and personalization
+
+<P>The database configuration has to be done in config.inc and local.inc; both are in the
+include directory. Please, at this point read another time the security
+note given at the beginning of chapter 3.
+
+<UL>
+<LI>user$ vi sourcewell/include/local.inc
+<BR>(insert the correct database parameters; please, keep <I>sourcewell</I>
+as the database name)
+<PRE>
+   var $Host     = "<I>host</I>";
+   var $Database = "sourcewell";
+   var $User     = "<I>operator</I>";
+   var $Password = "<I>password</I>";
+</PRE>
+</UL>
+
+<P>If you want to personalize SourceWell, you will have to edit the
+config.inc file in the include directory. The configuration file is
+carefully commented; please, take your time for configuring the SourceWell system right.
+
+<p>Note: we are trying to make configuration easier in next versions by allowing to do it through a web browser.
+
+<P>Congratulations, you've finished installing and configuring SourceWell. Start your browser and visit http://yourserver/sourcewell/index.php. If you get an error message or you have the impression that the system does not work correctly, have a look at this page <I>http://yourserver/sourcewell/test.php</I>. It will give you some hints on where SourceWell may be failing.
+
+<P>If everything looks ok, great! As you'll see, the SourceWell system comes with some inserted example applications and licenses. You
+can delete or modify them by entering as an administrator. To do so, login as the
+default administrator with <I>user,editor,admin</I> permissions.
+At the prompt use the following ID to login (case sensitive):
+<PRE>
+        Username: <I>oldfish</I>
+	Password: <I>oldfish</I>
+</PRE>
+
+<P>Vert important: Be sure of inmediately changing the login and password by
+clicking on the link <I>User Admin</I>. You'll notice this is quite easy to do ;-)
+
+
+<P>&nbsp;
+<A NAME="functionality">
+<P CLASS="subtitle">4. Main Functionality
+
+<P>While there are basic activities (looking for applications, viewing
+statistics, etc.) that are open to everybody, SourceWell provides
+authorisation for advanced purposes.
+
+<P>Note: In the following, we are going to talk about the default permission configuration of the system (which is also the recommended setting). With SourceWell 1.0a, the permission configuration has been implemented to be changed dinamically, so that the site administrator can easily modify the permissions needed at his will from the include/config.inc file.
+
+<P>Authorisation is based on registration. The SourceWell system has two sets of users: unregistered users and registered users. Between registered
+users we have different permission levels:
+        <UL>
+	<li>anonymous, which is a very special user as we will see later
+	<LI>user, which can insert and update applications and write comments on them
+	<LI>editor, who is responsible for the application administration
+	<LI>admin, who is responsible for the administration of users, sections and categories, comments, licences and the mailing lists.
+        </UL>
+<P>Permissions are independent and do not have to be
+unique for a certain registered user. That means that a registered
+user with only administrator permissions is not allowed to perform
+actions that are restricted to registered users with editor or user permissions, but a single registered user can have user, editor and
+administration permissions.
+
+<P>Each level of authorisation comprises certain actions that are listed below. Again, we want the reader to notice, that this is the default configuration. The administrator can change it at his will at the include/config.inc file:
+
+<P>Unregistered users can:
+        <UL>
+	<LI>Retrieve software applications
+	<LI>View the comments on applications
+	<LI>Read the FAQ
+	<LI>Choose language
+	<LI>Login
+	<LI>Obtain the forgotten password
+	<LI>Become authorised user by entering a form
+	<LI>Look at the different licences listed in SourceWell
+	<LI>Read the XML Backend
+	<LI>Search for applications
+	<LI>See applications' developers
+	<LI>Join the weekly or daily mailing lists
+	<LI>View the advanced graphical statistics
+        </UL>
+
+<P>SourceWell has an anonymous user with <I>anonymous</I> permission that is able to:
+        <UL>
+        <LI>Do everything what unregistered user can do
+	<LI>Insert and update applications (inserted applications have a "pending" status until they are reviewed by an editor)
+	<LI>Write comments
+        </UL>
+
+<P>Registered users with <I>user</I> permission can:
+	<UL>
+        <LI>Do everything what unregistered user can do
+        <LI>Insert and update applications (inserted applications have a "pending" status until they are reviewed by an editor)
+	<LI>Write comments
+	<LI>Change their user registration data
+        <LI>See a list of the system users
+        </UL>
+
+<P>Editors (<I>editor</I> permission) are able to:
+        <UL>
+        <LI>Do everything what unregistered users can do
+	<LI>Review pending applications (inserted or updated by registered users)
+	<LI>Change application insertions
+	<LI>Delete and undelete applications
+	<LI>See changed or modified applications (applications that are
+	affected when sections, categories or
+	licenses are deleted or modified by an <I>administrator</I>) and change their status
+        </UL>
+
+<P>Administrators (<I>admin</I> permission) are able to:
+        <UL>
+        <LI>Do everything what unregistered users can do
+	<LI>Administrate users and their permissions
+	<LI>Administrate (insert, rename and delete) sections
+	<LI>Administrate (insert, rename and delete) categories
+	<LI>Administrate (insert, rename, change URL and delete) licenses
+	<LI>Administrate (modify and delete) comments
+	<LI>Check the date integrity of applications in the database
+	<LI>View the daily and weekly newsletter
+	<LI>Send the daily and weekly newsletter at any time
+	<LI>Decide if there can be an anonymous user in the system or not
+        </UL>
+ 
+<P>As explained before, SourceWell's registered users can have several
+roles. So it is possible (and recommendable) that editors (<I>editor</I>) have also <I>user</I>
+permissions and that administrators (<I>admin</I>) have also <I>user</I> and <I>editor</I> permissions. This becomes even more important if you personalize the permissions of your system in the include/config.inc file as you can only choose one permission type at a time (whether <I>user</I>, <I>editor</I>, <I>admin</I> or <I>all</I>) for every type of functionality.
+
+<P>If the system administrator wants, the system can have anonymous users. Consequently, visitors do not have to be registered, but can post new applications, changes and comments. There can only be one anonymous user in the system and this user can only have <I>anonymous</I> permission; if you don't want to have one, just delete the user with <I>anonymous</I> permission in the <I>admuser.php</I> file (there you can also change its username and its password if you want). The SourceWell system automatically shows an information box at the login screen announcing that the visitor can login as anonymous if an user with <I>anonymous</I> permission exists.
+
+<P>&nbsp;
+<A NAME="international">
+<P CLASS="subtitle">5. International support
+
+<P>SourceWell can be easily translated into different
+languages. If you see that SourceWell does not have support in your
+language, you're gladly invited to help us with the
+internationalization of SourceWell by sending us your translation.
+
+<P>You don't need to have any computer or programming experience to do a
+translation. Keep on reading and you'll find out how easy it is.
+
+<p>Note: future versions will have i18n support through gettext and i12n through po files. We are on it.
+
+<A NAME="normal_outputs">
+<P CLASS="subsubtitle">5.1. Main outputs
+
+<P>Download the lang-translate.inc file (it also comes in SourceWell's
+1.0.13 tarball) . If you edit it, you'll find lines
+like this:
+
+<PRE>
+     case "Home": $tmp = ""; break;
+</PRE>
+
+<P>We will explain it briefly: after the <I>case</I> you will see the English text to translate writen in
+quotes (in our example, the English text is "Home"). Then you'll find a
+sort of equation. The content of your translation from English into your language should
+be placed in between these second quotes. For example, in the case you were making a translation into German, this would be the result for this line:
+
+<PRE>
+     case "Home": $tmp = "Heim"; break;
+</PRE>
+
+<P>Ok, now that you're an expert, you'll notice that "Home" is translated
+into German as "Heim" ;-). The procedure just explained should be repeated with
+all the lines in this file. 
+
+<P>Once you're finished, save it as <I>YourLanguage-lang.inc</I> and please send it to the authors. We will include
+it in the next releases so that everybody can benefit of your work.
+
+<A NAME="faq_file">
+<P CLASS="subsubtitle">5.2. Translation of the FAQ
+
+<P>It is now donw through a database backend. Every entry in the database contains a field in which the language of the current question and answer is specified.
+
+<A NAME="contributors">
+<P CLASS="subsubtitle">5.3. Contributors
+
+<P>Here's a list of all the people that have contributed to the
+translation of SourceWell.
+
+<P>Main files:
+<BR>&nbsp;
+
+<CENTER>
+<TABLE width=95%>
+<TR><TD>Language</TD><TD>Translator</TD><TD>Version</TD><TD>Last Modified</TD></TR>
+<TR><TD>German</TD><TD>Lutz Henckel &lt;<A
+HREF="mailto:lutz.henckel@fokus.gmd.de">lutz.henckel@fokus.gmd.de</a>&gt;</TD><TD>1.0</TD><TD>3
+April 2001</TD></TR>
+<TR><TD>Spanish</TD><TD>Gregorio Robles &lt;<A
+HREF="mailto:grex@scouts-es.org">grex@scouts-es.org</a>&gt;</TD><TD>1.0</TD><TD>3
+April 2001</TD></TR>
+</TABLE></CENTER>
+
+<P>&nbsp;
+<A NAME="statistics">
+<P CLASS="subtitle">6. Statistics
+
+<P>As we were doing SourceWell, we felt that we could use our database to know
+more about what Open Source software is and means. We did not only want to know
+which are the most popular Open Source applications, we also wanted to do
+research on licenses, developers, desktops... the statistics were born.
+
+<P>The statistics are also thought to be a procedure to do a sort of fast
+checking on your SourceWell system. The <I>number of applications added or modified
+in the last week</I> and the <I>number of pending applications</I> are the best
+examples of this idea. Maybe more statistics of this type are added in the future.
+
+<P>Any feedback you might have on this topic is always welcome.
+
+<P>Here is a list of the statistics you'll find in SourceWell 1.0.13:
+
+<UL>
+<LI>General SourceWell Statistics:
+        <UL>
+	<LI>Number of Applications in SourceWell
+	<LI>Total Number of Insertions and Modifications
+	<LI>Number of Insertions and Modifications during the last week
+        <LI>Number of Insertions and Modifications today
+        <LI>Number of today's visitors
+	<LI>Number of pending Applications
+	<LI>Number of SourceWell authorised Users
+	<LI>Number of Comments on Applications
+	<LI>Number of Licenses listed in SourceWell
+	<LI>Number of SourceWell Sections
+	<LI>Number of SourceWell Categories
+	<LI>Number of Hits on Applications (today and total)
+	<LI>Number of redirected Homepages (today and total)
+	<LI>Number of Downloads (today and total)
+	<LI>Number of redirected Changelogs (today and total)
+	<LI>Number of redirected CVSs (today and total)
+	<LI>Number of redirected Screenshots (today and total)
+	<LI>Number of redirected Mailing Lists Archives
+	<LI>SourceWell Version
+        </UL>
+<LI>Apps by Importance
+<LI>Apps by Hits
+<LI>Apps by Homepage Visits
+<LI>Apps by Downloads
+<LI>Top downloaded RPM Packages
+<LI>Top downloaded Debian Packages
+<LI>Top downloaded Slackware Packages
+<LI>Apps and Downloads by Urgency
+<LI>Apps and Downloads by Version Types
+<LI>Apps and Importance by Sections
+<LI>Apps by Categories
+<LI>Apps by Version Numbers
+<LI>Apps and Downloads by Package Formats
+<LI>Importance by Licenses
+<LI>Importance by e-mail Domains
+<LI>Apps by e-mail Domains
+<LI>Apps by Sections and e-mail Domains
+<LI>Apps by Licenses
+<LI>Apps by Licenses and e-mail Domains
+</UL>
+
+<P>&nbsp;
+<A NAME="files">
+<P CLASS="subtitle">7. Files and functionality
+
+<P>The following list gives all the files that come with SourceWell Version
+1.0.13. It is
+interesting to have a look at it for any adaption and/or modification
+you would like to do to the system.
+
+<P>The list is in alphabetical order for each directory. For the main directory
+you'll find a column with the permission requirements to enter the page. The
+legend is at the bottom of the table.
+
+<P CLASS="function">SourceWell's main directory:
+
+<P><CENTER><table width=90% border=1>
+<TR><TD>C</TD><TD>admcat.php</TD><TD>This file allows the administrator to insert, rename and delete categories</TD></TR>
+<TR><TD>C</TD><TD>admcomment.php</TD><TD>This is the comment administration file</TD></TR>
+<TR><TD>C</TD><TD>admdate.php</TD><TD>This file checks the dates of the apps to avoid having changes as updates</TD></TR>
+<TR><TD>C</TD><TD>admfaq.php</TD><TD>This file is used for the administration of the frequently asked questions</TD></TR>
+<TR><TD>C</TD><TD>admlicens.php</TD><TD>This is the license administration file</TD></TR>
+<TR><TD>C</TD><TD>admsec.php</TD><TD>This is the section administration file</TD></TR>
+<TR><TD>C</TD><TD>admuser.php</TD><TD>This file is useful for administrating (registered) users</TD></TR>
+<tr><td>&nbsp;</td><td>app.php</td><td>New file for the SourceWell 2 architecture that replaces appbyid.php</td></tr>
+<tr><td>&nbsp;</td><td>app_edi.php</td><td>New file for the SourceWell 2 architecture that replaces insert.php</td></tr>
+<tr><td>&nbsp;</td><td>app_mod.php</td><td>New file for the SourceWell 2 architecture that replaces updapp.php</td></tr>
+<TR><TD>&nbsp;</TD><TD>appbycat.php</TD><TD>This file shows the apps in a category given as parameter</TD></TR>
+<TR><TD>&nbsp;</TD><TD>appbydev.php</TD><TD>This file gives the apps created or mantained by a given developer</TD></TR>
+<TR><TD>&nbsp;</TD><TD>appbyid.php</TD><TD>This file shows an app (given by the id parameter)</TD></TR>
+<TR><TD>&nbsp;</TD><TD>appbylic.php</TD><TD>This file shows the apps with a certain license given as parameter</TD></TR>
+<TR><TD>U</TD><TD>appbyuser.php</TD><TD>This file shows the apps inserted by the user</TD></TR>
+<TR><TD>C</TD><TD>appdom.php</TD><TD>This file shows the deleted or modified apps</TD></TR>
+<TR><TD>C</TD><TD>apppend.php</TD><TD>This file lists the pending apps</TD></TR>
+<TR><TD>&nbsp;</TD><TD>appsearch.php</TD><TD>This file proceeds to search
+applications by name or part of the name</TD></TR>
+<TR><TD>&nbsp;</TD><TD>backend.php</TD><TD>This is the XML backend (RDF-type document) of the system</TD></TR>
+<TR><TD>&nbsp;</TD><TD>categories.php</TD><TD>This file indexes the sections and categories
+available in our system</TD></TR>
+<TR><TD>R</TD><TD>chguser.php</TD><TD>This page enables (authenticated) users
+to change their registration data</TD></TR>
+<TR><TD>U</TD><TD>cmtapp.php</TD><TD>This file contains the form for adding comments to an app</TD></TR>
+<TR><TD>U</TD><TD>cmtins.php</TD><TD>This file shows the app and the just
+inserted comment</TD></TR>
+<TR><TD>C</TD><TD>comment.php</TD><TD>This file contains the form that allows an administrator to  modify a comment</TD></TR>
+<TR><TD>&nbsp;</TD><TD>developers.php</TD><TD>This file lists developers in alphabetical order</TD></TR>
+<TR><TD>&nbsp;</TD><TD>faq.php</TD><TD>This is the file with the Frequently Asked Questions</TD></TR>
+<TR><TD>&nbsp;</TD><TD>index.php</TD><TD>This is the index file which shows the recent apps</TD></TR>
+<TR><TD>&nbsp;</TD><TD>index_stat*.php</TD><TD>Dynamic generation of a static main page (in several languages)</TD></TR>
+<TR><TD>U</TD><TD>insapp.php</TD><TD>This file is used to insert an
+application. It contains the second form that has to be filled when inserting applications</TD></TR>
+<TR><TD>C</TD><TD>inscat.php</TD><TD>This file inserts a category</TD></TR>
+<TR><TD>U</TD><TD>insert.php</TD><TD>This file inserts an applications</TD></TR>
+<TR><TD>C</TD><TD>insfaq.php</TD><TD>This file inserts a FAQ</TD></TR>
+<TR><TD>U</TD><TD>insform.php</TD><TD>This is the first form for inserting
+apps. Application name and type (stable or development) have to be
+entered to make an insertion</TD></TR>
+<TR><TD>C</TD><TD>inslic.php</TD><TD>This file inserts, renames or deletes a new license</TD></TR>
+<TR><TD>C</TD><TD>inssec.php</TD><TD>This file inserts, renames or deletes a section</TD></TR>
+<TR><TD>&nbsp;</TD><TD>licenses.php</TD><TD>This file indexes the software licenses</TD></TR>
+<TR><TD>&nbsp;</TD><TD>licnotavailable.php</TD><TD>This file is shown when a license URL is not available</TD></TR>
+<TR><TD>&nbsp;</TD><TD>login.php</TD><TD>This is the login file; here authenticated sessions start</TD></TR>
+<TR><TD>&nbsp;</TD><TD>loginform.ihtml</TD><TD>Verifies login</TD></TR>
+<TR><TD>R</TD><TD>logout.php</TD><TD>This file contains the logout; session and authentication finish</TD></TR>
+<TR><TD>&nbsp;</TD><TD>newsletter.php</TD><TD>Registration form for the daily/weekly newsletter</TD></TR>
+<TR><TD>C</TD><TD>nladm.php</TD><TD>This file is useful for administrating the daily/weekly newsletter</TD></TR>
+<TR><TD>C</TD><TD>nlsend.php</TD><TD>Allows to send the daily/weekly newsletter</TD></TR>
+<TR><TD>&nbsp;</TD><TD>redirect.php</TD><TD>This file is used to keep track of
+all the statistics. It just updates the counter when redirecting downloads,
+homepages, changelogs...</TD></TR>
+<TR><TD>&nbsp;</TD><TD>register.php</TD><TD>Registration form for users</TD></TR>
+<TR><TD>&nbsp;</TD><TD>remind.php</TD><TD>This file allows users to get their forgotten password via e-mail</TD></TR>
+<TR><TD>&nbsp;</TD><TD>remindme.php</TD><TD>This file sends the forgotten password to the user </TD></TR>
+<TR><TD>&nbsp;</TD><TD>stats.php</TD><TD>Statistics of the system
+(general, applications, licenses, developers...)</TD></TR>
+<TR><TD>&nbsp;</TD><TD>test.php</TD><TD>Test page for the System. If something is wrong, it will give you some hints about what could have failed</TD></TR>
+<TR><TD>U</TD><TD>updapp.php</TD><TD>Updates an application</TD></TR>
+<TR><TD>U</TD><TD>update.php</TD><TD>This file inserts the updated application parameters
+in the database</TD></TR>
+<TR><TD>&nbsp;</TD><TD>users.php</TD><TD>This page lists the users registered in our system</TD></TR>
+<TR><TD>&nbsp;</TD><TD>verify.php</TD><TD>This file contains the verification
+procedure when registering. Users have to visit this page (with a hashcode
+send to them via e-mail by the system) to validate their registration.</TD></TR>
+</TABLE></CENTER>
+
+<P Class=authors>R: Registered user (<I>admin</I>, <I>editor</I> or <I>user</I> permission)
+<BR>U: <I>User</I> permission needed
+<BR>C: Configurable through the configuration file
+
+<P>With SourceWell 1.0a, the permissions needed to access certain pages can be configurated dinamically from the include/config.inc file. This allows to set the permission to <I>admin</I>, <I>editor</I>, <I>user</I> or even <I>all</I> (with the <I>all</I> option, everybody is able to access that page) at your wish. Please, be aware that the security of your system depends on what you decide; be sure of what you are doing! The default values are the recommended ones. At this moment, the only possibility for configuring permissions is by editing the include/config.inc file, but future versions of SourceWell may allow you to administrate this permissions through the web.
+
+<P CLASS="function">Subdirectory include:
+<P>(Please, be aware of inserting your own security procedures to make this
+directory not public)
+
+<P><CENTER><table width=90% border=1>
+<TR><TD>English-lang.inc</TD><TD>Main English translation</TD></TR>
+<TR><TD>German-lang.inc</TD><TD>Main German translation</TD></TR>
+<TR><TD>Spanish-lang.inc</TD><TD>Main Spanish translation</TD></TR>
+<TR><TD>admapp2.inc</TD><TD>Library for the application administration in SourceWell 2</TD></TR>
+<TR><TD>app2.inc</TD><TD>Library for SourceWell 2 with the functions on applications</TD></TR>
+<TR><TD>box.inc</TD><TD>Library with the boxes (tables)</TD></TR>
+<TR><TD>box2.inc</TD><TD>Library with the boxes (tables) for the SourceWell 2 architecture</TD></TR>
+<TR><TD>cmtlib.inc</TD><TD>Library for comments</TD></TR>
+<TR><TD>config.inc</TD><TD>Configuration file</TD></TR>
+<TR><TD>config2.inc</TD><TD>Configuration file for the SourceWell 2 architecture</TD></TR>
+<TR><TD>faqlib2.inc</TD><TD>Library for the FAQ used in the SourceWell 2 architecture</TD></TR>
+<TR><TD>footer.inc</TD><TD>Common footer for almost all pages</TD></TR>
+<TR><TD>footer2.inc</TD><TD>Footer for the SourceWell 2 architecture</TD></TR>
+<TR><TD>header.inc</TD><TD>Common header for almost all pages</TD></TR>
+<TR><TD>header2.inc</TD><TD>Header for the SourceWell 2 architecture</TD></TR>
+<TR><TD>html2.inc</TD><TD>HTML abstraction library for PHP and PHPLib used in the SourceWell 2 architecture</TD></TR>
+<TR><TD>lang.inc</TD><TD>Library for translations</TD></TR>
+<TR><TD>lang-translate.inc</TD><TD>File used for translation contributors</TD></TR>
+<TR><TD>lib.inc</TD><TD>Base Library for SourceWell</TD></TR>
+<TR><TD>lib2.inc</TD><TD>Base Library for SourceWell 2</TD></TR>
+<TR><TD>local.inc</TD><TD>PHPLib local configuration file</TD></TR>
+<TR><TD>menubar.inc</TD><TD>Left bar in the browser window. Provides ease of
+navigation. The links shown depend on the permissions of the visitor</TD></TR>
+<TR><TD>page_permission2.inc</TD><TD>Security library with the permissions for the SourceWell 2 architecture</TD></TR>
+<TR><TD>session.inc</TD><TD>PHPLib session file. We have made some fixes for the SourceWell system</TD></TR>
+<TR><TD>statslib.inc</TD><TD>Library for statistics</TD></TR>
+<TR><TD>sql2.inc</TD><TD>SQL strings that will be used in the SourceWell 2 architecture</TD></TR>
+<TR><TD>top_strip.inc</TD><TD>Top strip on every page</TD></TR>
+<TR><TD>top_title.inc</TD><TD>Top title strip on every page</TD></TR>
+<TR><TD>translation.inc</TD><TD>Library for translations</TD></TR>
+</TABLE></CENTER>
+
+<P CLASS="function">Subdirectory images:
+
+<P><CENTER><table width=90% border=1>
+<TR><TD>bell.png</TD><TD>Urgency</TD></TR>
+<TR><TD>binary2.png</TD><TD>Download redirection (for tarballs)</TD></TR>
+<TR><TD>blank.gif</TD><TD>A blank image</TD></TR>
+<TR><TD>html.png</TD><TD>Homepage</TD></TR>
+<TR><TD>importance.png</TD><TD>Importance</TD></TR>
+<TR><TD>info.png</TD><TD>Changelog</TD></TR>
+<TR><TD>leftbar.gif</TD><TD>Left end of statistics bar (taken from PHP-Nuke)</TD></TR>
+<TR><TD>mainbar.gif</TD><TD>Main statistics bar (tanken form PHP-Nuke)</TD></TR>
+<TR><TD>recycled.png</TD><TD>Update/change</TD></TR>
+<TR><TD>rightbar.gif</TD><TD>Right end of statistics bar (taken from PHP-Nuke)</TD></TR>
+<TR><TD>txt.png</TD><TD>Coments</TD></TR>
+<TR><TD>berlios.jpg</TD><TD>Default image of the Site</TD></TR>
+<TR><TD>logo_fokus.png</TD><TD>Default image of the Organisation</TD></TR>
+</TABLE></CENTER>
+
+<P CLASS="function">Subdirectory crontab:
+
+<P><CENTER><table width=90% border=1>
+<TR><TD>newsletter.cron</TD><TD>Contains the cron commands for the daily and
+weekly newsletters</TD></TR>
+<TR><TD>nldaily.log</TD><TD>Log file for the daily newsletter</TD></TR>
+<TR><TD>nldaily.output</TD><TD>Output of the daily newsletter</TD></TR>
+<TR><TD>nlweekly.log</TD><TD>Log file for the weekly newsletter</TD></TR>
+<TR><TD>nlweekly.output</TD><TD>Output of the weekly newsletter</TD></TR>
+</TABLE></CENTER>
+
+<P CLASS="function">Subdirectory sql:
+
+<P><CENTER><table width=90% border=1>
+<TR><TD>mysql.sql</TD><TD>MySQL structure of the Database (with some example entries)</TD></TR>
+</TABLE></CENTER>
+
+<P CLASS="function">Subdirectory doc:
+<P><CENTER><table width=90% border=1>
+<TR><TD colspan=2>Files with the SourceWell documentation, CHANGELOG, LICENSE, INSTALL, AUTHORS etc.</TD></TR>
+</TABLE></CENTER>
+
+<P CLASS="function">Subdirectory html:
+<P><CENTER><table width=90% border=1>
+<TR><TD colspan=2>This files contain the SourceWell Project Pages which can also be found at <a href="http://sourcewell.berlios.de/html/" target="_blank">http://sourcewell.berlios.de/html/</a></TD></TR>
+</TABLE></CENTER>
+
+<P>&nbsp;
+<A NAME="database">
+<P CLASS="subtitle">8. SourceWell's database structure
+
+<P>In the following section, we are going to introduce SourceWell's
+database structure. It may be interesting for developers to know what is stored
+in the
+SourceWell system and how the different tables look like.
+
+<P>For the database structure, please, have a look at the files in the sql
+subdirectory. We've added to this dump some entries that may serve as example
+applications and licenses for new users. The dump is intended to work with MySQL.
+
+<A NAME="active_sessions">
+<P CLASS="subsubtitle">8.1. Table active_sessions
+
+<P>This table is used internally by PHPLib to keep track of the active
+sessions. As this library is used at a too low level it is uninteresting for
+the SourceWell developer.
+
+<A NAME="auth_user">
+<P CLASS="subsubtitle">8.2. Table auth_user
+
+<P>This table contains the data of authenticated (registered) users in
+your SourceWell system. The content of this table can be changed by a registered user with
+<I>admin</I> permission in the http://yourserver/admuser.php page.
+
+<P><CENTER><TABLE width=90% border=1>
+<TR><TD width=15%>NAME</TD><TD width=42%>EXPLANATION</TD><TD
+width=10%>TYPE</TD><TD width=5%>L</TD><TD width=3%>N</TD><TD width=25%>OTHERS</TD></TR>
+<TR><TD>user_id</TD><TD>Id of a registered user</TD><TD>varchar<TD>32</TD></TD><TD>X</TD><TD>PRIMARY KEY</TD></TR>
+<TR><TD>username</TD><TD>Login name of a registered user</TD><TD>varchar<TD>32</TD></TD><TD>X</TD><TD>UNIQUE</TD></TR>
+<TR><TD>password</TD><TD>Password (in clear) for a registered user</TD><TD>varchar<TD>32</TD></TD><TD>X</TD><TD>&nbsp;</TD></TR>
+<TR><TD>realname</TD><TD>Real Name of registered user</TD><TD>varchar<TD>64</TD></TD><TD>X</TD><TD>&nbsp;</TD></TR>
+<TR><TD>email_usr</TD><TD>E-mail address of registered user</TD><TD>varchar<TD>128</TD></TD><TD>X</TD><TD>&nbsp;</TD></TR>
+<TR><TD>modification_usr</TD><TD>Date of last modification</TD><TD>timestamp<TD>14</TD></TD><TD>&nbsp;</TD><TD>&nbsp;</TD></TR>
+<TR><TD>creation_usr</TD><TD>Date of creation</TD><TD>timestamp<TD>14</TD></TD><TD>&nbsp;</TD><TD>&nbsp;</TD></TR>
+<TR><TD>perms</TD><TD>Permissions of the registered user (<I>user pending</I>, <I>anonymous</I>, <I>user</I>, <I>editor</I>, <I>admin</I>)</TD><TD>varchar<TD>255</TD></TD><TD>&nbsp;</TD><TD>&nbsp;</TD></TR>
+</TABLE></CENTER>
+
+<P Class=authors>L: Length
+<BR>N: Not Null
+
+<P>The decision about allowing an anonymous user (whose login and password are known) is taken by the <I>admin</I> by creating an user in the admuser.php page with unique <I>anonymous</I> permission. The SourceWell systems comes with an anonymous user by default, whose login is <I>anonymous</I> and password is <I>anonymous</I>. If you don't want to have anonymous contributions to your system, just delete the user with this right.
+<P>Note: Be carefull when deleting users. All their contributions to the system will be lost. If you have an anonymous user in your system, whenever you delete an user all its contributions will have been posted as "anonymous". If you do not have one, they are kept in the database, but they cannot be recovered! (it is a bug we will have to fix).
+
+
+<A NAME="categories">
+<P CLASS="subsubtitle">8.3. Table categories
+
+<P>In this table you'll find all the categories listed. You'll notice
+that SourceWell doesn't have another table for sections, as it is
+integrated also in this one.
+<P>A registered user with <I>admin</I> permission can administrate through the web
+this table by adding, modifying or deleting sections and/or categories. For
+section administration the URL to visit is http://yourserver/admsec.php. The page for
+the the category administration can be found in http://yourserver/admcat.php.
+
+<P><CENTER><TABLE width=90% border=1>
+<TR><TD width=15%>NAME</TD><TD width=42%>EXPLANATION</TD><TD
+width=10%>TYPE</TD><TD width=5%>L</TD><TD width=3%>N</TD><TD width=25%>OTHERS</TD></TR>
+<TR><TD>section</TD><TD>Name of the section</TD><TD>varchar</TD><TD>64</TD><TD>X</TD><TD>&nbsp;</TD></TR>
+<TR><TD>category</TD><TD>Name of the category</TD><TD>
+varchar</TD><TD>64</TD><TD>X</TD><TD>&nbsp;</TD></TR>
+</TABLE></CENTER>
+
+<P Class=authors>L: Length
+<BR>N: Not Null
+
+<p>We have added to SourceWell 1.0.9 a lot of sections and categories. You are encouraged to delete the ones you are not interested in. Notice that by deleting a section, you also delete all its categories.
+
+<A NAME="comments">
+<P CLASS="subsubtitle">8.4. Table comments
+
+<P>It stores the comments made by registered users on apps. A registered user with
+<I>admin</I> permission can change or modify these comments in the
+http://yourserver/admcomment.php page.
+
+<P><CENTER><TABLE width=90% border=1>
+<TR><TD width=15%>NAME</TD><TD width=42%>EXPLANATION</TD><TD
+width=10%>TYPE</TD><TD width=5%>L</TD><TD width=3%>N</TD><TD width=25%>OTHERS</TD></TR>
+<TR><TD>appid</TD><TD>Id of the commented application (see table software)</TD><TD>bigint</TD><TD>20</TD><TD>X</TD><TD>unsigned DEFAULT '0'</TD></TR>
+<TR><TD>user_cmt</TD><TD>User name of the user that posted the comment</TD><TD>varchar</TD><TD>16</TD><TD>X</TD><TD>&nbsp;</TD></TR>
+<TR><TD>subject_cmt</TD><TD>Subject of the comment</TD><TD>varchar</TD><TD>128</TD><TD>X</TD><TD>&nbsp;</TD></TR>
+<TR><TD>text_cmt</TD><TD>Content of the comment</TD><TD>blob</TD><TD>&nbsp;</TD><TD>X</TD><TD>&nbsp;</TD></TR>
+<TR><TD>creation_cmt</TD><TD>Date of creation of the comment</TD><TD>timestamp<TD>14</TD><TD>&nbsp;</TD><TD>&nbsp;</TD></TR>
+</TABLE></CENTER>
+
+<P Class=authors>L: Length
+<BR>N: Not Null
+
+<A NAME="counter">
+<P CLASS="subsubtitle">8.5. Table counter
+
+<P>This table keeps several counters on applications. This counters are
+homepage counter, download (tarballs, rpms, debs, tgzs) counter, changelog
+counters, redirected CVSs counter, screenshots counter and mailing list
+archives counter. The sum of all the counters gives what we call the
+application's <I>importance</I>.
+
+<P>The goal of the counters is
+to measure the interest that inserted
+applicatios have arised between the visitors. As this is an internal table for
+SourceWell's correct functioning and to avoid misuse, it does not need to be (and can't be) administrated through the web.
+
+<P><CENTER><TABLE width=90% border=1>
+<TR><TD width=15%>NAME</TD><TD width=42%>EXPLANATION</TD><TD
+width=10%>TYPE</TD><TD width=5%>L</TD><TD width=3%>N</TD><TD width=25%>OTHERS</TD></TR>
+<TR><TD>appid</TD><TD>Id of the application (see table software)</TD><TD>bigint</TD><TD>20</TD><TD>X</TD><TD>unsigned DEFAULT
+'0' UNIQUE</TD></TR>
+<TR><TD>app_cnt</TD><TD>Count of hits (visits on appbyid.php) in our system</TD><TD>int</TD><TD>11</TD><TD>X</TD><TD>DEFAULT '0'</TD></TR>
+<TR><TD>homepage_cnt</TD><TD>Count of redirected homepages</TD><TD>int</TD><TD>11</TD><TD>X</TD><TD>DEFAULT '0'</TD></TR>
+<TR><TD>download_cnt</TD><TD>Count of redirected tarball downloads</TD><TD>int</TD><TD>11</TD><TD>X</TD><TD>DEFAULT '0'</TD></TR>
+<TR><TD>changelog_cnt</TD><TD>Count of redirected changelog hits</TD><TD>int</TD><TD>11</TD><TD>X</TD><TD>DEFAULT '0'</TD></TR>
+<TR><TD>rpm_cnt</TD><TD>Count of redirected rpm downloads</TD><TD>int</TD><TD>11</TD><TD>X</TD><TD>DEFAULT '0'</TD></TR>
+<TR><TD>deb_cnt</TD><TD>Count of redirected deb downloads</TD><TD>int</TD><TD>11</TD><TD>X</TD><TD>DEFAULT '0'</TD></TR>
+<TR><TD>tgz_cnt</TD><TD>Count of redirected tgz downloads</TD><TD>int</TD><TD>11</TD><TD>X</TD><TD>DEFAULT '0'</TD></TR>
+<TR><TD>cvs_cnt</TD><TD>Count of redirected CVSs in web</TD><TD>int</TD><TD>11</TD><TD>X</TD><TD>DEFAULT '0'</TD></TR>
+<TR><TD>screenshots_cnt</TD><TD>Count of redirected screenshots</TD><TD>int</TD><TD>11</TD><TD>X</TD><TD>DEFAULT '0'</TD></TR>
+<TR><TD>mailarch_cnt</TD><TD>Count of redirected mailing list archives</TD><TD>int</TD><TD>11</TD><TD>X</TD><TD>DEFAULT '0'</TD></TR>
+</TABLE></CENTER>
+
+<P Class=authors>L: Length
+<BR>N: Not Null
+
+<A NAME="counter_check">
+<P CLASS="subsubtitle">8.6. Table counter_check
+
+<P>This table is used to avoid manipulation of the application
+counters stored in the counter table. SourceWell saves some time the IP address of the visitor for each
+redirection that makes a counter increase. When doing a redirection, SourceWell
+looks in this table if that counter has already been increased by a visitor
+from that IP address. If an entry is found, the counter is not increased.
+
+<P>The contents of this table are deleted automatically after a certain time. As this is an internal table for
+SourceWell's correct functioning, it does not need to be (and can't be) administrated through the web.
+
+<P><CENTER><TABLE width=90% border=1>
+<TR><TD width=15%>NAME</TD><TD width=42%>EXPLANATION</TD><TD
+width=10%>TYPE</TD><TD width=5%>L</TD><TD width=3%>N</TD><TD width=25%>OTHERS</TD></TR>
+<TR><TD>appid</TD><TD>Id of the application (see table software)</TD><TD>bigint</TD><TD>20</TD><TD>X</TD><TD>unsigned DEFAULT '0'</TD></TR>
+<TR><TD>cnt_type</TD><TD>Type of counting (see table counter)</TD><TD>varchar</TD><TD>20</TD><TD>X</TD><TD>&nbsp;</TD></TR>
+<TR><TD>ipaddr</TD><TD>Source address of hit</TD><TD>varchar</TD><TD>15</TD><TD>X</TD><TD>DEFAULT '127.000.000.001'</TD></TR>
+<TR><TD>creation_cnt</TD><TD>Date of hit</TD><TD>timestamp</TD><TD>14</TD><TD>X</TD><TD>&nbsp;</TD></TR>
+</TABLE></CENTER>
+
+<P Class=authors>L: Length
+<BR>N: Not Null
+
+<A NAME="table_faq">
+<P CLASS="subsubtitle">8.7. Table faq
+
+<P>This table contains the frequently asked questions of our system. Registered users with <I>admin</I> permission can administrate (create, modify and delete) them through the web easily.
+
+<P><CENTER><TABLE width=90% border=1>
+<TR><TD width=15%>NAME</TD><TD width=42%>EXPLANATION</TD><TD
+width=10%>TYPE</TD><TD width=5%>L</TD><TD width=3%>N</TD><TD width=25%>OTHERS</TD></TR>
+<TR><TD>faqid</TD><TD>Id of the question-answer pair</TD><TD>int</TD><TD>8</TD><TD>X</TD><TD>unsigned DEFAULT '0' UNIQUE</TD></TR>
+<TR><TD>language</TD><TD>Language of the content</TD><TD>varchar</TD><TD>24</TD><TD>X</TD><TD>&nbsp;</TD></TR>
+<TR><TD>question</TD><TD>Content of the question</TD><TD>blob</TD><TD>&nbsp;</TD><TD>X</TD><TD>&nbsp;</TD></TR>
+<TR><TD>answer</TD><TD>Content of the answer</TD><TD>blob</TD><TD>&nbsp;</TD><TD>X</TD><TD>&nbsp;</TD></TR>
+</TABLE></CENTER>
+
+<P Class=authors>L: Length
+<BR>N: Not Null
+
+<A NAME="history">
+<P CLASS="subsubtitle">8.8. Table history
+
+<P>Table history keeps track of the history of the applications inserted
+in your system. As SourceWell allows every registered user to modify existing
+aplication entries, the username is also stored in this history table. This table can't be administrated through the web.
+
+<P><CENTER><TABLE width=90% border=1>
+<TR><TD width=15%>NAME</TD><TD width=42%>EXPLANATION</TD><TD
+width=10%>TYPE</TD><TD width=5%>L</TD><TD width=3%>N</TD><TD width=25%>OTHERS</TD></TR>
+<TR><TD>idx_his</TD><TD>Id for history table</TD><TD>bigint</TD><TD>20</TD><TD>X</TD><TD>DEFAULT
+'0' auto_increment UNIQUE</TD></TR>
+<TR><TD>appid</TD><TD>Id of the application (see table software)</TD><TD>bigint</TD><TD>20</TD><TD>X</TD><TD>DEFAULT '0'</TD></TR>
+<TR><TD>user_his</TD><TD>User name for that insertion/modification</TD><TD>varchar</TD><TD>16</TD><TD>X</TD><TD>&nbsp;</TD></TR>
+<TR><TD>creation_his</TD><TD>Date of that insertion/modification</TD><TD>timestamp</TD><TD>14</TD><TD>&nbsp;</TD><TD>&nbsp;</TD></TR>
+<TR><TD>version_his</TD><TD>Application version</TD><TD>varchar</TD><TD>16</TD><TD>X</TD><TD>&nbsp;</TD></TR>
+</TABLE></CENTER>
+
+<P Class=authors>L: Length
+<BR>N: Not Null
+
+<A NAME="licenses">
+<P CLASS="subsubtitle">8.9. Table licenses
+
+<P>Table licenses contains all licenses listed in your system. For each lisence
+there is a field with its name and another one with the URL where the
+license-text can be found. We expect to
+have the text of all licenses locally in future
+SourceWell releases.
+
+<P>If you don't know the URL of an
+inserted license you can insert http://yourserver/licnotavailable.php,
+which is a page that contains an information box announcing that the
+license text is not available.
+
+<P> A registered user with
+<I>admin</I> permission can change, modify or delete the content of the licenses table through the web,
+visiting the http://yourserver/admlicens.php page.
+
+<P><CENTER><TABLE width=90% border=1>
+<TR><TD width=15%>NAME</TD><TD width=42%>EXPLANATION</TD><TD
+width=10%>TYPE</TD><TD width=5%>L</TD><TD width=3%>N</TD><TD width=25%>OTHERS</TD></TR>
+<TR><TD>license</TD><TD>Name of the license</TD><TD>varchar</TD><TD>64</TD><TD>X</TD><TD>&nbsp;</TD></TR>
+<TR><TD>url</TD><TD>URL where the license can be read</TD><TD>varchar</TD><TD>255</TD><TD>X</TD><TD>&nbsp;</TD></TR>
+</TABLE></CENTER>
+
+<P Class=authors>L: Length
+<BR>N: Not Null
+
+<A NAME="software">
+<P CLASS="subsubtitle">8.10. Table software
+
+<P>This table has the actual parameters of applications. Registered users with
+<I>user</I> permission can modify or change applications through the web.
+
+<P>Any application insertion and modification will also be
+saved with the name of the user that has done it. We have decided to do so as modifications on a certain application do not have to be done
+always by the same user (that means that every user can modify all applications). The history table
+keeps track of the users that did the modifications.
+
+<P>Once modified by a registered user with <I>user</I> permission, the status of the
+application will change to <I>pending</I>. After being reviewed by an <I>editor</I>, the
+status will become <I>active</I>. This ensures that incorrect or malicious
+modifications are not inserted.
+
+<P>Applications modified by <I>editors</I> become automatically an <I>active</I>
+status (and do not need to be reviewed by the <I>editors</I> themselves). This
+is what we call "intelligent application validation for <I>editors</I>".
+
+<P><CENTER><TABLE width=90% border=1>
+<TR><TD width=15%>NAME</TD><TD width=52%>EXPLANATION</TD><TD
+width=10%>TYPE</TD><TD width=5%>L</TD><TD width=3%>N</TD><TD width=15%>OTHERS</TD></TR>
+<TR width=15%><TD>appid</TD><TD width=52%>Id of the
+application</TD><TD width=10%>bigint</TD><TD width=5%>20</TD><TD width=3%>X</TD><TD width=15%>unsigned DEFAULT '0' auto_increment UNIQUE</TD></TR>
+<TR><TD>name</TD><TD>Name of the application</TD><TD>varchar</TD><TD>128</TD><TD>X</TD><TD>&nbsp;</TD></TR>
+<TR><TD>type</TD><TD>Stable (S) or Development (D) version</TD><TD>char</TD><TD>1</TD><TD>X</TD><TD>&nbsp;</TD></TR>
+<TR><TD>version</TD><TD>Version number of the application</TD><TD>varchar</TD><TD>16</TD><TD>X</TD><TD>&nbsp;</TD></TR>
+<TR><TD>section</TD><TD>Section the app corresponds to</TD><TD>varchar</TD><TD>64</TD><TD>X</TD><TD>&nbsp;</TD></TR>
+<TR><TD>category</TD><TD>Category the app corresponds to</TD><TD>varchar</TD><TD>64</TD><TD>X</TD><TD>&nbsp;</TD></TR>
+<TR><TD>license</TD><TD>License under which the app is released</TD><TD>varchar</TD><TD>64</TD><TD>X</TD><TD>&nbsp;</TD></TR>
+<TR><TD>homepage</TD><TD>Homepage of the application</TD><TD>varchar</TD><TD>255</TD><TD>X</TD><TD>&nbsp;</TD></TR>
+<TR><TD>download</TD><TD>URL where the app's tarball can be downloaded from</TD><TD>varchar</TD><TD>255</TD><TD>&nbsp;</TD><TD>&nbsp;</TD></TR>
+<TR><TD>changelog</TD><TD>URL of the app's changelog</TD><TD>varchar</TD><TD>255</TD><TD>&nbsp;</TD><TD>&nbsp;</TD></TR>
+<TR><TD>rpm</TD><TD>URL where the app's rpm can be downloaded from</TD><TD>varchar</TD><TD>255</TD><TD>&nbsp;</TD><TD>&nbsp;</TD></TR>
+<TR><TD>deb</TD><TD>URL where the app's deb can be downloaded from</TD><TD>varchar</TD><TD>255</TD><TD>&nbsp;</TD><TD>&nbsp;</TD></TR>
+<TR><TD>tgz</TD><TD>URL where the app's tgz can be downloaded from</TD><TD>varchar</TD><TD>255</TD><TD>&nbsp;</TD><TD>&nbsp;</TD></TR>
+<TR><TD>cvs</TD><TD>URL of the app's CVS in web</TD><TD>varchar</TD><TD>255</TD><TD>&nbsp;</TD><TD>&nbsp;</TD></TR>
+<TR><TD>screenshots</TD><TD>URL of the app's screenshot(s)</TD><TD>varchar</TD><TD>255</TD><TD>&nbsp;</TD><TD>&nbsp;</TD></TR>
+<TR><TD>mailarch</TD><TD>URL of the app's mailing list archives</TD><TD>varchar</TD><TD>255</TD><TD>&nbsp;</TD><TD>&nbsp;</TD></TR>
+<TR><TD>developer</TD><TD>Name of the app's developer</TD><TD>varchar</TD><TD>64</TD><TD>X</TD><TD>&nbsp;</TD></TR>
+<TR><TD>description</TD><TD>Short description of the application</TD><TD>blob</TD><TD>&nbsp;</TD><TD>X</TD><TD>&nbsp;</TD></TR>
+<TR><TD>modification</TD><TD>Date of last modification</TD><TD>timestamp</TD><TD>14</TD><TD>&nbsp;</TD><TD>&nbsp;</TD></TR>
+<TR><TD>creation</TD><TD>Date of creation</TD><TD>timestamp</TD><TD>14</TD><TD>&nbsp;</TD><TD>&nbsp;</TD></TR>
+<TR><TD>email</TD><TD>e-mail of the app's developer</TD><TD>varchar</TD><TD>128</TD><TD>X</TD><TD>&nbsp;</TD></TR>
+<TR><TD>depend</TD><TD>Dependencies on other apps or libraries</TD><TD>varchar</TD><TD>128</TD><TD>X</TD><TD>&nbsp;</TD></TR>
+<TR><TD>user</TD><TD>User name of the <I>user</I> that has made the insertion
+or last modification</TD><TD>varchar</TD><TD>16</TD><TD>X</TD><TD>&nbsp;</TD></TR>
+<TR><TD>status</TD><TD>Active (A), pending (P), deleted (D) or modified (M)</TD><TD>char</TD><TD>1</TD><TD>X</TD><TD>&nbsp;</TD></TR>
+<TR><TD>urgency</TD><TD>Low (1), Medium (2) or High (3)</TD><TD>int</TD><TD>11</TD><TD>X</TD><TD>DEFAULT '2'</TD></TR>
+</TABLE></CENTER>
+
+<P Class=authors>L: Length
+<BR>N: Not Null
+
+<p>Table temp has been added in SourceWell 1.0.13 in order to avoid that false insertions delete previous insertions. Hence, all applications that are already in the database and are going to be updated by visitors with permissions different from editor and administrator permission. The pending state of these applications is stored in the temp table. Once these contents are validated, they are moved from this table into the software table.
+
+<P>&nbsp;
+<A NAME="developers">
+<P CLASS="subtitle">9. For developers
+
+<P>SourceWell is Open Source, so you're invited to contribute to it.
+
+<P>The next paragrahps have been made with the idea of a developer who wants to
+make further development in SourceWell or who wants to make some
+modifications so that SourceWell suits his needs.
+
+<P>Note: PHP knowledge is needed for developing or modifying SourceWell. You should also have
+certain SQL experience if you want to handle with databases.
+
+<P>SourceWell has been thought as an announcement and retrieval system
+for software, but maybe you're interested in adapting SourceWell for
+announcing other kind of things. Or maybe you want to improve
+SourceWell adding features or correcting errors. If one of these is your case, keeping on
+reading will be of interest for you.
+
+<P>Please report to the authors any adaptions and/or modifications. This
+could help us knowing what SourceWell should implement in the future
+and making other SourceWell users benefit from your work.
+
+<P>For advanced uses, PHPLib should also be known. You can read about
+PHPLib's API in PHPLib's manual. PHPLib is used for sessions, authentication and for the database access. It is very important to understand its functions to achieve a propper comprehension of the SourceWell system.
+
+<A NAME="source_contribution">
+<P CLASS="subsubtitle">9.1. Source contribution
+
+<P> If you're planning to contribute source, please read the following
+ information:
+<UL>
+<LI>All configuration data belongs to config.inc. The local.inc file
+   just is the local configuration for the PHPLib library. Please keep it free from other code.
+<LI>Commonly used functions should be added to lib.inc.
+<LI>Functions that refer to statistics belong to statslib.inc.
+<LI>Functions that are used for comments should be placed at
+   cmtlib.inc.
+<LI>Functions that handle boxes have to be inserted in box.inc.
+<LI>Obviously, you're free to use whatever coding style you want. But please
+   try to keep your code as simple as possible.
+<LI>Please, try to write all your outputs in English with the translate
+   function (explained later). This will help to keep the
+   internationalization of this project clear.
+<LI>If you want to be really helpful, write an entry for the ChangeLog.
+</UL>
+
+<P>Important: With SourceWell version 1.0, development has switched to CVS.
+  The following method (anonymous CVS access) is preferred for new developers. The module you wish to check out must be specified as the <I>modulename</I>. When prompted for a password for anonymous, simply press the <I>Enter</I> key:
+<UL>
+<LI>Fetch the current CVS tree over anonymous CVS:
+<BR>user$ cvs -d :pserver:anonymous@cvs.berlios.de:/csroot/sourcewell login
+<BR>[Password: <I>(just press <I>Enter</I> if you are an anonymous user)</I>]
+<BR>user$ cvs -z3 -d:pserver:anonymous@cvs.berlios.de:/cvsroot/sourcewell co <I>modulename</I>
+<BR>[Updates from within the module's directory do not need the -d parameter]
+<LI>send us the file you've modified, or send us a diff.
+</UL>
+
+<P> We've also set up CVSWEB on <a href="http://developer.berlios.de/cvs/?group_id=23" target="_blank">http://developer.berlios.de/cvs/?group_id=23</a>.
+
+<P> Write access to the CVS tree is granted only to developers who have already
+  contributed something useful to SourceWell.  If you're interested in that,
+  please contact the authors.
+
+<A NAME="structure_of_a_page">
+<P CLASS="subsubtitle">9.2. Main structure of a page
+
+<P>Explaining how most of SourceWell files
+are structured is important for developers in order to rapidly know what is
+coded and how it has been done. Afterwards adaptions and modifications are made more easily.
+
+<UL>
+<LI>Starting (loading) session:
+<PRE>
+  page_open(array("sess" => "SourceWell_Session"));
+</PRE>
+
+<P>This is a function provided by PHPLib which allows to have sessions
+with and without cookies enabled in the visitor's browser. It should
+be placed at the top of every page and before any other output.
+
+<P>&nbsp;<LI>Authentication
+
+<P>There are two different types of authentication depending on the page
+visited.
+
+<P>Case a: authenticated and not authenticated visitors (both type of users can
+access the current page)
+
+<PRE>
+    if (isset($auth) && !empty($auth->auth["perm"])) {
+      page_close();
+      page_open(array("sess" => "SourceWell_Session",
+                      "auth" => "SourceWell_Auth",
+                      "perm" => "SourceWell_Perm"));
+    }
+</PRE>
+
+<P>In the first case, everybody can visit that web page without
+having logged in. What the code does is looking if the user is
+authenticated; if it is so, a new session with his parameters is
+loaded (the default one is closed with the page_close() function
+given by PHPLib). Loading of sessions is done by means of PHPLib.
+
+<P>This type of authentication should be the default one. The SourceWell system
+needs sessions to led PHPLib work with databases that are not in the local
+host. That's why even if sessions are not necessary for a certain page, they
+should be inserted to ensure a correct functioning of the system.
+
+<P>Case b: authenticated users only
+
+<PRE>
+    page_open(array("sess" => "SourceWell_Session",
+                    "auth" => "SourceWell_Auth",
+                    "perm" => "SourceWell_Perm"));
+</PRE>
+
+<P>This page requires to be logged in. At this point it doesn't matter
+what permissions the registered user has. If the visitor is not logged in, the
+login-page (loginform.ihtml) will be automatically called by means of PHPLib's functionality.
+
+<P>So far, we haven't looked if the page visited requires
+any special permission. This will be done later in the page and won't be realized by PHPLib; the
+developer will have to make an if-statement with the required permissions and allow the user to access the
+content of the page or prompt an error box.
+
+<P>&nbsp;<LI>Header
+
+<P>The include/header.inc file contains the common functions and
+initializations almost all SourceWell pages require. What the header inserts in
+each file is:
+
+<UL>
+<P>&nbsp;<LI>Disabling cache
+<PRE>
+  header("Cache-Control: no-cache, must-revalidate");
+  header("Pragma: no-cache");
+</PRE>
+
+<P>This disables the browsers to catch our web pages in the local cache. If we
+wouldn't do cache cleaning, just made modifications may not be shown by the
+  browsers as they may show an earlier version of the webpage with the same URL copied in the cache.
+
+<P>The first line follows the HTTP/1.1 standard, while the second works under HTTP/1.0.
+
+<P>&nbsp;<LI>Required libraries are included:
+<PRE>
+   require("config.inc");
+   require("lib.inc");
+   require("translation.inc");
+   require("lang.inc");
+   require("box.inc");
+</PRE>
+
+<P>These are the basic libraries for SourceWell. You can
+find an explanation of them in the chapter where the files are exposed. The
+functions they contain are explained later.
+
+<P>&nbsp;<LI>Initializes the translation object
+
+<PRE>
+  $t = new translation($la);
+</PRE>
+
+<P>This is the constructor for the language object. It assures that on
+every page the object is constructed properly. The value of the $la
+variable gives the language in which the page will be shown.
+
+<p>As we pretend to use gettext in the future, this translation object will be removed in the next versions.
+
+  <P>&nbsp;<LI>database connection (if required in the page)
+
+<P>SourceWell works in many pages (and in its menubar) with a database. At this point a persistent connection to the database is build. By using PHPLib's functions we expect to have database independence.
+
+<PRE>
+    $db = new DB_SourceWell;
+</PRE>
+
+<P>Note that for MySQL (SourceWell's only supported database up to the moment), this code is equivalent to build a persistent connection
+like this:
+
+<PRE>
+    $db = mysql_pconnect($db_host,$db_name,$db_password);
+</PRE>
+
+  <P>&nbsp;<LI>Head of the page (HTML and BODY tags, metatags, title, css, fonts...)
+  <BR>&nbsp;<LI>top strip and top title
+
+<P>The top strip is a strip (one line table with 100% width) with some links at the
+left side and the
+actual value of the session (if logged in user name, permissions and
+time to end session and if not logged in the string "not logged in") at the right one. You can personalize the links
+at the right side in the config.inc file. The actual value of the session is
+translated into the supported languages.
+
+<P>The top title is another table (with 100% width) which has two images and the title and
+ slogan of your website. You can configure this propperly in the
+config.inc file.
+
+  <BR>&nbsp;<LI>Menubar
+<P>The menubar allows to easily navigate through the SourceWell system. It is
+placed at the left side of your browser.
+
+<P>The links shown depend on the
+permissions of the visitor. If you look at the sections where the files in the
+main directory are explained, you'll understand what this means. For instance,
+while the menubar contains a link to "Login" for unauthenticated users,
+authenticated users (that means users who have logged in) will instead get a
+"Logout" link.
+
+  <P>&nbsp;<LI>Opens table
+<P>The content of each page is exposed in the table just opened. It will be
+closed in the footer.
+</UL>
+
+<P>&nbsp;<LI>Initializes box objects
+<P>The box objects that are used in the page are constructed at the
+beginning. Usually you will find two boxes: bx and be. bx is the main
+box while be is the error message box.
+
+<P>&nbsp;<LI>Content of the page
+  <UL>
+  <BR><LI>permission if required
+<P>Depending on the page, permissions will be required. For instance, if
+we want a page only accessible for the <I>editors</I>, we will put
+this code:
+
+<PRE>
+    if (!$perm->have_perm("editor"))
+</PRE>
+
+<P>In the case shown as an example, any other visitor who hasn't got <I>editor</I> permission will get an error message. This is only an example that is not really true. Instead of <I>editor</I>, you will find a variable such as <I>$config_perm_xxxx</I> (being <I>xxxx</I> the type of functionality, such as administrating sections, administrating the faq, etc.). That means that the permission needed to enter that page is set by this variable. This is done so allowing you to easily change the permission needed just by editing the include/config.inc file and modifying the permission requirements that should be met to access that page.
+
+  <P>&nbsp;<LI> functionality of the page
+
+<P>Here comes the real functionality of the page. For instance, the file for
+registering as a new user (register.php) contains here the code for doing a
+registration.
+  </UL>
+
+<P>&nbsp;<LI>Footer
+
+<P>The include/footer.inc file contains the common ending of almost all SourceWell pages. What the footer inserts in
+each file is:
+
+  <UL>
+  <BR><LI>Close table
+<P>The content table opened in the header.inc file is closed.
+
+  <BR>&nbsp;<LI>Bottom strip
+<P>The bottom strip (one line table with 100% width) gives the name of the Organisation which owns the
+website. You can configure it to suit your needs in the config.inc file.
+
+  <BR>&nbsp;<LI>Ending HTML and BODY tags
+  </UL>
+
+<P>&nbsp;<LI>Ending (saving) session
+<P>The PHPLib page_close() function closes (saves) the session for this
+page. In fact, the SourceWell developer does not have to worry about sessions
+if he follows the exposed scheme. PHPLib will do the session-job transparently
+for you. Nice ;-).
+</UL>
+<BR>&nbsp;
+
+<A NAME="sourcewell_functions">
+<P CLASS="subsubtitle">9.3. SourceWell Functions
+
+<P>If you're interested in further developing or in (re)using what is already
+coded, this section will help you to rapidly know what is available.
+
+<A NAME="box">
+<P CLASS="subsubsubtitle">9.3.1. Functions in box.inc
+
+<P>The box class is defined to make tables easier to implement in
+SourceWell. This functions are used in almost all files in the SourceWell system.
+
+<p>This library is very useful, but has been shown to be too simple. We would like to improve it in the future.
+
+<P CLASS="function">function box (...)
+
+<PRE>
+    function box ($box_width="",
+	          $frame_color="#000000",
+	          $frame_width="1",
+	          $title_bgcolor="#CCCCCC",
+	          $title_font_color="#000000",
+	          $title_align="",
+	          $body_bgcolor="#FFFFFF",
+	          $body_font_color="#000000",
+	          $body_align="");
+</PRE>
+
+<P>Constructor. The given parameters are the parameters by default; any
+other value will overwrite them.
+
+<P CLASS="function">function box_begin()
+
+<P>Begins the box. The box has to be constructed before with the box()
+function. This function requires box_end() at the end.
+
+<P CLASS="function">function box_end()
+
+<P>Ends the box. Requires box_begin() to be defined before in order to end it.
+
+<P CLASS="function">function box_title($title)
+
+<P>This function allows you to put the string $title as title of the box. This
+function should be placed after the box_begin() function.
+
+<P CLASS="function">function box_full($title, $text)
+
+<P>Given the strings title and text, the box is created. This type of
+box is usefull when printing error messages. 
+
+<P CLASS="function">function box_strip($title)
+
+<P>This function allows you to have subtitles in boxes. This function is very
+usefull when you have different classifications in the same box and want to
+have a title header (strip) for each one. This functions requires the box to be
+constructed with the box() function and to be beginned with box_begin().
+
+
+<A NAME="cmtlib">
+<P CLASS="subsubsubtitle">9.3.2. Functions in cmtlib.inc
+
+<P>The cmtlib library contains the functions needed for the supporting comments
+on applications.
+
+<P CLASS="function">function cmtform($query)
+
+<P>Shows the form to be filled to give a comment on a certain application. The query parameter is a SQL query that looks in the software table for the
+application with the given <I>id</I>. Applications that can be commented have
+to be not <I>pending</I>.
+
+<P CLASS="function">function cmtshow($query)
+
+<P>Shows the comment given for an application. The query parameter is a SQL query with the information of the applications whose comments will be shown. If your aim is to  show all comments on a given application, this function has to be called several times.
+
+<P CLASS="function">function cmtmod($query)
+
+<P>This function is used by the <I>admin</I> to administrate comments. The query parameter is a SQL query with the information of the applications whose comments will be modified. While in cmtform($query) the fields are in blank,
+this function returns the fields with the actual values stored in the database
+as default entries to the form. 
+
+<P CLASS="function">function faqshow($query)
+
+<P>Shows the just inserted FAQ by the <I>admin</I>. The query parameter is a SQL query with the information of the faq being showed. For showing all the FAQs in the FAQ-page accessible to everybody (faq.php), another algorithm is used (and that's why it appears differently), but you could use this one iteratively too with the same aim.
+
+<P CLASS="function">function faqmod($query)
+
+<P>This function is used by the <I>admin</I> to modify existing FAQs. While in faqform() the fields are in blank, this function returns the fields with the actual values stored in the database as default entries to the form. 
+
+<P CLASS="function">function faqform()
+
+<P>This function is used by the <I>admin</I> to insert new FAQs.
+
+<A NAME="lib">
+<P CLASS="subsubsubtitle">9.3.3. Functions in lib.inc
+
+<P>This is the main library. It contains all the functions that work with the
+applications, its parameters and main functionality. This functions are used in
+almost every SourceWell file.
+
+<P CLASS="function">function mktimestamp($time)
+
+<P>Returns the variable $timestamp. Transforms the time parameter
+properly into a value accepted by the (MySQL) database.
+
+<P>The use of timestamp in SourceWell's database gets a little clearer when we
+read the MySQL Manual: "The TIMESTAMP column type provides a
+type that you can use to automatically mark INSERT or UPDATE operations with
+the current date and time. If you have multiple TIMESTAMP columns, only the
+first one is updated automatically."
+
+<P CLASS="function">function timestr($timestamp)
+
+<P>Returns the variable $time. This function transforms the type timestamp
+used in MySQL into the wanted output.
+
+<P>It prints the date in this format: "%A, %e. %B %Y, %H:%M:%S %Z". An example
+output could be: "Monday, 1. Jan 2001, 15:46:15 CET".
+
+<P>SourceWell can translate the weekday and the month to the languages
+supported by the system. In our example, "Monday" and "January" will appear only for the English version.
+
+<P CLASS="function">function timestr_short($timestamp)
+
+<P>Returns the variable $time. This function transforms the type timestamp
+used in MySQL into the wanted output. This function is used in the
+top_strip.inc file from the include subdirectory that comes at the beginning of
+almost all SourceWell files. It prints the date in this
+format: "%a,%e.%b,%H:%M:%S". An example output would be:
+"Mon,1.Jan,15:46:15".
+
+<P>SourceWell can translate the weekday and the month to the languages
+supported by the system. In our example, "Mon" (that stays for Monday) and "Jan"
+(that stays for January) will appear only for the English version.
+
+<P CLASS="function">function timestr_comment($timestamp)
+
+<P>Returns the variable $time. This function transforms the type timestamp
+used in MySQL into the wanted output. This function is used to show the
+creation date of application comments.
+
+<P>The printed data format follows this rule: "%e. %b, %H:%M". An example
+output could be:
+"1. Jan, 15:46".
+
+<P>SourceWell can translate the month to the languages
+supported by the system. In our example, "Jan"
+(that stays for January) will appear only for the English version.
+
+
+<P CLASS="function">function appfull($query)
+
+<P>Shows the whole information stored about an app. The query parameter is the SQL query. 
+
+<P CLASS="function">function appcat($query,$title,$iter)
+
+<P>Shows the apps in a certain category. query is the SQL database query that will be worked on. title puts the name of the
+category as title of the table and iter allows to show the apps in
+steps of 10 apps each time.
+
+<P CLASS="function">function appdat($query)
+
+<P>This function just calls the function appd($query).
+
+<P CLASS="function">function appd($query)
+
+<P>Displays application data. The query parameter is the SQL query.
+
+<P CLASS="function">function appupdate($query)
+
+<P>This function calls the function appd($query) and adds at the end a line with the current status of the application (pending, deleted or modified)
+
+<P CLASS="function">function appday($start)
+
+<P>Displays marginal application data. The start parameter gives the date
+for which the applications should be displayed. All the SQL queries
+and other things are done internally.
+
+<P CLASS="function">function updform($query)
+
+<P>Update form. The query parameter is the SQL query.
+
+<P CLASS="function">function insform()
+
+<P>Insert form. Displays the applications just inserted.
+
+<P CLASS="function">function inssec($string)
+
+<P>Insert category. The string parameter has to be set to "yes" when the
+section is not in the categories table and has to be inserted.
+
+<P CLASS="function">function seccat($selected_sec, $selected_cat)
+
+<P>Displays the different section/category pairs as options of a HTML SELECT form. selected_sec and selected_cat are the section and category by default (the SELECTED attribute in the form).
+
+<P CLASS="function">function sec($selected)
+
+<P>Displays the different sections as options of a HTML SELECT form. selected is the section by default (the SELECTED attribute in the form).
+
+<P CLASS="function">function license($selected)
+
+<P>Displays the different licenses as options of a HTML SELECT form. row is the
+license by default (the SELECTED attribute in the form).
+
+<P CLASS="function">function urgency($int)
+
+<P>Urgency is stored in the database as an integer. Given this integer as a parameter, the
+urgency function returns the string equivalent.
+
+<CENTER><TABLE width=40% border=0 cellspacing=0>
+<TR><TD>Entered value</TD><TD>Urgency returns</TD></TR>
+<TR><TD>$int = 1</TD><TD>"low"</TD></TR>
+<TR><TD>$int = 2</TD><TD>"medium"</TD></TR>
+<TR><TD>$int = 3</TD><TD>"high".</TD><TR>
+<TR><TD colspan=2>The default value is "medium"</TD></TR>
+</TABLE></CENTER>
+
+<P CLASS="function">function show_more($iter,$maxiter,$url, $urlquery)
+
+<P>Shows apps of the current iteraction iter until it reaches ten or the
+maximum number of iteractions maxiter. The url and urlquery parameters allow to go forward and/or backwards in order: url is just the php3 page that will be called and urlquery the rest of the URL query (the parameters that follow the "?" in the URL).
+
+<P CLASS="function">function wrap($string,$width=75,$break=" ")
+
+<P>This functions wraps the input $string at the characters given by $break
+(which is by default a blank space) when the width of the string is greater
+than $width (which is by default 75 characters long).
+
+<P CLASS="function">function typestr($type)
+
+<P>The type of an application is stored in the database as a single
+character. Given this character as a parameter, the
+typestr function returns the string equivalent.
+
+<CENTER><TABLE width=40% border=0 cellspacing=0>
+<TR><TD>Entered value</TD><TD>typestr returns</TD></TR>
+<TR><TD>$type = "S"</TD><TD>"Stable"</TD></TR>
+<TR><TD>$type = "D"</TD><TD>"Development"</TD></TR>
+</TABLE></CENTER>
+
+<P>This function supports internally the translation function.
+
+<P CLASS="function">function increasecnt($id, $type)
+
+<P>Given the application id and the type of count (see table counter), this
+function increases that type of count for that application in the database.
+
+<P CLASS="function">function checkcnt($id, $ipaddr, $type)
+
+<P>This function checks if the application (given by its id) has increased its
+counting from the IP address (given by ipaddr) in the last day. The type gives
+the type of count (see table counter).
+
+<P>The table counter_check keeps track of all the countings made during the
+last hours. This functions looks if the application has an entry from the actual
+IP address in a counter type given by $type. If this occurs, the function increasecnt($id,
+$type) will not be called avoiding malicious increasing of application importance.
+
+<P CLASS="function">function nlmsg($period)
+
+<P>This function shows the contents of the news mailing lists. The period parameter is a string whose value can be "weekly" for the
+weekly mailing list or "daily" for the daily mailing list.
+
+<P CLASS="function">function mailuser($perms, $subj, $message)
+
+<P>Sends an e-mail message to the users with the <I>$perm</I> permission. The
+content of the message is given by the <I>$message</I> parameter and its subject by
+<I>$subj</I>. This function is used to give advice to editors when a new
+application is inserted, deleted or changed (modified not!) and to give advice to
+administrators when new users register.
+
+<A NAME="statslib">
+<P CLASS="subsubsubtitle">9.3.4. Functions in statslib.inc
+
+<P>The statslib library has been thought to develop the statistics for
+SourceWell. The boxes are implemented internally, so the developer
+only has to worry about the statistical implementation.
+
+<P>This library has been
+developed parallel to the box library, so you'll find common (and exclusive)
+features in them. Future versions may try to make both libraries converge.
+
+<P CLASS="function">function stats($result,$var,$message,$position)
+
+<P>This function returns an ordered list (a sort of top list) for the variable <I>$var</I>. <I>$var</I> gives the type for which the table is shown
+(app_cnt, sum_cnt, download_cnt, homepage_cnt, rpm_cnt, deb_cnt, tgz_cnt). <I>$result</I> is the database result for a given SQL
+input. <I>$message</I> is the title of the table. The <I>$position</I>
+parameter gives the starting position of the applications listed.
+
+<P>It does not require any previous box or table definition as it
+does this internally. The length of the graphic bar is also internally chosen.
+
+<P CLASS="function">function stats_title($message)
+
+<P>Displays the header of the table with the title given by $message. This function is
+similar to the box_title($title) function defined in box.inc.
+
+<P CLASS="function">function stats_subtitle($message)
+
+<P>Used to insert subtitles in the table. This function is
+similar to the box_strip($title) function defined in box.inc.
+
+<P CLASS="function">function stats_display($what,$count,$url,$urlquery,$total)
+
+<P>This function displays the statistics graphically in one row. <I>$what</I>
+is a string with the name of what is displayed, <I>$count</I> gives the number of times it appears in the database, <I>$url</I> is the corresponding url (only the xxx.php url), <I>$urlquery</I> the rest of the URL (made so for achieving session managemente with and without cookies) and <I>$total</I> is the total number of implied applications. In the case <I>$url</I> or <I>$urlquery</I> are "0", the displayed statistics wont have a link.
+
+<P CLASS="function">function stats_end()
+
+<P>Finishes the table. This function is similar to the box_end() function defined in box.inc.
+
+
+<A NAME="translation">
+<P CLASS="subsubsubtitle">9.3.5. Functions in translation.inc
+
+<P>This library is small, but very important. It has the translate
+function which allows SourceWell to be supported in several languages.
+
+<P CLASS="function">function translate($phrase)
+
+<P>Returns $tmp. phrase is a parameter that contains the string in
+SourceWell's native language, English. The returned value, $tmp, will
+be the string in the translated language. The translate function belongs to the
+translation object. On every SourceWell page, at the header, the variable $t is
+an initialization (construction) of this object.
+
+
+<A NAME="translations_for_developers">
+<P CLASS="subsubtitle">9.4. Supporting translations
+
+<P>The way the translation works is very simple. SourceWell's outputs are
+written by default in English, but there's an implemented
+function (the translate($phrase) function) that <I>translates</I> these outputs to
+other languages. In the include subdirectory, you'll find the files that are
+responsible for this miracle: the <I>Language</I>-lang.inc. These files contain
+the English to <I>Language</I> translations and help the translate($phrase)
+function with its work.
+
+<P>The translation procedure is very simple. Every page in SourceWell has a
+translation object constructed that is ready for use. This object, whose
+variable is <I>$t</I> contains a function which will be called for every string
+that should be translated.
+
+<P>It's better understood with an example. Imagine you would like to have the
+string <I>Home</I> be able to be translated in other languages other than
+English. For a normal output, we would write this code:
+
+<PRE>
+      echo "Home";
+</PRE>
+
+<P>When wanting to be able to have it translated, we will call the explained
+translation function of the $t object. Coded:
+
+<PRE>
+      echo $t->translate("Home");
+</PRE>
+
+<P>The translation function will see first what language the user has chosen and
+then return the string in $temp that corresponds to "Home" for that language.
+That means that if the visitor has
+chosen the German language, you will get this in your web browser as the output
+of the upper code:
+
+<PRE>
+      Heim
+</PRE>
+
+<P>And
+that's it. You'll have noticed how simple it is to support internationalization
+for SourceWell!
+
+<P>&nbsp;
+<A NAME="version_numbering">
+<P CLASS="subtitle">10. Version numbering policy
+
+<P>SourceWell versions will follow this pattern:
+<I>a</I>.<I>b</I>.<I>c</I>. While <I>a</I> and <I>b</I> can only be integers,
+<I>c</I> can be either an integer or a character.
+
+<UL>
+<LI><I>a</I> will be increased when the SourceWell system has new,
+innovative concepts.
+<BR>Updating your actual SourceWell system is then not
+only recommended... it's a must!
+
+<BR>&nbsp;<LI><I>b</I> is increased when inserting major bug fixes, major security fixes, a big amount of
+further developing or new relevant features.
+<BR>Updating your SourceWell system is
+recommended.
+
+<BR>&nbsp;<LI><I>c</I> is increased when inserting minor bug fixes, minor
+security fixes, a small amount of
+further developing or a new language support. <I>c</I> is optional if it is
+cero. It will become a character
+in steps of five. That means for example that
+<UL>
+<LI>SourceWell 1.0a = SourceWell 1.0.5 and that
+<LI>SourceWell 2.3c = SourceWell 2.3.15
+</UL>
+<BR>Updating your SourceWell system is not required if you do not need the incorporated functionality.
+</UL>
+
+<P>&nbsp;
+<A NAME="faq">
+<P CLASS="subtitle">11. FAQ
+
+<UL>
+<LI>When should I use PHP-Nuke and when SourceWell?
+<BR>PHP-Nuke and SourceWell have been implemented for two different
+purposes. While PHP-Nuke is a news system portal, SourceWell is
+thought to be an announcement and retrieval system, where the
+announced items (in our case software) are more important than user
+interaction between themselves. Our recomendation then is: use PHP-Nuke if you
+want to make your site a meeting point about a certain topic
+and use SourceWell if you want to announce propperly items. 
+
+<P>&nbsp;<LI>Is SourceWell database independent?
+<BR>The answer is yes. SourceWell uses PHPLib's functions to access the database, so every database supported by PHPLib should also support the SourceWell system. Up to now, we've only tested SourceWell in BerliOS with MySQL.
+
+<P>&nbsp;
+<LI>Does SourceWell work with PHP4?
+<BR>Theoretically yes. Please report the authors if you have got any problems.
+
+<P>&nbsp;
+<LI>Can an anonymous user add software and do comments?
+<BR>If you wish so, yes; you just have to create an user with <I>anonymous</I> permissions (the default system comes with one anonymous user as you'll quickly find out). There can be only one user with that permission and this user can't have any other permissions.
+<BR>If you don't wish to have an anonymous user, just make sure that your system hasn't got any user with <I>anonymous</I> permission in admuser.php. SourceWell will then only accept software insertions, software modifications and comments by registered users (with <I>user</I> permission).
+
+<P>&nbsp;
+<LI>Does a mailing list for developers interested in SourceWell exist?
+<BR>Yes. Just write it down: <a href="mailto:sourcewell-support@lists.berlios.de">sourcewell-support@lists.berlios.de</a>.
+
+<P>&nbsp;
+<LI>Why is SourceWell not in my language?
+<BR>SourceWell can be easily translated into different languages. If you see
+that SourceWell does not have support in your language, you're gladly invited to help us with the internationalization. Visit <a href="http://sourcewell.berlios.de/html/translating.php" target="_blank">http://sourcewell.berlios.de/html/translating.php</a>.
+
+<P>&nbsp;
+<LI>What the hell does <I>importance</I> mean?
+<BR>Importance is the sum of all the different counts of an application. That
+means, that importance adds the number of hits on an app plus the number of
+downloads (tarballs, RPMs, DEBs and TGZs) and the number of redirected changelogs,
+CVSs, screenshots and mailing list archives. We think it is an interesting
+manner of measuring the visitor's interest on applications.
+
+<P>&nbsp;
+<LI>What is BerliOS?
+<BR>BerliOS is the German national OpenSource Center. BerliOS offers web
+information, documentation, information events, consultancy + further
+developments, sector-specific solutions, software-solutions + new versions,
+searchengines and successfull debut in the world of OpenSource Software.
+</UL>
+
+<P>&nbsp;
+<A NAME="todo">
+<P CLASS="subtitle">12. TODO
+<UL>
+<li>License texts
+<li>User deletion should be consistent
+<li>i18n support through gettext and l12n through po files
+<LI>Configuration file edition through a web-browser (almost done; will come with soon)
+<LI>Personalization of credits possible (will come soon)
+<LI>HTML 4.0 compliance
+<LI>Advanced Search (has to be enhanced)
+<LI>News boxes (and their administration)
+<LI>Improve language support (please, we need your translations)
+<LI>Implement linkchecker for automatic checking of database URLs
+<LI>Internationalization of the FAQ
+<LI>Any other ideas? Write the authors ;-)
+</UL>
+
+<P>&nbsp;
+<A NAME="bugs">
+<P CLASS="subtitle">13. Known Bugs
+
+<UL>
+<li>There are several problems with PHPLib's authentification implementation with KDE's browser, Konqueror. We don't know what is going on. If you do, please report the authors.
+</UL>
+
+<P>&nbsp;
+<A NAME="references">
+<P CLASS="subtitle">14. References
+
+<P>SourceWell software:
+
+<UL>
+<LI>SourceWell Homepage: <a href="http://sourcewell.berlios.de/html/" target="_blank">http://sourcewell.berlios.de/html/</a>
+<LI>Developer Project page: <a href="http://developer.berlios.de/projects/sourcewell" target="_blank">http://developer.berlios.de/projects/sourcewell</a>
+<LI>Tarballs: <a href="http://developer.berlios.de/project/filelist.php?group_id=23">http://developer.berlios.de/project/filelist.php?group_id=23</a>
+<LI>Changelog: <a href="http://sourcewell.berlios.de/doc/CHANGELOG">http://sourcewell.berlios.de/doc/CHANGELOG</a>
+<LI>Screenshots (= example system): <a href="http://sourcewell.berlios.de/" target="_blank">http://sourcewell.berlios.de/</a>
+<LI>Documentation and Manuals: <A
+HREF="http://developer.berlios.de/docman/?group_id=23" target="_blank">http://developer.berlios.de/docman/?group_id=23</a>
+(or with the SourceWell tarballs)
+<LI>CVS tree (in web): <a href="http://cvs.berlios.de/cgi-bin/cvsweb.cgi/?cvsroot=sourcewell" target="_blank">http://cvs.berlios.de/cgi-bin/cvsweb.cgi/?cvsroot=sourcewell</a>
+<LI>Mailing List Archive: <a href="http://lists.berlios.de/pipermail/sourcewell-support/" target="_blank">http://lists.berlios.de/pipermail/sourcewell-support/</a>
+</UL>
+
+<P>Programs and library dependences for SourceWell:
+
+<UL>
+<LI>PHP: <a href="http://www.php.net" target="_blank">http://www.php.net</a>
+<LI>Apache: <a href="http://www.apache.org" target="_blank">http://www.apache.org</a> (recommended web server)
+<LI>MySQL: <a href="http://www.mysql.com" target="_blank">http://www.mysql.com</a>
+<LI>PHPLib: <a href="http://phplib.netuse.de/" target="_blank">http://phplib.netuse.de/</a>
+<LI>Mailman: <a href="http://www.gnu.org/software/mailman/mailman.html" target="_blank">http://www.gnu.org/software/mailman/mailman.html</a>
+</UL>
+
+<P>Other references:
+
+<UL>
+<LI>BerliOS SourceWell: <A
+HREF="http://sourcewell.berlios.de" target="_blank">http://sourcewell.berlios.de</a>
+<LI>BerliOS: <a href="http://www.berlios.de" target="_blank">http://www.berlios.de</a>
+<LI>BerliOS News (in German): <a href="http://news.berlios.de" target="_blank">http://news.berlios.de</a>
+<li>BerliOS SourceBiz (in German): <a href="http://sourcebiz.berlios.de" target="_blank">http://sourcebiz.berlios.de</a>
+<LI>GMD FOKUS: <a href="http://www.fokus.gmd.de" target="_blank">http://www.fokus.gmd.de</a>
+<LI>TU-Berlin: <a href="http://www.tu-berlin.de" target="_blank">http://www.tu-berlin.de</a>
+<LI>Fachbereich Informatik - Institut OKS: <a href="http://www.fokus.gmd.de/research/cc//oks/uni/index.php3" target="_blank">http://www.fokus.gmd.de/research/cc/oks/uni/index.php</a>
+<LI>Free Software Foundation: <A
+HREF="http://www.fsf.org" target="_blank">http://www.fsf.org</a>
+<LI>phpMyAdmin: <a href="http://phpwizard.net/projects/phpMyAdmin" target="_blank>http://phpwizard.net/projects/phpMyAdmin</a>
+<LI>PHP-Nuke: <a href="http://phpnuke.org" target="_blank">http://phpnuke.org</a>
+<LI>Horde: <a href="http://www.horde.org" target="_blank">http://www.horde.org</a>
+</UL>
+
+<P>&nbsp;
+<A NAME="authors">
+<P CLASS="subtitle">15. About the authors:
+
+<UL>
+<LI>Lutz Henckel &lt;<a href="mailto:lutz.henckel@fokus.gmd.de">lutz.henckel@fokus.gmd.de</a>&gt;
+<BR>Lutz Henckel is the project manager of the BerliOS team. He is known for his
+earlier home page "Woven Goods for Linux", which has evolved to what BerliOS is today. He is also author of the <a href="http://sourcebiz.berlios.de" target="_blank">SourceBiz</a> system.
+
+<BR>&nbsp;
+<LI>Gregorio Robles &lt;<a href="mailto:grex@scouts-es.org">grex@scouts-es.org</a>&gt;
+<BR>Gregorio Robles is a Spanish exchange student who is doing his diploma
+thesis at the Technical University of Berlin in contact with BerliOS. He is also working on knowing more about Open Source developers and therefore made <a href="http://widi.berlios.de" target="_blank">Widi</A>.
+</UL>
+
+<P>You can also find the authors writing to the SourceWell supporting mailing list at <a href="mailto:sourcewell-support@lists.berlios.de">sourcewell-support@lists.berlios.de</a>.
+
+<P class="Authors"><FONT SIZE=-2>Edited in HTML using GNU Emacs 20.7.1 on an i386 SuSE Linux</FONT>
+
+</BODY>
+</HTML>

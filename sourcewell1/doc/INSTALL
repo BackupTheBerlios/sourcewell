@@ -1,0 +1,53 @@
+Fast installation guide (for the MySQL database)
+
+(These paragraphs are taken from the SourceWell documentation point 3.1)
+
+You need to have a webserver (we have tested the system with Apache),
+PHP3, PHPLib and MySQL installed in your system.
+
+
+* user$ mysql -h host -u database_superuser -p
+  (insert superuser_password)
+* mysql> USE mysql;
+* mysql> INSERT INTO user VALUES ( 'host', 'operator', PASSWORD('operator_password'), 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'N', 'N', 'N', 'N', 'N', 'N', 'N');
+* mysql> FLUSH PRIVILEGES;
+* mysql> CREATE DATABASE sourcewell;
+* mysql> exit;
+* user$ tar -zxvf sourcewell-1.0.13.tar.gz
+* user$ mysql -h host -u operator -p < sourcewell/sql/mysql.sql
+  (insert the operator_password)
+* user$ vi sourcewell/include/local.inc
+  (insert the correct database parameters; please, keep sourcewell as the database name)
+
+   var $Host     = "host";
+   var $Database = "sourcewell";
+   var $User     = "operator";
+   var $Password = "password";
+
+Ok, that's it. You've finished installing and configuring
+SourceWell. Start your browser and visit
+http://yourserver/sourcewell/index.php.
+
+If you get an error message or you have the impression that the system does not work correctly, have a look at this page http://yourserver/sourcewell/test.php. It will give you some hints on where SourceWell is failing.
+
+If everything looks ok, great! As you'll see in the index page, the SourceWell system comes with some inserted example applications and licenses. You can
+delete or modify them by entering as an administrator. To do so, login
+as the default administrator with user,editor,admin permissions.
+At the prompt use the following ID to login (case sensitive):
+
+        Username: oldfish
+	Password: oldfish
+
+
+Vert important: Be sure of inmediately changing the login and password by
+clicking on the User Admin link. You'll notice this is quite easy to do ;-)
+
+If things do not work, maybe you'll have to read the whole
+installation chapter from the SourceWell documentation.
+
+
+Note: Translation support needs a lot of memory. We're looking for a better memory management for the translation function. If this is an important feature for you, think changing the php3.ini allowed memory input. You should change the default line:
+memory_limit = 8388608; Maximum amount of memory a script may consume (8MB)  
+
+with this one:
+memory_limit = 33554432; Maximum amount of memory a script may consume (32MB)

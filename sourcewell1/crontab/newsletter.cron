@@ -1,0 +1,2 @@
+59 23  *  *  * /usr/bin/wget http://localhost/nlsend.php?period=daily -a /srv/www/htdocs/sourcewell/crontab/nldaily.log -O /srv/www/htdocs/sourcewell/crontab/nldaily.output
+59 23  *  *  5 /usr/bin/wget http://localhost/nlsend.php?period=weekly -a /srv/www/htdocs/sourcewell/crontab/nlweekly.log -O /srv/www/htdocs/sourcewell/crontab/nlweekly.output
