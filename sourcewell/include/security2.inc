@@ -17,7 +17,7 @@
 ######################################################################
 
 function security_page_access($page) {
-	global $auth;
+	global $auth, $be;
 
 	require("page_permisions2.inc");
 
@@ -26,9 +26,12 @@ function security_page_access($page) {
 		if (security_permision_hierarchy($auth->auth["perm"]) >= security_permision_hierarchy($required_permision[$page])) return 1;
 	}
 
-	// login form
+        if (security_permision_hierarchy($required_permision[$page]) > 4) {
+            $be->box_full(_("Error").": "._("Access denied"),_("You do not have the appropriate permissions to enter this page"));
+        } else {
+            $be->box_full(_("Error").": "._("Access denied"),_("You have to Login in order to enter this page").". ".html_link("login.php3",array(),_("Login")));
+        }
 
-	print "Access denied";
 	require("footer2.inc");
 	exit();
 	
@@ -54,10 +57,10 @@ function security_permision_hierarchy($permision_level) {
 		case "pending":		return 1;
 		case "anonymous": 	return 2;
 		case "user":		return 4;
-		case "editor":		return 8;
 		case "user,editor":		return 8;
-		case "admin":			return 16;
+                case "editor":		return 8;
 		case "user,editor,admin":		return 16;
+                case "admin":		return 16;
 	}
 }
 
