@@ -14,16 +14,32 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: start.inc,v 1.12 2002/03/18 11:23:18 grex Exp $
+// $Id: start.inc,v 1.13 2002/04/21 21:49:42 grex Exp $
+
+if (!isset($login)) {
+    page_open(array('sess' => 'Scouts_ES_Session'));
+    if (isset($auth) && !empty($auth->auth['perm'])) {
+ 	    page_close();
+ 	    page_open(array('sess' => 'Scouts_ES_Session',
+  	                    'auth' => 'Scouts_ES_Auth',
+	                    'perm' => 'Scouts_ES_Perm'));
+    } elseif (isset($auth)) {
+        $auth->logout();
+    }
+}
 
 // Disabling cache
 header("Cache-Control: no-cache, must-revalidate");     // HTTP/1.1
 header("Pragma: no-cache"); 				// HTTP/1.0
 
+$_INC_PATH = '/home/groups/sourcewell/htdocs/sourcewell2/include/';
+
+require($_INC_PATH.'config.inc');
 require('config.inc');
 require('lib.inc');
 require('html.inc');
 
+//setlocale('LC_TIME','es_ES');
 //lib_require('Lang');
 //lib_require('Translation');
 //lib_include('Table');

@@ -1,11 +1,11 @@
 <?php
 
-page_open(array('sess' => 'SourceAgency_Session'));
+page_open(array('sess' => 'SourceWell_Session'));
 if (isset($auth) && !empty($auth->auth['perm'])) {
   page_close();
-  page_open(array('sess' => 'SourceAgency_Session',
-                  'auth' => 'SourceAgency_Auth',
-                  'perm' => 'SourceAgency_Perm'));
+  page_open(array('sess' => 'SourceWell_Session',
+                  'auth' => 'SourceWell_Auth',
+                  'perm' => 'SourceWell_Perm'));
 }
 
 include('start.inc');
