@@ -21,7 +21,7 @@ $fields[] = new SelectField('Type', 'type', '', array('1', '2', '3', '4'));
 $form = new Form('Testing classes');
 
 
-if ($HTTP_POST_VARS['Inser']) {
+if ($HTTP_POST_VARS['Insert']) {
 
     $insertion = new Insertion('table');
     $id = $insertion->generateQuery(&$fields);

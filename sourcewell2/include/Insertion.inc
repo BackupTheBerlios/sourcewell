@@ -14,7 +14,7 @@
 // |          Carlos Martín Ugalde <carlos@scouts-es.org>                 |
 // +----------------------------------------------------------------------+
 //
-// $Id: Insertion.inc,v 1.2 2002/03/18 11:53:22 grex Exp $
+// $Id: Insertion.inc,v 1.3 2002/03/18 11:54:20 grex Exp $
 
 /**
  * method insertQuery() uses PHPLib classes!
@@ -89,6 +89,7 @@ class Insertion {
     {
         $this->getFields(&$objects);
         $query = $this->begin.$this->table.' '.$this->generateValues().$this->generateWhere();
+        print $query;
 	//	$id = $this->insertQuery($query);
         return $id;
     }
