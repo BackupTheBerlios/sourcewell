@@ -13,8 +13,7 @@
 // |          Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
 // +----------------------------------------------------------------------+
 //
-// $Id: login.php,v 1.1 2002/05/09 22:22:40 grex Exp $
-
+// $Id: login.php,v 1.2 2002/05/09 22:27:27 grex Exp $
 
 require('include/start.inc');
 
@@ -27,7 +26,7 @@ if ($perm->have_perm('user_pending')) {
            .'<b>'.$auth->auth['perm'].'</b> '._('permission').'.'
            .'<br>'._('Your authentication is valid until')
            .' <b>'.timestr($auth->auth['exp']).'</b>';
-    $table->table_full(_('Welcome to ').$sys_name, $msg);
+    $table->table_full(_('Welcome to ').$config_sys_name, $msg);
 }
 
 config_inc('end');

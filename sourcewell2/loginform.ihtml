@@ -13,7 +13,7 @@
 // |          Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
 // +----------------------------------------------------------------------+
 //
-// $Id: loginform.ihtml,v 1.2 2002/05/09 22:27:27 grex Exp $
+// $Id: loginform.ihtml,v 1.3 2002/05/09 22:29:15 grex Exp $
 
 global $la;
 global $username;
@@ -37,7 +37,7 @@ htmlp_form_action();
 $table->table_columns_begin();
 
 $table->table_column(_('Username'), '50%', '', 'right');
-$table->table_column(html_form_textField('username', '', 20, 32), '50%', '', 'left');
+$table->table_column(html_form_textField('username', $username, 20, 32), '50%', '', 'left');
 
 $table->table_nextRowWithColumns();
 
@@ -46,7 +46,7 @@ $table->table_column(html_form_PassWordField('password', 20, 32), '50%', '', 'le
 
 $table->table_nextRowWithColumns();
 
-$table->table_colspan(html_form_submit(_("Login"), 'submit'), 2, '', 'center');
+$table->table_colspan(html_form_submit(_('Login'), 'submit'), 2, '', 'center');
 
 $table->table_columns_end();
 htmlp_form_end();
