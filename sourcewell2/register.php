@@ -13,7 +13,7 @@
 // |          Lutz Henckel <lutz.henckel@fokus.fhg.de>                    |
 // +----------------------------------------------------------------------+
 //
-// $Id: register.php,v 1.1 2002/05/10 10:06:46 grex Exp $
+// $Id: register.php,v 1.2 2002/05/10 10:12:10 grex Exp $
 
 require('start.inc');
 /* TODO: add monitoring class / library */
@@ -79,22 +79,23 @@ while (is_array($HTTP_POST_VARS)
         $message = _('Thank you for registering on the').' '.$sys_name
                    ._('Site. In order to complete your registration, visit '
                       .'the following URL').": \n\n"
-                 .$sys_url."verify.php?confirm_hash=$u_id\n\n"
-                 ._('Enjoy the site').".\n\n"
-                 .' -- '._('the').' '.$sys_name.' '._('crew')."\n";
-        }
+                   .$sys_url."verify.php?confirm_hash=$u_id\n\n"
+                   ._('Enjoy the site').".\n\n"
+                   .' -- '._('the').' '.$sys_name.' '._('crew')."\n";
 
         mail($email_usr,'['.$sys_name.'] '._('User Registration'),
-                 $message,"From: $config_ml_fromAddr\nReply-To: "
+                 $message, "From: $config_ml_fromAddr\nReply-To: "
                  ."$config_ml_replyAddr\nX-Mailer: PHP");
 
-            $msg = _('Congratulations').'! '
-                 ._('You have registered on ').'$sys_name.<p>'
-                 ._('Your new username is').": <b>$username</b><p>"
-                 ._('You are now being sent a confirmation '
-                    .'email to verify your email address').'.'.'<br>'
-                 ._('Visiting the link sent to you in this '
-                    .'email will activate your account').'.';
+        $msg = _('Congratulations').'! '
+               ._('You have registered on ').'$sys_name.<p>'
+               ._('Your new username is').": <b>$username</b><p>"
+               ._('You are now being sent a confirmation '
+                  .'email to verify your email address').'.'.'<br>'
+               ._('Visiting the link sent to you in this '
+                  .'email will activate your account').'.';
+
+        $table->table_full(_('User Registration'), $msg);
 
         if ($config_ml_notify) {
             $message  = _('Username').": $username\n";
@@ -102,11 +103,11 @@ while (is_array($HTTP_POST_VARS)
             $message .= _('E-Mail').":   $email_usr\n";
             mailuser('admin', _('New User has registered'), $message);
         }
-        $table->table_full(_('User Registration'), $msg);
+
         $reg = 1;
         break;
-        default:
-            break;
+    default:
+        break;
     }
 }
 
