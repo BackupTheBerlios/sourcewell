@@ -12,7 +12,7 @@
 // | Authors: Gregorio Robles <grex@scouts-es.org>                        |
 // +----------------------------------------------------------------------+
 //
-// $Id: Form.inc,v 1.5 2002/03/18 11:38:16 grex Exp $
+// $Id: Form.inc,v 1.6 2002/05/09 17:07:03 grex Exp $
 
 /**
  * Requires table.inc
@@ -152,8 +152,8 @@ class Form {
         $table->table_begin('This table contains a form: '.$this->title);
         $table->table_title($this->title);
         $table->table_body_begin('top');
-        $table->table_columns_begin();
         htmlp_form_action($this->target, array());
+        $table->table_columns_begin();
 
         while (list(, $value) = each($objects)) {
             // Polimorfism
