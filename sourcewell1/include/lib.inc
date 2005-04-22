@@ -1017,7 +1017,7 @@ function nlmsg($period) {
 	$msg .= "Depens on    : ".$db->f("depend")."\n";
       $msg .= "\n";
     }
-    $msg .= $GLOBALS["sys_name"]."   : ".$GLOBALS["sys_url"]."appbyid.php?id=".$db->f("appid")."\n";
+    $msg .= $GLOBALS["sys_name"]."   : http:".$GLOBALS["sys_url"]."appbyid.php?id=".$db->f("appid")."\n";
     $msg .= "\n               -----------------------------\n";
     $i++;
   }
