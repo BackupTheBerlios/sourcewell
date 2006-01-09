@@ -320,7 +320,7 @@ if (isset($option)) {
      $option_save = $option;
      $var = $option."_count";
      switch ($option) {
-       case "rpm": $option="Red Hat Packages"; break;
+       case "rpm": $option="RPM Packages"; break;
        case "deb": $option="Debian Packages"; break;
        case "tgz": $option="Slackware Packages"; break;
      }
@@ -414,7 +414,7 @@ if (isset($option)) {
       for($i=0;$i<4;$i++) {
         switch($i) {
           case 0: $message=$t->translate("Tarballs"); $type="download"; break;
-          case 1: $message=$t->translate("Red Hat Packages")." (rpm)"; $type="rpm"; break;
+          case 1: $message=$t->translate("RPM Packages")." (rpm)"; $type="rpm"; break;
           case 2: $message=$t->translate("Debian Packages")." (deb)"; $type="deb"; break;
           case 3: $message=$t->translate("Slackware Packages")." (tgz)"; $type="tgz"; break;
         } 
@@ -437,7 +437,7 @@ if (isset($option)) {
       for($i=0;$i<4;$i++) {
         switch($i) {
           case 0: $message=$t->translate("Tarballs"); $type="download_cnt"; break;
-          case 1: $message=$t->translate("Red Hat Packages")." (rpm)"; $type="rpm_cnt"; break;
+          case 1: $message=$t->translate("RPM Packages")." (rpm)"; $type="rpm_cnt"; break;
           case 2: $message=$t->translate("Debian Packages")." (deb)"; $type="deb_cnt"; break;
           case 3: $message=$t->translate("Slackware Packages")." (tgz)"; $type="tgz_cnt"; break;
         } 
