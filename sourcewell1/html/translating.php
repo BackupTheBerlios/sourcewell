@@ -76,13 +76,14 @@ translation of SourceWell.
 <TABLE width=95%>
 <TR><TD>Language</TD><TD>Translator</TD><TD>Version</TD><TD>Last Modified</TD></TR>
 <TR><TD><A HREF="../include/German-lang.inc">German</A></TD><TD>Lutz Henckel &lt;<A
-HREF="mailto:lutz.henckel@fokus.fraunhofer.de">lutz.henckel@fokus.fraunhofer.de</A>&gt;</TD><TD>1.0</TD><TD>3 April 2001</TD></TR>
+HREF="mailto:lutz dot henckel at fokus dot fraunhofer dot de">lutz dot henckel at fokus dot fraunhofer dot de</A>&gt;</TD><TD>1.0</TD><TD>3 April 2001</TD></TR>
 <TR><TD><A HREF="../include/Spanish-lang.inc">Spanish</A></TD><TD>Gregorio Robles &lt;<A
-HREF="mailto:grex@scouts-es.org">grex@scouts-es.org</A>&gt;</TD><TD>1.0</TD><TD>3 April 2001</TD></TR>
+HREF="mailto:grex at scouts-es dot org">grex at scouts-es dot org</A>&gt;</TD><TD>1.0</TD><TD>3 April 2001</TD></TR>
 <TR><TD><A HREF="../include/French-lang.inc">Frensh</A></TD><TD>Frédéric Boiteux &lt;<A
-HREF="mailto:fredericB@caramail.com">fredericB@caramail.com</A>&gt;</TD><TD>1.0</TD><TD>13 Juli 2001</TD></TR>
+HREF="mailto:fredericB at caramail dot com">fredericB at caramail dot com</A>&gt;</TD><TD>1.0</TD><TD>13 Juli 2001</TD></TR>
+<TR><TD><A HREF="../include/Italian-lang.inc">Italian</A></TD><TD>Sandro Tosi &lt;<A
+HREF="mailto:matrixhasu at gmail dot com">matrixhasu at gmail dot com</A>&gt;</TD><TD>1.0</TD><TD>9 Januar 2006</TD></TR>
 </TABLE></CENTER>
-
 
 <P>&nbsp;
 
