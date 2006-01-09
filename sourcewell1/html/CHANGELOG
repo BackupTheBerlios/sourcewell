@@ -1,6 +1,23 @@
 CHANGELOG for SourceWell
 http://sourcewell.berlios.de/html
 
+09-01-2006 Lutz Henckel <lutz.henckel@fokus.fraunhofer.de> -- SourceWell 1.1.3
+
+* include/config.inc: add italian translation
+* include/lang.inc: add italian translation
+* include/lang-translate.inc: remove duplicated phrases
+* include/German-lang.inc: remove duplicated phrases
+* include/Spanish-lang.inc: remove duplicated phrases
+* include/French-lang.inc: remove duplicated phrases
+* include/Italian-lang.inc: new italian translation
+* include/translation.inc: add italian translation
+* include/lib.inc: change Red Hat to RPM
+* include/lib.inc: obfuscate email addresses
+* html/translating.php: add italian translation from Sandro Tosi
+* html/translating.php: obfuscate email adresses
+* html/authors.php: obfuscate email addresses
+* html/development.php: delete blank lines from the end
+
 22-04-2003 Lutz Henckel <lutz.henckel@fokus.fraunhofer.de> -- SourceWell 1.1.2
 
 * include/config.inc: new version number

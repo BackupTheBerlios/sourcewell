@@ -132,7 +132,7 @@ function appfull($query) {
   echo $db->f("developer");
 
   $db_email = $db->f("email");
-  if (!empty($db_email)) echo " &lt;<a href=\"mailto:".mailtoencode($db->f("email"))."\">".ereg_replace("@"," at ",htmlentities($db->f("email")))."</a>&gt;";
+  if (!empty($db_email)) echo " &lt;<a href=\"mailto:".mailtoencode($db->f("email"))."\">".ereg_replace("\."," dot ",ereg_replace("@"," at ",htmlentities($db->f("email"))))."</a>&gt;";
   echo "</td></tr>\n";
 
   $db2 = new DB_SourceWell;
@@ -1059,6 +1059,8 @@ function mailuser($perms, $subj, $message) {
 
 function mailtoencode($str) {
   $ret = "";
+  $str = ereg_replace("@"," at ",$str);
+  $str = ereg_replace("\."," dot ",$str);
   $arr = unpack("C*", $str);
   foreach ($arr as $char)
     $ret .= sprintf("%%%X", $char);
