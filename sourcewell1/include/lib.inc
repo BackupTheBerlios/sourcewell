@@ -96,7 +96,7 @@ function appfull($query) {
 
   $db_rpm = $db->f("rpm");
   if (!empty($db_rpm)) {
-    echo "<tr valign=top><td align=right><b>".$t->translate("Red Hat Package").":</b></td><td><a href=\"redirect.php?id=".$db->f("appid")."&type=rpm_cnt&url=".urlencode($db->f("rpm"))."\" target=_blank>".$db->f("rpm")."</a> (".$db->f("rpm_cnt")." ".$t->translate("hits").")</td></tr>\n";
+    echo "<tr valign=top><td align=right><b>".$t->translate("RPM Package").":</b></td><td><a href=\"redirect.php?id=".$db->f("appid")."&type=rpm_cnt&url=".urlencode($db->f("rpm"))."\" target=_blank>".$db->f("rpm")."</a> (".$db->f("rpm_cnt")." ".$t->translate("hits").")</td></tr>\n";
     }
 
   $db_deb = $db->f("deb");
@@ -233,7 +233,7 @@ function apppend($query) {
 
   $db_rpm = $db->f("rpm");
   if (!empty($db_rpm)) {
-    echo "<tr valign=top><td align=right><b>".$t->translate("Red Hat Package").":</b></td><td><a href=\"redirect.php?id=".$db->f("appid")."&type=rpm_cnt&url=".urlencode($db->f("rpm"))."\" target=_blank>".$db->f("rpm")."</a> (".$db->f("rpm_cnt")." ".$t->translate("hits").")</td></tr>\n";
+    echo "<tr valign=top><td align=right><b>".$t->translate("RPM Package").":</b></td><td><a href=\"redirect.php?id=".$db->f("appid")."&type=rpm_cnt&url=".urlencode($db->f("rpm"))."\" target=_blank>".$db->f("rpm")."</a> (".$db->f("rpm_cnt")." ".$t->translate("hits").")</td></tr>\n";
     }
 
   $db_deb = $db->f("deb");
@@ -525,7 +525,7 @@ function updform($query,$url) {
   echo "<tr><td align=right width=30%>".$t->translate("Homepage")." (255):</td><td width=70%><input type=\"TEXT\" name=\"homepage\" size=40 maxlength=255 value=\"".$db->f("homepage")."\">&nbsp;[<a href=\"".$db->f("homepage")."\" target=\"_blank\">".$t->translate("Check")."</a>]</td></tr>\n";
   echo "<tr><td align=right width=30%>".$t->translate("Download")." (255):</td><td width=70%><input type=\"TEXT\" name=\"download\" size=40 maxlength=255 value=\"".$db->f("download")."\">&nbsp;[<a href=\"".$db->f("download")."\" target=\"_blank\">".$t->translate("Check")."</a>]</td></tr>\n";
   echo "<tr><td align=right width=30%>".$t->translate("Changelog")." (255):</td><td width=70%><input type=\"TEXT\" name=\"changelog\" size=40 maxlength=255 value=\"".$db->f("changelog")."\">&nbsp;[<a href=\"".$db->f("changelog")."\" target=\"_blank\">".$t->translate("Check")."</a>]</td></tr>\n";
-  echo "<tr><td align=right width=30%>".$t->translate("Red Hat Package")." (255):</td><td width=70%><input type=\"TEXT\" name=\"rpm\" size=40 maxlength=255 value=\"".$db->f("rpm")."\">&nbsp;[<a href=\"".$db->f("rpm")."\" target=\"_blank\">".$t->translate("Check")."</a>]</td></tr>\n";
+  echo "<tr><td align=right width=30%>".$t->translate("RPM Package")." (255):</td><td width=70%><input type=\"TEXT\" name=\"rpm\" size=40 maxlength=255 value=\"".$db->f("rpm")."\">&nbsp;[<a href=\"".$db->f("rpm")."\" target=\"_blank\">".$t->translate("Check")."</a>]</td></tr>\n";
   echo "<tr><td align=right width=30%>".$t->translate("Debian Package")." (255):</td><td width=70%><input type=\"TEXT\" name=\"deb\" size=40 maxlength=255 value=\"".$db->f("deb")."\">&nbsp;[<a href=\"".$db->f("deb")."\" target=\"_blank\">".$t->translate("Check")."</a>]</td></tr>\n";
   echo "<tr><td align=right width=30%>".$t->translate("Slackware Package")." (255):</td><td width=70%><input type=\"TEXT\" name=\"tgz\" size=40 maxlength=255 value=\"".$db->f("tgz")."\">&nbsp;[<a href=\"".$db->f("tgz")."\" target=\"_blank\">".$t->translate("Check")."</a>]</td></tr>\n";
   echo "<tr><td align=right width=30%>".$t->translate("SCM Tree")." (255):</td><td width=70%><input type=\"TEXT\" name=\"cvs\" size=40 maxlength=255 value=\"".$db->f("cvs")."\">&nbsp;[<a href=\"".$db->f("cvs")."\" target=\"_blank\">".$t->translate("Check")."</a>]</td></tr>\n";
@@ -636,7 +636,7 @@ function insform() {
   echo "<tr><td align=right width=30%>".$t->translate("Homepage")." (255):</td><td width=70%><input type=\"TEXT\" name=\"homepage\" size=40 maxlength=255></td></tr>\n";
   echo "<tr><td align=right width=30%>".$t->translate("Download")." (255):</td><td width=70%><input type=\"TEXT\" name=\"download\" size=40 maxlength=255></td></tr>\n";
   echo "<tr><td align=right width=30%>".$t->translate("Changelog")." (255):</td><td width=70%><input type=\"TEXT\" name=\"changelog\" size=40 maxlength=255></td></tr>\n";
-  echo "<tr><td align=right width=30%>".$t->translate("Red Hat Package")." (255):</td><td width=70%><input type=\"TEXT\" name=\"rpm\" size=40 maxlength=255></td></tr>\n";
+  echo "<tr><td align=right width=30%>".$t->translate("RPM Package")." (255):</td><td width=70%><input type=\"TEXT\" name=\"rpm\" size=40 maxlength=255></td></tr>\n";
   echo "<tr><td align=right width=30%>".$t->translate("Debian Package")." (255):</td><td width=70%><input type=\"TEXT\" name=\"deb\" size=40 maxlength=255></td></tr>\n";
   echo "<tr><td align=right width=30%>".$t->translate("Slackware Package")." (255):</td><td width=70%><input type=\"TEXT\" name=\"tgz\" size=40 maxlength=255></td></tr>\n";
   echo "<tr><td align=right width=30%>".$t->translate("SCM Tree")." (255):</td><td width=70%><input type=\"TEXT\" name=\"cvs\" size=40 maxlength=255></td></tr>\n";
