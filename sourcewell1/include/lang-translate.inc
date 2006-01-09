@@ -66,16 +66,18 @@ switch($phrase) {
      case "Go": $tmp = ""; break;
 
 // Languages
-	 case "English": $tmp = ""; break;
-	 case "German": $tmp = ""; break;
-	 case "Spanish": $tmp = ""; break;
+     case "English": $tmp = ""; break;
+     case "German": $tmp = ""; break;
+     case "Spanish": $tmp = ""; break;
+     case "French": $tmp = ""; break;
+     case "Italian": $tmp = ""; break;
 
 // sorted by
-	 case "sorted by": $tmp = ""; break;
-	 case "Date": $tmp = ""; break;
-	 case "Importance": $tmp = ""; break;
-	 case "Urgency": $tmp = ""; break;
-	 case "Name": $tmp = ""; break;
+     case "sorted by": $tmp = ""; break;
+     case "Date": $tmp = ""; break;
+     case "Importance": $tmp = ""; break;
+     case "Urgency": $tmp = ""; break;
+     case "Name": $tmp = ""; break;
 
 // FAQ
      case "Frequently Asked Questions": $tmp = ""; break;
@@ -120,7 +122,6 @@ switch($phrase) {
      case "Your account is now activated. Please login": $tmp = ""; break;
 
 // Forget password / Remind me
-     case "Register as a new User": $tmp = ""; break;
      case "Remind me": $tmp = ""; break;
      case "Your Username and Password for $GLOBALS[sys_name] is": $tmp = ""; break;
      case "Please keep this e-mail for further reference": $tmp = ""; break;
@@ -128,7 +129,6 @@ switch($phrase) {
 
 // Change User Parameters
      case "Change User Parameters": $tmp = ""; break;
-     case "Remind me": $tmp = ""; break;
      case "Modification": $tmp = ""; break;
      case "Creation": $tmp = ""; break;
      case "Permission": $tmp = ""; break;
@@ -157,7 +157,7 @@ switch($phrase) {
      case "Insert Application": $tmp = ""; break;
      case "Version": $tmp = ""; break;
      case "Section/Category": $tmp = ""; break;
-     case "Red Hat Package": $tmp = ""; break;
+     case "RPM Package": $tmp = ""; break;
      case "Debian Package": $tmp = ""; break;
      case "Slackware Package": $tmp = ""; break;
      case "SCM Tree": $tmp = ""; break;
@@ -166,9 +166,9 @@ switch($phrase) {
      case "Description": $tmp = ""; break;
      case "Author": $tmp = ""; break;
      case "Depends on": $tmp = ""; break;
-	 case "low": $tmp = ""; break;
-	 case "medium": $tmp = ""; break;
-	 case "high": $tmp = ""; break;
+     case "low": $tmp = ""; break;
+     case "medium": $tmp = ""; break;
+     case "high": $tmp = ""; break;
 
 // Update Apps
      case "Update Application": $tmp = ""; break;
@@ -182,7 +182,6 @@ switch($phrase) {
 // Comment
      case "Your Comment about": $tmp = ""; break;
      case "Subject": $tmp = ""; break;
-     case "Comment": $tmp = ""; break;
      case "Send": $tmp = ""; break;
 
 // Login
@@ -200,13 +199,11 @@ switch($phrase) {
 
 // User admin
      case "Action": $tmp = ""; break;
-     case "Delete": $tmp = ""; break;
      case "Create User": $tmp = ""; break;
      case "User Creation": $tmp = ""; break;
      case "created": $tmp = ""; break;
      case "User Change": $tmp = ""; break;
      case "User Deletion": $tmp = ""; break;
-     case "is deleted": $tmp = ""; break;
 
 // Section admin
      case "Section Administration": $tmp = ""; break;
@@ -237,12 +234,11 @@ switch($phrase) {
      case "License URL": $tmp = ""; break;
      case "New License Name": $tmp = ""; break;
      case "New License URL": $tmp = ""; break;
-     case "License": $tmp = ""; break;
 
 // Announcements
-    case "by": $tmp = ""; break;
-    case "on": $tmp = ""; break;
-	case "hits": $tmp = ""; break;
+     case "by": $tmp = ""; break;
+     case "on": $tmp = ""; break;
+     case "hits": $tmp = ""; break;
 
 // Time-based Navigation
     case "Day": $tmp = ""; break;
@@ -291,81 +287,77 @@ switch($phrase) {
      case "weekly": $tmp = ""; break;
 
 // Statistics
-	 case "$GLOBALS[sys_name] Statistics": $tmp = ""; break;
-	 case "General $GLOBALS[sys_name] Statistics": $tmp = ""; break;
-	 case "Apps by Importance": $tmp = ""; break;
-	 case "Apps by Hits": $tmp = ""; break;
-	 case "Apps by Homepage Visits": $tmp = ""; break;
-	 case "Apps by Downloads": $tmp = ""; break;
-	 case "Top downloaded RPM Packages": $tmp = ""; break;
-	 case "Top downloaded Debian Packages": $tmp = ""; break;
-	 case "Top downloaded Slackware Packages": $tmp = ""; break;
-	 case "Apps and Downloads by Urgency": $tmp = ""; break;
-	 case "Apps and Downloads by Version Types": $tmp = ""; break;
-	 case "Apps and Importance by Sections": $tmp = ""; break;
-	 case "Apps by Categories": $tmp = ""; break;
-	 case "Apps by Version Numbers": $tmp = ""; break;
-	 case "Apps and Downloads by Package Formats": $tmp = ""; break;
-	 case "Importance by Licenses": $tmp = ""; break;
-	 case "Importance by Email Domains": $tmp = ""; break;
-	 case "Apps by Email Domains": $tmp = ""; break;
-	 case "Apps by Sections and Email Domains": $tmp = ""; break;
-	 case "Apps by Licenses": $tmp = ""; break;
-	 case "Apps by Licenses and Email Domains": $tmp = ""; break;
+     case "$GLOBALS[sys_name] Statistics": $tmp = ""; break;
+     case "General $GLOBALS[sys_name] Statistics": $tmp = ""; break;
+     case "Apps by Importance": $tmp = ""; break;
+     case "Apps by Hits": $tmp = ""; break;
+     case "Apps by Homepage Visits": $tmp = ""; break;
+     case "Apps by Downloads": $tmp = ""; break;
+     case "Top downloaded RPM Packages": $tmp = ""; break;
+     case "Top downloaded Debian Packages": $tmp = ""; break;
+     case "Top downloaded Slackware Packages": $tmp = ""; break;
+     case "Apps and Downloads by Urgency": $tmp = ""; break;
+     case "Apps and Downloads by Version Types": $tmp = ""; break;
+     case "Apps and Importance by Sections": $tmp = ""; break;
+     case "Apps by Categories": $tmp = ""; break;
+     case "Apps by Version Numbers": $tmp = ""; break;
+     case "Apps and Downloads by Package Formats": $tmp = ""; break;
+     case "Importance by Licenses": $tmp = ""; break;
+     case "Importance by Email Domains": $tmp = ""; break;
+     case "Apps by Email Domains": $tmp = ""; break;
+     case "Apps by Sections and Email Domains": $tmp = ""; break;
+     case "Apps by Licenses": $tmp = ""; break;
+     case "Apps by Licenses and Email Domains": $tmp = ""; break;
 
 // General Statistics
-	 case "Number of Applications in $GLOBALS[sys_name]": $tmp = ""; break;
-	 case "Total Number of Insertions and Modifications": $tmp = ""; break;
-	 case "Number of Insertions and Modifications during the last week": $tmp = ""; break;
-	 case "Number of pending Applications": $tmp = ""; break;
-	 case "Number of $GLOBALS[sys_name] authorised Users": $tmp = ""; break;
-	 case "Number of Comments on Applications": $tmp = ""; break;
-	 case "Number of Licenses listed in $GLOBALS[sys_name]": $tmp = ""; break;
-	 case "Number of $GLOBALS[sys_name] Sections": $tmp = ""; break;
-	 case "Number of $GLOBALS[sys_name] Categories": $tmp = ""; break;
-	 case "Number of Hits on Applications": $tmp = ""; break;
-	 case "Number of redirected Homepages": $tmp = ""; break;
-	 case "Number of Downloads": $tmp = ""; break;
-	 case "Number of redirected Changelogs": $tmp = ""; break;
-	 case "Number of redirected SCMs": $tmp = ""; break;
-	 case "Number of redirected Screenshots": $tmp = ""; break;
-	 case "Number of redirected Mailing Lists Archives": $tmp = ""; break;
-	 case "SourceWell Version": $tmp = ""; break;
+     case "Number of Applications in $GLOBALS[sys_name]": $tmp = ""; break;
+     case "Total Number of Insertions and Modifications": $tmp = ""; break;
+     case "Number of Insertions and Modifications during the last week": $tmp = ""; break;
+     case "Number of pending Applications": $tmp = ""; break;
+     case "Number of $GLOBALS[sys_name] authorised Users": $tmp = ""; break;
+     case "Number of Comments on Applications": $tmp = ""; break;
+     case "Number of Licenses listed in $GLOBALS[sys_name]": $tmp = ""; break;
+     case "Number of $GLOBALS[sys_name] Sections": $tmp = ""; break;
+     case "Number of $GLOBALS[sys_name] Categories": $tmp = ""; break;
+     case "Number of Hits on Applications": $tmp = ""; break;
+     case "Number of redirected Homepages": $tmp = ""; break;
+     case "Number of Downloads": $tmp = ""; break;
+     case "Number of redirected Changelogs": $tmp = ""; break;
+     case "Number of redirected SCMs": $tmp = ""; break;
+     case "Number of redirected Screenshots": $tmp = ""; break;
+     case "Number of redirected Mailing Lists Archives": $tmp = ""; break;
+     case "SourceWell Version": $tmp = ""; break;
 
-	 case "High Urgency": $tmp = ""; break;
-	 case "Medium Urgency": $tmp = ""; break;
-	 case "Low Urgency": $tmp = ""; break;
-	 case "Stable Version": $tmp = ""; break;
-	 case "Development Version": $tmp = ""; break;
-	 case "Version Number": $tmp = ""; break;
-	 case "Tarballs": $tmp = ""; break;
-	 case "Red Hat Packages": $tmp = ""; break;
-	 case "Debian Packages": $tmp = ""; break;
-	 case "Slackware Packages": $tmp = ""; break;
-	 case "Applications listed by their Importance": $tmp = ""; break;
-	 case "Applications listed by Number of Tarball-Downloads": $tmp = ""; break;
-	 case "Applications listed by Number of Hits": $tmp = ""; break;
-	 case "Applications listed by Homepage Visits": $tmp = ""; break;
-	 case "Top downloaded Red Hat Packages": $tmp = ""; break;
-	 case "Top downloaded Debian Packages": $tmp = ""; break;
-	 case "Top downloaded Slackware Packages": $tmp = ""; break;
-	 case "Application Importance listed by Sections": $tmp = ""; break;
-	 case "Applications listed by Sections": $tmp = ""; break;
-	 case "Applications listed by Categories": $tmp = ""; break;
-	 case "Applications listed by Licenses": $tmp = ""; break;
-	 case "Availability of downloadable Packet Formats": $tmp = ""; break;
-	 case "Downloads listed by Packet Formats": $tmp = ""; break;
-	 case "Applications listed by Urgency": $tmp = ""; break;
-	 case "Downloads listed by Urgency": $tmp = ""; break;
-	 case "Applications listed by Version Numbers": $tmp = ""; break;
-	 case "Applications listed by Licenses": $tmp = ""; break;
-	 case "Applications listed by Version Type": $tmp = ""; break;
-	 case "Downloads listed by Version Type": $tmp = ""; break;
-	 case "Application Importance listed by Licenses": $tmp = ""; break;
-	 case "Application Importance listed by Developer's Email Domains": $tmp = ""; break;
-	 case "Applications listed by Developer's Email Domain": $tmp = ""; break;
-	 case "Applications listed by Sections and Developer's Email Domain": $tmp = ""; break;
-	 case "Applications listed by Licenses and Developer's Email Domain": $tmp = ""; break;
+     case "High Urgency": $tmp = ""; break;
+     case "Medium Urgency": $tmp = ""; break;
+     case "Low Urgency": $tmp = ""; break;
+     case "Stable Version": $tmp = ""; break;
+     case "Development Version": $tmp = ""; break;
+     case "Version Number": $tmp = ""; break;
+     case "Tarballs": $tmp = ""; break;
+     case "RPM Packages": $tmp = ""; break;
+     case "Debian Packages": $tmp = ""; break;
+     case "Slackware Packages": $tmp = ""; break;
+     case "Applications listed by their Importance": $tmp = ""; break;
+     case "Applications listed by Number of Tarball-Downloads": $tmp = ""; break;
+     case "Applications listed by Number of Hits": $tmp = ""; break;
+     case "Applications listed by Homepage Visits": $tmp = ""; break;
+     case "Application Importance listed by Sections": $tmp = ""; break;
+     case "Applications listed by Sections": $tmp = ""; break;
+     case "Applications listed by Categories": $tmp = ""; break;
+     case "Applications listed by Licenses": $tmp = ""; break;
+     case "Availability of downloadable Packet Formats": $tmp = ""; break;
+     case "Downloads listed by Packet Formats": $tmp = ""; break;
+     case "Applications listed by Urgency": $tmp = ""; break;
+     case "Downloads listed by Urgency": $tmp = ""; break;
+     case "Applications listed by Version Numbers": $tmp = ""; break;
+     case "Applications listed by Version Type": $tmp = ""; break;
+     case "Downloads listed by Version Type": $tmp = ""; break;
+     case "Application Importance listed by Licenses": $tmp = ""; break;
+     case "Application Importance listed by Developer's Email Domains": $tmp = ""; break;
+     case "Applications listed by Developer's Email Domain": $tmp = ""; break;
+     case "Applications listed by Sections and Developer's Email Domain": $tmp = ""; break;
+     case "Applications listed by Licenses and Developer's Email Domain": $tmp = ""; break;
 
 // Errors
      case "Access denied": $tmp = ""; break;
@@ -392,7 +384,6 @@ switch($phrase) {
      case "No more Apps for this day": $tmp = ""; break;
      case "Either your Username or Password are invalid": $tmp = ""; break;
      case "The passwords are not identical": $tmp = ""; break;
-     case "Please try again": $tmp = ""; break;
      case "License description is not available": $tmp = ""; break;
 
 // New Translations for SourceWell 1.1
@@ -400,11 +391,6 @@ switch($phrase) {
 // stats.php
     case "Number of Insertions and Modifications in the last day": $tmp = ""; break;
     case "Number of today's visitors": $tmp = ""; break;
-    case "Today": $tmp = ""; break;
-    case "Version Number":  $tmp = ""; break;
-    case "High Urgency": $tmp = ""; break;
-    case "Medium Urgency": $tmp = ""; break;
-    case "Low Urgency": $tmp = ""; break;
 
 // admuser.php
     case "User Administration": $tmp = ""; break;
@@ -424,16 +410,12 @@ switch($phrase) {
     case "applications that are actually in the": $tmp = ""; break;
     case "category": $tmp = ""; break;
     case "Delete Category": $tmp = ""; break;
-    case "Delete": $tmp = ""; break;
     case "Deletion succesfully completed.": $tmp = ""; break;
     case "Deletion succesfully completed affecting": $tmp = ""; break;
-    case "applications": $tmp = ""; break;
     case "has been added succesfully to the database": $tmp = ""; break;
-    case "Category not specified": $tmp = ""; break;
     case "Warning!": $tmp = ""; break;
     case "If you press another time the Delete-button you will delete the": $tmp = ""; break;
     case "categories and": $tmp = ""; break;
-    case "applications that are actually in the": $tmp = ""; break;
     case "section": $tmp = ""; break;
     case "Delete Section": $tmp = ""; break;
 
@@ -446,7 +428,6 @@ switch($phrase) {
     case "applications that have actually license": $tmp = ""; break;
     case "That license already exists!": $tmp = ""; break;
     case "with URL": $tmp = ""; break;
-    case "has been added succesfully to the database": $tmp = ""; break;
     case "License URL not specified": $tmp = ""; break;
     case "License not specified": $tmp = ""; break;
     case "Delete License": $tmp = ""; break;
@@ -480,8 +461,6 @@ switch($phrase) {
     case "The Mailing Lists are not enabled": $tmp = ""; break;
     case "daily newsletter for": $tmp = ""; break;
     case "weekly newsletter for": $tmp = ""; break;
-    case "Newsletter was sent at ": $tmp = ""; break;
-    case "Send newsletter": $tmp = ""; break;
 
 // footer.inc
     case "System Credits": $tmp = ""; break;

@@ -61,7 +61,7 @@ $sys_logo_small_heigth = "32";
 ######################################################################
 
 $org_name = "FOKUS";
-$org_url = "http://www.fokus.fhg.de/";
+$org_url = "http://www.fokus.fraunhofer.de/";
 $org_logo_image = $sys_url."images/logo_fokus.png";
 $org_logo_alt = $org_name;
 $org_logo_width = "60";
@@ -190,6 +190,7 @@ $la_array[] = "English";
 $la_array[] = "German";
 $la_array[] = "Spanish";
 $la_array[] = "French";
+$la_array[] = "Italian";
 
 
 ######################################################################

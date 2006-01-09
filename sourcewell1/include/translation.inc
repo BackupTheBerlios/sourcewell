@@ -20,6 +20,9 @@
       case "French":
 	    require("./include/French-lang.inc");
         break;
+      case "Italian":
+            require("./include/Italian-lang.inc");
+        break;
       default:
 	    require("./include/English-lang.inc");
         break;
