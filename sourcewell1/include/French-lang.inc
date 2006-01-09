@@ -66,17 +66,18 @@ switch($phrase) {
      case "Go": $tmp = "Lancer"; break;
 
 // Languages
-	 case "English": $tmp = "Anglais"; break;
-	 case "German": $tmp = "Allemand"; break;
-	 case "Spanish": $tmp = "Espagnol"; break;
-	 case "French": $tmp = "Fran&ccedil;ais"; break;
+     case "English": $tmp = "Anglais"; break;
+     case "German": $tmp = "Allemand"; break;
+     case "Spanish": $tmp = "Espagnol"; break;
+     case "French": $tmp = "Fran&ccedil;ais"; break;
+     case "Italian": $tmp = "Italien"; break;
 
 // sorted by
-	 case "sorted by": $tmp = "Trié par"; break;
-	 case "Date": $tmp = "Date"; break;
-	 case "Importance": $tmp = "Importance"; break;
-	 case "Urgency": $tmp = "Urgence"; break;
-	 case "Name": $tmp = "Nom"; break;
+     case "sorted by": $tmp = "Trié par"; break;
+     case "Date": $tmp = "Date"; break;
+     case "Importance": $tmp = "Importance"; break;
+     case "Urgency": $tmp = "Urgence"; break;
+     case "Name": $tmp = "Nom"; break;
 
 // FAQ
      case "Frequently Asked Questions": $tmp = "Foire Aux Questions"; break;
@@ -121,7 +122,6 @@ switch($phrase) {
      case "Your account is now activated. Please login": $tmp = "Votre compte est maintenant activé. Connectez vous"; break;
 
 // Forget password / Remind me
-     case "Register as a new User": $tmp = "S'inscrire"; break;
      case "Remind me": $tmp = "Se souvenir de moi"; break;
      case "Your Username and Password for $GLOBALS[sys_name] is": $tmp = "Votre nom d'utilisateur et votre mot de passe pour $GLOBALS[sys_name] sont"; break;
      case "Please keep this e-mail for further reference": $tmp = "Gardez cet e-mail pour mémoire"; break;
@@ -129,7 +129,6 @@ switch($phrase) {
 
 // Change User Parameters
      case "Change User Parameters": $tmp = "Changer les paramètres utilisateur"; break;
-     case "Remind me": $tmp = "Se souvenir de moi"; break;
      case "Modification": $tmp = "Modification"; break;
      case "Creation": $tmp = "Création"; break;
      case "Permission": $tmp = "Permission"; break;
@@ -158,7 +157,7 @@ switch($phrase) {
      case "Insert Application": $tmp = "Insérer l'application"; break;
      case "Version": $tmp = "Version"; break;
      case "Section/Category": $tmp = "Section/Catégorie"; break;
-     case "Red Hat Package": $tmp = "Distribution Red Hat"; break;
+     case "RPM Package": $tmp = "Distribution RPM"; break;
      case "Debian Package": $tmp = "Distribution Debian"; break;
      case "Slackware Package": $tmp = "Distribution Slackware"; break;
      case "SCM Tree": $tmp = "Arbre SCM"; break;
@@ -183,7 +182,6 @@ switch($phrase) {
 // Comment
      case "Your Comment about": $tmp = "Votre commentaire sur"; break;
      case "Subject": $tmp = "Sujet"; break;
-     case "Comment": $tmp = "Commenter"; break;
      case "Send": $tmp = "Envoyer"; break;
 
 // Login
@@ -201,13 +199,11 @@ switch($phrase) {
 
 // User admin
      case "Action": $tmp = "Action"; break;
-     case "Delete": $tmp = "Supprimer"; break;
      case "Create User": $tmp = "Créer un utilisateur"; break;
      case "User Creation": $tmp = "Création d'un utilisateur"; break;
      case "created": $tmp = "créé"; break;
      case "User Change": $tmp = "Changement d'utilisateur"; break;
      case "User Deletion": $tmp = "Suppression d'utilisateur"; break;
-     case "is deleted": $tmp = "est supprimé"; break;
 
 // Section admin
      case "Section Administration": $tmp = "Administration de section"; break;
@@ -238,7 +234,6 @@ switch($phrase) {
      case "License URL": $tmp = "URL de la licence"; break;
      case "New License Name": $tmp = "Nouveau nom de licence"; break;
      case "New License URL": $tmp = "Nouvelle URL de la licence"; break;
-     case "License": $tmp = "Licence"; break;
 
 // Announcements
     case "by": $tmp = "par"; break;
@@ -342,16 +337,13 @@ switch($phrase) {
 	 case "Development Version": $tmp = "Version de développement"; break;
 	 case "Version Number": $tmp = "Numéro de version"; break;
 	 case "Tarballs": $tmp = "Tarballs"; break;
-	 case "Red Hat Packages": $tmp = "Distributions Red Hat"; break;
+	 case "RPM Packages": $tmp = "Distributions RPM"; break;
 	 case "Debian Packages": $tmp = "Distributions Debian"; break;
 	 case "Slackware Packages": $tmp = "Distributions Slackware"; break;
 	 case "Applications listed by their Importance": $tmp = "Applications listées par leur importance"; break;
 	 case "Applications listed by Number of Tarball-Downloads": $tmp = "Applications listées par nombre de téléchargements Tarball"; break;
 	 case "Applications listed by Number of Hits": $tmp = "Applications listées par nombre de hits"; break;
 	 case "Applications listed by Homepage Visits": $tmp = "Applications listées par visite de page d'accueil"; break;
-	 case "Top downloaded Red Hat Packages": $tmp = "Meilleurs téléchargements de distributions Red Hat"; break;
-	 case "Top downloaded Debian Packages": $tmp = "Meilleurs téléchargements de distributions Debian"; break;
-	 case "Top downloaded Debian Packages": $tmp = "Meilleurs téléchargements de distributions Debian"; break;
 	 case "Application Importance listed by Sections": $tmp = "Importance d'application listée par section"; break;
 	 case "Applications listed by Sections": $tmp = "Applications listées par section"; break;
 	 case "Applications listed by Categories": $tmp = "Applications listées par catégorie"; break;
@@ -361,7 +353,6 @@ switch($phrase) {
 	 case "Applications listed by Urgency": $tmp = "Applications listées par urgence"; break;
 	 case "Downloads listed by Urgency": $tmp = "Téléchargements listés par urgence"; break;
 	 case "Applications listed by Version Numbers": $tmp = "Applications listées par numéro de version"; break;
-	 case "Applications listed by Licenses": $tmp = "Applications listées par licence"; break;
 	 case "Applications listed by Version Type": $tmp = "Applications listées par type de version"; break;
 	 case "Downloads listed by Version Type": $tmp = "Téléchargements listés par type de version"; break;
 	 case "Application Importance listed by Licenses": $tmp = "Importance d'application listée par licence"; break;
@@ -395,7 +386,6 @@ switch($phrase) {
      case "No more Apps for this day": $tmp = "Plus d'aplications pour ce jour"; break;
      case "Either your Username or Password are invalid": $tmp = "Votre nom d'utilisateur ou votre mot de passe est invalide"; break;
      case "The passwords are not identical": $tmp = "Les mots de passe ne sont pas identiques"; break;
-     case "Please try again": $tmp = "Essayez encore SVP"; break;
      case "License description is not available": $tmp = "Description de licence non disponible"; break;
      case "No Frequently Asked Questions exist": $tmp = "Aucune Foire Aux Questions"; break;
 
@@ -404,11 +394,6 @@ switch($phrase) {
 // stats.php
     case "Number of Insertions and Modifications in the last day": $tmp = "Nombre d'insertions et de modifications le jour passé"; break;
     case "Number of today's visitors": $tmp = "Nombre de visiteurs aujourd'hui"; break;
-    case "Today": $tmp = "Aujourd'hui"; break;
-    case "Version Number":  $tmp = "Numéro de version"; break;
-    case "High Urgency": $tmp = "Urgence haute"; break;
-    case "Medium Urgency": $tmp = "Urgence moyenne"; break;
-    case "Low Urgency": $tmp = "Urgence basse"; break;
 
 // admuser.php
     case "User Administration": $tmp = "Administration d'utilisateur"; break;
@@ -428,16 +413,12 @@ switch($phrase) {
     case "applications that are actually in the": $tmp = "applications qui sont actuellement dans"; break;
     case "category": $tmp = "catégorie"; break;
     case "Delete Category": $tmp = "Supprimer catégorie"; break;
-    case "Delete": $tmp = "Supprimer"; break;
     case "Deletion succesfully completed.": $tmp = "Suppression faite avec succès"; break;
     case "Deletion succesfully completed affecting": $tmp = "Suppression faite avec succès affectant"; break;
-    case "applications": $tmp = "applications"; break;
     case "has been added succesfully to the database": $tmp = "a été ajouté avec succès dans la base de données"; break;
-    case "Category not specified": $tmp = "Catégorie non spécifiée"; break;
     case "Warning!": $tmp = "Attention !"; break;
     case "If you press another time the Delete-button you will delete the": $tmp = "Si vous pressez une nouvelle fois le bouton 'supprimer' vous supprimerez les"; break;
     case "categories and": $tmp = "catégories et les"; break;
-    case "applications that are actually in the": $tmp = "applications qui sont actuellement dans la"; break;
     case "section": $tmp = "section"; break;
     case "Delete Section": $tmp = "Supprimer section"; break;
 
@@ -450,7 +431,6 @@ switch($phrase) {
     case "applications that have actually license": $tmp = "applications qui ont actuellment une licence"; break;
     case "That license already exists!": $tmp = "Cette licence existe déjà !"; break;
     case "with URL": $tmp = "avec l'URL"; break;
-    case "has been added succesfully to the database": $tmp = "a été ajoutée avec succès dans la base de données"; break;
     case "License URL not specified": $tmp = "URL de licence non spécifiée"; break;
     case "License not specified": $tmp = "Licence non spécifiée"; break;
     case "Delete License": $tmp = "Supprimer licence"; break;
@@ -484,8 +464,6 @@ switch($phrase) {
     case "The Mailing Lists are not enabled": $tmp = "Les mailing list ne sont pas permises"; break;
     case "daily newsletter for": $tmp = "lettre d'information quotidienne pour"; break;
     case "weekly newsletter for": $tmp = "lettre d'information hebdomadaire pour"; break;
-    case "Newsletter was sent at ": $tmp = "La lettre d'information a été envoyée à "; break;
-    case "Send newsletter": $tmp = "Envoyer lettre d'information"; break;
 
 // footer.inc
     case "System Credits": $tmp = "Auteurs du système"; break;

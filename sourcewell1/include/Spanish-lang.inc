@@ -67,17 +67,19 @@ switch($phrase) {
      case "Go": $tmp = "Cambiar"; break;
 
 // Languages
-	 case "English": $tmp = "Ingl&eacute;s"; break;
-	 case "German": $tmp = "Alem&aacute;n"; break;
-	 case "Spanish": $tmp = "Espa&ntilde;ol"; break;
-	 case "French": $tmp = "Franc&eacute;s"; break;
+     case "English": $tmp = "Ingl&eacute;s"; break;
+     case "German": $tmp = "Alem&aacute;n"; break;
+     case "Spanish": $tmp = "Espa&ntilde;ol"; break;
+     case "French": $tmp = "Franc&eacute;s"; break;
+     case "Italian": $tmp = "Italiano"; break;
 
 // sorted by
-	 case "sorted by": $tmp = "ordenado por"; break;
-	 case "Date": $tmp = "Fecha"; break;
-	 case "Importance": $tmp = "Importancia"; break;
-	 case "Urgency": $tmp = "Urgencia"; break;
-	 case "Name": $tmp = "Nombre"; break;
+     case "sorted by": $tmp = "ordenado por"; break;
+     case "Date": $tmp = "Fecha"; break;
+     case "Importance": $tmp = "Importancia"; break;
+     case "Urgency": $tmp = "Urgencia"; break;
+     case "Name": $tmp = "Nombre"; break;
+
 // FAQ
      case "Frequently Asked Questions": $tmp = "Preguntas Frecuentes"; break;
      case "Question": $tmp = "Pregunta"; break;
@@ -87,6 +89,8 @@ switch($phrase) {
      case "Comment": $tmp = "Comentario"; break;
      case "Review": $tmp = "Revisar"; break;
      case "Update": $tmp = "Actualizar"; break;
+     case "Delete": $tmp = "Borrar"; break;
+     case "Undelete": $tmp = "$phrase"; break;
 
 // Apps not yet reviewed
 
@@ -97,7 +101,6 @@ switch($phrase) {
      case "has not yet been reviewed by a $GLOBALS[sys_name] Editor.<br> Please, be patient. It will be surely done in the next time.": $tmp = "no ha sido todav&iacute;a revisada por $GLOBALS[sys_name].<br> Por favor, sea paciente. Seguro que ser&aacute; revisada en poco tiempo."; break;
      case "is modified": $tmp = "ha sido modificada"; break;
      case "is deleted": $tmp = "ha sido borrada"; break;
-
 
 // User registration
      case "Register as a new User": $tmp = "Registrarse como usuario nuevo"; break;
@@ -120,7 +123,6 @@ switch($phrase) {
      case "Your account is now activated. Please login": $tmp = "Su cuenta ha sido activada. Por favor, haga login"; break;
 
 // Forget password / Remind me
-     case "Register as a new User": $tmp = "Registrarse como un usuario nuevo"; break;
      case "Remind me": $tmp = "Recordar"; break;
      case "Your Username and Password for $GLOBALS[sys_name] is": $tmp = "Su nombre de usuario y contrase&ntilde;a para $GLOBALS[sys_name] es"; break;
      case "Please keep this e-mail for further reference": $tmp = "Por favor, guarde debidamente este mensaje de correo-e para posteriores referencias"; break;
@@ -128,7 +130,6 @@ switch($phrase) {
 
 // Change User Parameters
      case "Change User Parameters": $tmp = "Cambiar los datos de usuario"; break;
-     case "Remind me": $tmp = "Recordar"; break;
      case "Modification": $tmp = "Modificado"; break;
      case "Creation": $tmp = "Creado"; break;
      case "Permission": $tmp = "Derechos"; break;
@@ -162,7 +163,7 @@ switch($phrase) {
      case "Stable Version": $tmp = "Versi&oacute;n estable"; break;
      case "Development Version": $tmp = "Versi&oacute;n de desarrollo"; break;
      case "Section/Category": $tmp = "Secci&oacute;n/Categor&iacute;a"; break;
-     case "Red Hat Package": $tmp = "Paquete Red Hat"; break;
+     case "RPM Package": $tmp = "Paquete RPM"; break;
      case "Debian Package": $tmp = "Paquete Debian"; break;
      case "Slackware Package": $tmp = "Paquete Slackware"; break;
      case "SCM Tree": $tmp = "&Aacute;rbol SCM"; break;
@@ -180,7 +181,6 @@ switch($phrase) {
 // Comment
      case "Your Comment about": $tmp = "Tu comentario acerca de"; break;
      case "Subject": $tmp = "T&iacute;tulo"; break;
-     case "Comment": $tmp = "Comentario"; break;
      case "Send": $tmp = "Enviar"; break;
 
 // Login
@@ -198,7 +198,6 @@ switch($phrase) {
 
 // User admin
      case "Action": $tmp = "Acci&oacute;n"; break;
-     case "Delete": $tmp = "Borrar"; break;
      case "Create User": $tmp = "Crear Usuario"; break;
      case "User Creation": $tmp = "Creaci&oacute;n de Usuario"; break;
      case "created": $tmp = "ha sido creado"; break;
@@ -235,7 +234,6 @@ switch($phrase) {
      case "License URL": $tmp = "URL de la Licencia"; break;
      case "New License Name": $tmp = "Nombre de la Nueva Licencia"; break;
      case "New License URL": $tmp = "URL de la Nueva Licencia"; break;
-     case "License": $tmp = "Licencia"; break;
 
 // Announcements
     case "by": $tmp = "por"; break;
@@ -297,7 +295,7 @@ switch($phrase) {
 	 case "Apps by Hits": $tmp = "Aplicaciones por &quot;Hits&quot;"; break;
 	 case "Apps by Homepage Visits": $tmp = "Aplicaciones por Visitas a la P&aacute;gina Principal"; break;
 	 case "Apps by Downloads": $tmp = "Aplicaciones por Descargas"; break;
-	 case "Top downloaded RPM Packages": $tmp = "Top de Paquetes Red Hat descargados"; break;
+         case "Top downloaded RPM Packages": $tmp = "Top de Paquetes RPM descargados"; break;
 	 case "Top downloaded Debian Packages": $tmp = "Top de Paquetes Debian descargados"; break;
 	 case "Top downloaded Slackware Packages": $tmp = "Top de Paquetes Slackware descargados"; break;
 	 case "Apps and Downloads by Urgency": $tmp = "Aplicaciones y Descargas por Urgencia"; break;
@@ -332,23 +330,18 @@ switch($phrase) {
 	 case "Number of redirected Mailing Lists Archives": $tmp = "N&uacute;mero de Archivos de Listas de Correo-e redireccionadas"; break;
 	 case "SourceWell Version": $tmp = "Versi&oacute;n de SourceWell"; break;
 
-	 case "High Urgency": $tmp = "$phrase"; break;
-	 case "Medium Urgency": $tmp = "$phrase"; break;
-	 case "Low Urgency": $tmp = "$phrase"; break;
-	 case "Stable Version": $tmp = "$phrase"; break;
-	 case "Development Version": $tmp = "$phrase"; break;
-	 case "Version Number": $tmp = "$phrase"; break;
+ 	 case "High Urgency": $tmp = "Urgencia Alta"; break;
+	 case "Medium Urgency": $tmp = "Urgencia Media"; break;
+	 case "Low Urgency": $tmp = "Urgencia Baja"; break;
+	 case "Version Number": $tmp = "N&uacute;mero de Versi&oacute;n"; break;
 	 case "Tarballs": $tmp = "$phrase"; break;
-	 case "Red Hat Packages": $tmp = "$phrase"; break;
-	 case "Debian Packages": $tmp = "$phrase"; break;
-	 case "Slackware Packages": $tmp = "$phrase"; break;
+	 case "RPM Packages": $tmp = "Paquetes RPM"; break;
+	 case "Debian Packages": $tmp = "Paquetes Debian"; break;
+	 case "Slackware Packages": $tmp = "Paquetes Slackware"; break;
 	 case "Applications listed by their Importance": $tmp = "Aplicaciones por orden de Importancia"; break;
 	 case "Applications listed by Number of Tarball-Downloads": $tmp = "Aplicaciones ordenadas por N&uacute;mero de Descargas de &quot;Tarballs&quot;"; break;
 	 case "Applications listed by Number of Hits": $tmp = "Aplicaciones ordenadas por N&uacute;mero de &quot;Hits&quot;"; break;
 	 case "Applications listed by Homepage Visits": $tmp = "Aplicaciones ordenadas por Visitas a la P&aacute;gina Principal"; break;
-	 case "Top downloaded Red Hat Packages": $tmp = "Top de Paquetes Red Hat descargados"; break;
-	 case "Top downloaded Debian Packages": $tmp = "Top de Paquetes Debian descargados"; break;
-	 case "Top downloaded Slackware Packages": $tmp = "Top de Paquetes Slackware descargados"; break;
 	 case "Application Importance listed by Sections": $tmp = "Importancia de las Aplicaciones por Secciones"; break;
 	 case "Applications listed by Sections": $tmp = "Aplicaciones por Secciones"; break;
 	 case "Applications listed by Categories": $tmp = "Aplicaciones por Categor&iacute;as"; break;
@@ -358,7 +351,6 @@ switch($phrase) {
 	 case "Applications listed by Urgency": $tmp = "Aplicaciones por Urgencia"; break;
 	 case "Downloads listed by Urgency": $tmp = "Descargas por Urgencia"; break;
 	 case "Applications listed by Version Numbers": $tmp = "Aplicaciones por N&uacute;mero de Versi&oacute;n"; break;
-	 case "Applications listed by Licenses": $tmp = "Aplicaciones por Licencia"; break;
 	 case "Applications listed by Version Type": $tmp = "Aplicaciones por Tipo de Versi&oacute;n"; break;
 	 case "Downloads listed by Version Type": $tmp = "Descargas por Tipo de Versi&oacute;n"; break;
 	 case "Application Importance listed by Licenses": $tmp = "Importancia de las Aplicaciones ordenada por Licencias"; break;
@@ -392,7 +384,6 @@ switch($phrase) {
      case "No more Apps for this day": $tmp = "No hay m&aacute;s aplicaciones para este d&iacute;a"; break;
      case "Either your Username or Password are invalid": $tmp = "La combinaci&oacute;n nombre de usuario - contrase&ntilde;a introducidas son inv&aacute;lidas"; break;
      case "The passwords are not identical": $tmp = "Las contrase&ntilde;as no son id&eacute;nticas"; break;
-     case "Please try again": $tmp = "Por favor, int&eacute;ntelo otra vez"; break;
      case "License description is not available": $tmp = "La descripci&oacute;n de la licencia no est&aacute; disponible"; break;
      case "No Frequently Asked Questions exist": $tmp = "No existen Preguntas Frecuentes"; break;
 
@@ -401,11 +392,6 @@ switch($phrase) {
 // stats.php
     case "Number of Insertions and Modifications in the last day": $tmp = "N&uacute;mero de Inserciones y Modificaciones en el &uacute;ltimo d&iacute;a"; break;
     case "Number of today's visitors": $tmp = "N&uacute;mero de visitas en el d&iacute;a de hoy"; break;
-    case "Today": $tmp = "Hoy"; break;
-    case "Version Number":  $tmp = "N&uacute;mero de Versi&oacute;n"; break;
-    case "High Urgency": $tmp = "Urgencia Alta"; break;
-    case "Medium Urgency": $tmp = "Urgencia Media"; break;
-    case "Low Urgency": $tmp = "Urgencia Baja"; break;
 
 // admuser.php
     case "User Administration": $tmp = "Administraci&oacute;n de usuarios"; break;
@@ -425,15 +411,12 @@ switch($phrase) {
     case "applications that are actually in the": $tmp = "aplicaciones que actualmente est&aacute;n en la categor&iacute;a"; break;
     case "category": $tmp = ""; break; // en la fila m&aacute;s arriba
     case "Delete Category": $tmp = "Borrar Categor&iacute;a"; break;
-    case "Delete": $tmp = "Borrar"; break;
     case "Deletion succesfully completed.": $tmp = "El borrado se ha producido de manera satisfactoria."; break;
     case "Deletion succesfully completed affecting": $tmp = "El borrado se ha producido de manera satisfactoria afectando a"; break;
-    case "applications": $tmp = "aplicaciones"; break;
     case "has been added succesfully to the database": $tmp = "ha sido a&ntilde;adida satisfactoriamente a la base de datos"; break;
     case "Warning!": $tmp = "&iexcl;Atenci&oacute;n!"; break;
     case "If you press another time the Delete-button you will delete the": $tmp = "Si presiona otra vez el bot&oacute;n de Borrar, borrar&aacute; las"; break;
     case "categories and": $tmp = "categor&iacute;as y"; break;
-    case "applications that are actually in the": $tmp = "aplicaciones que actualmente se encuentran en la secci&oacute;n"; break;
     case "section": $tmp = ""; break;    // en la fila de arriba
     case "Delete Section": $tmp = "Borrar Secci&oacute;n"; break;
 
@@ -446,7 +429,6 @@ switch($phrase) {
     case "applications that have actually license": $tmp = "aplicaciones que tiene actualmente bajo la licencia"; break;
     case "That license already exists!": $tmp = "&iexcl;Esta licencia ya existe!"; break;
     case "with URL": $tmp = "con la URL"; break;
-    case "has been added succesfully to the database": $tmp = "ha sido a&ntilde;adida satisfactoriamente a la base de datos"; break;
     case "License URL not specified": $tmp = "No ha especificado la URL de la licencia"; break;
     case "License not specified": $tmp = "No ha especificado ninguna licencia"; break;
     case "Delete License": $tmp = "Borrar licencia"; break;
@@ -480,8 +462,6 @@ switch($phrase) {
     case "The Mailing Lists are not enabled": $tmp = "Las listas de correo no est&aacute;n habilitadas"; break;
     case "daily newsletter for": $tmp = ": Lista de noticias diaria del d&iacute;a"; break;
     case "weekly newsletter for": $tmp = ": Lista de noticias semanal del d&iacute;a"; break;
-    case "Newsletter was sent at ": $tmp = "Lista de noticias enviada el"; break;
-    case "Send newsletter": $tmp = "Mandar lista de noticias"; break;
 
 // footer.inc
     case "System Credits": $tmp = "Cr&eacute;ditos"; break;

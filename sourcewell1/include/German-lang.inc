@@ -66,17 +66,18 @@ switch($phrase) {
      case "Go": $tmp = "Los"; break;
 
 // Languages
-	 case "English": $tmp = "Englisch"; break;
-	 case "German": $tmp = "Deutsch"; break;
-	 case "Spanish": $tmp = "Spanisch"; break;
-	 case "French": $tmp = "Französisch"; break;
+     case "English": $tmp = "Englisch"; break;
+     case "German": $tmp = "Deutsch"; break;
+     case "Spanish": $tmp = "Spanisch"; break;
+     case "French": $tmp = "Französisch"; break;
+     case "Italian": $tmp = "Italienisch"; break;
 
 // sorted by
-	 case "sorted by": $tmp = "sortiert nach"; break;
-	 case "Date": $tmp = "Datum"; break;
-	 case "Importance": $tmp = "Bedeutung"; break;
-	 case "Urgency": $tmp = "Dringlichkeit"; break;
-	 case "Name": $tmp = "Name"; break;
+     case "sorted by": $tmp = "sortiert nach"; break;
+     case "Date": $tmp = "Datum"; break;
+     case "Importance": $tmp = "Bedeutung"; break;
+     case "Urgency": $tmp = "Dringlichkeit"; break;
+     case "Name": $tmp = "Name"; break;
 
 // FAQ
      case "Frequently Asked Questions": $tmp = "Oft gestellte Fragen"; break;
@@ -129,7 +130,6 @@ switch($phrase) {
 
 // Change User Parameters
      case "Change User Parameters": $tmp = "Änderung der Benutzerdaten"; break;
-     case "Remind me": $tmp = "Erinnerung"; break;
      case "Modification": $tmp = "Modifiziert"; break;
      case "Creation": $tmp = "Erzeugt"; break;
      case "Permission": $tmp = "Rechte"; break;
@@ -158,7 +158,7 @@ switch($phrase) {
      case "Insert Application": $tmp = "Anwendung einfügen"; break;
      case "Version": $tmp = "Version"; break;
      case "Section/Category": $tmp = "Sektion/Kategorie"; break;
-     case "Red Hat Package": $tmp = "Red Hat Paket"; break;
+     case "RPM Package": $tmp = "RPM Paket"; break;
      case "Debian Package": $tmp = "Debian Paket"; break;
      case "Slackware Package": $tmp = "Slackware Paket"; break;
      case "SCM Tree": $tmp = "SCM Baum"; break;
@@ -183,7 +183,6 @@ switch($phrase) {
 // Comment
      case "Your Comment about": $tmp = "Ihr Kommentar zu"; break;
      case "Subject": $tmp = "Thema"; break;
-     case "Comment": $tmp = "Kommentar"; break;
      case "Send": $tmp = "Senden"; break;
 
 // Login
@@ -201,13 +200,11 @@ switch($phrase) {
 
 // User admin
      case "Action": $tmp = "Aktion"; break;
-     case "Delete": $tmp = "Löschen"; break;
      case "Create User": $tmp = "Benutzer Erzeugen"; break;
      case "User Creation": $tmp = "Benutzer einrichten"; break;
      case "created": $tmp = "eingerichtet"; break;
      case "User Change": $tmp = "Benutzer Ändern"; break;
      case "User Deletion": $tmp = "Benutzer Löschen"; break;
-     case "is deleted": $tmp = "wurden gelöscht"; break;
 
 // Section admin
      case "Section Administration": $tmp = "Sektionsadministration"; break;
@@ -238,7 +235,6 @@ switch($phrase) {
      case "License URL": $tmp = "Lizenz-URL"; break;
      case "New License Name": $tmp = "Neuer Lizenzname"; break;
      case "New License URL": $tmp = "Neue Lizenz-URL"; break;
-     case "License": $tmp = "Lizenz"; break;
 
 // Announcements
     case "by": $tmp = "von"; break;
@@ -343,16 +339,13 @@ switch($phrase) {
 	 case "Development Version": $tmp = "Entwicklungsversion"; break;
 	 case "Version Number": $tmp = "Versionsnummer"; break;
 	 case "Tarballs": $tmp = "$phrase"; break;
-	 case "Red Hat Packages": $tmp = "Red Hat Pakete"; break;
+	 case "RPM Packages": $tmp = "RPM Pakete"; break;
 	 case "Debian Packages": $tmp = "Debian Pakete"; break;
 	 case "Slackware Packages": $tmp = "Slackware Pakete"; break;
 	 case "Applications listed by their Importance": $tmp = "Anwendungen geordnet nach ihrer Bedeutung"; break;
 	 case "Applications listed by Number of Tarball-Downloads": $tmp = "Anwendungen geordnet nach Anzahl der Tarball-Downloads"; break;
 	 case "Applications listed by Number of Hits": $tmp = "Anwendungen geordnet nach Anzahl der Zugriffe"; break;
 	 case "Applications listed by Homepage Visits": $tmp = "Anwendungen geordnet nach Anzahl der Homepage-Besuche"; break;
-	 case "Top downloaded Red Hat Packages": $tmp = "Top der heruntergeladenen RPM-Pakete"; break;
-	 case "Top downloaded Debian Packages": $tmp = "Top der heruntergeladenen Debian-Pakete"; break;
-	 case "Top downloaded Slackware Packages": $tmp = "Top der heruntergeladenen Slackware-Pakete"; break;
 	 case "Application Importance listed by Sections": $tmp = "Anwendungsbedeutung geordnet nach Sektionen"; break;
 	 case "Applications listed by Sections": $tmp = "Anwendungen geordnet nach Sektionen"; break;
 	 case "Applications listed by Categories": $tmp = "Anwendungen geordnet nach Kategrien"; break;
@@ -362,7 +355,6 @@ switch($phrase) {
 	 case "Applications listed by Urgency": $tmp = "Anwendungen geordnet nach Dringlichkeit"; break;
 	 case "Downloads listed by Urgency": $tmp = "Downloads geordnet nach Dringlichkeit"; break;
 	 case "Applications listed by Version Numbers": $tmp = "Anwendungen geordnet nach Versionsnummern"; break;
-	 case "Applications listed by Licenses": $tmp = "Anwendungen geordnet nach Lizenzen"; break;
 	 case "Applications listed by Version Type": $tmp = "Anwendungen geordnet nach Versionstypen"; break;
 	 case "Downloads listed by Version Type": $tmp = "Downloads geordnet nach Versionstypen"; break;
 	 case "Application Importance listed by Licenses": $tmp = "Anwendungsbedeutung geordnet nach Lizenzen"; break;
@@ -396,7 +388,6 @@ switch($phrase) {
      case "No more Apps for this day": $tmp = "Keine weiteren Anwendungen für diesen Tag"; break;
      case "Either your Username or Password are invalid": $tmp = "Entweder Ihr Benutzername oder Passwort ist falsch"; break;
      case "The passwords are not identical": $tmp = "Die Passworte sind nicht identisch"; break;
-     case "Please try again": $tmp = "Bitte versuchen Sie es nochmal"; break;
      case "License description is not available": $tmp = "Lizenzbeschreibung ist nicht verfügbar"; break;
      case "No Frequently Asked Questions exist": $tmp = "Es existieren keine oft gestellten Fragen"; break;
 
@@ -405,8 +396,6 @@ switch($phrase) {
 // stats.php
     case "Number of Insertions and Modifications in the last day": $tmp = "Anzahl der Eintragungen und Modifikationen während des letzten Tages"; break;
     case "Number of today's visitors": $tmp = "Anzahl der heutigen Besucher"; break;
-    case "Today": $tmp = "Heute"; break;
-    case "Version Number":  $tmp = "Versionsnummer"; break;
 
 // admuser.php
     case "User Administration": $tmp = "Benutzeradministration"; break;
@@ -426,10 +415,8 @@ switch($phrase) {
     case "applications that are actually in the": $tmp = "Anwendungen, die gerade gehören zu"; break;
     case "category": $tmp = ""; break;
     case "Delete Category": $tmp = "Kategorie löschen"; break;
-    case "Delete": $tmp = "Löschen"; break;
     case "Deletion succesfully completed.": $tmp = "Löschvorgang wurde erfolgreich durchgeführt."; break;
     case "Deletion succesfully completed affecting": $tmp = "Löschvorgang wurde erfolgreich durchgeführt für"; break;
-    case "applications": $tmp = "Anwendungen"; break;
     case "has been added succesfully to the database": $tmp = "wurde erfolgreich in die Datenbank eingetragen"; break;
     case "Warning!": $tmp = "Warnung!"; break;
     case "If you press another time the Delete-button you will delete the": $tmp = "Wenn Sie den Löschen-Knopf ein weiteres Mal drücken, dann Löschen Sie die"; break;
@@ -480,8 +467,6 @@ switch($phrase) {
     case "The Mailing Lists are not enabled": $tmp = "Die Benutzung der Mailinglisten ist nicht freigegeben"; break;
     case "daily newsletter for": $tmp = "täglicher Newsletter für"; break;
     case "weekly newsletter for": $tmp = "wöchentlicher Newsletter für"; break;
-    case "Newsletter was sent at ": $tmp = "Newsletter wurde gesendet am"; break;
-    case "Send newsletter": $tmp = "Sende Newsletter"; break;
 
 // footer.inc
     case "System Credits": $tmp = "Systembeschreibung"; break;
