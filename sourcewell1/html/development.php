@@ -51,20 +51,6 @@ PHPLib's API in PHPLib's manual. At this moment, PHPLib is used only
 for sessions and authentication. If you aren't going to work with
 them, you don't need to have a look at PHPLib.
 
-
-
-		<!-- This table is just to make some space
-		 between the content and the footer
-		 so that the web page doesn't look that ugly -->
-<center><table width=80% border=0 cellspacing=15 cellpadding=8>
-<tr><td>&nbsp;</td></tr>
-<tr><td>&nbsp;</td></tr>
-<tr><td>&nbsp;</td></tr>
-<tr><td>&nbsp;</td></tr>
-<tr><td>&nbsp;</td></tr>
-</table></center>
-
-
 <P>&nbsp;
 
 <!-- end content -->
