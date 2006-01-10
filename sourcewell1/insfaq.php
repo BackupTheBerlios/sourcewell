@@ -4,7 +4,7 @@
 # SourceWell: Software Announcement & Retrieval System
 # ================================================
 #
-# Copyright (c) 2001-2004 by
+# Copyright (c) 2001-2006 by
 #                Lutz Henckel (lutz.henckel@fokus.fraunhofer.de) and
 #                Gregorio Robles (grex@scouts-es.org)
 #
@@ -86,7 +86,7 @@ if (($config_perm_admfaq != "all") && (!isset($perm) || !$perm->have_perm($confi
     if ($modify == 2) {
  				// We insert it into the DB
       $db->query("UPDATE faq SET question='$question',answer='$answer' WHERE faqid='$faqid'");
-      if ($db->affected_rows() < 1) {
+      if ($db->affected_rows() <> 1 && $db->Errno) {
         $be->box_full($t->translate("Error"), $t->translate("Database Error"));
       } else {
 				// We show what we just have inserted
