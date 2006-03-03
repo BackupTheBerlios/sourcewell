@@ -78,7 +78,6 @@ if ($ml_list) {
   echo "<br><a href=\"".$sess->url("newsletter.php")."\" class=\"menus\">".$t->translate("Newsletter")."</a>\n";
 }
 ?>
-<br><a href="<?php $sess->purl("backend.php"); ?>" class="menus"><?php echo $t->translate("Backend"); ?></a>
 <br><a href="<?php $sess->purl("stats.php?option=general"); ?>" class="menus"><?php echo $t->translate("Statistics"); ?></a>
 <?php
 /*
@@ -254,7 +253,9 @@ echo "<p><input TYPE=\"submit\" NAME=\"go\" VALUE=\"".$t->translate("Go")."\">";
 if (ereg("Gecko", "$HTTP_USER_AGENT")) {
 	echo "<p align=center><a href=\"javascript:addNetscapePanel();\"><img SRC=\"images/add-button.gif\" BORDER=0 height=45 width=100></a>\n";
 }
+echo "<p align=\"center\"><a href=\"rss20.php\">
+<img src=\"/images/feed-icons/png/feed-icon-32x32.png\" width=\"32px\" height=\"32px\"alt=\"Feed logo\" border=\"0\" align=\"middle\"></a><br>RSS 2.0\n";
 echo "<p align=\"center\"><a href=\"http://developer.berlios.de\" title=\"BerliOS Developer\">
-<img src=\"//developer.berlios.de/bslogo.php?group_id=23&type=1\" width=\"124px\" height=\"32px\" border=\"0\" hspace=\"3\" vspace=\"3\" alt=\"BerliOS Logo\"><br>Developer</a>\n";
+<img src=\"//developer.berlios.de/bslogo.php?group_id=23&type=1\" width=\"124px\" height=\"32px\" border=\"0\" hspace=\"3\" vspace=\"3\" alt=\"BerliOS Logo\"></a><br>Developer\n";
 ?>
 <!-- end Language menu -->
