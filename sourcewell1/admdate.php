@@ -60,7 +60,7 @@ if (($config_perm_admdate != "all") && (!isset($perm) || !$perm->have_perm($conf
     $db2_creation_his = $db2->f("creation_his");
     if ($db_modification != $db2_creation_his) {
       $timestamp = mktimestamp($db_modification);
-      $title = "<b><a href=\"http://sourcewell.berlios.de/appbyid.php".$sess->add_query(array("id"=> $db->f(appid)))."\">".$db->f(name)."</a> (".$db->f(appid).")</b>";
+      $title = "<b><a href=\"".htmlentities($sess->url("appbyid.php").$sess->add_query(array("id"=> $db->f(appid))))."\">".$db->f(name)."</a> (".$db->f(appid).")</b>";
       $bx->box_begin();
       $bx->box_title($title);
       $body = "Modification date: ".timestr($timestamp)."\n";
@@ -71,7 +71,7 @@ if (($config_perm_admdate != "all") && (!isset($perm) || !$perm->have_perm($conf
 	case "check":
           if ($db2_exists) $action2 = "update";
           else $action2 = "insert";
-	  $title = "<a href=\"".$sess->self_url().$sess->add_query(array("action" => $action2, "id"=> $db_appid))."\"><img src=\"images/recycled.png\" border=0 alt=\"".$t->translate("Update")."\"></a>\n";
+	  $title = "<a href=\"".htmlentities($sess->self_url().$sess->add_query(array("action" => $action2, "id"=> $db_appid)))."\"><img src=\"images/recycled.png\" border=0 alt=\"".$t->translate("Update")."\"></a>\n";
 	  $bx->box_title($title);
 	  break;
         case "update":
