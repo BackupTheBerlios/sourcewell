@@ -43,25 +43,48 @@ $bs = new box("100%",$th_strip_frame_color,$th_strip_frame_width,$th_strip_title
 if (($config_perm_admcomment != "all") && (!isset($perm) || !$perm->have_perm($config_perm_admcomment))) {
   $be->box_full($t->translate("Error"), $t->translate("Access denied"));
 } else {
-  if (!isset($by) || empty($by)) {
-    $by = "";
+// $iter is a variable for printing the developers in steps of 10
+  if (!isset($iter)) $iter=0;
+  $iter*=10;
+
+  if (isset($find) && ! empty($find)) {
+    $by = "%".$find."%";
   }
+  if (!isset($by) || empty($by)) {
+    $by = "%";
+  }
+
   $alphabet = array ("A","B","C","D","E","F","G","H","I","J","K","L",
 				"M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z");
   $msg = "[ ";
   while (list(, $ltr) = each($alphabet)) {
-    $msg .= "<a href=\"".$sess->self_url().$sess->add_query(array("by"=>$ltr))."\">$ltr</a>&nbsp;| ";
+    $msg .= "<a href=\"".htmlentities($sess->self_url().$sess->add_query(array("by"=>$ltr."%")))."\">$ltr</a>&nbsp;| ";
   }
-  $msg .= "<a href=\"".$sess->self_url().$sess->add_query(array("by"=>$ltr))."\">".$t->translate("All")."</a>&nbsp;]";
+  $msg .= "<a href=\"".htmlentities($sess->self_url().$sess->add_query(array("by"=>"%")))."\">".$t->translate("All")."</a>&nbsp;]";
+  $msg .= "<form action=\"".$sess->url("admcomment.php")."\">"
+       ."<p>Search for <input TYPE=\"text\" SIZE=\"10\" NAME=\"find\" VALUE=\"".$find."\">"
+       ."&nbsp;<input TYPE=\"submit\" NAME= \"Find\" VALUE=\"Go\"></form>";
+
   $bs->box_strip($msg);
 
-  $by = $by."%";
-  $db->query("SELECT software.appid,name,user_cmt,subject_cmt,creation_cmt FROM comments,software WHERE software.appid = comments.appid AND software.name LIKE '$by' ORDER BY creation_cmt DESC");
+  $columns = "COUNT(*)";
+  $tables = "comments,software";
+  $where = "software.appid = comments.appid AND software.name LIKE '$by'";
+
+// We need to know the total number of users
+  $query = "SELECT $columns FROM $tables WHERE $where";
+  $db->query($query);
+  $db->next_record();
+  $numiter = ($db->f("COUNT(*)")/10);
+
+  $limit = "$iter,10";
+
+  $db->query("SELECT software.appid,name,user_cmt,subject_cmt,creation_cmt FROM comments,software WHERE software.appid = comments.appid AND software.name LIKE '$by' ORDER BY creation_cmt DESC LIMIT $limit");
   $bx->box_begin();
   $bx->box_title($t->translate("Comments"));
   $bx->box_body_begin();		
 
-  echo "<table border=0 align=center cellspacing=1 cellpadding=1 width=100%>\n";
+  echo "<table border=0 align=center cellspacing=1 cellpadding=1 width=\"100%\">\n";
   echo "<tr><td><b>".$t->translate("No").".</b></td>\n";
   echo "<td><b>".$t->translate("Application")."</b></td>\n";
   echo "<td><b>".$t->translate("Subject")."</b></td>\n";
@@ -73,7 +96,7 @@ if (($config_perm_admcomment != "all") && (!isset($perm) || !$perm->have_perm($c
   $i = 1;
   while($db->next_record()) {
     echo "<tr><td>$i</td>\n";
-    echo "<td><a href=\"".$sess->url("appbyid.php?id=".$db->f("appid")."")."\">".$db->f("name")."</a></td>\n";
+    echo "<td><a href=\"".htmlentities($sess->url("appbyid.php?id=".$db->f("appid"))."")."\">".$db->f("name")."</a></td>\n";
     echo "<td>".$db->f("subject_cmt")."</td>\n";
     echo "<td>".$db->f("user_cmt")."</td>\n";
     $timestamp = mktimestamp($db->f("creation_cmt"));
@@ -100,7 +123,12 @@ if (($config_perm_admcomment != "all") && (!isset($perm) || !$perm->have_perm($c
   echo "</table>\n";
   $bx->box_body_end();
   $bx->box_end();
-  echo "</table>\n";
+
+  if ($numiter > 1) {
+    $url = "admcomment.php";
+    $urlquery = array("by" => "$by","find" => "$find");
+    show_more ($iter,$numiter,$url,$urlquery);
+  }
 }
 ?>
 <!-- end content -->
