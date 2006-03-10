@@ -62,10 +62,10 @@ $iter*=10;
   $msg = "[ ";
 
   while (list(, $ltr) = each($alphabet)) {
-    $msg .= "<a href=\"".$sess->url("appbyuser.php").$sess->add_query(array("with" => $ltr."%"))."\">$ltr</a>&nbsp;| ";
+    $msg .= "<a href=\"".htmlentities($sess->url("appbyuser.php").$sess->add_query(array("with" => $ltr."%")))."\">$ltr</a>&nbsp;| ";
   }
 
-  $msg .= "<a href=\"".$sess->url("appbyuser.php").$sess->add_query(array("with" => "%"))."\">".$t->translate("All")."</a>&nbsp;]";
+  $msg .= "<a href=\"".htmlentities($sess->url("appbyuser.php").$sess->add_query(array("with" => "%")))."\">".$t->translate("All")."</a>&nbsp;]";
   $msg .= "<form action=\"".$sess->self_url()."\">"
 	   ."<p>Search for <input TYPE=\"text\" SIZE=\"10\" NAME=\"find\" VALUE=\"".$find."\">"
        ."<input TYPE=\"hidden\" NAME= \"usr\" VALUE=\"$usr\">"
@@ -116,10 +116,10 @@ switch ($by) {
 $limit = "$iter,10";
 
 $sort = $t->translate("sorted by").": "
-."<a href=\"".$sess->url("appbyuser.php").$sess->add_query(array("with" => "$with","find" => "$find","by" => "Date"))."\">".$t->translate("Date")."</a>"
-." | <a href=\"".$sess->url("appbyuser.php").$sess->add_query(array("with" => "$with","find" => "$find","by" => "Importance"))."\">".$t->translate("Importance")."</a>"
-." | <a href=\"".$sess->url("appbyuser.php").$sess->add_query(array("with" => "$with","find" => "$find","by" => "Urgency"))."\">".$t->translate("Urgency")."</a>"
-." | <a href=\"".$sess->url("appbyuser.php").$sess->add_query(array("with" => "$with","find" => "$find","by" => "Name"))."\">".$t->translate("Name")."</a>\n";
+."<a href=\"".htmlentities($sess->url("appbyuser.php").$sess->add_query(array("with" => "$with","find" => "$find","by" => "Date")))."\">".$t->translate("Date")."</a>"
+." | <a href=\"".htmlentities($sess->url("appbyuser.php").$sess->add_query(array("with" => "$with","find" => "$find","by" => "Importance")))."\">".$t->translate("Importance")."</a>"
+." | <a href=\"".htmlentities($sess->url("appbyuser.php").$sess->add_query(array("with" => "$with","find" => "$find","by" => "Urgency")))."\">".$t->translate("Urgency")."</a>"
+." | <a href=\"".htmlentities($sess->url("appbyuser.php").$sess->add_query(array("with" => "$with","find" => "$find","by" => "Name")))."\">".$t->translate("Name")."</a>\n";
 
 $bs->box_strip($sort);
 

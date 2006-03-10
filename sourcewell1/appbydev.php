@@ -57,10 +57,10 @@ $iter*=10;
   $msg = "[ ";
 
   while (list(, $ltr) = each($alphabet)) {
-    $msg .= "<a href=\"".$sess->url("appbydev.php").$sess->add_query(array("developer" => $developer, "email" => $email, "with" => $ltr."%"))."\">$ltr</a>&nbsp;| ";
+    $msg .= "<a href=\"".htmlentities($sess->url("appbydev.php").$sess->add_query(array("developer" => $developer, "email" => $email, "with" => $ltr."%")))."\">$ltr</a>&nbsp;| ";
   }
 
-  $msg .= "<a href=\"".$sess->url("appbydev.php").$sess->add_query(array("developer" => $developer, "email" => $email, "with" => "%"))."\">".$t->translate("All")."</a>&nbsp;]";
+  $msg .= "<a href=\"".htmlentities($sess->url("appbydev.php").$sess->add_query(array("developer" => $developer, "email" => $email, "with" => "%")))."\">".$t->translate("All")."</a>&nbsp;]";
   $msg .= "<form action=\"".$sess->url("appbydev.php")."\">"
 	   ."<p>Search for <input TYPE=\"text\" SIZE=\"10\" NAME=\"find\" VALUE=\"".$find."\">"
        ."<input TYPE=\"hidden\" NAME= \"developer\" VALUE=\"$developer\">"
@@ -99,10 +99,10 @@ switch ($by) {
 $limit = "$iter,10";
 
 $sort = $t->translate("sorted by").": "
-."<a href=\"".$sess->url("appbydev.php").$sess->add_query(array("developer" => $developer, "email" => $email, "with" => "$with", "find" => "$find", "by" => "Date"))."\">".$t->translate("Date")."</a>"
-." | <a href=\"".$sess->url("appbydev.php").$sess->add_query(array("developer" => $developer, "email" => $email, "with" => "$with", "find" => "$find", "by" => "Importance"))."\">".$t->translate("Importance")."</a>"
-." | <a href=\"".$sess->url("appbydev.php").$sess->add_query(array("developer" => $developer, "email" => $email, "with" => "$with", "find" => "$find", "by" => "Urgency"))."\">".$t->translate("Urgency")."</a>"
-." | <a href=\"".$sess->url("appbydev.php").$sess->add_query(array("developer" => $developer, "email" => $email, "with" => "$with", "find" => "$find", "by" => "Name"))."\">".$t->translate("Name")."</a>\n";
+."<a href=\"".htmlentities($sess->url("appbydev.php").$sess->add_query(array("developer" => $developer, "email" => $email, "with" => "$with", "find" => "$find", "by" => "Date")))."\">".$t->translate("Date")."</a>"
+." | <a href=\"".htmlentities($sess->url("appbydev.php").$sess->add_query(array("developer" => $developer, "email" => $email, "with" => "$with", "find" => "$find", "by" => "Importance")))."\">".$t->translate("Importance")."</a>"
+." | <a href=\"".htmlentities($sess->url("appbydev.php").$sess->add_query(array("developer" => $developer, "email" => $email, "with" => "$with", "find" => "$find", "by" => "Urgency")))."\">".$t->translate("Urgency")."</a>"
+." | <a href=\"".htmlentities($sess->url("appbydev.php").$sess->add_query(array("developer" => $developer, "email" => $email, "with" => "$with", "find" => "$find", "by" => "Name")))."\">".$t->translate("Name")."</a>\n";
 $bs->box_strip($sort);
 
 if (empty($developer)) {

@@ -11,7 +11,7 @@
 # BerliOS SourceWell: http://sourcewell.berlios.de
 # BerliOS - The OpenSource Mediator: http://www.berlios.de
 #
-# This file shows the deleted or modified apps
+# Shows the deleted or modified apps
 #
 # This program is free software. You can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -58,10 +58,10 @@ if (($config_perm_appdom != "all") && (!isset($perm) || !$perm->have_perm($confi
   $msg = "[ ";
 
   while (list(, $ltr) = each($alphabet)) {
-    $msg .= "<a href=\"".$sess->url("appdom.php").$sess->add_query(array("with" => $ltr."%"))."\">$ltr</a>&nbsp;| ";
+    $msg .= "<a href=\"".htmlentities($sess->url("appdom.php").$sess->add_query(array("with" => $ltr."%")))."\">$ltr</a>&nbsp;| ";
   }
 
-  $msg .= "<a href=\"".$sess->url("appdom.php").$sess->add_query(array("with" => "%"))."\">".$t->translate("All")."</a>&nbsp;]";
+  $msg .= "<a href=\"".htmlentities($sess->url("appdom.php").$sess->add_query(array("with" => "%")))."\">".$t->translate("All")."</a>&nbsp;]";
   $msg .= "<form action=\"".$sess->self_url()."\">"
 	   ."<p>Search for <input TYPE=\"text\" SIZE=\"10\" NAME=\"find\" VALUE=\"".$find."\">"
        ."&nbsp;<input TYPE=\"submit\" NAME= \"Find\" VALUE=\"Go\"></form>";
@@ -106,10 +106,10 @@ if (($config_perm_appdom != "all") && (!isset($perm) || !$perm->have_perm($confi
   $limit = "$iter,10";
 
   $sort = $t->translate("sorted by").": "
-  ."<a href=\"".$sess->url("appdom.php").$sess->add_query(array("action" => "$action","with" => "$with","find" => "$find","by" => "Date"))."\">".$t->translate("Date")."</a>"
-  ." | <a href=\"".$sess->url("appdom.php").$sess->add_query(array("action" => "$action","with" => "$with","find" => "$find","by" => "Importance"))."\">".$t->translate("Importance")."</a>"
-  ." | <a href=\"".$sess->url("appdom.php").$sess->add_query(array("action" => "$action","with" => "$with","find" => "$find","by" => "Urgency"))."\">".$t->translate("Urgency")."</a>"
-  ." | <a href=\"".$sess->url("appdom.php").$sess->add_query(array("action" => "$action","with" => "$with","find" => "$find","by" => "Name"))."\">".$t->translate("Name")."</a>\n";
+  ."<a href=\"".htmlentities($sess->url("appdom.php").$sess->add_query(array("action" => "$action","with" => "$with","find" => "$find","by" => "Date")))."\">".$t->translate("Date")."</a>"
+  ." | <a href=\"".htmlentities($sess->url("appdom.php").$sess->add_query(array("action" => "$action","with" => "$with","find" => "$find","by" => "Importance")))."\">".$t->translate("Importance")."</a>"
+  ." | <a href=\"".htmlentities($sess->url("appdom.php").$sess->add_query(array("action" => "$action","with" => "$with","find" => "$find","by" => "Urgency")))."\">".$t->translate("Urgency")."</a>"
+  ." | <a href=\"".htmlentities($sess->url("appdom.php").$sess->add_query(array("action" => "$action","with" => "$with","find" => "$find","by" => "Name")))."\">".$t->translate("Name")."</a>\n";
 
   $bs->box_strip($sort);
 

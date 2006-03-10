@@ -54,10 +54,10 @@ $iter*=10;
   $msg = "[ ";
 
   while (list(, $ltr) = each($alphabet)) {
-    $msg .= "<a href=\"".$sess->url("appbylic.php").$sess->add_query(array("license" => $license, "with" => $ltr."%"))."\">$ltr</a>&nbsp;| ";
+    $msg .= "<a href=\"".htmlentities($sess->url("appbylic.php").$sess->add_query(array("license" => $license, "with" => $ltr."%")))."\">$ltr</a>&nbsp;| ";
   }
 
-  $msg .= "<a href=\"".$sess->url("appbylic.php").$sess->add_query(array("license" => $license, "with" => "%"))."\">".$t->translate("All")."</a>&nbsp;]";
+  $msg .= "<a href=\"".htmlentities($sess->url("appbylic.php").$sess->add_query(array("license" => $license, "with" => "%")))."\">".$t->translate("All")."</a>&nbsp;]";
   $msg .= "<form action=\"".$sess->self_url()."\">"
 	   ."<p>Search for <input TYPE=\"text\" SIZE=\"10\" NAME=\"find\" VALUE=\"".$find."\">"
        ."<input TYPE=\"hidden\" NAME= \"license\" VALUE=\"$license\">"
@@ -92,10 +92,10 @@ $limit = "$iter,10";
 $db->query("SELECT *,SUM(app_cnt+homepage_cnt+download_cnt+changelog_cnt+rpm_cnt+deb_cnt+tgz_cnt+cvs_cnt+screenshots_cnt+mailarch_cnt) AS sum_cnt FROM software,counter WHERE license='$license' AND status='A' AND software.appid=counter.appid AND name LIKE '$with' GROUP BY software.appid ORDER BY $order LIMIT $limit");
 
 $sort = $t->translate("sorted by").": "
-."<a href=\"".$sess->self_url().$sess->add_query(array("license" => $license, "with" => "$with", "find" => "$find", "by" => "Date"))."\">".$t->translate("Date")."</a>"
-." | <a href=\"".$sess->self_url().$sess->add_query(array("license" => $license, "with" => "$with", "find" => "$find", "by" => "Importance"))."\">".$t->translate("Importance")."</a>"
-." | <a href=\"".$sess->self_url().$sess->add_query(array("license" => $license, "with" => "$with", "find" => "$find", "by" => "Urgency"))."\">".$t->translate("Urgency")."</a>"
-." | <a href=\"".$sess->self_url().$sess->add_query(array("license" => $license, "with" => "$with", "find" => "$find", "by" => "Name"))."\">".$t->translate("Name")."</a>\n";
+."<a href=\"".htmlentities($sess->self_url().$sess->add_query(array("license" => $license, "with" => "$with", "find" => "$find", "by" => "Date")))."\">".$t->translate("Date")."</a>"
+." | <a href=\"".htmlentities($sess->self_url().$sess->add_query(array("license" => $license, "with" => "$with", "find" => "$find", "by" => "Importance")))."\">".$t->translate("Importance")."</a>"
+." | <a href=\"".htmlentities($sess->self_url().$sess->add_query(array("license" => $license, "with" => "$with", "find" => "$find", "by" => "Urgency")))."\">".$t->translate("Urgency")."</a>"
+." | <a href=\"".htmlentities($sess->self_url().$sess->add_query(array("license" => $license, "with" => "$with", "find" => "$find", "by" => "Name")))."\">".$t->translate("Name")."</a>\n";
 
 $bs->box_strip($sort);
 appcat($query,$t->translate("License").": ".$license,$iter+1);

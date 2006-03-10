@@ -83,10 +83,10 @@ if ($db->f("COUNT(*)") == 0) {
   $limit = "$iter,10";
 
   $sort = $t->translate("sorted by").": "
-  ."<a href=\"".$sess->self_url().$sess->add_query(array("search" => $search, "by" => "Date"))."\">".$t->translate("Date")."</a>"
-  ." | <a href=\"".$sess->self_url().$sess->add_query(array("search" => $search, "by" => "Importance"))."\">".$t->translate("Importance")."</a>"
-  ." | <a href=\"".$sess->self_url().$sess->add_query(array("search" => $search, "by" => "Urgency"))."\">".$t->translate("Urgency")."</a>"
-  ." | <a href=\"".$sess->self_url().$sess->add_query(array("search" => $search, "by" => "Name"))."\">".$t->translate("Name")."</a>\n";
+  ."<a href=\"".htmlentities($sess->self_url().$sess->add_query(array("search" => $search, "by" => "Date")))."\">".$t->translate("Date")."</a>"
+  ." | <a href=\"".htmlentities($sess->self_url().$sess->add_query(array("search" => $search, "by" => "Importance")))."\">".$t->translate("Importance")."</a>"
+  ." | <a href=\"".htmlentities($sess->self_url().$sess->add_query(array("search" => $search, "by" => "Urgency")))."\">".$t->translate("Urgency")."</a>"
+  ." | <a href=\"".htmlentities($sess->self_url().$sess->add_query(array("search" => $search, "by" => "Name")))."\">".$t->translate("Name")."</a>\n";
   $bs->box_strip($sort);
 
   $query="SELECT $columns FROM $tables WHERE $where ORDER BY $order LIMIT $limit";

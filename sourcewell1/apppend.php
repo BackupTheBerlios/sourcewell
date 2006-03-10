@@ -57,10 +57,10 @@ if (($config_perm_apppend != "all") && (!isset($perm) || !$perm->have_perm($conf
   $msg = "[ ";
 
   while (list(, $ltr) = each($alphabet)) {
-    $msg .= "<a href=\"".$sess->url("apppend.php").$sess->add_query(array("with" => $ltr."%"))."\">$ltr</a>&nbsp;| ";
+    $msg .= "<a href=\"".htmlentities($sess->url("apppend.php").$sess->add_query(array("with" => $ltr."%")))."\">$ltr</a>&nbsp;| ";
   }
 
-  $msg .= "<a href=\"".$sess->url("apppend.php").$sess->add_query(array("with" => "%"))."\">".$t->translate("All")."</a>&nbsp;]";
+  $msg .= "<a href=\"".htmlentities($sess->url("apppend.php").$sess->add_query(array("with" => "%")))."\">".$t->translate("All")."</a>&nbsp;]";
   $msg .= "<form action=\"".$sess->self_url()."\">"
 	   ."<p>Search for <input TYPE=\"text\" SIZE=\"10\" NAME=\"find\" VALUE=\"".$find."\">"
        ."&nbsp;<input TYPE=\"submit\" NAME= \"Find\" VALUE=\"Go\"></form>";
@@ -83,9 +83,9 @@ if (($config_perm_apppend != "all") && (!isset($perm) || !$perm->have_perm($conf
   $limit = "$iter,10";
 
   $sort = $t->translate("sorted by").": "
-  ."<a href=\"".$sess->url("apppend.php").$sess->add_query(array("with" => "$with","find" => "$find","by" => "Date"))."\">".$t->translate("Date")."</a>"
-  ." | <a href=\"".$sess->url("apppend.php").$sess->add_query(array("with" => "$with","find" => "$find","by" => "Urgency"))."\">".$t->translate("Urgency")."</a>"
-  ." | <a href=\"".$sess->url("apppend.php").$sess->add_query(array("with" => "$with","find" => "$find","by" => "Name"))."\">".$t->translate("Name")."</a>\n";
+  ."<a href=\"".htmlentities($sess->url("apppend.php").$sess->add_query(array("with" => "$with","find" => "$find","by" => "Date")))."\">".$t->translate("Date")."</a>"
+  ." | <a href=\"".htmlentities($sess->url("apppend.php").$sess->add_query(array("with" => "$with","find" => "$find","by" => "Urgency")))."\">".$t->translate("Urgency")."</a>"
+  ." | <a href=\"".htmlentities($sess->url("apppend.php").$sess->add_query(array("with" => "$with","find" => "$find","by" => "Name")))."\">".$t->translate("Name")."</a>\n";
 
   $bs->box_strip($sort);
 

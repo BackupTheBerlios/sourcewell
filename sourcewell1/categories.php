@@ -36,8 +36,8 @@ $be = new box("",$th_box_frame_color,$th_box_frame_width,$th_box_title_bgcolor,$
 
 <!-- content -->
 <?php
-echo "<table border=0 align=center cellspacing=0 cellpadding=0 width=100%>\n";
-echo "<tr><td width=40% valign=top>\n";
+echo "<table border=0 align=center cellspacing=0 cellpadding=0 width=\"100%\">\n";
+echo "<tr><td width=\"40%\" valign=top>\n";
 $bx->box_begin();
 $bx->box_title($t->translate("Sections"));
 $bx->box_body_begin();
@@ -48,14 +48,14 @@ while($db->next_record()) {
   $db2->query("SELECT COUNT(*) FROM software WHERE section='$current_section' AND status='A'");
   $db2->next_record();
   $num = "[".sprintf("%03d",$db2->f("COUNT(*)"))."]";  
-  echo "$num <a href=\"".$sess->url("categories.php").$sess->add_query(array("section" => $db->f("section")))."\">".$db->f("section")."<br></a>\n";
+  echo "$num <a href=\"".htmlentities($sess->url("categories.php").$sess->add_query(array("section" => $db->f("section"))))."\">".$db->f("section")."<br></a>\n";
 }
 $bx->box_body_end();
 $bx->box_end();	
 ?>
 
 </td>
-<td width=60% valign=top>
+<td width="60%" valign=top>
 
 <?php
 if (isset($section)) {
@@ -68,7 +68,7 @@ if (isset($section)) {
     $db2->query("SELECT COUNT(*) FROM software WHERE section='$section' AND category='$current_category' AND status='A'");
     $db2->next_record();
     $num = "[".sprintf("%03d",$db2->f("COUNT(*)"))."]";
-    echo "$num <a href=\"".$sess->url("appbycat.php").$sess->add_query(array("section" => $section, "category" => $db->f("category")))."\">".$db->f("category")."</a><br>\n";
+    echo "$num <a href=\"".htmlentities($sess->url("appbycat.php").$sess->add_query(array("section" => $section, "category" => $db->f("category"))))."\">".$db->f("category")."</a><br>\n";
   }
 $bx->box_body_end();
 $bx->box_end();
