@@ -4,14 +4,14 @@
 # SourceWell: Software Announcement & Retrieval System
 # ================================================
 #
-# Copyright (c) 2001-2004 by
+# Copyright (c) 2001-2006 by
 #                Lutz Henckel (lutz.henckel@fokus.fraunhofer.de) and
 #                Gregorio Robles (grex@scouts-es.org)
 #
 # BerliOS SourceWell: http://sourcewell.berlios.de
 # BerliOS - The OpenSource Mediator: http://www.berlios.de
 #
-# This file is usefull for administrating (registered) users
+# Administrating (registered) users
 #
 # This program is free software. You can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -32,6 +32,7 @@ require("./include/header.inc");
 
 $bx = new box("",$th_box_frame_color,$th_box_frame_width,$th_box_title_bgcolor,$th_box_title_font_color,$th_box_title_align,$th_box_body_bgcolor,$th_box_body_font_color,$th_box_body_align);
 $be = new box("",$th_box_frame_color,$th_box_frame_width,$th_box_title_bgcolor,$th_box_title_font_color,$th_box_title_align,$th_box_body_bgcolor,$th_box_error_font_color,$th_box_body_align);
+$bs = new box("100%",$th_strip_frame_color,$th_strip_frame_width,$th_strip_title_bgcolor,$th_strip_title_font_color,$th_strip_title_align,$th_strip_body_bgcolor,$th_strip_body_font_color,$th_strip_body_align);
 ?>
 
 <!-- content -->
@@ -141,6 +142,43 @@ if (($config_perm_admuser != "all") && (!isset($perm) || !$perm->have_perm($conf
 	information, if we come here after a submission...
 */
 
+// $iter is a variable for printing the developers in steps of 10
+if (!isset($iter)) $iter=0;
+$iter*=10;
+
+if (isset($find) && ! empty($find)) {
+      $by = "%".$find."%";
+}
+if (!isset($by) || empty($by)) {
+  $by = "%";
+}
+
+$alphabet = array ("A","B","C","D","E","F","G","H","I","J","K","L",
+              "M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z");
+$msg = "[ ";
+
+while (list(, $ltr) = each($alphabet)) {
+  $msg .= "<a href=\"".htmlentities($sess->url("admuser.php").$sess->add_query(array("by" => $ltr."%")))."\">$ltr</a>&nbsp;| ";
+}
+
+$msg .= "<a href=\"".htmlentities($sess->url("admuser.php").$sess->add_query(array("by" => "%")))."\">".$t->translate("All")."</a>&nbsp;] ";
+$msg .= "<form action=\"".$sess->url("admuser.php")."\">"
+     ."<p>Search for <input TYPE=\"text\" SIZE=\"10\" NAME=\"find\" VALUE=\"".$find."\">"
+     ."&nbsp;<input TYPE=\"submit\" NAME= \"Find\" VALUE=\"Go\"></form>";
+
+$bs->box_strip($msg);
+
+$columns = "COUNT(*)";
+$tables = "auth_user";
+$where = "username LIKE '$by'";
+
+// Need to know the total number of users
+$query = "SELECT $columns FROM $tables WHERE $where";
+$db->query($query);
+$db->next_record();
+$numiter = ($db->f("COUNT(*)")/10);
+
+$limit = "$iter,10";
 ?>
 <table border=0 cellspacing=0 cellpadding=0 bgcolor="<?php echo $th_box_frame_color;?>" align=center>
 
@@ -182,7 +220,7 @@ if (($config_perm_admuser != "all") && (!isset($perm) || !$perm->have_perm($conf
 </form>
 <?php
   ## Traverse the result set
-  $db->query("select * from auth_user order by username");
+  $db->query("select * from auth_user where username like '$by' order by username limit $limit");
   while ($db->next_record()) {
 ?>
 <!-- existing user -->
@@ -217,6 +255,11 @@ if (($config_perm_admuser != "all") && (!isset($perm) || !$perm->have_perm($conf
 </tr>
 </table>
 <?php
+  if ($numiter > 1) {
+    $url = "admuser.php";
+    $urlquery = array("by" => "$by","find" => "$find");
+    show_more ($iter,$numiter,$url,$urlquery);
+  }
 }
 ?>
 
