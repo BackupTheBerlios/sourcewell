@@ -42,7 +42,7 @@ class box {
    
 	function box_begin() {
 		echo "\n<!-- box begin -->\n";
-    	echo "<table border=0 cellspacing=0 cellpadding=0 bgcolor=\"$this->box_frame_color\" width=\"$this->box_width\" align=center>\n";
+		echo "<table border=0 cellspacing=0 cellpadding=0 bgcolor=\"$this->box_frame_color\" width=\"$this->box_width\" align=\"center\">\n";
 		echo "<tr><td>\n";
 		echo "<table border=0 cellspacing=\"$this->box_frame_width\" cellpadding=3 align=\"center\" width=\"100%\">\n";
 	}
@@ -55,7 +55,7 @@ class box {
 
 	function box_title_begin() {
 		echo "<!-- box title begin -->\n";
-		echo "<tr><td bgcolor=\"$this->box_title_bgcolor\" align=\"$this->box_title_align\">\n";
+		echo "<tr><td bgcolor=\"$this->box_title_bgcolor\" align=\"$this->box_title_align\" style=\"[color: $this->box_title_font_color]\">\n";
 	}
 
 	function box_title_end() {
@@ -65,23 +65,23 @@ class box {
 
 	function box_title($title) {
 		$this->box_title_begin();
-		echo "<font color=\"$this->box_title_font_color\"><b>$title</b></font>\n";
+		echo "<b>$title</b>\n";
 		$this->box_title_end();
 	}
 
 	function box_body_begin() {
 		echo "<!-- box body begin -->\n";
-		echo "<tr bgcolor=\"$this->box_body_bgcolor\"><td align=\"$this->box_body_align\"><font color=\"$this->box_body_font_color\">\n";
+		echo "<tr bgcolor=\"$this->box_body_bgcolor\"><td align=\"$this->box_body_align\" style=\"[color: $this->box_body_font_color]\">\n";
 	}
 
 	function box_body_end() {
-		echo "</font></td></tr>\n";
+		echo "</td></tr>\n";
 		echo "<!-- box body end -->\n";
 	}
 
 	function box_body($text) {
 		$this->box_body_begin();
-		echo "<font color=\"$this->box_body_font_color\">$text</font>\n";
+		echo $text."\n";
 		$this->box_body_end();
 	}
 
