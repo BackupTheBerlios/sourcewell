@@ -2,7 +2,7 @@
 
 ######################################################################
 # SourceWell: Software Announcement & Retrieval System
-# ================================================
+# ====================================================
 #
 # Copyright (c) 2001-2004 by
 #                Lutz Henckel (lutz.henckel@fokus.fraunhofer.de) and
@@ -21,7 +21,7 @@
 ?>
 
 <!-- top strip -->
-<table BORDER=0 CELLSPACING=0 CELLPADDING=2 WIDTH="100%" BGCOLOR="<?php echo $th_navstrip_bgcolor;?>">
+<table border=0 cellspacing=0 cellpadding=2 width="100%" bgcolor="<?php echo $th_navstrip_bgcolor;?>">
 <tr>
 <td width="45%"><span class="maintitlebar">
 <?php
