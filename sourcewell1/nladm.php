@@ -66,7 +66,7 @@ if (($config_perm_nladm != "all") && (!isset($perm) || !$perm->have_perm($config
     }
     $bx->box_full($title, "<pre>\n".htmlentities($msg)."\n</pre>\n");
 ?>
-<form method="get" action="<?php $sess->pself_url() ?>">
+<form method="get" action="<?php echo htmlentities($sess->self_url()) ?>">
 <?php
     echo "<input type=\"hidden\" name=\"period\" value=\"$period\">\n";
     echo "<center><p><input type=\"submit\" name=\"send\" value=\"".$t->translate("Send newsletter")."\"></center>\n";
