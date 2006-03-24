@@ -20,7 +20,7 @@
 
 require "./include/prepend.php3";
 
-header("Content-Type: text/xml");
+header("Content-Type: application/xml");
 
 // Disabling cache
 header("Cache-Control: no-cache, must-revalidate");     // HTTP/1.1
@@ -39,7 +39,7 @@ echo "    <description>".$sys_name." - ".$sys_title."</description>\n";
 echo "    <language>en-us</language>\n";
 echo "    <copyright>Copyright 2000-".date("Y")." $org_name</copyright>\n";
 echo "    <webMaster>".$_SERVER['SERVER_ADMIN']."</webMaster>\n";
-echo "    <lastBuildDate>".gmdate('D, d M Y G:i:s',time())." GMT</lastBuildDate>\n";
+echo "    <lastBuildDate>".gmdate('r',time())."</lastBuildDate>\n";
 echo "    <docs>http://blogs.law.harvard.edu/tech/rss</docs>\n";
 echo "    <generator>BerliOS RSS generator</generator>\n";
 
@@ -48,8 +48,8 @@ echo "    <title>".$sys_name."</title>\n";
 echo "    <url>http:".$sys_logo_small_image."</url>\n";
 echo "    <link>http:".$sys_url."</link>\n";
 echo "    <description>".$sys_name." - ".$sys_title."</description>\n";
-echo "    <width>66</width>\n";
-echo "    <height>73</height>\n";
+echo "    <width>124</width>\n";
+echo "    <height>32</height>\n";
 echo "  </image>\n";
 
 $db = new DB_SourceWell;
@@ -60,10 +60,10 @@ while($db->next_record()) {
   echo "    <title>".htmlspecialchars($db->f("name"))." ".$db->f("version")."</title>\n";
   echo "    <link>http:".$sys_url."appbyid.php?id=".$db->f("appid")."</link>\n";
   echo "    <description>".wrap(htmlspecialchars($db->f("description")))."</description>\n";
-  echo "    <author>".$db->f('email')." (".htmlspecialchars($db->f('developer')).")</author>\n";
-  echo "    <pubDate>".gmdate('D, d M Y G:i:s',mktimestamp($db->f("modification")))." GMT</pubDate>\n";
+//  echo "    <author>".$db->f('email_usr')." (".htmlspecialchars($db->f('username')).")</author>\n";
+  echo "    <pubDate>".gmdate('r',mktimestamp($db->f("modification")))."</pubDate>\n";
   echo "    <guid>http:".$sys_url."appbyid.php?id=".$db->f("appid")."</guid>\n";
-  echo "    <comment>http:".$sys_url."appbyid.php?id=".$db->f("appid")."</comment>\n";
+//  echo "    <comments>http:".$sys_url."appbyid.php?id=".$db->f("appid")."</comments>\n";
   echo "  </item>\n";
   $i++;
 } 
