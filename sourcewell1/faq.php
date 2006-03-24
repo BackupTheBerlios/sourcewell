@@ -38,15 +38,17 @@ $be = new box("",$th_box_frame_color,$th_box_frame_width,$th_box_title_bgcolor,$
 <?php
 $db->query("SELECT * FROM faq WHERE language='$la'");
 if ($db->num_rows() > 0) {
-while($db->next_record()) {
-  $msg .= "<li><a href=#".$db->f("faqid").">".$db->f("question")."</a>";
-}
-$bx->box_full($t->translate("Frequently Asked Questions"), $msg);
-$db->seek(0);
-while($db->next_record()) {
-  echo "<a name=".$db->f("faqid").">\n";
-  $bx->box_full($t->translate("Question").": ".$db->f("question"), "<b>".$t->translate("Answer").":</b> ".$db->f("answer"));
-}
+  $msg = "<ul>\n";
+  while($db->next_record()) {
+    $msg .= "<li><a href=\"#".$db->f("faqid")."\">".$db->f("question")."</a>\n";
+  }
+  $msg .= "</ul>";
+  $bx->box_full($t->translate("Frequently Asked Questions"), $msg);
+  $db->seek(0);
+  while($db->next_record()) {
+    echo "<a name=\"".$db->f("faqid")."\">\n";
+    $bx->box_full($t->translate("Question").": ".$db->f("question"), "<b>".$t->translate("Answer").":</b> ".$db->f("answer"));
+  }
 } else {
   $be->box_full($t->translate("Error"), $t->translate("No Frequently Asked Questions exist"));
 }
