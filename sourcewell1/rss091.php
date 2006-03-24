@@ -20,7 +20,7 @@
 
 require "./include/prepend.php3";
 
-header("Content-Type: text/xml");
+header("Content-Type: application/xml");
 
 // Disabling cache
 header("Cache-Control: no-cache, must-revalidate");     // HTTP/1.1
@@ -45,8 +45,8 @@ echo "    <title>".$sys_name."</title>\n";
 echo "    <url>http:".$sys_logo_small_image."</url>\n";
 echo "    <link>http:".$sys_url."</link>\n";
 echo "    <description>".$sys_name." - ".$sys_title."</description>\n";
-echo "    <width>66</width>\n";
-echo "    <height>73</height>\n";
+echo "    <width>124</width>\n";
+echo "    <height>32</height>\n";
 echo "  </image>\n";
 
 $db = new DB_SourceWell;
@@ -57,6 +57,7 @@ while($db->next_record()) {
   echo "    <title>".htmlspecialchars($db->f("name"))." ".$db->f("version")."</title>\n";
   echo "    <link>http:".$sys_url."appbyid.php?id=".$db->f("appid")."</link>\n";
 //  echo "    <description>".wrap($db->f("description"))."</description>\n";
+  echo "    <guid>http:".$sys_url."appbyid.php?id=".$db->f("appid")."</guid>\n";
   echo "  </item>\n";
   $i++;
 } 
