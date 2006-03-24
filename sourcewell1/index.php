@@ -37,7 +37,7 @@ $bs = new box("100%",$th_strip_frame_color,$th_strip_frame_width,$th_strip_title
 
 <!-- content -->
 <table BORDER=0 CELLSPACING=10 CELLPADDING=0 WIDTH="100%" >
-<tr width=80% valign=top><td>
+<tr valign="top"><td width="80%">
 <?php
 
 if (!isset($by)) $by = "Date";
@@ -91,31 +91,31 @@ $weeknext = $time + (7 * 24 * 60 * 60);
 $weekprev = $time - (7 * 24 * 60 * 60);
 
 $sort = $t->translate("sorted by").": "
-."<a href=\"".$sess->self_url().$sess->add_query(array("start" => strftime("%Y-%m-%d", $time), "days" => $days, "by" => "Date"))."\">".$t->translate("Date")."</a>"
-." | <a href=\"".$sess->self_url().$sess->add_query(array("start" => strftime("%Y-%m-%d", $time), "days" => $days, "by" => "Importance"))."\">".$t->translate("Importance")."</a>"
-." | <a href=\"".$sess->self_url().$sess->add_query(array("start" => strftime("%Y-%m-%d", $time), "days" => $days, "by" => "Urgency"))."\">".$t->translate("Urgency")."</a>"
-." | <a href=\"".$sess->self_url().$sess->add_query(array("start" => strftime("%Y-%m-%d", $time), "days" => $days, "by" => "Name"))."\">".$t->translate("Name")."</a>\n";
+."<a href=\"".htmlentities($sess->self_url().$sess->add_query(array("start" => strftime("%Y-%m-%d", $time), "days" => $days, "by" => "Date")))."\">".$t->translate("Date")."</a>"
+." | <a href=\"".htmlentities($sess->self_url().$sess->add_query(array("start" => strftime("%Y-%m-%d", $time), "days" => $days, "by" => "Importance")))."\">".$t->translate("Importance")."</a>"
+." | <a href=\"".htmlentities($sess->self_url().$sess->add_query(array("start" => strftime("%Y-%m-%d", $time), "days" => $days, "by" => "Urgency")))."\">".$t->translate("Urgency")."</a>"
+." | <a href=\"".htmlentities($sess->self_url().$sess->add_query(array("start" => strftime("%Y-%m-%d", $time), "days" => $days, "by" => "Name")))."\">".$t->translate("Name")."</a>\n";
 
 $bs->box_strip($sort);
-$nav = "<a href=\"".$sess->self_url().$sess->add_query(array("start" => strftime("%Y-%m-%d", $weekprev), "days" => $days, "by" => $by))."\">&lt;&nbsp;".$t->translate("Week")."</a>"
-." | <a href=\"".$sess->self_url().$sess->add_query(array("start" => strftime("%Y-%m-%d", $timeprev), "days" => $days, "by" => $by))."\">&lt;&nbsp;".$t->translate("Day")."</a>"
-." | <a href=\"".$sess->self_url().$sess->add_query(array("start" => strftime("%Y-%m-%d", $time), "days" => $days, "cnt" => $prev_cnt, "by" => $by))."\">&lt;&nbsp;$config_show_appsperpage ".$t->translate("Apps")."</a>"
-." | <a href=\"".$sess->self_url().$sess->add_query(array("by" => "Date"))."\">".$t->translate("Today")."</a>";
+$nav = "<a href=\"".htmlentities($sess->self_url().$sess->add_query(array("start" => strftime("%Y-%m-%d", $weekprev), "days" => $days, "by" => $by)))."\">&lt;&nbsp;".$t->translate("Week")."</a>"
+." | <a href=\"".htmlentities($sess->self_url().$sess->add_query(array("start" => strftime("%Y-%m-%d", $timeprev), "days" => $days, "by" => $by)))."\">&lt;&nbsp;".$t->translate("Day")."</a>"
+." | <a href=\"".htmlentities($sess->self_url().$sess->add_query(array("start" => strftime("%Y-%m-%d", $time), "days" => $days, "cnt" => $prev_cnt, "by" => $by)))."\">&lt;&nbsp;$config_show_appsperpage ".$t->translate("Apps")."</a>"
+." | <a href=\"".htmlentities($sess->self_url().$sess->add_query(array("by" => "Date")))."\">".$t->translate("Today")."</a>";
 
 if ($cnt > 0) {
-  $nav .= " | <a href=\"".$sess->self_url().$sess->add_query(array("start" =>strftime("%Y-%m-%d", $time), "days" => $days, "cnt" => $next_cnt, "by" => $by))."\">$config_show_appsperpage&nbsp;".$t->translate("Apps")."&nbsp;&gt;</a>";
+  $nav .= " | <a href=\"".htmlentities($sess->self_url().$sess->add_query(array("start" =>strftime("%Y-%m-%d", $time), "days" => $days, "cnt" => $next_cnt, "by" => $by)))."\">$config_show_appsperpage&nbsp;".$t->translate("Apps")."&nbsp;&gt;</a>";
 } else {
   $nav .= " | $config_show_appsperpage&nbsp;".$t->translate("Apps")."&nbsp;&gt;";
 }
 
 if ($timenext < time()) {
-  $nav .= " | <a href=\"".$sess->self_url().$sess->add_query(array("start" =>strftime("%Y-%m-%d", $timenext), "days" => $days, "by" => $by))."\">".$t->translate("Day")."&nbsp;&gt;</a>";
+  $nav .= " | <a href=\"".htmlentities($sess->self_url().$sess->add_query(array("start" =>strftime("%Y-%m-%d", $timenext), "days" => $days, "by" => $by)))."\">".$t->translate("Day")."&nbsp;&gt;</a>";
 } else {
   $nav .= " | ".$t->translate("Day")."&nbsp;&gt;";
 }
 
 if ($weeknext < time()) {
-  $nav .= " | <a href=\"".$sess->self_url().$sess->add_query(array("start" =>strftime("%Y-%m-%d", $weeknext), "days" => $days, "by" => $by))."\">".$t->translate("Week")."&nbsp;&gt;</a></b>";
+  $nav .= " | <a href=\"".htmlentities($sess->self_url().$sess->add_query(array("start" =>strftime("%Y-%m-%d", $weeknext), "days" => $days, "by" => $by)))."\">".$t->translate("Week")."&nbsp;&gt;</a></b>";
 } else {
   $nav .= " | ".$t->translate("Week")."&nbsp;&gt;";
 }
@@ -127,7 +127,7 @@ appdat($query);
 $bs->box_strip($nav);
 $bs->box_strip($sort);
 ?>
-</td><td width=20%>
+</td><td width="20%">
 <?php
 
 // Apps of last x days with apps at the right column
