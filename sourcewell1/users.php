@@ -4,14 +4,14 @@
 # SourceWell: Software Announcement & Retrieval System
 # ================================================
 #
-# Copyright (c) 2001-2004 by
+# Copyright (c) 2001-2006 by
 #     Lutz Henckel (lutz.henckel@fokus.fraunhofer.de) and
 #     Gregorio Robles (grex@scouts-es.org)
 #
 # BerliOS SourceWell: http://sourcewell.berlios.de
 # BerliOS - The OpenSource Mediator: http://www.berlios.de
 #
-# This page lists the users registered in our system
+# Lists the users registered in our system
 #
 # This program is free software. You can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -41,11 +41,15 @@ if (($config_perm_users != "all") && (!isset($perm) || !$perm->have_perm($config
   $be->box_full($t->translate("Error"), $t->translate("Access denied"));
 } else {
 
+// $iter is a variable for printing the users in steps of 10
+  if (!isset($iter)) $iter=0;
+  $iter*=10;
+
   if (isset($find) && ! empty($find)) {
 	$by = "%".$find."%";
   }
   if (!isset($by) || empty($by)) {
-    $by = "A%";
+    $by = "%";
   }
 
   $alphabet = array ("A","B","C","D","E","F","G","H","I","J","K","L",
@@ -53,16 +57,29 @@ if (($config_perm_users != "all") && (!isset($perm) || !$perm->have_perm($config
   $msg = "[ ";
 
   while (list(, $ltr) = each($alphabet)) {
-    $msg .= "<a href=\"".$sess->url("users.php").$sess->add_query(array("by" => $ltr."%"))."\">$ltr</a> | ";
+    $msg .= "<a href=\"".htmlentities($sess->url("users.php").$sess->add_query(array("by" => $ltr."%")))."\">$ltr</a> | ";
   }
 
-  $msg .= "<a href=\"".$sess->url("users.php").$sess->add_query(array("by" => "%"))."\">".$t->translate("All")."</a> ]";
+  $msg .= "<a href=\"".htmlentities($sess->url("users.php").$sess->add_query(array("by" => "%")))."\">".$t->translate("All")."</a> ]";
   $msg .= "<form action=\"".$sess->url("users.php")."\">"
 	   ."<p>Search for <input TYPE=\"text\" SIZE=\"10\" NAME=\"find\" VALUE=\"".$find."\">"
        ."&nbsp;<input TYPE=\"submit\" NAME= \"Find\" VALUE=\"Go\"></form>";
 
   $bs->box_strip($msg);
-  $db->query("SELECT * FROM auth_user WHERE username LIKE '$by' ORDER BY username ASC");
+
+  $columns = "COUNT(*)";
+  $tables = "auth_user";
+  $where = "username LIKE '$by'";
+
+// We need to know the total number of users
+  $query = "SELECT $columns FROM $tables WHERE $where";
+  $db->query($query);
+  $db->next_record();
+  $numiter = ($db->f("COUNT(*)")/10);
+
+  $limit = "$iter,10";
+
+  $db->query("SELECT * FROM auth_user WHERE username LIKE '$by' ORDER BY username ASC LIMIT $limit");
   $bx->box_begin();
   $bx->box_title($t->translate("Users")." ".ereg_replace("%","",$by));
   $bx->box_body_begin();
@@ -77,7 +94,7 @@ if (($config_perm_users != "all") && (!isset($perm) || !$perm->have_perm($config
     $db2->next_record();
     $num = "[".sprintf("%03d",$db2->f("COUNT(*)"))."]";
     echo "<tr><td>".sprintf("%d",$i)."</td>\n";
-    echo "<td><a href=\"".$sess->url("appbyuser.php").$sess->add_query(array("usr" => $username))."\">$num</a></td>\n";
+    echo "<td><a href=\"".htmlentities($sess->url("appbyuser.php").$sess->add_query(array("usr" => $username)))."\">$num</a></td>\n";
     echo "<td>".$username."</td>\n";
     echo "<td>".$db->f("realname")."</td>";
     echo "<td>&lt;<a href=\"mailto:".mailtoencode($db->f("email_usr"))."\">".ereg_replace("@"," at ",htmlentities($db->f("email_usr")))."</a>&gt;</td>";
@@ -87,6 +104,12 @@ if (($config_perm_users != "all") && (!isset($perm) || !$perm->have_perm($config
 echo "</table>\n";
 $bx->box_body_end();
 $bx->box_end();
+
+if ($numiter > 1) {
+  $url = "users.php";
+  $urlquery = array("by" => "$by","find" => "$find");
+  show_more ($iter,$numiter,$url,$urlquery);
+}
 }
 ?>
 <!-- end content -->
