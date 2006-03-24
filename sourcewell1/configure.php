@@ -4,7 +4,7 @@
 # SourceWell: Software Announcement & Retrieval System
 # ====================================================
 #
-# Copyright (c) 2001-2004 by
+# Copyright (c) 2001-2006 by
 #     Lutz Henckel (lutz.henckel@fokus.fraunhofer.de) and
 #     Gregorio Robles (grex@scouts-es.org)
 #
@@ -43,6 +43,10 @@ if (($config_perm_admlicens != "all") && (!isset($perm) || !$perm->have_perm($co
   if (!isset($sys_logo_alt_new) || empty($sys_logo_alt_new)) $sys_logo_alt_new = $sys_logo_alt;
   if (!isset($sys_logo_width_new) || empty($sys_logo_width_new)) $sys_logo_width_new = $sys_logo_width;
   if (!isset($sys_logo_heigth_new) || empty($sys_logo_heigth_new)) $sys_logo_heigth_new = $sys_logo_heigth;
+  if (!isset($sys_logo_small_image_new) || empty($sys_logo_small_image_new)) $sys_logo_small_image_new = $sys_logo_small_image;
+  if (!isset($sys_logo_small_alt_new) || empty($sys_logo_small_alt_new)) $sys_logo_small_alt_new = $sys_logo_small_alt;
+  if (!isset($sys_logo_small_width_new) || empty($sys_logo_small_width_new)) $sys_logo_small_width_new = $sys_small_logo_width;
+  if (!isset($sys_logo_small_heigth_new) || empty($sys_logo_small_heigth_new)) $sys_logo_small_heigth_new = $sys_logo_small_heigth;
   if (!isset($org_name_new) || empty($org_name_new)) $org_name_new = $org_name;
   if (!isset($org_url_new) || empty($org_url_new)) $org_url_new = $org_url;
   if (!isset($org_logo_image_new) || empty($org_logo_image_new)) $org_logo_image_new = $org_logo_image;
@@ -117,7 +121,7 @@ if (($config_perm_admlicens != "all") && (!isset($perm) || !$perm->have_perm($co
 //  if (!isset(_new) || empty()) _new = ;
 ?>
 
-<Center><h3>Configuring the SourceWell system (alpha version)</h3></CENTER>
+<center><h3>Configuring the SourceWell system</h3></center>
 <?php
 
   if ($configure == "1"){
@@ -131,9 +135,9 @@ if (($config_perm_admlicens != "all") && (!isset($perm) || !$perm->have_perm($co
 
 ######################################################################
 # SourceWell: Software Announcement & Retrieval System
-# ================================================
+# ====================================================
 #
-# Copyright (c) 2001-2004 by
+# Copyright (c) 2001-2006 by
 #                Lutz Henckel (lutz.henckel@fokus.fraunhofer.de) and
 #                Gregorio Robles (grex@scouts-es.org)
 #
@@ -158,6 +162,10 @@ if (($config_perm_admlicens != "all") && (!isset($perm) || !$perm->have_perm($co
 # sys_logo_alt		Alternative text for your site's image
 # sys_logo_width	Width of the image of your site
 # sys_logo_heigth	Heigth of the image of your site
+# sys_logo_small_image  Small image of your sitebar
+# sys_logo_small_alt    Alternative text for your sitebar's image
+# sys_logo_small_width  Width of the image of your sitebar
+# sys_logo_small_heigth Heigth of the image of your sitebar
 ######################################################################
 
 \$sys_name = \"$sys_name_new\";
@@ -168,6 +176,10 @@ if (($config_perm_admlicens != "all") && (!isset($perm) || !$perm->have_perm($co
 \$sys_logo_alt = \"$sys_logo_alt_new\";
 \$sys_logo_width = \"$sys_logo_width_new\";
 \$sys_logo_heigth = \"$sys_logo_heigth_new\";
+\$sys_logo_small_image = \"$sys_logo_small_image_new\";
+\$sys_logo_small_alt = \"$sys_logo_small_alt_new\";
+\$sys_logo_small_width = \"$sys_logo_small_width_new\";
+\$sys_logo_small_heigth = \"$sys_logo_small_heigth_new\";
 
 ######################################################################
 # Organisation Config
@@ -282,7 +294,7 @@ if (($config_perm_admlicens != "all") && (!isset($perm) || !$perm->have_perm($co
 # ml_weeklynewsreqaddr 
 # ml_newsadmaddr: E-mail address of the list administrator
 # ml_newsfromaddr: From-field of the e-mails
-# ml_newsreplyaddr: Replay-addreess of th e-mails
+# ml_newsreplyaddr: Reply-addreess of the e-mails
 #
 ######################################################################
 
@@ -309,6 +321,8 @@ if (($config_perm_admlicens != "all") && (!isset($perm) || !$perm->have_perm($co
 \$la_array[] = \"English\";
 \$la_array[] = \"German\";
 \$la_array[] = \"Spanish\";
+\$la_array[] = \"French\";
+\$la_array[] = \"Italian\";
 
 
 ######################################################################
@@ -403,7 +417,7 @@ if (($config_perm_admlicens != "all") && (!isset($perm) || !$perm->have_perm($co
 #
 ######################################################################
 
-\$SourceWell_Version = \"1.1.0\";
+\$SourceWell_Version = \"1.1.3\";
 
 ?>");
 
@@ -416,118 +430,120 @@ if (($config_perm_admlicens != "all") && (!isset($perm) || !$perm->have_perm($co
       print "<center>Error: config.inc could not be created!</center>\n";
     }
   } else {
-    print "<form action=\"".$sess->self_url().$sess->add_query(array("configure" => "1"))."\" method=\"post\">\n";
+    print "<form action=\"".htmlentities($sess->self_url().$sess->add_query(array("configure" => "1")))."\" method=\"post\">\n";
 
-    print "<CENTER><table border=0 width=94%>\n<tr>\n";
-    print "  <td width=25%><B>Name of the system</B></td>\n  <td width=75%><input type=text name=sys_name_new value=\"$sys_name\" size=45></td>\n </tr>\n <tr>\n";
-//    print "  <td width=25%><B></B></td>\n  <td width=75%><input type=text name=_new value=$ size=45></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>Your site's slogan</B></td>\n  <td width=75%><input type=text name=sys_title_new value=\"$sys_title\" size=45></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>URL of the system's portal</B></td>\n  <td width=75%><input type=text name=sys_url_title_new value=\"$sys_url_title\" size=45></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>System URL</B></td>\n  <td width=75%><input type=text name=sys_url_new value=\"$sys_url\" size=45></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>Image of your Site</B></td>\n  <td width=75%><input type=text name=sys_logo_image_new value=\"$sys_logo_image\" size=45></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>Alternative text for your site's image</B></td>\n  <td width=75%><input type=text name=sys_logo_alt_new value=\"$sys_logo_alt\" size=45></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>Width of the image of your site</B></td>\n  <td width=75%><input type=text name=sys_logo_width_new value=\"$sys_logo_width\" size=3></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>Heigth of the image of your site</B></td>\n  <td width=75%><input type=text name=sys_logo_heigth_new value=\"$sys_logo_heigth\" size=3></td>\n </tr>\n <tr>\n";
+    print "<table border=0 width=\"94%\">\n<tr>\n";
+    print "  <td width=\"25%\">Name of the system</td>\n  <td width=\"75%\"><input type=text name=sys_name_new value=\"$sys_name\" size=\"45\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">Your site's slogan</td>\n  <td width=\"75%\"><input type=text name=sys_title_new value=\"$sys_title\" size=\"45\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">URL of the system's portal</td>\n  <td width=\"75%\"><input type=text name=sys_url_title_new value=\"$sys_url_title\" size=\"45\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">System URL</td>\n  <td width=\"75%\"><input type=text name=sys_url_new value=\"$sys_url\" size=\"45\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">Image of your Site</td>\n  <td width=\"75%\"><input type=text name=sys_logo_image_new value=\"$sys_logo_image\" size=\"45\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">Alternative text for your site's image</td>\n  <td width=\"75%\"><input type=text name=sys_logo_alt_new value=\"$sys_logo_alt\" size=\"45\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">Width of the image of your site</td>\n  <td width=\"75%\"><input type=text name=sys_logo_width_new value=\"$sys_logo_width\" size=\"3\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">Heigth of the image of your site</td>\n  <td width=\"75%\"><input type=text name=sys_logo_heigth_new value=\"$sys_logo_heigth\" size=\"3\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">Small Image of your sitebar</td>\n  <td width=\"75%\"><input type=text name=sys_logo_small_image_new value=\"$sys_logo_small_image\" size=\"45\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">Alternative text for your sitebar's image</td>\n  <td width=\"75%\"><input type=text name=sys_logo_small_alt_new value=\"$sys_logo_small_alt\" size=\"45\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">Width of the image of your sitebar</td>\n  <td width=\"75%\"><input type=text name=sys_logo_small_width_new value=\"$sys_logo_small_width\" size=\"3\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">Heigth of the image of your sitebar</td>\n  <td width=\"75%\"><input type=text name=sys_logo_small_heigth_new value=\"$sys_logo_small_heigth\" size=\"3\"></td>\n </tr>\n <tr>\n";
 
+    print "  <td width=\"25%\">Name of your Organisation</td>\n  <td width=\"75%\"><input type=text name=org_name_new value=\"$org_name\" size=\"45\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">URL of your Organisation</td>\n  <td width=\"75%\"><input type=text name=org_url_new value=\"$org_url\" size=\"45\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">Image of your Organisation</td>\n  <td width=\"75%\"><input type=text name=org_logo_image_new value=\"$org_logo_image\" size=\"45\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">Alternative text for the image of your Organisation</td>\n  <td width=\"75%\"><input type=text name=org_logo_alt_new value=\"$org_logo_alt\" size=\"45\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">Width of the image of your Organisation</td>\n  <td width=\"75%\"><input type=text name=org_logo_width_new value=\"$org_logo_width\" size=\"3\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">Height of the image of your Organisation</td>\n  <td width=\"75%\"><input type=text name=org_logo_heigth_new value=\"$org_logo_heigth\" size=\"3\"></td>\n </tr>\n <tr>\n";
 
-    print "  <td width=25%><B>Name of your Organisation</B></td>\n  <td width=75%><input type=text name=org_name_new value=\"$org_name\" size=45></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>URL of your Organisation</B></td>\n  <td width=75%><input type=text name=org_url_new value=\"$org_url\" size=45></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>Image of your Organisation</B></td>\n  <td width=75%><input type=text name=org_logo_image_new value=\"$org_logo_image\" size=45></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>Alternative text for the image of your Organisation</B></td>\n  <td width=75%><input type=text name=org_logo_alt_new value=\"$org_logo_alt\" size=45></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>Width of the image of your Organisation</B></td>\n  <td width=75%><input type=text name=org_logo_width_new value=\"$org_logo_width\" size=3></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>Height of the image of your Organisation</B></td>\n  <td width=75%><input type=text name=org_logo_heigth_new value=\"$org_logo_heigth\" size=3></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">th_body_bgcolor</td>\n  <td width=\"75%\"><input type=text name=th_body_bgcolor_new value=\"$th_body_bgcolor\" size=\"7\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">th_font_family</td>\n  <td width=\"75%\"><input type=text name=th_font_family_new value=\"$th_font_family\" size=\"45\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">th_font_color</td>\n  <td width=\"75%\"><input type=text name=th_font_color_new value=\"$th_font_color\" size=\"7\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">th_hover_font_color</td>\n  <td width=\"75%\"><input type=text name=th_hover_font_color_new value=\"$th_hover_font_color\" size=\"7\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">th_nav_bgcolor</td>\n  <td width=\"75%\"><input type=text name=th_nav_bgcolor_new value=\"$th_nav_bgcolor\" size=\"7\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">th_navstrip_bgcolor</td>\n  <td width=\"75%\"><input type=text name=th_navstrip_bgcolor_new value=\"$th_navstrip_bgcolor\" size=\"7\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">th_nav_font_color</td>\n  <td width=\"75%\"><input type=text name=th_nav_font_color_new value=\"$th_nav_font_color\" size=\"7\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">th_nav_font_color</td>\n  <td width=\"75%\"><input type=text name=th_nav_font_color_new value=\"$th_nav_font_color\" size=\"7\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">th_navstrip_font_color</td>\n  <td width=\"75%\"><input type=text name=th_navstrip_font_color_new value=\"$th_navstrip_font_color\" size=\"7\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">th_box_frame_color</td>\n  <td width=\"75%\"><input type=text name=th_box_frame_color_new value=\"$th_box_frame_color\" size=\"7\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">th_box_frame_width</td>\n  <td width=\"75%\"><input type=text name=th_box_frame_width_new value=\"$th_box_frame_width\" size=\"2\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">th_box_title_bgcolor</td>\n  <td width=\"75%\"><input type=text name=th_box_title_bgcolor_new value=\"$th_box_title_bgcolor\" size=\"7\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">th_box_body_bgcolor</td>\n  <td width=\"75%\"><input type=text name=th_box_body_bgcolor_new value=\"$th_box_body_bgcolor\" size=\"7\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">th_box_title_align</td>\n  <td width=\"75%\"><input type=text name=th_box_title_align_new value=\"$th_box_title_align\" size=\"7\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">th_box_body_align</td>\n  <td width=\"75%\"><input type=text name=th_box_body_align_new value=\"$th_box_body_align\" size=\"7\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">th_box_title_font_color</td>\n  <td width=\"75%\"><input type=text name=th_box_title_font_color_new value=\"$th_box_title_font_color\" size=\"7\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">th_box_body_font_color</td>\n  <td width=\"75%\"><input type=text name=th_box_body_font_color_new value=\"$th_box_body_font_color\" size=\"7\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">th_box_error_font_color</td>\n  <td width=\"75%\"><input type=text name=th_box_error_font_color_new value=\"$th_box_error_font_color\" size=\"7\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">th_strip_frame_color</td>\n  <td width=\"75%\"><input type=text name=th_strip_frame_color_new value=\"$th_strip_frame_color\" size=\"7\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">th_strip_frame_width</td>\n  <td width=\"75%\"><input type=text name=th_strip_frame_width_new value=\"$th_strip_frame_width\" size=\"2\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">th_strip_title_bgcolor</td>\n  <td width=\"75%\"><input type=text name=th_strip_title_bgcolor_new value=\"$th_strip_title_bgcolor\" size=\"7\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">th_strip_body_bgcolor</td>\n  <td width=\"75%\"><input type=text name=th_strip_body_bgcolor_new value=\"$th_strip_body_bgcolor\" size=\"7\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">th_strip_title_align</td>\n  <td width=\"75%\"><input type=text name=th_strip_title_align_new value=\"$th_strip_title_align\" size=\"7\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">th_strip_body_align</td>\n  <td width=\"75%\"><input type=text name=th_strip_body_align_new value=\"$th_strip_body_align\" size=\"7\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">th_strip_title_font_color</td>\n  <td width=\"75%\"><input type=text name=th_strip_title_font_color_new value=\"$th_strip_title_font_color\" size=\"7\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">th_strip_body_font_color</td>\n  <td width=\"75%\"><input type=text name=th_strip_body_font_color_new value=\"$th_strip_body_font_color\" size=\"7\"></td>\n </tr>\n <tr>\n";
 
-    print "  <td width=25%><B>th_body_bgcolor</B></td>\n  <td width=75%><input type=text name=th_body_bgcolor_new value=\"$th_body_bgcolor\" size=7></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>th_font_family</B></td>\n  <td width=75%><input type=text name=th_font_family_new value=\"$th_font_family\" size=45></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>th_font_color</B></td>\n  <td width=75%><input type=text name=th_font_color_new value=\"$th_font_color\" size=7></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>th_hover_font_color</B></td>\n  <td width=75%><input type=text name=th_hover_font_color_new value=\"$th_hover_font_color\" size=7></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>th_nav_bgcolor</B></td>\n  <td width=75%><input type=text name=th_nav_bgcolor_new value=\"$th_nav_bgcolor\" size=7></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>th_navstrip_bgcolor</B></td>\n  <td width=75%><input type=text name=th_navstrip_bgcolor_new value=\"$th_navstrip_bgcolor\" size=7></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>th_nav_font_color</B></td>\n  <td width=75%><input type=text name=th_nav_font_color_new value=\"$th_nav_font_color\" size=7></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>th_nav_font_color</B></td>\n  <td width=75%><input type=text name=th_nav_font_color_new value=\"$th_nav_font_color\" size=7></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>th_navstrip_font_color</B></td>\n  <td width=75%><input type=text name=th_navstrip_font_color_new value=\"$th_navstrip_font_color\" size=7></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>th_box_frame_color</B></td>\n  <td width=75%><input type=text name=th_box_frame_color_new value=\"$th_box_frame_color\" size=7></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>th_box_frame_width</B></td>\n  <td width=75%><input type=text name=th_box_frame_width_new value=\"$th_box_frame_width\" size=2></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>th_box_title_bgcolor</B></td>\n  <td width=75%><input type=text name=th_box_title_bgcolor_new value=\"$th_box_title_bgcolor\" size=7></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>th_box_body_bgcolor</B></td>\n  <td width=75%><input type=text name=th_box_body_bgcolor_new value=\"$th_box_body_bgcolor\" size=7></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>th_box_title_align</B></td>\n  <td width=75%><input type=text name=th_box_title_align_new value=\"$th_box_title_align\" size=7></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>th_box_body_align</B></td>\n  <td width=75%><input type=text name=th_box_body_align_new value=\"$th_box_body_align\" size=7></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>th_box_title_font_color</B></td>\n  <td width=75%><input type=text name=th_box_title_font_color_new value=\"$th_box_title_font_color\" size=7></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>th_box_body_font_color</B></td>\n  <td width=75%><input type=text name=th_box_body_font_color_new value=\"$th_box_body_font_color\" size=7></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>th_box_error_font_color</B></td>\n  <td width=75%><input type=text name=th_box_error_font_color_new value=\"$th_box_error_font_color\" size=7></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>th_strip_frame_color</B></td>\n  <td width=75%><input type=text name=th_strip_frame_color_new value=\"$th_strip_frame_color\" size=7></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>th_strip_frame_width</B></td>\n  <td width=75%><input type=text name=th_strip_frame_width_new value=\"$th_strip_frame_width\" size=2></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>th_strip_title_bgcolor</B></td>\n  <td width=75%><input type=text name=th_strip_title_bgcolor_new value=\"$th_strip_title_bgcolor\" size=7></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>th_strip_body_bgcolor</B></td>\n  <td width=75%><input type=text name=th_strip_body_bgcolor_new value=\"$th_strip_body_bgcolor\" size=7></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>th_strip_title_align</B></td>\n  <td width=75%><input type=text name=th_strip_title_align_new value=\"$th_strip_title_align\" size=7></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>th_strip_body_align</B></td>\n  <td width=75%><input type=text name=th_strip_body_align_new value=\"$th_strip_body_align\" size=7></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>th_strip_title_font_color</B></td>\n  <td width=75%><input type=text name=th_strip_title_font_color_new value=\"$th_strip_title_font_color\" size=7></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>th_strip_body_font_color</B></td>\n  <td width=75%><input type=text name=th_strip_body_font_color_new value=\"$th_strip_body_font_color\" size=7></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">maximum number of applications shown each time</td>\n  <td width=\"75%\"><input type=text name=config_show_appsperpage_new value=\"$config_show_appsperpage\" size=\"2\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">maximum number of days show at the right side</td>\n  <td width=\"75%\"><input type=text name=config_show_numberofdays_new value=\"$config_show_numberofdays\" size=\"2\"></td>\n </tr>\n <tr>\n";
 
-    print "  <td width=25%><B>maximum number of applications shown each time</B></td>\n  <td width=75%><input type=text name=config_show_appsperpage_new value=\"$config_show_appsperpage\" size=2></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>maximum number of days show at the right side</B></td>\n  <td width=75%><input type=text name=config_show_numberofdays_new value=\"$config_show_numberofdays\" size=2></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">To be notified, ml_notify apps have to be inserted</td>\n  <td width=\"75%\"><input type=text name=ml_notify_new value=\"$ml_notify\" size=\"3\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">Email address in the From field</td>\n  <td width=\"75%\"><input type=text name=ml_fromaddr_new value=\"$ml_fromaddr\" size=\"45\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">Return Email address</td>\n  <td width=\"75%\"><input type=text name=ml_replyaddr_new value=\"$ml_replyaddr\" size=\"45\"></td>\n </tr>\n <tr>\n";
 
-    print "  <td width=25%><B>To be notified, ml_notify apps have to be inserted</B></td>\n  <td width=75%><input type=text name=ml_notify_new value=\"$ml_notify\" size=3></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>Email address in the From field</B></td>\n  <td width=75%><input type=text name=ml_fromaddr_new value=\"$ml_fromaddr\" size=45></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>Return Email address</B></td>\n  <td width=75%><input type=text name=ml_replyaddr_new value=\"$ml_replyaddr\" size=45></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">Whether you want to have Mailing Lists ('1') or not ('0')</td>\n  <td width=\"75%\"><input type=text name=ml_list_new value=\"$ml_list\" size=\"1\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">ml_listurl</td>\n  <td width=\"75%\"><input type=text name=ml_listurl_new value=\"$ml_listurl\" size=\"45\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">ml_weeklylisturl</td>\n  <td width=\"75%\"><input type=text name=ml_weeklylisturl_new value=\"$ml_weeklylisturl\" size=\"45\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">ml_newstoaddr</td>\n  <td width=\"75%\"><input type=text name=ml_newstoaddr_new value=\"$ml_newstoaddr\" size=\"45\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">ml_newsreqaddr</td>\n  <td width=\"75%\"><input type=text name=ml_newsreqaddr_new value=\"$ml_newsreqaddr\" size=\"45\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">ml_weeklynewstoaddr</td>\n  <td width=\"75%\"><input type=text name=ml_weeklynewstoaddr_new value=\"$ml_weeklynewstoaddr\" size=\"45\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">ml_weeklynewsreqaddr</td>\n  <td width=\"75%\"><input type=text name=ml_weeklynewsreqaddr_new value=\"$ml_weeklynewsreqaddr\" size=\"45\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">E-mail address of the list administrator</td>\n  <td width=\"75%\"><input type=text name=ml_newsadmaddr_new value=\"$ml_newsadmaddr\" size=\"45\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">From-field of the e-mails</td>\n  <td width=\"75%\"><input type=text name=ml_newsfromaddr_new value=\"$ml_newsfromaddr\" size=\"45\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">Reply-addreess of the e-mails</td>\n  <td width=\"75%\"><input type=text name=ml_newsreplyaddr_new value=\"$ml_newsreplyaddr\" size=\"45\"></td>\n </tr>\n <tr>\n";
 
-    print "  <td width=25%><B>Whether you want to have Mailing Lists ('1') or not ('0')</B></td>\n  <td width=75%><input type=text name=ml_list_new value=\"$ml_list\" size=1></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>ml_listurl</B></td>\n  <td width=75%><input type=text name=ml_listurl_new value=\"$ml_listurl\" size=45></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>ml_weeklylisturl</B></td>\n  <td width=75%><input type=text name=ml_weeklylisturl_new value=\"$ml_weeklylisturl\" size=45></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>ml_newstoaddr</B></td>\n  <td width=75%><input type=text name=ml_newstoaddr_new value=\"$ml_newstoaddr\" size=45></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>ml_newsreqaddr</B></td>\n  <td width=75%><input type=text name=ml_newsreqaddr_new value=\"$ml_newsreqaddr\" size=45></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>ml_weeklynewstoaddr</B></td>\n  <td width=75%><input type=text name=ml_weeklynewstoaddr_new value=\"$ml_weeklynewstoaddr\" size=45></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>ml_weeklynewsreqaddr</B></td>\n  <td width=75%><input type=text name=ml_weeklynewsreqaddr_new value=\"$ml_weeklynewsreqaddr\" size=45></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>E-mail address of the list administrator</B></td>\n  <td width=75%><input type=text name=ml_newsadmaddr_new value=\"$ml_newsadmaddr\" size=45></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>From-field of the e-mails</B></td>\n  <td width=75%><input type=text name=ml_newsfromaddr_new value=\"$ml_newsfromaddr\" size=45></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>Replay-addreess of th e-mails</B></td>\n  <td width=75%><input type=text name=ml_newsreplyaddr_new value=\"$ml_newsreplyaddr\" size=45></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">minimum percentage of an Email domain for being displayed</td>\n  <td width=\"75%\"><input type=text name=MinimumAppsByEmail_new value=\"$MinimumAppsByEmail\" size=\"4\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">the same but for Sections</td>\n  <td width=\"75%\"><input type=text name=MinimumSeccByEmail_new value=\"$MinimumSeccByEmail\" size=\"4\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">the same but for Licenses</td>\n  <td width=\"75%\"><input type=text name=MinimumLicByEmail_new value=\"$MinimumLicByEmail\" size=\"4\"></td>\n </tr>\n <tr>\n";
+    print "  <td width=\"25%\">minimum amount of apps a license has to have to be displayed in the statistic</td>\n  <td width=\"75%\"><input type=text name=Minimum_apps_in_license_new value=\"$Minimum_apps_in_license\" size=\"2\"></td>\n </tr>\n <tr>\n";
 
-    print "  <td width=25%><B>minimum percentage of an Email domain for being displayed</B></td>\n  <td width=75%><input type=text name=MinimumAppsByEmail_new value=\"$MinimumAppsByEmail\" size=4></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>the same but for Sections</B></td>\n  <td width=75%><input type=text name=MinimumSeccByEmail_new value=\"$MinimumSeccByEmail\" size=4></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>the same but for Licenses</B></td>\n  <td width=75%><input type=text name=MinimumLicByEmail_new value=\"$MinimumLicByEmail\" size=4></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>minimum amount of apps a license has to have to be displayed in the statistic</B></td>\n  <td width=75%><input type=text name=Minimum_apps_in_license_new value=\"$Minimum_apps_in_license\" size=2></td>\n </tr>\n <tr>\n";
-
-    print "  <td width=25%><B>Access permission to enter apppend.php</B></td>\n  <td width=75%><select name=config_perm_apppend_new>\n";
+    print "  <td width=\"25%\">Access permission to enter apppend.php</td>\n  <td width=\"75%\"><select name=config_perm_apppend_new>\n";
     lib_select_perm($config_perm_apppend);
     print "</select></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>Access permission to enter appdom.php</B></td>\n  <td width=75%><select name=config_perm_appdom_new>\n";
+    print "  <td width=\"25%\">Access permission to enter appdom.php</td>\n  <td width=\"75%\"><select name=config_perm_appdom_new>\n";
     lib_select_perm($config_perm_appdom);
     print "</select></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>Access permission to enter developer.php</B></td>\n  <td width=75%><select name=config_perm_developer_new>\n";
+    print "  <td width=\"25%\">Access permission to enter developer.php</td>\n  <td width=\"75%\"><select name=config_perm_developer_new>\n";
     lib_select_perm($config_perm_developer);
     print "</select></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>Access permission to enter users.php</B></td>\n  <td width=75%><select name=config_perm_users_new>\n";
+    print "  <td width=\"25%\">Access permission to enter users.php</td>\n  <td width=\"75%\"><select name=config_perm_users_new>\n";
     lib_select_perm($config_perm_users);
     print "</select></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>Access permission to enter admdate.php</B></td>\n  <td width=75%><select name=config_perm_admdate_new>\n";
+    print "  <td width=\"25%\">Access permission to enter admdate.php</td>\n  <td width=\"75%\"><select name=config_perm_admdate_new>\n";
     lib_select_perm($config_perm_admdate);
     print "</select></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>Access permission to enter admuser.php</B></td>\n  <td width=75%><select name=config_perm_admuser_new>\n";
+    print "  <td width=\"25%\">Access permission to enter admuser.php</td>\n  <td width=\"75%\"><select name=config_perm_admuser_new>\n";
     lib_select_perm($config_perm_admuser);
     print "</select></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>Access permission to administrate licenses</B></td>\n  <td width=75%><select name=config_perm_admlicens_new>\n";
+    print "  <td width=\"25%\">Access permission to administrate licenses</td>\n  <td width=\"75%\"><select name=config_perm_admlicens_new>\n";
     lib_select_perm($config_perm_admlicens);
     print "</select></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>Access permission to administrate comments</B></td>\n  <td width=75%><select name=config_perm_admcomment_new>\n";
+    print "  <td width=\"25%\">Access permission to administrate comments</td>\n  <td width=\"75%\"><select name=config_perm_admcomment_new>\n";
     lib_select_perm($config_perm_admcomment);
     print "</select></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>Access permission to administrate sections</B></td>\n  <td width=75%><select name=config_perm_admsec_new>\n";
+    print "  <td width=\"25%\">Access permission to administrate sections</td>\n  <td width=\"75%\"><select name=config_perm_admsec_new>\n";
     lib_select_perm($config_perm_admsec);
     print "</select></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>Access permission to administrate categories</B></td>\n  <td width=75%><select name=config_perm_admcat_new>\n";
+    print "  <td width=\"25%\">Access permission to administrate categories</td>\n  <td width=\"75%\"><select name=config_perm_admcat_new>\n";
     lib_select_perm($config_perm_admcat);
     print "</select></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>Access permission to administrate newsletters</B></td>\n  <td width=75%><select name=config_perm_nladm_new>\n";
+    print "  <td width=\"25%\">Access permission to administrate newsletters</td>\n  <td width=\"75%\"><select name=config_perm_nladm_new>\n";
     lib_select_perm($config_perm_nladm);
     print "</select></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>Access permission for administrating the faq</B></td>\n  <td width=75%><select name=config_perm_admfaq_new>\n";
+    print "  <td width=\"25%\">Access permission for administrating the faq</td>\n  <td width=\"75%\"><select name=config_perm_admfaq_new>\n";
     lib_select_perm($config_perm_admfaq);
     print "</select></td>\n </tr>\n <tr>\n";
-    print "  <td width=25%><B>Access permission for configuring the system</B></td>\n  <td width=75%><select name=config_perm_configure_new>\n";
+    print "  <td width=\"25%\">Access permission for configuring the system</td>\n  <td width=\"75%\"><select name=config_perm_configure_new>\n";
     lib_select_perm($config_perm_configure);
      print "</select></td>\n </tr>\n <tr>\n";
 
-    print "  <td colspan=2 align=right><input type=SUBMIT VALUE=Configure></form></td>\n </tr>\n</table></CENTER><BR>\n";
+    print "  <td></td><td><input type=submit value=Configure></form></td>\n </tr>\n</table><br>\n";
 
   }
 }
