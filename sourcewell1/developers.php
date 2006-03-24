@@ -4,14 +4,14 @@
 # SourceWell: Software Announcement & Retrieval System
 # ====================================================
 #
-# Copyright (c) 2001-2004 by
+# Copyright (c) 2001-2006 by
 #     Lutz Henckel (lutz.henckel@fokus.fraunhofer.de) and
 #     Gregorio Robles (grex@scouts-es.org)
 #
 # BerliOS SourceWell: http://sourcewell.berlios.de
 # BerliOS - The OpenSource Mediator: http://www.berlios.de
 #
-# This file lists the developers of the apps in alphabetical order
+# Lists the developers of the apps in alphabetical order
 #
 # This program is free software. You can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -41,11 +41,15 @@ if (($config_perm_developer != "all") && (!isset($perm) || !$perm->have_perm($co
   $be->box_full($t->translate("Error"), $t->translate("Access denied"));
 } else {
 
+// $iter is a variable for printing the developers in steps of 10
+  if (!isset($iter)) $iter=0;
+  $iter*=10;
+
   if (isset($find) && ! empty($find)) {
 	$by = "%".$find."%";
   }
   if (!isset($by) || empty($by)) {
-    $by = "";
+    $by = "%";
   }
 
   $alphabet = array ("A","B","C","D","E","F","G","H","I","J","K","L",
@@ -53,17 +57,29 @@ if (($config_perm_developer != "all") && (!isset($perm) || !$perm->have_perm($co
   $msg = "[ ";
 
   while (list(, $ltr) = each($alphabet)) {
-    $msg .= "<a href=\"".$sess->url("developers.php").$sess->add_query(array("by" => $ltr."%"))."\">$ltr</a>&nbsp;| ";
+    $msg .= "<a href=\"".htmlentities($sess->url("developers.php").$sess->add_query(array("by" => $ltr."%")))."\">$ltr</a>&nbsp;| ";
   }
 
-  $msg .= "<a href=\"".$sess->url("developers.php").$sess->add_query(array("by" => "%"))."\">".$t->translate("All")."</a>&nbsp;| ";
-  $msg .= "<a href=\"".$sess->url("developers.php").$sess->add_query(array("by" => ""))."\">".$t->translate("Unknown")."</a>&nbsp;]";
+  $msg .= "<a href=\"".htmlentities($sess->url("developers.php").$sess->add_query(array("by" => "%")))."\">".$t->translate("All")."</a>&nbsp;] ";
   $msg .= "<form action=\"".$sess->url("developers.php")."\">"
 	   ."<p>Search for <input TYPE=\"text\" SIZE=\"10\" NAME=\"find\" VALUE=\"".$find."\">"
        ."&nbsp;<input TYPE=\"submit\" NAME= \"Find\" VALUE=\"Go\"></form>";
 
   $bs->box_strip($msg);
-  $db->query("SELECT DISTINCT developer,email FROM software WHERE developer LIKE '$by' ORDER BY developer ASC");
+
+  $columns = "COUNT(*)";
+  $tables = "software";
+  $where = "developer LIKE '$by' AND status='A'";
+
+// We need to know the total number of users
+  $query = "SELECT $columns FROM $tables WHERE $where";
+  $db->query($query);
+  $db->next_record();
+  $numiter = ($db->f("COUNT(*)")/10);
+
+  $limit = "$iter,10";
+
+  $db->query("SELECT DISTINCT developer,email FROM software WHERE developer LIKE '$by' ORDER BY developer ASC LIMIT $limit");
   $bx->box_begin();
   $bx->box_title($t->translate("Authors"));
   $bx->box_body_begin();		
@@ -82,14 +98,14 @@ if (($config_perm_developer != "all") && (!isset($perm) || !$perm->have_perm($co
       $num = "[".sprintf("%03d",$db2->f("COUNT(*)"))."]";
       echo "<tr><td>".sprintf("%d",$i)."</td>\n";
       if (empty($developer)) {
-	echo "<td><a href=\"".$sess->url("appbydev.php").$sess->add_query(array("developer" => "", "email" => "$email"))."\">$num</a></td>\n";
+	echo "<td><a href=\"".htmlentities($sess->url("appbydev.php").$sess->add_query(array("developer" => "", "email" => "$email")))."\">$num</a></td>\n";
 	echo "<td>".$t->translate("Unknown")."</td>\n";
       } else {
-	echo "<td><a href=\"".$sess->url("appbydev.php").$sess->add_query(array("developer" => $db->f("developer"), "email" => "$email"))."\">$num</a></td>\n";
+	echo "<td><a href=\"".htmlentities($sess->url("appbydev.php").$sess->add_query(array("developer" => $db->f("developer"), "email" => "$email")))."\">$num</a></td>\n";
         echo "<td>".$db->f("developer")."</td>\n";
       }
       if (!empty($email)) {
-        echo "<td>&lt;<a href=\"mailto:".mailtoencode($email)."\">".ereg_replace("@"," at ",htmlentities($email))."</a>&gt;</td>\n";
+        echo "<td>&lt;<a href=\"mailto:".mailtoencode($email)."\">".ereg_replace("\."," dot ",ereg_replace("@"," at ",htmlentities($email)))."</a>&gt;</td>\n";
       } else {
         echo "<td>&nbsp;</td>\n";
       }
@@ -100,6 +116,12 @@ if (($config_perm_developer != "all") && (!isset($perm) || !$perm->have_perm($co
   echo "</table>\n";
   $bx->box_body_end();
   $bx->box_end();
+
+  if ($numiter > 1) {
+    $url = "developers.php";
+    $urlquery = array("by" => "$by","find" => "$find");
+    show_more ($iter,$numiter,$url,$urlquery);
+  }
 }
 ?>
 <!-- end content -->
