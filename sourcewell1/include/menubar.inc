@@ -61,14 +61,14 @@ if (($config_perm_apppend == "all") || (isset($perm) && $perm->have_perm($config
 if (($config_perm_appdom == "all") || (isset($perm) && $perm->have_perm($config_perm_appdom))  && !($logout)) {
   $db->query("SELECT COUNT(*) FROM software WHERE status='D'");
   $db->next_record();
-  echo "<br><a href=\"".$sess->url("appdom.php?action=delete")."\" class=\"menus\">".$t->translate("Deleted Apps")." [".$db->f("COUNT(*)")."]</a>\n";
+  echo "<br><a href=\"".htmlentities($sess->url("appdom.php?action=delete"))."\" class=\"menus\">".$t->translate("Deleted Apps")." [".$db->f("COUNT(*)")."]</a>\n";
   $db->query("SELECT COUNT(*) FROM software WHERE status='M'");
   $db->next_record();
-  echo "<br><a href=\"".$sess->url("appdom.php?action=modify")."\" class=\"menus\">".$t->translate("Modified Apps")." [".$db->f("COUNT(*)")."]</a>\n";
+  echo "<br><a href=\"".htmlentities($sess->url("appdom.php?action=modify"))."\" class=\"menus\">".$t->translate("Modified Apps")." [".$db->f("COUNT(*)")."]</a>\n";
 }
 
 if (($config_perm_developer == "all") || (isset($perm) && $perm->have_perm($config_perm_developer))  && !($logout)) {
-  echo "<br><a href=\"".$sess->url("developers.php")."\" class=\"menus\">".$t->translate("Authors")."</a>\n";
+  echo "<br><a href=\"".htmlentities($sess->url("developers.php"))."\" class=\"menus\">".$t->translate("Authors")."</a>\n";
 }
 ?>
 <br><a href="<?php $sess->purl("licenses.php"); ?>" class="menus"><?php echo $t->translate("Licenses"); ?></a>
@@ -78,7 +78,7 @@ if ($ml_list) {
   echo "<br><a href=\"".$sess->url("newsletter.php")."\" class=\"menus\">".$t->translate("Newsletter")."</a>\n";
 }
 ?>
-<br><a href="<?php $sess->purl("stats.php?option=general"); ?>" class="menus"><?php echo $t->translate("Statistics"); ?></a>
+<br><a href="<?php echo htmlentities($sess->url("stats.php?option=general")); ?>" class="menus"><?php echo $t->translate("Statistics"); ?></a>
 <?php
 /*
 // The credits have been moved to the footer
@@ -115,7 +115,7 @@ if (
 ?>
 <table BORDER=0 CELLSPACING=0 CELLPADDING=3 WIDTH="100%">
 <tr BGCOLOR="<?php echo $th_navstrip_bgcolor;?>">
-<td ALIGN=CENTER><img SRC="images/blank.gif" height="1" width="135" border=0><br>
+<td ALIGN=CENTER><img SRC="images/blank.gif" height="1" width="135" border="0" alt=""><br>
 <span class="titlebar"><font color="<?php echo $th_navstrip_font_color;?>"><?php echo $t->translate("Administration"); ?></font></span></td>
 </tr>
 
@@ -170,13 +170,13 @@ if (
     $where = "DATE_FORMAT(software.modification,'%Y-%m-%d')=\"".date("Y-m-d")."\"";
     $db->query("SELECT COUNT(*) FROM software WHERE $where AND status='A'"); 
     $db->next_record();
-    echo "<br><a href=\"".$sess->url("nladm.php?period=daily")."\" class=\"menus\">".$t->translate("Daily Newsletter")." [".$db->f("COUNT(*)")."]</a>\n";
+    echo "<br><a href=\"".htmlentities($sess->url("nladm.php?period=daily"))."\" class=\"menus\">".$t->translate("Daily Newsletter")." [".$db->f("COUNT(*)")."]</a>\n";
 				// Weekly Newsletter
     $lastday = time() - 7 * 24 * 60 * 60;
     $where = "DATE_FORMAT(software.modification,'%Y-%m-%d')<=\"".date("Y-m-d")."\" AND DATE_FORMAT(software.modification,'%Y-%m-%d')>\"".date("Y-m-d",$lastday)."\"";
     $db->query("SELECT COUNT(*) FROM software WHERE $where AND status='A'"); 
     $db->next_record();
-    echo "<br><a href=\"".$sess->url("nladm.php?period=weekly")."\" class=\"menus\">".$t->translate("Weekly Newsletter")." [".$db->f("COUNT(*)")."]</a>\n";
+    echo "<br><a href=\"".htmlentities($sess->url("nladm.php?period=weekly"))."\" class=\"menus\">".$t->translate("Weekly Newsletter")." [".$db->f("COUNT(*)")."]</a>\n";
   }
 
   if (($config_perm_configure == "all") || (isset($perm) && $perm->have_perm($config_perm_configure))  && !($logout)) {
@@ -194,7 +194,7 @@ if (
 <!-- Search menu -->
 <table BORDER=0 CELLSPACING=0 CELLPADDING=3 WIDTH="100%">
 <tr BGCOLOR="<?php echo $th_navstrip_bgcolor;?>">
-<td ALIGN=CENTER><img SRC="images/blank.gif" height="1" width="135" border=0><br>
+<td ALIGN=CENTER><img SRC="images/blank.gif" height="1" width="135" border="0" alt=""><br>
 <span class="titlebar"><font color="<?php echo $th_navstrip_font_color;?>"><?php echo $t->translate("Search"); ?></font></span></td>
 </tr>
 
@@ -214,7 +214,7 @@ echo "<p><input TYPE=\"submit\" NAME=\"Search\" VALUE=\"".$t->translate("Search"
 <!-- Language menu -->
 <table BORDER=0 CELLSPACING=0 CELLPADDING=3 WIDTH="100%">
 <tr BGCOLOR="<?php echo $th_navstrip_bgcolor;?>">
-<td ALIGN=CENTER><img SRC="images/blank.gif" height="1" width="135" border=0><br>
+<td ALIGN=CENTER><img SRC="images/blank.gif" height="1" width="135" border="0" alt=""><br>
 <span class="titlebar"><font color="<?php echo $th_navstrip_font_color;?>"><?php echo $t->translate("Language");?></font></span></td>
 </tr>
 
@@ -254,8 +254,8 @@ if (ereg("Gecko", "$HTTP_USER_AGENT")) {
 	echo "<p align=center><a href=\"javascript:addNetscapePanel();\"><img SRC=\"images/add-button.gif\" BORDER=0 height=45 width=100></a>\n";
 }
 echo "<p align=\"center\"><a href=\"rss20.php\">
-<img src=\"/images/feed-icons/png/feed-icon-32x32.png\" width=\"32px\" height=\"32px\"alt=\"Feed logo\" border=\"0\" align=\"middle\"></a><br>RSS 2.0\n";
+<img src=\"/images/feed-icon-32x32.png\" width=\"32px\" height=\"32px\" alt=\"Feed logo\" border=\"0\" align=\"middle\"></a><br>RSS 2.0\n";
 echo "<p align=\"center\"><a href=\"http://developer.berlios.de\" title=\"BerliOS Developer\">
-<img src=\"//developer.berlios.de/bslogo.php?group_id=23&type=1\" width=\"124px\" height=\"32px\" border=\"0\" hspace=\"3\" vspace=\"3\" alt=\"BerliOS Logo\"></a><br>Developer\n";
+<img src=\"//developer.berlios.de/bslogo.php?group_id=23&amp;type=1\" width=\"124px\" height=\"32px\" border=\"0\" hspace=\"3\" vspace=\"3\" alt=\"BerliOS Logo\"></a><br>Developer\n";
 ?>
 <!-- end Language menu -->
