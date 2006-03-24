@@ -39,11 +39,11 @@ $sys_name = "SourceWell";
 $sys_title = "Open Source Software Announcement &amp; Retrieval";
 $sys_url_title = "http://www.berlios.de/";
 $sys_url = "//sourcewell.berlios.de/";
-$sys_logo_image = $sys_url."images/berliOS_logo.png";
+$sys_logo_image = "//sourcewell.berlios.de/images/berliOS_logo.png";
 $sys_logo_alt = "BerliOS";
 $sys_logo_width = "238";
 $sys_logo_heigth = "61";
-$sys_logo_small_image = $sys_url."images/berliOS_small_logo.png";
+$sys_logo_small_image = "//sourcewell.berlios.de/images/berliOS_small_logo.png";
 #$sys_logo_small_image = "http://developer.berlios.de/bslogo.php?group_id=23&type=1";
 $sys_logo_small_alt = $sys_logo_alt;
 $sys_logo_small_width = "124";
@@ -62,7 +62,7 @@ $sys_logo_small_heigth = "32";
 
 $org_name = "FOKUS";
 $org_url = "http://www.fokus.fraunhofer.de/";
-$org_logo_image = $sys_url."images/logo_fokus.png";
+$org_logo_image = "//sourcewell.berlios.de/images/logo_fokus.png";
 $org_logo_alt = $org_name;
 $org_logo_width = "60";
 $org_logo_heigth = "60";
@@ -94,8 +94,8 @@ $ts_array = array (
 ######################################################################
 
 $th_body_bgcolor = "#FFFFFF";
-$th_font_family = "verdana,arial,helvetica,sans-serif";
-$th_tt_font_family = "courier,sans-serif";
+$th_font_family = "Verdana,Arial,Helvetica,sans-serif";
+$th_tt_font_family = "Courier,sans-serif";
 $th_font_color = "#333333";
 $th_hover_font_color = "#FF0000";
 
@@ -131,8 +131,8 @@ $th_strip_body_font_color = "";
 #
 ######################################################################
 
-$config_show_appsperpage = "10";
-$config_show_numberofdays = 6; 
+$config_show_appsperpage = "6";
+$config_show_numberofdays = 7; 
 
 ######################################################################
 # Email Notification
@@ -147,8 +147,8 @@ $config_show_numberofdays = 6;
 ######################################################################
 
 $ml_notify = "1";
-$ml_fromaddr = "noreply@berlios.de";
-$ml_replyaddr = "noreply@berlios.de";
+$ml_fromaddr = "sourcewell-admin@lists.berlios.de";
+$ml_replyaddr = "sourcewell-admin@lists.berlios.de";
 
 ######################################################################
 # Newsletter Configuration
@@ -162,7 +162,7 @@ $ml_replyaddr = "noreply@berlios.de";
 # ml_weeklynewsreqaddr 
 # ml_newsadmaddr: E-mail address of the list administrator
 # ml_newsfromaddr: From-field of the e-mails
-# ml_newsreplyaddr: Replay-addreess of th e-mails
+# ml_newsreplyaddr: Reply-addreess of th e-mails
 #
 ######################################################################
 
@@ -174,8 +174,8 @@ $ml_newsreqaddr = "sourcewell-news-request@lists.berlios.de";
 $ml_weeklynewstoaddr = "sourcewell-weeklynews@lists.berlios.de";
 $ml_weeklynewsreqaddr = "sourcewell-weeklynews-request@lists.berlios.de";
 $ml_newsadmaddr = "sourcewell-admin@lists.berlios.de";
-$ml_newsfromaddr = "sourcewell-crew@berlios.de";
-$ml_newsreplyaddr = "noreply@berlios.de";
+$ml_newsfromaddr = "sourcewell-admin@lists.berlios.de";
+$ml_newsreplyaddr = "sourcewell-admin@lists.berlios.de";
 
 ######################################################################
 # Languages
