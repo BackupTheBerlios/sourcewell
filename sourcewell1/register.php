@@ -50,14 +50,19 @@ while (is_array($HTTP_POST_VARS)
        && list($key, $val) = each($HTTP_POST_VARS)) {
     switch ($key) {
     case "register": // Register a new user
-		$username = trim($username);
-		$password = trim($password);
-		$cpassword = trim($cpassword);
-		$realname = trim($realname);
-		$email_usr = trim($email_usr);
+        $username = trim($username);
+        $password = trim($password);
+        $cpassword = trim($cpassword);
+	$realname = trim($realname);
+        list($email_usr, $rest) = split("\n", $email_usr, 2);
+	$email_usr = trim($email_usr);
         if (empty($username) || empty($password)  || empty($cpassword) || empty($email_usr)) { // Do we have all necessary data?
             $be->box_full($t->translate("Error"), $t->translate("Please enter")." <b>".$t->translate("Username")."</b>, <b>".$t->translate("Password")."</b> ".$t->translate("and")." <b>".$t->translate("E-Mail")."</b>!");
             break;
+        }
+        if (strlen($rest) > 0) {
+          $be->box_full($t->translate("Error"), $t->translate("Invalid email address").".");
+          break;
         }
         if (strcmp($password,$cpassword)) { // password are identical?
             $be->box_full($t->translate("Error"), $t->translate("The passwords are not identical").". ".$t->translate("Please try again")."!");
@@ -84,7 +89,7 @@ while (is_array($HTTP_POST_VARS)
         // send mail
         $message = $t->translate("Thank you for registering on the $sys_name Site. In order")."\n"
                   .$t->translate("to complete your registration, visit the following URL").": \n\n"
-                  .$sys_url."verify.php?confirm_hash=$u_id\n\n"
+                  ."https:".$sys_url."verify.php?confirm_hash=$u_id\n\n"
                   .$t->translate("Enjoy the site").".\n\n"
                   .$t->translate(" -- the $sys_name crew")."\n";
         mail($email_usr,"[$sys_name] ".$t->translate("User Registration"),$message,"From: $ml_newsfromaddr\nReply-To: $ml_newsreplyaddr\nX-Mailer: PHP");
@@ -149,4 +154,5 @@ echo "<input type=\"submit\" name=\"register\" value=\"".$t->translate("Register
 <?php
 require("./include/footer.inc");
 @page_close();
+        list($email_usr, $rest) = split("\n", $email_usr, 2);
 ?>
