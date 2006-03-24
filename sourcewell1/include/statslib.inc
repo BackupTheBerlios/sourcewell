@@ -58,10 +58,10 @@ function statslib_top($query,$var,$message,$position) {
       $db_local_appid = $db_local->f("appid");
       $db_local_type = $db_local->f("type");
       if ($db_local_type == "S") {
-        echo " (<a href=\"".$sess->url("appbyid.php").$sess->add_query(array("id" => $db_local->f("appid")))."\">S</A>)";
+        echo " (<a href=\"".htmlentities($sess->url("appbyid.php").$sess->add_query(array("id" => $db_local->f("appid"))))."\">S</A>)";
       }
       if ($db_local_type == "D") {
-        echo " (<a href=\"".$sess->url("appbyid.php").$sess->add_query(array("id" => $db_local->f("appid")))."\">D</A>)";
+        echo " (<a href=\"".htmlentities($sess->url("appbyid.php").$sess->add_query(array("id" => $db_local->f("appid"))))."\">D</A>)";
       }
     }
     echo "</td>\n";
@@ -133,8 +133,8 @@ function stats_display($what,$count,$url,$urlquery,$total) {
   }
 
   echo "<tr><td width=246>&nbsp;";
-    if (strcmp($url,"0")) echo "<a href=\"".$sess->url($url);
-    if (strcmp($urlquery,"0")) echo $sess->add_query($urlquery);
+    if (strcmp($url,"0")) echo "<a href=\"".htmlentities($sess->url($url));
+    if (strcmp($urlquery,"0")) echo htmlentities($sess->add_query($urlquery));
     if (strcmp($url,"0")) echo "\">";
        echo $what;
 	 if (strcmp($url,"0")) echo "</A>:</td>\n";
