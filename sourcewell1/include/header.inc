@@ -41,7 +41,7 @@ $db = new DB_SourceWell;
 <link rel="STYLESHEET" type="text/css" href="style.php">
 <link rel="SHORTCUT ICON" href="favicon.ico">
 
-<SCRIPT LANGUAGE="JavaScript"> function addNetscapePanel() { 
+<SCRIPT type="text/javascript"> function addNetscapePanel() { 
       if ((typeof window.sidebar == "object") && (typeof window.sidebar.addPanel == "function")) 
       { 
          window.sidebar.addPanel ("<?php echo $sys_name ?>", 
@@ -57,7 +57,7 @@ $db = new DB_SourceWell;
 //--> </SCRIPT>
 
 </head>
-<body bgcolor="<?php echo $th_body_bgcolor;?>" topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" marginheight="0" marginwidth="0">
+<body bgcolor="<?php echo $th_body_bgcolor;?>">
 
 <?php
 require("top_strip.inc");
@@ -72,7 +72,7 @@ require("menubar.inc");
 ?>
 </td>
 
-<td WIDTH="10"><img SRC="images/blank.gif" BORDER=0 height=1 width=10></td>
+<td width="10"><img src="images/blank.gif" border="0" height="1" width="10" alt=""></td>
 
 <td WIDTH="99%">
 <br>
