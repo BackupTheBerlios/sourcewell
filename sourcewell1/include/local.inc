@@ -5,7 +5,7 @@
  * Copyright (c) 1998-2000 NetUSE AG
  *                    Boris Erdmann, Kristian Koehntopp
  *
- * $Id: local.inc,v 1.4 2004/05/11 10:50:26 helix Exp $
+ * $Id: local.inc,v 1.5 2006/03/24 14:58:06 helix Exp $
  *
  */ 
 
