@@ -9,7 +9,7 @@ $h4 = "10px";
 $h5 = "8px";
 $h6 = "8px";
 ?>
-BODY { background-color: #FFFFFF }
+BODY { background-color: #FFFFFF; margin: 0cm }
 
 OL,UL,P,BODY,TD,TR,TH,FORM,TEXTAREA,INPUT,SELECT { font-family: <?php echo $th_font_family; ?>; font-size:<?php echo $fsn; ?>; color: <?php echo $th_font_color; ?> }
 
